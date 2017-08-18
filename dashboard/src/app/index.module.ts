@@ -34,11 +34,14 @@ import {DemoComponentsController} from './demo-components/demo-components.contro
 import {CheBranding} from '../components/branding/che-branding.factory';
 import {ChePreferences} from '../components/api/che-preferences.factory';
 import {LoginController} from './login/login.controller';
+import {OrganizationsConfig} from './organizations/organizations-config';
+import {TeamsConfig} from './teams/teams-config';
 
 
 // init module
 let initModule = angular.module('userDashboard', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ngRoute',
-  'angular-websocket', 'ui.bootstrap', 'ui.codemirror', 'ngMaterial', 'ngMessages', 'angularMoment', 'angular.filter',
+  'angular-websocket', 'ui.bootstrap', 'ui.codemirror', 'ui.gravatar',
+  'ngMaterial', 'ngMessages', 'angularMoment', 'angular.filter',
   'ngDropdowns', 'ngLodash', 'angularCharts', 'ngClipboard', 'uuid4', 'angularFileUpload']);
 
 // add a global resolve flag on all routes (user needs to be resolved first)
@@ -554,6 +557,16 @@ initModule.config(['$routeProvider', '$locationProvider', '$httpProvider', ($rou
   }
 }]);
 
+angular.module('ui.gravatar').config(['gravatarServiceProvider', (gravatarServiceProvider) => {
+  gravatarServiceProvider.defaults = {
+    size: 43,
+    default: 'mm'  // mystery man as default for missing avatars
+  };
+
+  // Use https endpoint
+  gravatarServiceProvider.secure = true;
+
+}]);
 
 var instanceRegister = new Register(initModule);
 
@@ -579,3 +592,5 @@ new WorkspacesConfig(instanceRegister);
 new DashboardConfig(instanceRegister);
 new StacksConfig(instanceRegister);
 new FactoryConfig(instanceRegister);
+new OrganizationsConfig(instanceRegister);
+new TeamsConfig(instanceRegister);
