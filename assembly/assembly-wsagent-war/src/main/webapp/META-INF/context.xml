@@ -11,18 +11,13 @@
       Red Hat, Inc. - initial API and implementation
 
 -->
-<Context allowCasualMultipartParsing="true">
+<Context>
 
-    <JarScanner>
-        <JarScanFilter
-          defaultPluggabilityScan="false"
-          defaultTldScan="false"
-          pluggabilityScan=""></JarScanFilter>
-    </JarScanner>
+  <JarScanner>
+    <JarScanFilter
+      defaultPluggabilityScan="false"
+      defaultTldScan="false"
+      pluggabilityScan=""></JarScanFilter>
+  </JarScanner>
 
-    <Valve className="org.apache.catalina.valves.rewrite.RewriteValve"/>
-
-    <ResourceLink global="che"
-                  name="jdbc/che"
-                  type="javax.sql.DataSource"/>
 </Context>
