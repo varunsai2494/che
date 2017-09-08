@@ -1,11 +1,9 @@
 --- src/app/index.module.ts
 +++ src/app/index.module.ts
-@@ -36,12 +36,66 @@
- import {CheBranding} from '../components/branding/che-branding.factory';
- import {ChePreferences} from '../components/api/che-preferences.factory';
--
-+
-+
+@@ -37,12 +37,65 @@
+ import {OrganizationsConfig} from './organizations/organizations-config';
+ import {TeamsConfig} from './teams/teams-config';
+
 +function buildKeycloakConfig(keycloakSettings) {
 +    return {
 +        url: keycloakSettings['che.keycloak.auth-server-url'],
@@ -18,9 +16,12 @@
 
  // init module
  let initModule = angular.module('userDashboard', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ngRoute',
-   'angular-websocket', 'ui.bootstrap', 'ui.codemirror', 'ngMaterial', 'ngMessages', 'angularMoment', 'angular.filter',
-   'ngDropdowns', 'ngLodash', 'angularCharts', 'ngClipboard', 'uuid4', 'angularFileUpload']);
-
+-  'angular-websocket', 'ui.bootstrap', 'ui.codemirror', 'ui.gravatar',
+-  'ngMaterial', 'ngMessages', 'angularMoment', 'angular.filter',
+-  'ngDropdowns', 'ngLodash', 'angularCharts', 'ngClipboard', 'uuid4', 'angularFileUpload']);
++  'angular-websocket', 'ui.bootstrap', 'ui.codemirror', 'ngMaterial', 'ngMessages', 'angularMoment', 'angular.filter',
++  'ngDropdowns', 'ngLodash', 'angularCharts', 'ngClipboard', 'uuid4', 'angularFileUpload', 'ui.gravatar']);
++
 +angular.element(document).ready(($injector) => {
 +
 +  let promise = $injector.get('../wsmaster/api/keycloak/settings');
@@ -67,51 +68,10 @@
 +});
 
  // add a global resolve flag on all routes (user needs to be resolved first)
- initModule.config(['$routeProvider', ($routeProvider) => {
-@@ -54,7 +78,6 @@
-           deferred.reject(error);
-         });
-       }
--
-       return deferred.promise;
-     }];
-
-@@ -65,6 +88,7 @@
-     route.resolve || (route.resolve = {});
-     route.resolve.app = ['$q', 'chePreferences', ($q, chePreferences) => {
-       let deferred = $q.defer();
-+
-       if (chePreferences.getPreferences()) {
-         deferred.resolve();
-       } else {
-@@ -74,9 +98,9 @@
-           deferred.reject(error);
-         });
-       }
--
-       return deferred.promise;
-     }];
-+
-     return $routeProvider.otherwise(route);
-   };
-
-@@ -110,12 +134,11 @@
- /**
-  * Setup route redirect module
-  */
--initModule.run(['$rootScope', '$location', '$routeParams', 'routingRedirect', '$timeout', 'ideIFrameSvc', 'cheIdeFetcher', 'routeHistory', 'cheUIElementsInjectorService', 'workspaceDetailsService',
-+initModule.run(['$rootScope', '$location', '$routeParams', 'routingRedirect', '$timeout','ideIFrameSvc', 'cheIdeFetcher', 'routeHistory', 'cheUIElementsInjectorService', 'workspaceDetailsService',
-   ($rootScope, $location, $routeParams, routingRedirect, $timeout, ideIFrameSvc, cheIdeFetcher, routeHistory, cheUIElementsInjectorService, workspaceDetailsService) => {
-     $rootScope.hideLoader = false;
-     $rootScope.waitingLoaded = false;
-     $rootScope.showIDE = false;
--
-     workspaceDetailsService.addPage('Projects', '<workspace-details-projects></workspace-details-projects>', 'icon-ic_inbox_24px');
-     workspaceDetailsService.addPage('SSH', '<workspace-details-ssh></workspace-details-ssh>', 'icon-ic_vpn_key_24px');
-
-@@ -166,6 +189,39 @@
+ initModule.config(['$routeProvider', ($routeProvider: che.route.IRouteProvider) => {
+@@ -188,6 +241,38 @@
+     });
    }]);
-
 
 +initModule.factory('KeyCloakTokenInterceptor', ($q, keycloak) => {
 +  return {
@@ -145,19 +105,16 @@
 +
 +  }
 +});
-+
+
  // add interceptors
  initModule.factory('ETagInterceptor', ($window, $cookies, $q) => {
-
-@@ -355,8 +415,10 @@
+@@ -546,6 +631,9 @@
  });
 
  initModule.config(['$routeProvider', '$locationProvider', '$httpProvider', ($routeProvider, $locationProvider, $httpProvider) => {
 +
-+ $httpProvider.interceptors.push('KeyCloakTokenInterceptor');
++  $httpProvider.interceptors.push('KeyCloakTokenInterceptor');
++
    // add the ETag interceptor for Che API
--  $httpProvider.interceptors.push('ETagInterceptor');
-+ $httpProvider.interceptors.push('ETagInterceptor');
- }]);
-
+   $httpProvider.interceptors.push('ETagInterceptor');
 
