@@ -125,6 +125,10 @@ public class CommandsToolbar {
     redrawWait.until(ExpectedConditions.visibilityOf(commandsToolbarSelect));
     Actions action = new Actions(seleniumWebDriver);
     action.clickAndHold(commandsToolbarSelect).perform();
+
+    System.out.println("==============>>>>>>>>>");
+    WaitUtils.sleepQuietly(5);
+
     Wait<WebDriver> wait =
         new FluentWait<WebDriver>(seleniumWebDriver)
             .withTimeout(REDRAW_UI_ELEMENTS_TIMEOUT_SEC, TimeUnit.SECONDS)
