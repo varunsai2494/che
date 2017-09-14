@@ -17,7 +17,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.MapBinder;
 import com.google.inject.multibindings.Multibinder;
 import com.google.inject.name.Names;
-import javax.sql.DataSource;
 import org.eclipse.che.api.agent.GitCredentialsAgent;
 import org.eclipse.che.api.agent.LSCSharpAgent;
 import org.eclipse.che.api.agent.LSJsonAgent;
@@ -40,7 +39,6 @@ import org.eclipse.che.api.factory.server.FactoryEditValidator;
 import org.eclipse.che.api.factory.server.FactoryParametersResolver;
 import org.eclipse.che.api.machine.server.recipe.RecipeLoader;
 import org.eclipse.che.api.machine.shared.Constants;
-import org.eclipse.che.api.user.server.TokenValidator;
 import org.eclipse.che.api.workspace.server.WorkspaceConfigMessageBodyAdapter;
 import org.eclipse.che.api.workspace.server.WorkspaceMessageBodyAdapter;
 import org.eclipse.che.api.workspace.server.stack.StackLoader;
@@ -58,7 +56,6 @@ public class WsMasterModule extends AbstractModule {
     // db related components modules
     install(new com.google.inject.persist.jpa.JpaPersistModule("main"));
     install(new org.eclipse.che.account.api.AccountModule());
-    install(new org.eclipse.che.api.user.server.jpa.UserJpaModule());
     install(new org.eclipse.che.api.ssh.server.jpa.SshJpaModule());
     install(new org.eclipse.che.api.machine.server.jpa.MachineJpaModule());
     install(new org.eclipse.che.api.workspace.server.jpa.WorkspaceJpaModule());
@@ -66,7 +63,6 @@ public class WsMasterModule extends AbstractModule {
     install(new org.eclipse.che.api.core.websocket.impl.WebSocketModule());
 
     // db configuration
-    bind(DataSource.class).toProvider(org.eclipse.che.core.db.h2.H2DataSourceProvider.class);
     bind(SchemaInitializer.class)
         .to(org.eclipse.che.core.db.schema.impl.flyway.FlywaySchemaInitializer.class);
     bind(org.eclipse.che.core.db.DBInitializer.class).asEagerSingleton();
@@ -88,10 +84,6 @@ public class WsMasterModule extends AbstractModule {
     factoryParametersResolverMultibinder.addBinding().to(GithubFactoryParametersResolver.class);
 
     install(new org.eclipse.che.plugin.docker.compose.ComposeModule());
-
-    bind(org.eclipse.che.api.user.server.CheUserCreator.class);
-
-    bind(TokenValidator.class).to(org.eclipse.che.api.local.DummyTokenValidator.class);
 
     bind(org.eclipse.che.api.core.rest.ApiInfoService.class);
     bind(org.eclipse.che.api.project.server.template.ProjectTemplateDescriptionLoader.class)
@@ -140,9 +132,6 @@ public class WsMasterModule extends AbstractModule {
         .toInstance(
             new org.eclipse.che.api.machine.server.model.impl.ServerConfImpl(
                 Constants.WSAGENT_DEBUG_REFERENCE, "4403/tcp", "http", null));
-
-    bind(org.eclipse.che.api.agent.server.WsAgentHealthChecker.class)
-        .to(org.eclipse.che.api.agent.server.WsAgentHealthCheckerImpl.class);
 
     bind(org.eclipse.che.api.machine.server.recipe.RecipeLoader.class);
     Multibinder.newSetBinder(
@@ -206,9 +195,6 @@ public class WsMasterModule extends AbstractModule {
         .to(org.eclipse.che.plugin.docker.machine.DockerInstanceProvider.class);
 
     install(new org.eclipse.che.plugin.activity.inject.WorkspaceActivityModule());
-
-    bind(org.eclipse.che.api.environment.server.MachineInstanceProvider.class)
-        .to(org.eclipse.che.plugin.docker.machine.MachineProviderImpl.class);
 
     install(new org.eclipse.che.api.core.rest.CoreRestModule());
     install(new org.eclipse.che.api.core.util.FileCleaner.FileCleanerModule());

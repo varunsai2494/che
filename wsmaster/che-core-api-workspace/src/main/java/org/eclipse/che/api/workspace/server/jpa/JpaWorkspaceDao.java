@@ -51,6 +51,12 @@ public class JpaWorkspaceDao implements WorkspaceDao {
   @Inject private EventService eventService;
   @Inject private Provider<EntityManager> managerProvider;
 
+  private static final String findByWorkerQuery =
+      "SELECT ws FROM Worker worker  "
+          + "          LEFT JOIN worker.workspace ws "
+          + "          WHERE worker.userId = :userId "
+          + "          AND 'read' MEMBER OF worker.actions";
+
   @Override
   public WorkspaceImpl create(WorkspaceImpl workspace) throws ConflictException, ServerException {
     requireNonNull(workspace, "Required non-null workspace");
@@ -153,14 +159,13 @@ public class JpaWorkspaceDao implements WorkspaceDao {
   @Override
   @Transactional
   public List<WorkspaceImpl> getWorkspaces(String userId) throws ServerException {
+
     try {
       return managerProvider
           .get()
-          .createNamedQuery("Workspace.getAll", WorkspaceImpl.class)
-          .getResultList()
-          .stream()
-          .map(WorkspaceImpl::new)
-          .collect(Collectors.toList());
+          .createQuery(findByWorkerQuery, WorkspaceImpl.class)
+          .setParameter("userId", userId)
+          .getResultList();
     } catch (RuntimeException x) {
       throw new ServerException(x.getLocalizedMessage(), x);
     }
