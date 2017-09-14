@@ -55,6 +55,7 @@ public class JsonLanguageServerLauncher extends LanguageServerLauncherTemplate
     return Files.exists(launchScript);
   }
 
+  @Override
   protected LanguageServer connectToLanguageServer(
       final Process languageServerProcess, LanguageClient client) {
     Launcher<LanguageServer> launcher =
@@ -67,6 +68,7 @@ public class JsonLanguageServerLauncher extends LanguageServerLauncherTemplate
     return launcher.getRemoteProxy();
   }
 
+  @Override
   protected Process startLanguageServerProcess(String projectPath) throws LanguageServerException {
     ProcessBuilder processBuilder = new ProcessBuilder(launchScript.toString());
     processBuilder.redirectInput(ProcessBuilder.Redirect.PIPE);
@@ -98,6 +100,7 @@ public class JsonLanguageServerLauncher extends LanguageServerLauncherTemplate
     serviceObject.jsonSchemaAssociation(associations);
   }
 
+  @Override
   public LanguageServerDescription getDescription() {
     return DESCRIPTION;
   }

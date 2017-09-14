@@ -204,6 +204,7 @@ public class InferTypeArgumentsRefactoring extends Refactoring {
 
                   SafeRunner.run(
                       new ISafeRunnable() {
+                        @Override
                         public void run() throws Exception {
                           IProblem[] problems = ast.getProblems();
                           for (int p = 0; p < problems.length; p++) {
@@ -226,6 +227,7 @@ public class InferTypeArgumentsRefactoring extends Refactoring {
                           ast.accept(unitCollector);
                         }
 
+                        @Override
                         public void handleException(Throwable exception) {
                           String cuName =
                               JavaElementLabels.getElementLabel(

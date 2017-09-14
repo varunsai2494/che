@@ -45,6 +45,7 @@ public abstract class AbstractMultiFix extends AbstractCleanUp implements IMulti
       throws CoreException;
 
   /** {@inheritDoc} */
+  @Override
   public int computeNumberOfFixes(CompilationUnit compilationUnit) {
     return -1;
   }

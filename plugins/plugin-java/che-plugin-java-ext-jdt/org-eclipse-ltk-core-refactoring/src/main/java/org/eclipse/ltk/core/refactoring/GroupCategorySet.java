@@ -32,10 +32,12 @@ public class GroupCategorySet {
   /** Constant representing a group category set containing no group categories. */
   public static final GroupCategorySet NONE =
       new GroupCategorySet() {
+        @Override
         public boolean contains(GroupCategory category) {
           return false;
         }
 
+        @Override
         public List asList() {
           return Collections.EMPTY_LIST;
         }

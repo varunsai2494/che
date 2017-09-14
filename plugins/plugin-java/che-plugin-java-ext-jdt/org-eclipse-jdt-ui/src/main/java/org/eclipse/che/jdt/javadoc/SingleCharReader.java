@@ -16,9 +16,11 @@ import java.io.Reader;
 public abstract class SingleCharReader extends Reader {
 
   /** @see java.io.Reader#read() */
+  @Override
   public abstract int read() throws IOException;
 
   /** @see java.io.Reader#read(char[],int,int) */
+  @Override
   public int read(char cbuf[], int off, int len) throws IOException {
     int end = off + len;
     for (int i = off; i < end; i++) {
@@ -33,6 +35,7 @@ public abstract class SingleCharReader extends Reader {
   }
 
   /** @see java.io.Reader#ready() */
+  @Override
   public boolean ready() throws IOException {
     return true;
   }

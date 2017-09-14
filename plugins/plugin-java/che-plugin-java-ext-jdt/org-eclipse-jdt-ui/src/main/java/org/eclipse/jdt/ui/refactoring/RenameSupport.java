@@ -185,19 +185,19 @@ public class RenameSupport {
    *
    * @deprecated use UPDATE_REFERENCES or UPDATE_TEXTUAL_MATCHES or both.
    */
-  public static final int UPDATE_JAVADOC_COMMENTS = 1 << 1;
+  @Deprecated public static final int UPDATE_JAVADOC_COMMENTS = 1 << 1;
   /**
    * Flag indicating that regular comments are to be updated as well.
    *
    * @deprecated use UPDATE_TEXTUAL_MATCHES
    */
-  public static final int UPDATE_REGULAR_COMMENTS = 1 << 2;
+  @Deprecated public static final int UPDATE_REGULAR_COMMENTS = 1 << 2;
   /**
    * Flag indicating that string literals are to be updated as well.
    *
    * @deprecated use UPDATE_TEXTUAL_MATCHES
    */
-  public static final int UPDATE_STRING_LITERALS = 1 << 3;
+  @Deprecated public static final int UPDATE_STRING_LITERALS = 1 << 3;
 
   /**
    * Flag indicating that textual matches in comments and in string literals are to be updated as

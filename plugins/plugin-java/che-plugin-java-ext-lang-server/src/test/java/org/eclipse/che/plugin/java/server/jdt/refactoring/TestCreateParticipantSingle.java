@@ -29,6 +29,7 @@ public class TestCreateParticipantSingle extends CreateParticipant {
   private Object fElement;
   private String fHandle;
 
+  @Override
   public boolean initialize(Object element) {
     fgInstances.add(this);
     fElement = element;
@@ -40,14 +41,17 @@ public class TestCreateParticipantSingle extends CreateParticipant {
     return true;
   }
 
+  @Override
   public String getName() {
     return getClass().getName();
   }
 
+  @Override
   public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context) {
     return new RefactoringStatus();
   }
 
+  @Override
   public Change createChange(IProgressMonitor pm) throws CoreException {
     return null;
   }

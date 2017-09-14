@@ -71,6 +71,7 @@ public class FileNamePatternSearchScope extends TextSearchScope {
   /* (non-Javadoc)
    * @see org.eclipse.search.core.text.FileSearchScope#getRoots()
    */
+  @Override
   public IResource[] getRoots() {
     return fRootElements;
   }
@@ -78,6 +79,7 @@ public class FileNamePatternSearchScope extends TextSearchScope {
   /* (non-Javadoc)
    * @see org.eclipse.search.core.text.FileSearchScope#contains(org.eclipse.core.resources.IResourceProxy)
    */
+  @Override
   public boolean contains(IResourceProxy proxy) {
     if (!fVisitDerived && proxy.isDerived()) {
       return false; // all resources in a derived folder are considered to be derived, see bug 103576

@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.svn.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
 import com.google.common.base.Splitter;
@@ -162,7 +164,7 @@ public class SubversionConfigurationChecker {
   private void updateConfigFile(String content, Path configFile) throws IOException {
     Files.write(
         configFile,
-        content.getBytes(),
+        content.getBytes(UTF_8),
         StandardOpenOption.TRUNCATE_EXISTING,
         StandardOpenOption.CREATE);
   }

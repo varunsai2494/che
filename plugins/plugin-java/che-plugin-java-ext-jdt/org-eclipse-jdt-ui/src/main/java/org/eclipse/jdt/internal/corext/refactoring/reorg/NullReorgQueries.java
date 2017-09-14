@@ -22,11 +22,13 @@ public final class NullReorgQueries implements IReorgQueries {
   private static final class NullConfirmQuery implements IConfirmQuery {
 
     /** {@inheritDoc} */
+    @Override
     public boolean confirm(String question) throws OperationCanceledException {
       return true;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean confirm(String question, Object[] elements) throws OperationCanceledException {
       return true;
     }
@@ -36,16 +38,19 @@ public final class NullReorgQueries implements IReorgQueries {
   private static final IConfirmQuery NULL_QUERY = new NullConfirmQuery();
 
   /** {@inheritDoc} */
+  @Override
   public IConfirmQuery createSkipQuery(String queryTitle, int queryID) {
     return NULL_QUERY;
   }
 
   /** {@inheritDoc} */
+  @Override
   public IConfirmQuery createYesNoQuery(String queryTitle, boolean allowCancel, int queryID) {
     return NULL_QUERY;
   }
 
   /** {@inheritDoc} */
+  @Override
   public IConfirmQuery createYesYesToAllNoNoToAllQuery(
       String queryTitle, boolean allowCancel, int queryID) {
     return NULL_QUERY;

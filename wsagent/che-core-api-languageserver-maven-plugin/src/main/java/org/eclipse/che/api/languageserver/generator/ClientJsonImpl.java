@@ -83,6 +83,7 @@ public class ClientJsonImpl implements JsonImpl {
     return "put";
   }
 
+  @Override
   public String add(String arrayName, String valueName) {
     return String.format("%1$s.set(%1$s.size(), %2$s);", arrayName, valueName);
   }

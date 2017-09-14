@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.openshift.client.kubernetes;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -62,7 +63,7 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldBreakLinesCorrectly() {
     // Given
-    byte[] input = "line1\nline2\n".getBytes();
+    byte[] input = "line1\nline2\n".getBytes(UTF_8);
     List<String> expected = generateExpected("line1", "line2");
 
     // When
@@ -76,8 +77,8 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldCacheUnfinishedLinesBetweenCalls() {
     // Given
-    byte[] firstInput = "line1\nlin".getBytes();
-    byte[] secondInput = "e2\nline3\n".getBytes();
+    byte[] firstInput = "line1\nlin".getBytes(UTF_8);
+    byte[] secondInput = "e2\nline3\n".getBytes(UTF_8);
     List<String> expected = generateExpected("line1", "line2", "line3");
 
     // When
@@ -93,7 +94,7 @@ public class KubernetesOutputAdapterTest {
   public void shouldUseProvidedLogMessageType() {
     for (LogMessage.Type type : LogMessage.Type.values()) {
       // Given
-      byte[] input = "line1\n".getBytes();
+      byte[] input = "line1\n".getBytes(UTF_8);
       LogMessage.Type expected = type;
       processor = new testMessageProcessor();
       adapter = new KubernetesOutputAdapter(type, processor);
@@ -110,7 +111,7 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldBreakLinesNormallyWithCarriageReturn() {
     // Given
-    byte[] input = "line1\r\nline2\n".getBytes();
+    byte[] input = "line1\r\nline2\n".getBytes(UTF_8);
     List<String> expected = generateExpected("line1", "line2");
 
     // When
@@ -124,7 +125,7 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldNotIgnoreEmptyLines() {
     // Given
-    byte[] input = "line1\n\nline2\n".getBytes();
+    byte[] input = "line1\n\nline2\n".getBytes(UTF_8);
     List<String> expected = generateExpected("line1", "", "line2");
 
     // When
@@ -138,7 +139,7 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldNotCallWithoutFinalNewline() {
     // Given
-    byte[] input = "line1\nline2".getBytes(); // No trailing \n
+    byte[] input = "line1\nline2".getBytes(UTF_8); // No trailing \n
     List<String> firstExpected = generateExpected("line1");
     List<String> secondExpected = generateExpected("line1", "line2");
 
@@ -153,7 +154,7 @@ public class KubernetesOutputAdapterTest {
         "Should only process lines when they are terminated by \\n or \\r\\n");
 
     // When
-    adapter.call("\n".getBytes());
+    adapter.call("\n".getBytes(UTF_8));
 
     // Then
     List<String> secondActual = processor.getMessages();
@@ -163,8 +164,8 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldIgnoreNullCalls() {
     // Given
-    byte[] firstInput = "line1\n".getBytes();
-    byte[] secondInput = "line2\n".getBytes();
+    byte[] firstInput = "line1\n".getBytes(UTF_8);
+    byte[] secondInput = "line2\n".getBytes(UTF_8);
     List<String> expected = generateExpected("line1", "line2");
 
     // When
@@ -180,8 +181,8 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldKeepBufferPastNullCalls() {
     // Given
-    byte[] firstInput = "lin".getBytes();
-    byte[] secondInput = "e1\nline2\n".getBytes();
+    byte[] firstInput = "lin".getBytes(UTF_8);
+    byte[] secondInput = "e1\nline2\n".getBytes(UTF_8);
     List<String> expected = generateExpected("line1", "line2");
 
     // When
@@ -197,8 +198,8 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldDoNothingWhenExecOutputProcessorIsNull() {
     // Given
-    byte[] firstInput = "line1\n".getBytes();
-    byte[] secondInput = "line2\n".getBytes();
+    byte[] firstInput = "line1\n".getBytes(UTF_8);
+    byte[] secondInput = "line2\n".getBytes(UTF_8);
     adapter = new KubernetesOutputAdapter(LOG_TYPE, null);
 
     // When
@@ -213,9 +214,9 @@ public class KubernetesOutputAdapterTest {
   @Test
   public void shouldIgnoreCallsWhenDataIsEmpty() {
     // Given
-    byte[] emptyInput = "".getBytes();
-    byte[] firstInput = "line1\n".getBytes();
-    byte[] secondInput = "line2\n".getBytes();
+    byte[] emptyInput = "".getBytes(UTF_8);
+    byte[] firstInput = "line1\n".getBytes(UTF_8);
+    byte[] secondInput = "line2\n".getBytes(UTF_8);
     List<String> expected = generateExpected("line1", "line2");
 
     // When

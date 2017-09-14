@@ -10,6 +10,7 @@
  */
 package org.ecipse.che.plugin.testing.testng.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -70,7 +71,7 @@ public class TestNGRunnerTest extends BaseTest {
     FolderEntry testsFolder = folder.createFolder("src/tests");
     StringBuilder b = new StringBuilder("package tests;\n");
     b.append("public class TestNGTest {}");
-    testsFolder.createFile("TestNGTest.java", b.toString().getBytes());
+    testsFolder.createFile("TestNGTest.java", b.toString().getBytes(UTF_8));
     projectRegistry.setProjectType(folder.getPath().toString(), "java", false);
 
     //inform DeltaProcessingStat about new project

@@ -206,46 +206,56 @@ public class RenamePackageProcessor extends JavaRenameProcessor
 
   //---- ITextUpdating -------------------------------------------------
 
+  @Override
   public boolean canEnableTextUpdating() {
     return true;
   }
 
+  @Override
   public boolean getUpdateTextualMatches() {
     return fUpdateTextualMatches;
   }
 
+  @Override
   public void setUpdateTextualMatches(boolean update) {
     fUpdateTextualMatches = update;
   }
 
   //---- IReferenceUpdating --------------------------------------
 
+  @Override
   public void setUpdateReferences(boolean update) {
     fUpdateReferences = update;
   }
 
+  @Override
   public boolean getUpdateReferences() {
     return fUpdateReferences;
   }
 
   //---- IQualifiedNameUpdating ----------------------------------
 
+  @Override
   public boolean canEnableQualifiedNameUpdating() {
     return !fPackage.isDefaultPackage();
   }
 
+  @Override
   public boolean getUpdateQualifiedNames() {
     return fUpdateQualifiedNames;
   }
 
+  @Override
   public void setUpdateQualifiedNames(boolean update) {
     fUpdateQualifiedNames = update;
   }
 
+  @Override
   public String getFilePatterns() {
     return fFilePatterns;
   }
 
+  @Override
   public void setFilePatterns(String patterns) {
     Assert.isNotNull(patterns);
     fFilePatterns = patterns;
@@ -253,6 +263,7 @@ public class RenamePackageProcessor extends JavaRenameProcessor
 
   //---- IResourceMapper  ----------------------------------
 
+  @Override
   public IResource getRefactoredResource(IResource element) {
     IFolder packageFolder = (IFolder) fPackage.getResource();
     if (packageFolder == null) return element;
@@ -277,6 +288,7 @@ public class RenamePackageProcessor extends JavaRenameProcessor
 
   //---- IJavaElementMapper ----------------------------------
 
+  @Override
   public IJavaElement getRefactoredJavaElement(IJavaElement original) {
     return new GenericRefactoringHandleTransplanter() {
       @Override
@@ -337,20 +349,24 @@ public class RenamePackageProcessor extends JavaRenameProcessor
     return fRenameSubpackages;
   }
 
+  @Override
   public void setRenameSubpackages(boolean rename) {
     fRenameSubpackages = rename;
   }
 
   //---- IRenameProcessor ----------------------------------------------
 
+  @Override
   public final String getCurrentElementName() {
     return fPackage.getElementName();
   }
 
+  @Override
   public String getCurrentElementQualifier() {
     return ""; //$NON-NLS-1$
   }
 
+  @Override
   public RefactoringStatus checkNewElementName(String newName) throws CoreException {
     Assert.isNotNull(newName, "new name"); //$NON-NLS-1$
     RefactoringStatus result = Checks.checkPackageName(newName, fPackage);
@@ -363,6 +379,7 @@ public class RenamePackageProcessor extends JavaRenameProcessor
     return result;
   }
 
+  @Override
   public Object getNewElement() {
     return getNewPackage();
   }

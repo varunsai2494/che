@@ -87,6 +87,7 @@ public class PartButtonWidget extends Composite implements PartButton {
   }
 
   /** {@inheritDoc} */
+  @Override
   @NotNull
   public PartButton setTooltip(@Nullable String tooltip) {
     setTitle(tooltip);

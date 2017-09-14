@@ -112,6 +112,7 @@ public class WorkspacePresenter
     activePerspective.go(view.getPerspectivePanel());
   }
 
+  @Override
   public void setActivePart(@NotNull PartPresenter part, @NotNull PartStackType type) {
     activePerspective.setActivePart(part, type);
   }
@@ -153,6 +154,7 @@ public class WorkspacePresenter
    * @param type one of the enumerated type {@link org.eclipse.che.ide.api.parts.PartStackType}
    * @return the part stack found, else null
    */
+  @Override
   public PartStack getPartStack(PartStackType type) {
     return activePerspective.getPartStack(type);
   }

@@ -54,6 +54,7 @@ public final class SimpleTypeConstraint implements ITypeConstraint {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.experiments.TypeConstraint#toResolvedString()
    */
+  @Override
   public String toResolvedString() {
     return getLeft().toResolvedString()
         + " "
@@ -65,6 +66,7 @@ public final class SimpleTypeConstraint implements ITypeConstraint {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.experiments.ITypeConstraint#isSimpleTypeConstraint()
    */
+  @Override
   public boolean isSimpleTypeConstraint() {
     return true;
   }

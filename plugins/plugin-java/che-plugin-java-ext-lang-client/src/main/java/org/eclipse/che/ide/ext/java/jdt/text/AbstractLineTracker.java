@@ -80,10 +80,12 @@ public abstract class AbstractLineTracker implements LineTracker {
   /** The implementation that this tracker delegates to. */
   private LineTracker fDelegate =
       new ListLineTracker() {
+        @Override
         public String[] getLegalLineDelimiters() {
           return AbstractLineTracker.this.getLegalLineDelimiters();
         }
 
+        @Override
         protected DelimiterInfo nextDelimiterInfo(String text, int offset) {
           return AbstractLineTracker.this.nextDelimiterInfo(text, offset);
         }
@@ -98,47 +100,55 @@ public abstract class AbstractLineTracker implements LineTracker {
   /*
    * @see org.eclipse.jface.text.ILineTracker#computeNumberOfLines(java.lang.String)
    */
+  @Override
   public int computeNumberOfLines(String text) {
     return fDelegate.computeNumberOfLines(text);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineDelimiter(int) */
+  @Override
   public String getLineDelimiter(int line) throws BadLocationException {
     // checkRewriteSession();
     return fDelegate.getLineDelimiter(line);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineInformation(int) */
+  @Override
   public Region getLineInformation(int line) throws BadLocationException {
     // checkRewriteSession();
     return fDelegate.getLineInformation(line);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineInformationOfOffset(int) */
+  @Override
   public Region getLineInformationOfOffset(int offset) throws BadLocationException {
     // checkRewriteSession();
     return fDelegate.getLineInformationOfOffset(offset);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineLength(int) */
+  @Override
   public int getLineLength(int line) throws BadLocationException {
     // checkRewriteSession();
     return fDelegate.getLineLength(line);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineNumberOfOffset(int) */
+  @Override
   public int getLineNumberOfOffset(int offset) throws BadLocationException {
     // checkRewriteSession();
     return fDelegate.getLineNumberOfOffset(offset);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineOffset(int) */
+  @Override
   public int getLineOffset(int line) throws BadLocationException {
     // checkRewriteSession();
     return fDelegate.getLineOffset(line);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getNumberOfLines() */
+  @Override
   public int getNumberOfLines() {
     // try
     // {
@@ -152,12 +162,14 @@ public abstract class AbstractLineTracker implements LineTracker {
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getNumberOfLines(int, int) */
+  @Override
   public int getNumberOfLines(int offset, int length) throws BadLocationException {
     // checkRewriteSession();
     return fDelegate.getNumberOfLines(offset, length);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#set(java.lang.String) */
+  @Override
   public void set(String text) {
     // if (hasActiveRewriteSession())
     // {
@@ -172,6 +184,7 @@ public abstract class AbstractLineTracker implements LineTracker {
   /*
    * @see org.eclipse.jface.text.ILineTracker#replace(int, int, java.lang.String)
    */
+  @Override
   public void replace(int offset, int length, String text) throws BadLocationException {
     // if (hasActiveRewriteSession())
     // {
@@ -194,10 +207,12 @@ public abstract class AbstractLineTracker implements LineTracker {
       fNeedsConversion = false;
       fDelegate =
           new TreeLineTracker((ListLineTracker) fDelegate) {
+            @Override
             protected DelimiterInfo nextDelimiterInfo(String text, int offset) {
               return AbstractLineTracker.this.nextDelimiterInfo(text, offset);
             }
 
+            @Override
             public String[] getLegalLineDelimiters() {
               return AbstractLineTracker.this.getLegalLineDelimiters();
             }

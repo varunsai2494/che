@@ -45,6 +45,7 @@ public class QuickAssistWidget extends PopupWidget<CompletionProposal> {
     this.textEditor = textEditor;
   }
 
+  @Override
   public Element createItem(final CompletionProposal proposal) {
     final Element element = Elements.createLiElement(popupResources.popupStyle().item());
 

@@ -315,6 +315,7 @@ public class RenameVirtualMethodProcessor extends RenameMethodProcessor {
     return false;
   }
 
+  @Override
   public String getDelegateUpdatingTitle(boolean plural) {
     if (plural) return RefactoringCoreMessages.DelegateMethodCreator_keep_original_renamed_plural;
     else return RefactoringCoreMessages.DelegateMethodCreator_keep_original_renamed_singular;

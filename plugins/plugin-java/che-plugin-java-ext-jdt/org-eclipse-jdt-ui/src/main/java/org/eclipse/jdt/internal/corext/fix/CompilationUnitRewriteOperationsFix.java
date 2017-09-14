@@ -94,6 +94,7 @@ public class CompilationUnitRewriteOperationsFix extends AbstractFix {
   //	}
 
   /** {@inheritDoc} */
+  @Override
   public CompilationUnitChange createChange(IProgressMonitor progressMonitor) throws CoreException {
     CompilationUnitRewrite cuRewrite =
         new CompilationUnitRewrite(

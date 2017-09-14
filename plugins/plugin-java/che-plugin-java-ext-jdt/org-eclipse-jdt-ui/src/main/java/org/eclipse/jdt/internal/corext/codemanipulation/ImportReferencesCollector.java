@@ -481,6 +481,7 @@ public class ImportReferencesCollector extends GenericVisitor {
    * @return thrown exception names
    * @deprecated to avoid deprecation warnings
    */
+  @Deprecated
   private static List<Name> getThrownExceptions(MethodDeclaration decl) {
     return decl.thrownExceptions();
   }

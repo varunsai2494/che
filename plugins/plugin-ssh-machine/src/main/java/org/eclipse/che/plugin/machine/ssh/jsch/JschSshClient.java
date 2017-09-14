@@ -11,6 +11,7 @@
 package org.eclipse.che.plugin.machine.ssh.jsch;
 
 import static java.lang.String.format;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.ChannelSftp;
@@ -278,7 +279,8 @@ public class JschSshClient implements SshClient {
     ChannelExec exec = (ChannelExec) session.openChannel("exec");
     exec.setCommand(command);
 
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(exec.getInputStream()));
+    try (BufferedReader reader =
+            new BufferedReader(new InputStreamReader(exec.getInputStream(), UTF_8));
         InputStream erStream = exec.getErrStream()) {
 
       exec.connect(connectionTimeout);

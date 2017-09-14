@@ -44,6 +44,7 @@ public class ClasspathDirectory extends CodenvyClasspathLocation {
     this.accessRuleSet = accessRuleSet;
   }
 
+  @Override
   public void cleanup() {
     this.directoryCache = null;
   }
@@ -88,6 +89,7 @@ public class ClasspathDirectory extends CodenvyClasspathLocation {
     return false;
   }
 
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (!(o instanceof ClasspathDirectory)) return false;
@@ -98,6 +100,7 @@ public class ClasspathDirectory extends CodenvyClasspathLocation {
     return this.binaryFolder.equals(dir.binaryFolder);
   }
 
+  @Override
   public NameEnvironmentAnswer findClass(
       String binaryFileName, String qualifiedPackageName, String qualifiedBinaryFileName) {
     if (!doesFileExist(binaryFileName, qualifiedPackageName, qualifiedBinaryFileName))
@@ -126,10 +129,12 @@ public class ClasspathDirectory extends CodenvyClasspathLocation {
     return null;
   }
 
+  @Override
   public IPath getProjectRelativePath() {
     return this.binaryFolder.getProjectRelativePath();
   }
 
+  @Override
   public int hashCode() {
     return this.binaryFolder == null ? super.hashCode() : this.binaryFolder.hashCode();
   }
@@ -138,18 +143,22 @@ public class ClasspathDirectory extends CodenvyClasspathLocation {
     return false;
   }
 
+  @Override
   public boolean isOutputFolder() {
     return this.isOutputFolder;
   }
 
+  @Override
   public boolean isPackage(String qualifiedPackageName) {
     return directoryList(qualifiedPackageName) != null;
   }
 
+  @Override
   public void reset() {
     this.directoryCache = new SimpleLookupTable(5);
   }
 
+  @Override
   public String toString() {
     String start =
         "Binary classpath directory " + this.binaryFolder.getFullPath().toString(); //$NON-NLS-1$
@@ -157,6 +166,7 @@ public class ClasspathDirectory extends CodenvyClasspathLocation {
     return start + " with " + this.accessRuleSet; //$NON-NLS-1$
   }
 
+  @Override
   public String debugPathString() {
     return this.binaryFolder.getFullPath().toString();
   }

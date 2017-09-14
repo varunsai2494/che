@@ -137,6 +137,7 @@ public final class RenamePackageChange extends AbstractJavaElementRenameChange {
       Arrays.sort(
           allPackages,
           new Comparator<IPackageFragment>() {
+            @Override
             public int compare(IPackageFragment o1, IPackageFragment o2) {
               String p1 = o1.getElementName();
               String p2 = o2.getElementName();

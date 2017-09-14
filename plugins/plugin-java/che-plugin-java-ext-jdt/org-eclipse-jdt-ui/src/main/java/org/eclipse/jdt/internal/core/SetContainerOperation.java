@@ -41,6 +41,7 @@ public class SetContainerOperation extends ChangeClasspathOperation {
     this.respectiveContainers = respectiveContainers;
   }
 
+  @Override
   protected void executeOperation() throws JavaModelException {
     checkCanceled();
     try {
@@ -193,6 +194,7 @@ public class SetContainerOperation extends ChangeClasspathOperation {
             org.eclipse.jdt.internal.compiler.util.Util.toString(
                 this.affectedProjects,
                 new org.eclipse.jdt.internal.compiler.util.Util.Displayable() {
+                  @Override
                   public String displayString(Object o) {
                     return ((IJavaProject) o).getElementName();
                   }
@@ -202,6 +204,7 @@ public class SetContainerOperation extends ChangeClasspathOperation {
             org.eclipse.jdt.internal.compiler.util.Util.toString(
                 this.respectiveContainers,
                 new org.eclipse.jdt.internal.compiler.util.Util.Displayable() {
+                  @Override
                   public String displayString(Object o) {
                     StringBuffer buffer = new StringBuffer("		"); //$NON-NLS-1$
                     if (o == null) {

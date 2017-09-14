@@ -120,14 +120,17 @@ public class EmptyTypeSet extends TypeSet {
   @Override
   public Iterator<TType> iterator() {
     return new Iterator<TType>() {
+      @Override
       public void remove() {
         //do nothing
       }
 
+      @Override
       public boolean hasNext() {
         return false;
       }
 
+      @Override
       public TType next() {
         return null;
       }

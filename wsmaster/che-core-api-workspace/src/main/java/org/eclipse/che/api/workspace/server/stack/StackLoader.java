@@ -12,6 +12,7 @@ package org.eclipse.che.api.workspace.server.stack;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.lang.String.format;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -91,7 +92,7 @@ public class StackLoader {
         final String stackFile = stack2image.getKey();
         final String imagesDir = stack2image.getValue();
         try (BufferedReader reader =
-            new BufferedReader(new InputStreamReader(IoUtil.getResource(stackFile)))) {
+            new BufferedReader(new InputStreamReader(IoUtil.getResource(stackFile), UTF_8))) {
           List<StackImpl> stacks =
               GSON.fromJson(reader, new TypeToken<List<StackImpl>>() {}.getType());
           final Path imagesDirPath = !isNullOrEmpty(imagesDir) ? Paths.get(imagesDir) : null;

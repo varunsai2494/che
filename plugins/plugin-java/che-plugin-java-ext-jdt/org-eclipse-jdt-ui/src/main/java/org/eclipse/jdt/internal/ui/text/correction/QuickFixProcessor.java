@@ -40,6 +40,7 @@ import org.eclipse.jdt.ui.text.java.correction.ICommandAccess;
 /** */
 public class QuickFixProcessor implements IQuickFixProcessor {
 
+  @Override
   public boolean hasCorrections(ICompilationUnit cu, int problemId) {
     switch (problemId) {
       case IProblem.UnterminatedString:
@@ -291,6 +292,7 @@ public class QuickFixProcessor implements IQuickFixProcessor {
   /* (non-Javadoc)
    * @see IAssistProcessor#getCorrections(org.eclipse.jdt.internal.ui.text.correction.IAssistContext, org.eclipse.jdt.internal.ui.text.correction.IProblemLocation[])
    */
+  @Override
   public IJavaCompletionProposal[] getCorrections(
       IInvocationContext context, IProblemLocation[] locations) throws CoreException {
     if (locations == null || locations.length == 0) {

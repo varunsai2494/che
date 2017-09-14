@@ -52,11 +52,13 @@ public class DocumentChange extends TextChange {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Object getModifiedElement() {
     return fDocument;
   }
 
   /** {@inheritDoc} */
+  @Override
   public void initializeValidationData(IProgressMonitor pm) {
     // as long as we don't have modification stamps on documents
     // we can only remember its length.
@@ -64,6 +66,7 @@ public class DocumentChange extends TextChange {
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException {
     pm.beginTask("", 1); //$NON-NLS-1$
     RefactoringStatus result = TextChanges.isValid(fDocument, fLength);
@@ -72,16 +75,19 @@ public class DocumentChange extends TextChange {
   }
 
   /** {@inheritDoc} */
+  @Override
   protected IDocument acquireDocument(IProgressMonitor pm) throws CoreException {
     return fDocument;
   }
 
   /** {@inheritDoc} */
+  @Override
   protected void commit(IDocument document, IProgressMonitor pm) throws CoreException {
     // do nothing
   }
 
   /** {@inheritDoc} */
+  @Override
   protected void releaseDocument(IDocument document, IProgressMonitor pm) throws CoreException {
     //do nothing
   }
@@ -90,6 +96,7 @@ public class DocumentChange extends TextChange {
    * @see org.eclipse.ltk.core.refactoring.TextChange#performEdits(org.eclipse.jface.text.IDocument)
    * @since 3.6
    */
+  @Override
   protected UndoEdit performEdits(final IDocument document)
       throws BadLocationException, MalformedTreeException {
     ITextFileBufferManager fileBufferManager = FileBuffers.getTextFileBufferManager();
@@ -105,6 +112,7 @@ public class DocumentChange extends TextChange {
     final BadLocationException[] exception = new BadLocationException[1];
     Runnable runnable =
         new Runnable() {
+          @Override
           public void run() {
             synchronized (completionLock) {
               try {
@@ -137,6 +145,7 @@ public class DocumentChange extends TextChange {
   }
 
   /** {@inheritDoc} */
+  @Override
   protected Change createUndoChange(UndoEdit edit) {
     return new UndoDocumentChange(getName(), fDocument, edit);
   }

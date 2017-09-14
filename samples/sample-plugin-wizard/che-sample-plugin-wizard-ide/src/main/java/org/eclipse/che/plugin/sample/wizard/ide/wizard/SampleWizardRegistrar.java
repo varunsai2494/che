@@ -37,16 +37,19 @@ public class SampleWizardRegistrar implements ProjectWizardRegistrar {
     wizardPages.add(samplePagePresenter);
   }
 
+  @Override
   @NotNull
   public String getProjectTypeId() {
     return X_PROJECT_TYPE_ID;
   }
 
+  @Override
   @NotNull
   public String getCategory() {
     return SampleWizardExtension.X_CATEGORY;
   }
 
+  @Override
   @NotNull
   public List<Provider<? extends WizardPage<MutableProjectConfig>>> getWizardPages() {
     return wizardPages;

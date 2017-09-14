@@ -145,6 +145,7 @@ public class FixCorrectionProposal extends LinkedCorrectionProposal
   /* (non-Javadoc)
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#apply(org.eclipse.jface.text.ITextViewer, char, int, int)
    */
+  @Override
   public void apply(ITextViewer viewer, char trigger, int stateMask, int offset) {
     //		if (stateMask == SWT.CTRL && fCleanUp != null) {
     //			CleanUpRefactoring refactoring= new CleanUpRefactoring();
@@ -210,15 +211,19 @@ public class FixCorrectionProposal extends LinkedCorrectionProposal
   //		}
   //	}
 
+  @Override
   public void selected(ITextViewer viewer, boolean smartToggle) {}
 
+  @Override
   public void unselected(ITextViewer viewer) {}
 
+  @Override
   public boolean validate(IDocument document, int offset, DocumentEvent event) {
     return false;
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getStatusMessage() {
     if (fCleanUp == null) return null;
 

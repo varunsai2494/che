@@ -10,11 +10,8 @@
  */
 package org.eclipse.che.plugin.typescript.dto;
 
-import org.eclipse.che.api.core.util.SystemInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.stream.Collectors.toList;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,8 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
+import org.eclipse.che.api.core.util.SystemInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * Integration test of TypeScriptDTOGeneratorMojo
@@ -139,7 +139,7 @@ public class TypeScriptDTOGeneratorMojoITest {
             Process processId = uidProcessBuilder.start();
             int resultId = processId.waitFor();
             String uid = "";
-            try (BufferedReader outReader = new BufferedReader(new InputStreamReader(processId.getInputStream()))) {
+            try (BufferedReader outReader = new BufferedReader(new InputStreamReader(processId.getInputStream(), UTF_8))) {
                 uid = String.join(System.lineSeparator(), outReader.lines().collect(toList()));
             } catch (Exception error) {
                 throw new IllegalStateException("Unable to get uid" + uid);
@@ -170,7 +170,7 @@ public class TypeScriptDTOGeneratorMojoITest {
             Process processGid = gidProcessBuilder.start();
             int resultGid = processGid.waitFor();
             String gid = "";
-            try (BufferedReader outReader = new BufferedReader(new InputStreamReader(processGid.getInputStream()))) {
+            try (BufferedReader outReader = new BufferedReader(new InputStreamReader(processGid.getInputStream(), UTF_8))) {
                 gid = String.join(System.lineSeparator(), outReader.lines().collect(toList()));
             } catch (Exception error) {
                 throw new IllegalStateException("Unable to get gid" + gid);

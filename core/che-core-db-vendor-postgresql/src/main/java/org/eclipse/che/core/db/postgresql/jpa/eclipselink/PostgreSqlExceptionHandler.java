@@ -25,6 +25,7 @@ import org.eclipse.persistence.exceptions.ExceptionHandler;
  * @author Sergii Kabashniuk
  */
 public class PostgreSqlExceptionHandler implements ExceptionHandler {
+  @Override
   public Object handleException(RuntimeException exception) {
     if (exception instanceof DatabaseException && exception.getCause() instanceof SQLException) {
       final SQLException sqlEx = (SQLException) exception.getCause();

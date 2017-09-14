@@ -53,6 +53,7 @@ public class AssistQuickFixTest18 extends QuickFixTest {
   //		return new Java18ProjectTestSetup(test);
   //	}
 
+  @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
@@ -71,6 +72,7 @@ public class AssistQuickFixTest18 extends QuickFixTest {
     fSourceFolder = JavaProjectHelper.addSourceContainer(fJProject1, "src");
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();

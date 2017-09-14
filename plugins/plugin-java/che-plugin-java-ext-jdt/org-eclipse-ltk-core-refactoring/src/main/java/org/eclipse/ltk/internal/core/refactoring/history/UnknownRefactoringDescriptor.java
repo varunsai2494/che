@@ -32,6 +32,7 @@ public final class UnknownRefactoringDescriptor extends RefactoringDescriptor {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Refactoring createRefactoring(final RefactoringStatus status) throws CoreException {
     status.merge(
         RefactoringStatus.createFatalErrorStatus(

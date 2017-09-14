@@ -104,6 +104,7 @@ public class PerformRefactoringOperation implements IWorkspaceRunnable {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void run(IProgressMonitor monitor) throws CoreException {
     try {
       if (monitor == null) monitor = new NullProgressMonitor();

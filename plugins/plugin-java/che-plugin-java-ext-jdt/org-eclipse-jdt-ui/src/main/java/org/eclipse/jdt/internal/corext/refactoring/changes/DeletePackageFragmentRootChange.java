@@ -9,6 +9,8 @@
  */
 package org.eclipse.jdt.internal.corext.refactoring.changes;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -165,7 +167,7 @@ public class DeletePackageFragmentRootChange extends AbstractDeleteChange {
       reader = new InputStreamReader(contents, file.getCharset());
     } catch (UnsupportedEncodingException e) {
       JavaPlugin.log(e);
-      reader = new InputStreamReader(contents);
+      reader = new InputStreamReader(contents, UTF_8);
     }
     try {
       return (int) reader.skip(Integer.MAX_VALUE);

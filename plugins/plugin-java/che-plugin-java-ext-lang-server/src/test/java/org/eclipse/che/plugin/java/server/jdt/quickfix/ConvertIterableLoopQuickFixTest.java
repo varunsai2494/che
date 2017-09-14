@@ -57,6 +57,7 @@ public final class ConvertIterableLoopQuickFixTest extends QuickFixTest {
     return proposals;
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
@@ -74,6 +75,7 @@ public final class ConvertIterableLoopQuickFixTest extends QuickFixTest {
     fConvertLoopProposal = null;
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();

@@ -87,6 +87,7 @@ public class JavaNavigationServiceImpl implements JavaNavigationService {
         .send(unmarshallerFactory.newUnmarshaller(OpenDeclarationDescriptor.class));
   }
 
+  @Override
   public void getExternalLibraries(String projectPath, AsyncRequestCallback<List<Jar>> callback) {
     String url =
         appContext.getDevMachine().getWsAgentBaseUrl()

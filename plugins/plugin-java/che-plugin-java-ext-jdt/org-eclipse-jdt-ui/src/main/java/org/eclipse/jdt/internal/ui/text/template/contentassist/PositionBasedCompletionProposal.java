@@ -100,6 +100,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see ICompletionProposal#apply(IDocument)
    */
+  @Override
   public void apply(IDocument document) {
     try {
       document.replace(
@@ -112,6 +113,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see ICompletionProposal#getSelection(IDocument)
    */
+  @Override
   public Point getSelection(IDocument document) {
     return new Point(fReplacementPosition.getOffset() + fCursorPosition, 0);
   }
@@ -119,6 +121,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see ICompletionProposal#getContextInformation()
    */
+  @Override
   public IContextInformation getContextInformation() {
     return fContextInformation;
   }
@@ -126,6 +129,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see ICompletionProposal#getImage()
    */
+  @Override
   public Image getImage() {
     return fImage;
   }
@@ -133,6 +137,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getDisplayString()
    */
+  @Override
   public String getDisplayString() {
     if (fDisplayString != null) return fDisplayString;
     return fReplacementString;
@@ -141,6 +146,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see ICompletionProposal#getAdditionalProposalInfo()
    */
+  @Override
   public String getAdditionalProposalInfo() {
     return fAdditionalProposalInfo;
   }
@@ -148,6 +154,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#apply(org.eclipse.jface.text.ITextViewer, char, int, int)
    */
+  @Override
   public void apply(ITextViewer viewer, char trigger, int stateMask, int offset) {
     apply(viewer.getDocument());
   }
@@ -155,16 +162,19 @@ public class PositionBasedCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#selected(org.eclipse.jface.text.ITextViewer, boolean)
    */
+  @Override
   public void selected(ITextViewer viewer, boolean smartToggle) {}
 
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#unselected(org.eclipse.jface.text.ITextViewer)
    */
+  @Override
   public void unselected(ITextViewer viewer) {}
 
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#validate(org.eclipse.jface.text.IDocument, int, org.eclipse.jface.text.DocumentEvent)
    */
+  @Override
   public boolean validate(IDocument document, int offset, DocumentEvent event) {
     try {
       String content =
@@ -179,6 +189,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension#apply(org.eclipse.jface.text.IDocument, char, int)
    */
+  @Override
   public void apply(IDocument document, char trigger, int offset) {
     // not called any more
   }
@@ -186,6 +197,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension#isValidFor(org.eclipse.jface.text.IDocument, int)
    */
+  @Override
   public boolean isValidFor(IDocument document, int offset) {
     // not called any more
     return false;
@@ -194,6 +206,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension#getTriggerCharacters()
    */
+  @Override
   public char[] getTriggerCharacters() {
     return fTriggerCharacters;
   }
@@ -201,6 +214,7 @@ public class PositionBasedCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension#getContextInformationPosition()
    */
+  @Override
   public int getContextInformationPosition() {
     return fReplacementPosition.getOffset();
   }

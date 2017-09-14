@@ -28,6 +28,7 @@ public abstract class AbstractTestingEventsProcessor implements TestingEventsPro
    *
    * @param listener new listener
    */
+  @Override
   public void addListener(TestStateEventsListener listener) {
     listeners.add(listener);
   }

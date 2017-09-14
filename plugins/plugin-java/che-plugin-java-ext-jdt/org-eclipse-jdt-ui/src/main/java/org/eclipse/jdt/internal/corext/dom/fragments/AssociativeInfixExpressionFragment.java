@@ -219,6 +219,7 @@ class AssociativeInfixExpressionFragment extends ASTFragment implements IExpress
     fOperands = Collections.unmodifiableList(operands);
   }
 
+  @Override
   public boolean matches(IASTFragment other) {
     if (!other.getClass().equals(getClass())) return false;
 
@@ -242,6 +243,7 @@ class AssociativeInfixExpressionFragment extends ASTFragment implements IExpress
     return true;
   }
 
+  @Override
   public IASTFragment[] getSubFragmentsMatching(IASTFragment toMatch) {
     return union(
         getSubFragmentsWithMyNodeMatching(toMatch),
@@ -303,6 +305,7 @@ class AssociativeInfixExpressionFragment extends ASTFragment implements IExpress
    *
    * @return returns the associated expression.
    */
+  @Override
   public Expression getAssociatedExpression() {
     return fGroupRoot;
   }
@@ -313,6 +316,7 @@ class AssociativeInfixExpressionFragment extends ASTFragment implements IExpress
    *
    * @return returns the associated node.
    */
+  @Override
   public ASTNode getAssociatedNode() {
     return fGroupRoot;
   }
@@ -321,6 +325,7 @@ class AssociativeInfixExpressionFragment extends ASTFragment implements IExpress
     return fGroupRoot;
   }
 
+  @Override
   public int getLength() {
     return getEndPositionExclusive() - getStartPosition();
   }
@@ -331,6 +336,7 @@ class AssociativeInfixExpressionFragment extends ASTFragment implements IExpress
     return lastNode.getStartPosition() + lastNode.getLength();
   }
 
+  @Override
   public int getStartPosition() {
     return getOperands().get(0).getStartPosition();
   }
@@ -343,6 +349,7 @@ class AssociativeInfixExpressionFragment extends ASTFragment implements IExpress
     return fGroupRoot.getOperator();
   }
 
+  @Override
   public Expression createCopyTarget(ASTRewrite rewrite, boolean removeSurroundingParenthesis)
       throws JavaModelException {
     List<Expression> allOperands = findGroupMembersInOrderFor(fGroupRoot);
@@ -370,6 +377,7 @@ class AssociativeInfixExpressionFragment extends ASTFragment implements IExpress
     //		return result;
   }
 
+  @Override
   public void replace(ASTRewrite rewrite, ASTNode replacement, TextEditGroup textEditGroup) {
     ASTNode groupNode = getGroupRoot();
 

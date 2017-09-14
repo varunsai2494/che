@@ -198,6 +198,7 @@ public class CallInliner {
       fTypes = types;
     }
 
+    @Override
     public boolean visit(ITypeBinding node) {
       IMethodBinding[] methods = node.getDeclaredMethods();
       for (int i = 0; i < methods.length; i++) {

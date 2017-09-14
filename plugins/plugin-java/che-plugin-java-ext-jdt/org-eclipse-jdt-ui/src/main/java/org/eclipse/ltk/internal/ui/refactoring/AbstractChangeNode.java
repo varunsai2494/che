@@ -70,6 +70,7 @@ public abstract class AbstractChangeNode extends PreviewNode {
     return fChange;
   }
 
+  @Override
   public PreviewNode[] getChildren() {
     if (fChildren == null) {
       fChildren = doCreateChildren();
@@ -79,31 +80,38 @@ public abstract class AbstractChangeNode extends PreviewNode {
 
   abstract PreviewNode[] doCreateChildren();
 
+  @Override
   public String getText() {
     return fChange.getName();
   }
 
+  @Override
   public ImageDescriptor getImageDescriptor() {
     return RefactoringPluginImages.DESC_OBJS_DEFAULT_CHANGE;
   }
 
+  @Override
   public ChangePreviewViewerDescriptor getChangePreviewViewerDescriptor() throws CoreException {
     return ChangePreviewViewerDescriptor.get(fChange);
   }
 
+  @Override
   public ChangePreview feedInput(IChangePreviewViewer viewer, List categories)
       throws CoreException {
     return viewer.setInput(new ChangePreviewViewerInput(fChange));
   }
 
+  @Override
   public void setEnabled(boolean enabled) {
     fChange.setEnabled(enabled);
   }
 
+  @Override
   public void setEnabledShallow(boolean enabled) {
     fChange.setEnabledShallow(enabled);
   }
 
+  @Override
   boolean hasOneGroupCategory(List categories) {
     PreviewNode[] children = getChildren();
     for (int i = 0; i < children.length; i++) {
@@ -112,6 +120,7 @@ public abstract class AbstractChangeNode extends PreviewNode {
     return false;
   }
 
+  @Override
   public boolean hasDerived() {
     if (hasDerivedResourceChange(fChange)) return true;
     PreviewNode[] children = getChildren();

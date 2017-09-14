@@ -103,6 +103,7 @@ public class TextSelection implements ITextSelection {
   /*
    * @see org.eclipse.jface.text.ITextSelection#getOffset()
    */
+  @Override
   public int getOffset() {
     return fOffset;
   }
@@ -110,6 +111,7 @@ public class TextSelection implements ITextSelection {
   /*
    * @see org.eclipse.jface.text.ITextSelection#getLength()
    */
+  @Override
   public int getLength() {
     return fLength;
   }
@@ -117,6 +119,7 @@ public class TextSelection implements ITextSelection {
   /*
    * @see org.eclipse.jface.text.ITextSelection#getStartLine()
    */
+  @Override
   public int getStartLine() {
 
     try {
@@ -130,6 +133,7 @@ public class TextSelection implements ITextSelection {
   /*
    * @see org.eclipse.jface.text.ITextSelection#getEndLine()
    */
+  @Override
   public int getEndLine() {
     try {
       if (fDocument != null) {
@@ -146,6 +150,7 @@ public class TextSelection implements ITextSelection {
   /*
    * @see org.eclipse.jface.text.ITextSelection#getText()
    */
+  @Override
   public String getText() {
     try {
       if (fDocument != null) return fDocument.get(fOffset, fLength);
@@ -158,6 +163,7 @@ public class TextSelection implements ITextSelection {
   /*
    * @see java.lang.Object#equals(Object)
    */
+  @Override
   public boolean equals(Object obj) {
     if (obj == this) return true;
 
@@ -184,6 +190,7 @@ public class TextSelection implements ITextSelection {
   /*
    * @see java.lang.Object#hashCode()
    */
+  @Override
   public int hashCode() {
     int low = fDocument != null ? fDocument.hashCode() : 0;
     return (fOffset << 24) | (fLength << 16) | low;

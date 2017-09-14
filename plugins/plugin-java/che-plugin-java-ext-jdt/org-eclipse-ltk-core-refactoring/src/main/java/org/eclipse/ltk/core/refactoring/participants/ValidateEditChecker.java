@@ -78,6 +78,7 @@ public class ValidateEditChecker implements IConditionChecker {
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus check(IProgressMonitor monitor) throws CoreException {
     IResource[] resources = (IResource[]) fFiles.toArray(new IResource[fFiles.size()]);
     RefactoringStatus result = new RefactoringStatus();

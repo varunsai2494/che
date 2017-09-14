@@ -17,10 +17,12 @@ public class NotCancelableProgressMonitor extends ProgressMonitorWrapper {
     super(monitor);
   }
 
+  @Override
   public void setCanceled(boolean b) {
     // ignore set cancel
   }
 
+  @Override
   public boolean isCanceled() {
     return false;
   }

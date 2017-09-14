@@ -52,6 +52,7 @@ public interface StackDto extends Stack, Hyperlinks {
 
   StackDto withWorkspaceConfig(WorkspaceConfigDto workspaceConfigDto);
 
+  @Override
   StackSourceDto getSource();
 
   void setSource(StackSourceDto source);
@@ -65,5 +66,6 @@ public interface StackDto extends Stack, Hyperlinks {
 
   StackDto withComponents(List<StackComponentDto> components);
 
+  @Override
   StackDto withLinks(List<Link> links);
 }

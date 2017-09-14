@@ -13,9 +13,10 @@
 // limitations under the License.
 package org.eclipse.che.dto.generator;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -195,7 +196,7 @@ public class DtoGenerator {
 
       // Emit the generated file.
       Files.createDirectories(outFile.toPath().getParent());
-      try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))) {
+      try (BufferedWriter writer = Files.newBufferedWriter(outFile.toPath(), UTF_8)) {
         writer.write(dtoTemplate.toString());
       }
 
@@ -206,7 +207,7 @@ public class DtoGenerator {
                 myPackageBase + "META-INF/services/" + DtoFactoryVisitor.class.getCanonicalName());
         Files.createDirectories(outServiceFile.toPath().getParent());
         try (BufferedWriter serviceFileWriter =
-            new BufferedWriter(new FileWriter(outServiceFile))) {
+            Files.newBufferedWriter(outServiceFile.toPath(), UTF_8)) {
           serviceFileWriter.write(packageName + "." + className);
         }
       }

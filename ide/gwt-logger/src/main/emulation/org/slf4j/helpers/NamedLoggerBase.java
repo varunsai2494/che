@@ -36,7 +36,7 @@ abstract class NamedLoggerBase implements Logger {
 
     protected String name;
 
-    public String getName() {
+    @Override public String getName() {
         return name;
     }
 

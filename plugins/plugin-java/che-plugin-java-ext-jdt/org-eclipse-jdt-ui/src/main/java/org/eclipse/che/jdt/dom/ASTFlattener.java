@@ -18,9 +18,9 @@ import org.eclipse.jdt.internal.corext.dom.GenericVisitor;
 public class ASTFlattener extends GenericVisitor {
 
   /** @deprecated to avoid deprecation warnings */
-  private static final int JLS3 = AST.JLS3;
+  @Deprecated private static final int JLS3 = AST.JLS3;
   /** @deprecated to avoid deprecation warnings */
-  private static final int JLS4 = AST.JLS4;
+  @Deprecated private static final int JLS4 = AST.JLS4;
 
   /** The string buffer into which the serialized representation of the AST is written. */
   protected StringBuffer fBuffer;
@@ -43,6 +43,7 @@ public class ASTFlattener extends GenericVisitor {
    * @return component type
    * @deprecated to avoid deprecation warning
    */
+  @Deprecated
   private static Type getComponentType(ArrayType node) {
     return node.getComponentType();
   }
@@ -52,6 +53,7 @@ public class ASTFlattener extends GenericVisitor {
    * @return thrown exception names
    * @deprecated to avoid deprecation warning
    */
+  @Deprecated
   private static List<Name> getThrownExceptions(MethodDeclaration node) {
     return node.thrownExceptions();
   }

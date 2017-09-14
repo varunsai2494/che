@@ -34,16 +34,19 @@ public class BlankProjectWizardRegistrar implements ProjectWizardRegistrar {
     wizardPages = new ArrayList<>();
   }
 
+  @Override
   @NotNull
   public String getProjectTypeId() {
     return BLANK_ID;
   }
 
+  @Override
   @NotNull
   public String getCategory() {
     return BLANK_CATEGORY;
   }
 
+  @Override
   @NotNull
   public List<Provider<? extends WizardPage<MutableProjectConfig>>> getWizardPages() {
     return wizardPages;

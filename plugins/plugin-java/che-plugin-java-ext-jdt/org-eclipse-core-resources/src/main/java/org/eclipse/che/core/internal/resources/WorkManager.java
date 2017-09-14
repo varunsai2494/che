@@ -43,10 +43,12 @@ public class WorkManager implements IManager {
    * threads that own the workspace lock must never block trying to acquire a resource rule.
    */
   class NotifyRule implements ISchedulingRule {
+    @Override
     public boolean contains(ISchedulingRule rule) {
       return (rule instanceof IResource) || rule.getClass().equals(NotifyRule.class);
     }
 
+    @Override
     public boolean isConflicting(ISchedulingRule rule) {
       return contains(rule);
     }
@@ -267,10 +269,12 @@ public class WorkManager implements IManager {
     return false;
   }
 
+  @Override
   public void shutdown(IProgressMonitor monitor) {
     // do nothing
   }
 
+  @Override
   public void startup(IProgressMonitor monitor) {
     jobManager.beginRule(workspace.getRoot(), monitor);
     lock.acquire();

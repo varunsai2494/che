@@ -43,6 +43,7 @@ public final class MoveResourcesRefactoringContribution extends RefactoringContr
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.RefactoringContribution#retrieveArgumentMap(org.eclipse.ltk.core.refactoring.RefactoringDescriptor)
    */
+  @Override
   public Map retrieveArgumentMap(final RefactoringDescriptor descriptor) {
     HashMap map = new HashMap();
 
@@ -71,6 +72,7 @@ public final class MoveResourcesRefactoringContribution extends RefactoringContr
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.RefactoringContribution#createDescriptor()
    */
+  @Override
   public RefactoringDescriptor createDescriptor() {
     return new MoveResourcesDescriptor();
   }
@@ -78,6 +80,7 @@ public final class MoveResourcesRefactoringContribution extends RefactoringContr
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.RefactoringContribution#createDescriptor(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Map, int)
    */
+  @Override
   public RefactoringDescriptor createDescriptor(
       String id, String project, String description, String comment, Map arguments, int flags) {
     try {

@@ -26,10 +26,12 @@ public class TTypes {
       pushSupertypes(type);
     }
 
+    @Override
     public boolean hasNext() {
       return !fWorklist.empty();
     }
 
+    @Override
     public TType next() {
       TType result = fWorklist.pop();
       pushSupertypes(result);
@@ -56,6 +58,7 @@ public class TTypes {
       }
     }
 
+    @Override
     public void remove() {
       throw new UnsupportedOperationException();
     }
@@ -69,10 +72,12 @@ public class TTypes {
       fWorklist.push(type.getTypeDeclaration());
     }
 
+    @Override
     public boolean hasNext() {
       return !fWorklist.empty();
     }
 
+    @Override
     public TType next() {
       TType result = fWorklist.pop();
       TType[] subTypes = result.getSubTypes();
@@ -81,6 +86,7 @@ public class TTypes {
       return result;
     }
 
+    @Override
     public void remove() {
       throw new UnsupportedOperationException();
     }

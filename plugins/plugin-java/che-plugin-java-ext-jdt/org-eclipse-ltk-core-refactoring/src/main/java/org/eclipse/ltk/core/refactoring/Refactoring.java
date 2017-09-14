@@ -210,6 +210,7 @@ public abstract class Refactoring extends PlatformObject {
       throws CoreException, OperationCanceledException;
 
   /** {@inheritDoc} */
+  @Override
   public Object getAdapter(Class adapter) {
     if (adapter.isInstance(this)) return this;
     //		return super.getAdapter(adapter);
@@ -219,6 +220,7 @@ public abstract class Refactoring extends PlatformObject {
   /* (non-Javadoc)
    * for debugging only
    */
+  @Override
   public String toString() {
     return getName();
   }

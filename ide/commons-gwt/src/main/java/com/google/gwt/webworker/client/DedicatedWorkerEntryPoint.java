@@ -40,6 +40,7 @@ public abstract class DedicatedWorkerEntryPoint implements EntryPoint {
     getGlobalScope().importScript(url);
   }
 
+  @Override
   public final void onModuleLoad() {
     scope = DedicatedWorkerGlobalScope.get();
     onWorkerLoad();

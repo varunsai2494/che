@@ -52,6 +52,7 @@ public class JavaModel extends Openable implements IJavaModel {
     super(null);
   }
 
+  @Override
   protected boolean buildStructure(
       OpenableElementInfo info,
       IProgressMonitor pm,
@@ -79,6 +80,7 @@ public class JavaModel extends Openable implements IJavaModel {
   /*
    * @see IJavaModel
    */
+  @Override
   public boolean contains(IResource resource) {
     //	switch (resource.getType()) {
     //		case IResource.ROOT:
@@ -102,6 +104,7 @@ public class JavaModel extends Openable implements IJavaModel {
     throw new UnsupportedOperationException();
   }
   /** @see org.eclipse.jdt.core.IJavaModel */
+  @Override
   public void copy(
       IJavaElement[] elements,
       IJavaElement[] containers,
@@ -118,11 +121,13 @@ public class JavaModel extends Openable implements IJavaModel {
     throw new UnsupportedOperationException();
   }
   /** Returns a new element info for this element. */
+  @Override
   protected Object createElementInfo() {
     return new JavaModelInfo();
   }
 
   /** @see org.eclipse.jdt.core.IJavaModel */
+  @Override
   public void delete(IJavaElement[] elements, boolean force, IProgressMonitor monitor)
       throws JavaModelException {
     if (elements != null
@@ -136,11 +141,13 @@ public class JavaModel extends Openable implements IJavaModel {
     //	throw new UnsupportedOperationException();
   }
 
+  @Override
   public boolean equals(Object o) {
     if (!(o instanceof JavaModel)) return false;
     return super.equals(o);
   }
   /** @see org.eclipse.jdt.core.IJavaElement */
+  @Override
   public int getElementType() {
     return IJavaElement.JAVA_MODEL;
   }
@@ -148,6 +155,7 @@ public class JavaModel extends Openable implements IJavaModel {
   /*
    * @see JavaElement
    */
+  @Override
   public IJavaElement getHandleFromMemento(
       String token, MementoTokenizer memento, WorkingCopyOwner owner) {
     switch (token.charAt(0)) {
@@ -160,17 +168,20 @@ public class JavaModel extends Openable implements IJavaModel {
     return null;
   }
   /** @see org.eclipse.jdt.internal.core.JavaElement#getHandleMemento(StringBuffer) */
+  @Override
   protected void getHandleMemento(StringBuffer buff) {
     buff.append(getElementName());
   }
   /**
    * Returns the <code>char</code> that marks the start of this handles contribution to a memento.
    */
+  @Override
   protected char getHandleMementoDelimiter() {
     Assert.isTrue(false, "Should not be called"); //$NON-NLS-1$
     return 0;
   }
   /** @see org.eclipse.jdt.core.IJavaModel */
+  @Override
   public IJavaProject getJavaProject(String projectName) {
     return new org.eclipse.jdt.internal.core.JavaProject(
         ResourcesPlugin.getWorkspace().getRoot().getProject(projectName), this);
@@ -196,6 +207,7 @@ public class JavaModel extends Openable implements IJavaModel {
     }
   }
   /** @see org.eclipse.jdt.core.IJavaModel */
+  @Override
   public IJavaProject[] getJavaProjects() throws JavaModelException {
     //    ArrayList list = getChildrenOfType(IJavaElement.JAVA_PROJECT);
     // determine my children
@@ -215,6 +227,7 @@ public class JavaModel extends Openable implements IJavaModel {
     return children;
   }
   /** @see org.eclipse.jdt.core.IJavaModel */
+  @Override
   public Object[] getNonJavaResources() throws JavaModelException {
     //		return ((JavaModelInfo) getElementInfo()).getNonJavaResources();
     throw new UnsupportedOperationException();
@@ -223,12 +236,14 @@ public class JavaModel extends Openable implements IJavaModel {
   /*
    * @see IJavaElement
    */
+  @Override
   public IPath getPath() {
     return Path.ROOT;
   }
   /*
    * @see IJavaElement
    */
+  @Override
   public IResource resource(PackageFragmentRoot root) {
     return ResourcesPlugin.getWorkspace().getRoot();
   }
@@ -242,15 +257,18 @@ public class JavaModel extends Openable implements IJavaModel {
   public void open(IProgressMonitor pm) throws JavaModelException {}
 
   /** @see org.eclipse.jdt.core.IOpenable */
+  @Override
   public IResource getUnderlyingResource() {
     return null;
   }
   /** Returns the workbench associated with this object. */
+  @Override
   public IWorkspace getWorkspace() {
     return ResourcesPlugin.getWorkspace();
   }
 
   /** @see org.eclipse.jdt.core.IJavaModel */
+  @Override
   public void move(
       IJavaElement[] elements,
       IJavaElement[] containers,
@@ -284,6 +302,7 @@ public class JavaModel extends Openable implements IJavaModel {
    *     org.eclipse.jdt.core.IJavaModel#refreshExternalArchives(org.eclipse.jdt.core.IJavaElement[],
    *     IProgressMonitor)
    */
+  @Override
   public void refreshExternalArchives(IJavaElement[] elementsScope, IProgressMonitor monitor)
       throws JavaModelException {
     //	if (elementsScope == null){
@@ -294,6 +313,7 @@ public class JavaModel extends Openable implements IJavaModel {
   }
 
   /** @see org.eclipse.jdt.core.IJavaModel */
+  @Override
   public void rename(
       IJavaElement[] elements,
       IJavaElement[] destinations,
@@ -331,6 +351,7 @@ public class JavaModel extends Openable implements IJavaModel {
     op.runOperation(monitor);
   }
   /** @private Debugging purposes */
+  @Override
   protected void toStringInfo(int tab, StringBuffer buffer, Object info, boolean showResolvedInfo) {
     buffer.append(tabString(tab));
     buffer.append("Java Model"); //$NON-NLS-1$
@@ -449,6 +470,7 @@ public class JavaModel extends Openable implements IJavaModel {
     return isFile(target) ? (File) target : null;
   }
 
+  @Override
   protected IStatus validateExistence(IResource underlyingResource) {
     // Java model always exists
     return JavaModelStatus.VERIFIED_OK;

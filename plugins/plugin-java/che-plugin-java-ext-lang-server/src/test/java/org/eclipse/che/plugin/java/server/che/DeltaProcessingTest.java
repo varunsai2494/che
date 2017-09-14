@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.java.server.che;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.io.File;
@@ -114,7 +115,7 @@ public class DeltaProcessingTest extends BaseTest {
     FileOutputStream outputStream =
         new FileOutputStream(
             new File(workspace, "/test/src/main/java/org/eclipse/che/test/NewClass.java"));
-    outputStream.write("package org.eclipse.che.test;\n public class NewClass{}\n".getBytes());
+    outputStream.write("package org.eclipse.che.test;\n public class NewClass{}\n".getBytes(UTF_8));
     outputStream.close();
     JavaModelManager.getJavaModelManager().deltaState.resourceChanged(event);
     answer =

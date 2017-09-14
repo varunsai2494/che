@@ -31,11 +31,13 @@ public final class RangeMarker extends TextEdit {
   }
 
   /* @see TextEdit#copy */
+  @Override
   protected TextEdit doCopy() {
     return new RangeMarker(this);
   }
 
   /* @see TextEdit#accept0 */
+  @Override
   protected void accept0(TextEditVisitor visitor) {
     boolean visitChildren = visitor.visit(this);
     if (visitChildren) {
@@ -44,12 +46,14 @@ public final class RangeMarker extends TextEdit {
   }
 
   /* @see TextEdit#performDocumentUpdating */
+  @Override
   int performDocumentUpdating(Document document) throws BadLocationException {
     fDelta = 0;
     return fDelta;
   }
 
   /* @see TextEdit#deleteChildren */
+  @Override
   boolean deleteChildren() {
     return false;
   }

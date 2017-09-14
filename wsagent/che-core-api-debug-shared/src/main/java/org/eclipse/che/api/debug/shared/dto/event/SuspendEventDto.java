@@ -16,10 +16,13 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author andrew00x */
 @DTO
 public interface SuspendEventDto extends DebuggerEventDto {
+  @Override
   TYPE getType();
 
+  @Override
   void setType(TYPE type);
 
+  @Override
   SuspendEventDto withType(TYPE type);
 
   LocationDto getLocation();

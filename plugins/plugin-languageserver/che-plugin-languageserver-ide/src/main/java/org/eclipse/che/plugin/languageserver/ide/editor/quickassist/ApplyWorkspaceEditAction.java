@@ -177,10 +177,12 @@ public class ApplyWorkspaceEditAction extends Action {
                         } catch (Exception e) {
                           reject.apply(
                               new PromiseError() {
+                                @Override
                                 public String getMessage() {
                                   return "Error during undo";
                                 }
 
+                                @Override
                                 public Throwable getCause() {
                                   return e;
                                 }

@@ -9,6 +9,7 @@
  */
 package org.eclipse.che.plugin.java.server.jdt.refactoring;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
@@ -82,6 +83,7 @@ public class RenameTypeTest extends RefactoringTest {
   //		return new RefactoringTestSetup(someTest);
   //	}
 
+  @Override
   protected String getRefactoringPath() {
     return REFACTORING_PATH;
   }
@@ -168,6 +170,7 @@ public class RenameTypeTest extends RefactoringTest {
 
   // <--------------------- Similarly named elements ---------------------------->
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();
@@ -1542,7 +1545,7 @@ public class RenameTypeTest extends RefactoringTest {
         getFileContents(getTestPath() + name.getMethodName() + TEST_INPUT_INFIX + textFileName);
     IProject project = classA.getJavaProject().getProject();
     IFile file = project.getFile(textFileName);
-    file.create(new ByteArrayInputStream(content.getBytes()), true, null);
+    file.create(new ByteArrayInputStream(content.getBytes(UTF_8)), true, null);
     ResourceChangedEvent event =
         new ResourceChangedEvent(
             new File(BaseTest.class.getResource("/projects").getFile()),
@@ -1564,7 +1567,7 @@ public class RenameTypeTest extends RefactoringTest {
     ICompilationUnit newcu = getPackageP().getCompilationUnit(newName + ".java");
     assertEqualLines(
         "invalid renaming", getFileContents(getOutputTestFileName(newName)), newcu.getSource());
-    InputStreamReader reader = new InputStreamReader(file.getContents(true));
+    InputStreamReader reader = new InputStreamReader(file.getContents(true), UTF_8);
     StringBuffer newContent = new StringBuffer();
     try {
       int ch;
@@ -1693,11 +1696,11 @@ public class RenameTypeTest extends RefactoringTest {
     String content = getFileContents(getTestPath() + "testSimilarElements05/in/test.html");
     IProject project = getPackageP().getJavaProject().getProject();
     IFile file = project.getFile("test.html");
-    file.create(new ByteArrayInputStream(content.getBytes()), true, null);
+    file.create(new ByteArrayInputStream(content.getBytes(UTF_8)), true, null);
 
     helper3("SomeClass", "SomeDifferentClass", true, true, true, "test.html");
 
-    InputStreamReader reader = new InputStreamReader(file.getContents(true));
+    InputStreamReader reader = new InputStreamReader(file.getContents(true), UTF_8);
     StringBuffer newContent = new StringBuffer();
     try {
       int ch;

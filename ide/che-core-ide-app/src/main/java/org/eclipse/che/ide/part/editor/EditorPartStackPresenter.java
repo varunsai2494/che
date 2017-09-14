@@ -397,6 +397,7 @@ public class EditorPartStackPresenter extends PartStackPresenter
     return null;
   }
 
+  @Override
   @Nullable
   public EditorTab getTabByPart(@NotNull EditorPartPresenter part) {
     for (Map.Entry<TabItem, PartPresenter> entry : parts.entrySet()) {
@@ -422,6 +423,7 @@ public class EditorPartStackPresenter extends PartStackPresenter
     return null;
   }
 
+  @Override
   @Nullable
   public PartPresenter getPartByPath(Path path) {
     for (TabItem tab : parts.keySet()) {

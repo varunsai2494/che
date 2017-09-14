@@ -12,6 +12,7 @@ package org.eclipse.che.api.vfs.impl.memory;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -60,7 +61,7 @@ public class MemoryVirtualFileTest {
   @Rule public ExpectedException thrown = ExpectedException.none();
 
   private final String DEFAULT_CONTENT = "__TEST__";
-  private final byte[] DEFAULT_CONTENT_BYTES = DEFAULT_CONTENT.getBytes();
+  private final byte[] DEFAULT_CONTENT_BYTES = DEFAULT_CONTENT.getBytes(UTF_8);
 
   private Searcher searcher;
   private ArchiverFactory archiverFactory;
@@ -338,7 +339,7 @@ public class MemoryVirtualFileTest {
       bytes = ByteStreams.toByteArray(content);
     }
 
-    assertEquals(DEFAULT_CONTENT, new String(bytes));
+    assertEquals(DEFAULT_CONTENT, new String(bytes, UTF_8));
   }
 
   @Test
@@ -348,7 +349,7 @@ public class MemoryVirtualFileTest {
 
     byte[] content = file.getContentAsBytes();
 
-    assertEquals(DEFAULT_CONTENT, new String(content));
+    assertEquals(DEFAULT_CONTENT, new String(content, UTF_8));
   }
 
   @Test
@@ -396,7 +397,7 @@ public class MemoryVirtualFileTest {
     VirtualFile root = getRoot();
     VirtualFile file = root.createFile(generateFileName(), DEFAULT_CONTENT);
 
-    file.updateContent(new ByteArrayInputStream("updated content".getBytes()));
+    file.updateContent(new ByteArrayInputStream("updated content".getBytes(UTF_8)));
 
     assertEquals("updated content", file.getContentAsString());
   }
@@ -406,7 +407,7 @@ public class MemoryVirtualFileTest {
     VirtualFile root = getRoot();
     VirtualFile file = root.createFile(generateFileName(), DEFAULT_CONTENT);
 
-    file.updateContent("updated content".getBytes());
+    file.updateContent("updated content".getBytes(UTF_8));
 
     assertEquals("updated content", file.getContentAsString());
   }
@@ -427,7 +428,7 @@ public class MemoryVirtualFileTest {
     VirtualFile file = root.createFile(generateFileName(), DEFAULT_CONTENT);
     String lockToken = file.lock(0);
 
-    file.updateContent(new ByteArrayInputStream("updated content".getBytes()), lockToken);
+    file.updateContent(new ByteArrayInputStream("updated content".getBytes(UTF_8)), lockToken);
 
     assertEquals("updated content", file.getContentAsString());
   }
@@ -438,7 +439,7 @@ public class MemoryVirtualFileTest {
     VirtualFile file = root.createFile(generateFileName(), DEFAULT_CONTENT);
     String lockToken = file.lock(0);
 
-    file.updateContent("updated content".getBytes(), lockToken);
+    file.updateContent("updated content".getBytes(UTF_8), lockToken);
 
     assertEquals("updated content", file.getContentAsString());
   }
@@ -461,7 +462,7 @@ public class MemoryVirtualFileTest {
     file.lock(0);
 
     try {
-      file.updateContent(new ByteArrayInputStream("updated content".getBytes()));
+      file.updateContent(new ByteArrayInputStream("updated content".getBytes(UTF_8)));
       thrown.expect(ForbiddenException.class);
     } catch (ForbiddenException expected) {
       assertEquals(DEFAULT_CONTENT, file.getContentAsString());
@@ -475,7 +476,7 @@ public class MemoryVirtualFileTest {
     file.lock(0);
 
     try {
-      file.updateContent("updated content".getBytes());
+      file.updateContent("updated content".getBytes(UTF_8));
       thrown.expect(ForbiddenException.class);
     } catch (ForbiddenException expected) {
       assertEquals(DEFAULT_CONTENT, file.getContentAsString());
@@ -503,7 +504,8 @@ public class MemoryVirtualFileTest {
     String invalidLockToken = invalidateLockToken(file.lock(0));
 
     try {
-      file.updateContent(new ByteArrayInputStream("updated content".getBytes()), invalidLockToken);
+      file.updateContent(
+          new ByteArrayInputStream("updated content".getBytes(UTF_8)), invalidLockToken);
       thrown.expect(ForbiddenException.class);
     } catch (ForbiddenException expected) {
       assertEquals(DEFAULT_CONTENT, file.getContentAsString());
@@ -517,7 +519,7 @@ public class MemoryVirtualFileTest {
     String invalidLockToken = invalidateLockToken(file.lock(0));
 
     try {
-      file.updateContent("updated content".getBytes(), invalidLockToken);
+      file.updateContent("updated content".getBytes(UTF_8), invalidLockToken);
       thrown.expect(ForbiddenException.class);
     } catch (ForbiddenException expected) {
       assertEquals(DEFAULT_CONTENT, file.getContentAsString());

@@ -114,6 +114,7 @@ public class ASTProvider {
 
     SafeRunner.run(
         new ISafeRunnable() {
+          @Override
           public void run() {
             try {
               if (progressMonitor != null && progressMonitor.isCanceled()) return;
@@ -133,6 +134,7 @@ public class ASTProvider {
             }
           }
 
+          @Override
           public void handleException(Throwable ex) {
             LOG.error(ex.getMessage(), ex);
           }

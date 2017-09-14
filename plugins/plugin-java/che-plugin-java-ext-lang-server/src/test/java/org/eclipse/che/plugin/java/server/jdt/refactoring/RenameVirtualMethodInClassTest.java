@@ -45,6 +45,7 @@ public class RenameVirtualMethodInClassTest extends RefactoringTest {
     ParticipantTesting.init();
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();
@@ -58,6 +59,7 @@ public class RenameVirtualMethodInClassTest extends RefactoringTest {
     setup.tearDown();
   }
 
+  @Override
   protected String getRefactoringPath() {
     return REFACTORING_PATH;
   }

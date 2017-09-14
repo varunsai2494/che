@@ -20,11 +20,13 @@ public abstract class AbstractFix implements IProposableFix /*, ILinkedFix*/ {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getAdditionalProposalInfo() {
     return null;
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getDisplayString() {
     return fDisplayString;
   }
@@ -37,6 +39,7 @@ public abstract class AbstractFix implements IProposableFix /*, ILinkedFix*/ {
   //	}
 
   /** {@inheritDoc} */
+  @Override
   public IStatus getStatus() {
     return null;
   }

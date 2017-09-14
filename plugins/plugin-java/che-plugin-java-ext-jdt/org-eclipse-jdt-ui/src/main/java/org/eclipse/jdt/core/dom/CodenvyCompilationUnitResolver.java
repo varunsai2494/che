@@ -357,6 +357,7 @@ public class CodenvyCompilationUnitResolver extends CompilationUnitResolver {
   /*
    * Add additional source types
    */
+  @Override
   public void accept(
       ISourceType[] sourceTypes,
       org.eclipse.jdt.internal.compiler.lookup.PackageBinding packageBinding,

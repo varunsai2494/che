@@ -24,7 +24,9 @@ public interface Field extends Member {
    *
    * @return the simple name of this field.
    */
+  @Override
   String getElementName();
 
+  @Override
   void setElementName(String elementName);
 }

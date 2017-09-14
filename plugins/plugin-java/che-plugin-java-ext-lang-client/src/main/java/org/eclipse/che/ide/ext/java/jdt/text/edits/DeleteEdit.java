@@ -36,11 +36,13 @@ public final class DeleteEdit extends TextEdit {
   }
 
   /* @see TextEdit#doCopy */
+  @Override
   protected TextEdit doCopy() {
     return new DeleteEdit(this);
   }
 
   /* @see TextEdit#accept0 */
+  @Override
   protected void accept0(TextEditVisitor visitor) {
     boolean visitChildren = visitor.visit(this);
     if (visitChildren) {
@@ -49,6 +51,7 @@ public final class DeleteEdit extends TextEdit {
   }
 
   /* @see TextEdit#performDocumentUpdating */
+  @Override
   int performDocumentUpdating(Document document) throws BadLocationException {
     document.replace(getOffset(), getLength(), ""); //$NON-NLS-1$
     fDelta = -getLength();
@@ -56,6 +59,7 @@ public final class DeleteEdit extends TextEdit {
   }
 
   /* @see TextEdit#deleteChildren */
+  @Override
   boolean deleteChildren() {
     return true;
   }

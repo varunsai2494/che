@@ -11,6 +11,7 @@
 package org.eclipse.che.plugin.openshift.client;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.common.collect.ImmutableSet;
 import io.fabric8.kubernetes.api.model.Container;
@@ -1014,7 +1015,7 @@ public class OpenShiftConnector extends DockerConnector {
             .watch(watcher);
         Thread.sleep(5000);
         InputStream is = watchLog.getOutput();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, UTF_8));
         while (!ret[0]) {
           String line = bufferedReader.readLine();
           containerLogsProcessor.process(new LogMessage(LogMessage.Type.DOCKER, line));

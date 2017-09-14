@@ -46,6 +46,7 @@ public class ConfigurableLineTracker extends AbstractLineTracker {
   /*
    * @see org.eclipse.jface.text.ILineTracker#getLegalLineDelimiters()
    */
+  @Override
   public String[] getLegalLineDelimiters() {
     return TextUtilities.copy(fDelimiters);
   }
@@ -53,6 +54,7 @@ public class ConfigurableLineTracker extends AbstractLineTracker {
   /*
    * @see org.eclipse.jface.text.AbstractLineTracker#nextDelimiterInfo(java.lang.String, int)
    */
+  @Override
   protected DelimiterInfo nextDelimiterInfo(String text, int offset) {
     if (fDelimiters.length > 1) {
       int[] info = TextUtilities.indexOf(fDelimiters, text, offset);

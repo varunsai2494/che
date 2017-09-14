@@ -61,6 +61,7 @@ public final class ProjectScope implements IScopeContext {
   /*
    * @see org.eclipse.core.runtime.IScopeContext#getNode(java.lang.String)
    */
+  @Override
   public IEclipsePreferences getNode(String qualifier) {
     if (qualifier == null) throw new IllegalArgumentException();
 
@@ -81,6 +82,7 @@ public final class ProjectScope implements IScopeContext {
   /*
    * @see org.eclipse.core.runtime.preferences.IScopeContext#getLocation()
    */
+  @Override
   public IPath getLocation() {
     IProject project = ((IResource) context).getProject();
     IPath location = project.getLocation();
@@ -92,6 +94,7 @@ public final class ProjectScope implements IScopeContext {
   /*
    * @see org.eclipse.core.runtime.preferences.IScopeContext#getName()
    */
+  @Override
   public String getName() {
     return SCOPE;
   }

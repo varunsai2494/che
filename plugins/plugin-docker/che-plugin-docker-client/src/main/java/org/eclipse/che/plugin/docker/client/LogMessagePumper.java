@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.io.ByteStreams;
 import java.io.IOException;
 import java.io.InputStream;
@@ -72,11 +74,12 @@ class LogMessagePumper extends MessagePumper<LogMessage> {
               }
             }
             if (lineBuf != null && lineBuf.length() > 0) {
-              lineBuf.append(new String(buf, offset, length));
+              lineBuf.append(new String(buf, offset, length, UTF_8));
               target.process(new LogMessage(logMessageType, lineBuf.toString()));
               lineBuf.setLength(0);
             } else {
-              target.process(new LogMessage(logMessageType, new String(buf, offset, length)));
+              target.process(
+                  new LogMessage(logMessageType, new String(buf, offset, length, UTF_8)));
             }
 
             if (isLineFeedFollowed) {
@@ -91,7 +94,7 @@ class LogMessagePumper extends MessagePumper<LogMessage> {
           if (lineBuf == null) {
             lineBuf = new StringBuilder(MAX_LINE_LENGTH);
           }
-          lineBuf.append(new String(buf, offset, r - offset));
+          lineBuf.append(new String(buf, offset, r - offset, UTF_8));
         }
         remaining -= r;
       }

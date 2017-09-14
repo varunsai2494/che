@@ -46,6 +46,7 @@ public class MoveRefactoringSessionTest extends RefactoringTest {
     ParticipantTesting.init();
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();

@@ -185,6 +185,7 @@ public class CompilationUnitRewrite {
    * @throws IllegalArgumentException when the AST rewrite encounters problems
    * @deprecated since 3.5, replaced by {@link #createChange(boolean)}
    */
+  @Deprecated
   public org.eclipse.jdt.internal.corext.refactoring.changes.CompilationUnitChange createChange()
       throws CoreException {
     CompilationUnitChange change = createChange(true);

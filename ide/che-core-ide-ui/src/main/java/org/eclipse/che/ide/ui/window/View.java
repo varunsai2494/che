@@ -291,14 +291,17 @@ class View extends Composite {
 
   private class MouseHandler implements MouseDownHandler, MouseUpHandler, MouseMoveHandler {
 
+    @Override
     public void onMouseDown(MouseDownEvent event) {
       beginDragging(event);
     }
 
+    @Override
     public void onMouseMove(MouseMoveEvent event) {
       continueDragging(event);
     }
 
+    @Override
     public void onMouseUp(MouseUpEvent event) {
       endDragging(event);
 

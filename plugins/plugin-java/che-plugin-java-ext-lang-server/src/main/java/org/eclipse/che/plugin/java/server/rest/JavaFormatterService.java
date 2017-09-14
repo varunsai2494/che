@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.java.server.rest;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -113,10 +115,10 @@ public class JavaFormatterService {
       FolderEntry cheFolderEntry = (FolderEntry) cheFolder;
       VirtualFileEntry formatter = cheFolderEntry.getChild(CHE_FORMATTER_XML);
       if (formatter == null) {
-        cheFolderEntry.createFile(CHE_FORMATTER_XML, content.getBytes());
+        cheFolderEntry.createFile(CHE_FORMATTER_XML, content.getBytes(UTF_8));
       } else {
         FileEntry formatterEntry = (FileEntry) formatter;
-        formatterEntry.updateContent(content.getBytes());
+        formatterEntry.updateContent(content.getBytes(UTF_8));
       }
     } catch (ServerException | ForbiddenException | ConflictException e) {
       throw new ServerException(e);
@@ -148,10 +150,10 @@ public class JavaFormatterService {
       VirtualFileEntry formatter = cheFolderEntry.getChild(CHE_FORMATTER_XML);
 
       if (formatter == null) {
-        cheFolderEntry.createFile(CHE_FORMATTER_XML, content.getBytes());
+        cheFolderEntry.createFile(CHE_FORMATTER_XML, content.getBytes(UTF_8));
       } else {
         FileEntry formatterEntry = (FileEntry) formatter;
-        formatterEntry.updateContent(content.getBytes());
+        formatterEntry.updateContent(content.getBytes(UTF_8));
       }
     } catch (ForbiddenException | ConflictException e) {
       throw new ServerException(e);

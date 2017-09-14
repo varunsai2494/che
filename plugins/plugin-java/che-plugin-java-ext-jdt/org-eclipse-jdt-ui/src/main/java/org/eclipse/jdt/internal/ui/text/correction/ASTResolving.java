@@ -521,6 +521,7 @@ public class ASTResolving {
         new TypeBindingVisitor() {
           private HashSet<String> fVisitedBindings = new HashSet<String>(100);
 
+          @Override
           public boolean visit(ITypeBinding node) {
             node = Bindings.normalizeTypeBinding(node);
             if (node == null) {

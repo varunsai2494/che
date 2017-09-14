@@ -270,6 +270,7 @@ public class RefactoringSearchEngine {
       final RefactoringStatus status, final RefactoringStatusEntry other) {
     return status.getEntries(
                 new IRefactoringStatusEntryComparator() {
+                  @Override
                   public final int compare(
                       final RefactoringStatusEntry entry1, final RefactoringStatusEntry entry2) {
                     return entry1.getMessage().compareTo(entry2.getMessage());

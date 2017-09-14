@@ -16,9 +16,12 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author Anatoliy Bazko */
 @DTO
 public interface SuspendActionDto extends ActionDto, SuspendAction {
+  @Override
   TYPE getType();
 
+  @Override
   void setType(TYPE type);
 
+  @Override
   SuspendActionDto withType(TYPE type);
 }

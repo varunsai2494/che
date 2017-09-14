@@ -605,6 +605,7 @@ public class NodeStorage implements StoreHandlers.HasStoreHandlers {
     return (nodeDescriptor != null && !nodeDescriptor.isRoot()) ? nodeDescriptor.getNode() : null;
   }
 
+  @Override
   public void fireEvent(GwtEvent<?> event) {
     if (handlerManager != null) {
       handlerManager.fireEvent(event);
@@ -739,6 +740,7 @@ public class NodeStorage implements StoreHandlers.HasStoreHandlers {
 
   protected Comparator<NodeDescriptor> buildFullComparator() {
     return new Comparator<NodeDescriptor>() {
+      @Override
       public int compare(NodeDescriptor o1, NodeDescriptor o2) {
         for (StoreSortInfo comparator : comparators) {
           int val = comparator.compare(o1.getNode(), o2.getNode());

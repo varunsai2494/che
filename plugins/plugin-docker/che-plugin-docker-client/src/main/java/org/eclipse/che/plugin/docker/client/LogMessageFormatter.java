@@ -17,6 +17,7 @@ package org.eclipse.che.plugin.docker.client;
  * @author Alexander Garagatyi
  */
 public interface LogMessageFormatter extends MessageFormatter<LogMessage> {
+  @Override
   String format(LogMessage logMessage);
 
   LogMessageFormatter DEFAULT =

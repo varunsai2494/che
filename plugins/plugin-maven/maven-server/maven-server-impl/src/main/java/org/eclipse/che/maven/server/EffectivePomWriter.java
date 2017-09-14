@@ -233,6 +233,7 @@ class EffectivePomWriter {
     static final long serialVersionUID = -8985316072702233744L;
 
     /** {@inheritDoc} */
+    @Override
     @SuppressWarnings({"rawtypes", "unchecked"})
     public Set<Object> keySet() {
       Set<Object> keynames = super.keySet();

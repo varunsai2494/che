@@ -12,6 +12,7 @@ package org.eclipse.che.api.vfs.impl.memory;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.singletonMap;
 
 import com.google.common.hash.Hashing;
@@ -318,7 +319,7 @@ public class MemoryVirtualFile implements VirtualFile {
 
   @Override
   public String getContentAsString() throws ForbiddenException {
-    return new String(getContentAsBytes());
+    return new String(getContentAsBytes(), UTF_8);
   }
 
   @Override
@@ -346,7 +347,7 @@ public class MemoryVirtualFile implements VirtualFile {
   @Override
   public VirtualFile updateContent(String content, String lockToken)
       throws ForbiddenException, ServerException {
-    return updateContent(content.getBytes(), lockToken);
+    return updateContent(content.getBytes(UTF_8), lockToken);
   }
 
   @Override
@@ -831,7 +832,7 @@ public class MemoryVirtualFile implements VirtualFile {
   @Override
   public VirtualFile createFile(String name, String content)
       throws ForbiddenException, ConflictException, ServerException {
-    return createFile(name, content.getBytes());
+    return createFile(name, content.getBytes(UTF_8));
   }
 
   @Override

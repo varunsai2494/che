@@ -96,6 +96,7 @@ public class ChangeMethodSignatureArguments extends RefactoringArguments {
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    @Override
     public String toString() {
       return "name: "
           + fNewName
@@ -153,6 +154,7 @@ public class ChangeMethodSignatureArguments extends RefactoringArguments {
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    @Override
     public String toString() {
       return "type: " + fType + ", oldIndex: " + fOldIndex; //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -255,6 +257,7 @@ public class ChangeMethodSignatureArguments extends RefactoringArguments {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String toString() {
     StringBuffer buf = new StringBuffer("change signature to "); //$NON-NLS-1$
     buf.append("\n\tvisibility: ").append(Flags.toString(fNewVisibility)); //$NON-NLS-1$

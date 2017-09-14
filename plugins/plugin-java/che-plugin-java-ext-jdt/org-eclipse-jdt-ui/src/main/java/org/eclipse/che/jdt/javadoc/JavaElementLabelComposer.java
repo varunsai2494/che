@@ -135,6 +135,7 @@ public class JavaElementLabelComposer {
     Collections.sort(
         result,
         new Comparator<PackageNameAbbreviation>() {
+          @Override
           public int compare(PackageNameAbbreviation a1, PackageNameAbbreviation a2) {
             return a2.getPackagePrefix().length() - a1.getPackagePrefix().length();
           }

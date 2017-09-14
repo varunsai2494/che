@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.git.impl;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.singletonList;
 import static org.eclipse.che.git.impl.GitTestUtil.addFile;
 import static org.eclipse.che.git.impl.GitTestUtil.cleanupTestRepo;
@@ -410,7 +411,8 @@ public class DiffTest {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     diffPage.writeTo(out);
     BufferedReader reader =
-        new BufferedReader(new InputStreamReader(new ByteArrayInputStream(out.toByteArray())));
+        new BufferedReader(
+            new InputStreamReader(new ByteArrayInputStream(out.toByteArray()), UTF_8));
 
     String line;
     List<String> diff = new ArrayList<>();

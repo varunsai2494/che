@@ -39,18 +39,22 @@ public class UndoDeleteResourceChange extends Change {
     fResourceState = resourceDescription;
   }
 
+  @Override
   public void initializeValidationData(IProgressMonitor pm) {}
 
+  @Override
   public Object getModifiedElement() {
     return null;
   }
 
+  @Override
   public String getName() {
     return Messages.format(
         RefactoringCoreMessages.UndoDeleteResourceChange_change_name,
         BasicElementLabels.getResourceName(fResourceState.getName()));
   }
 
+  @Override
   public RefactoringStatus isValid(IProgressMonitor pm)
       throws CoreException, OperationCanceledException {
     if (!fResourceState.isValid()) {
@@ -62,6 +66,7 @@ public class UndoDeleteResourceChange extends Change {
     return new RefactoringStatus();
   }
 
+  @Override
   public Change perform(IProgressMonitor pm) throws CoreException {
     if (fResourceState.verifyExistence(true)) {
       String message =
@@ -80,6 +85,7 @@ public class UndoDeleteResourceChange extends Change {
     return change;
   }
 
+  @Override
   public String toString() {
     return Messages.format(
         RefactoringCoreMessages.UndoDeleteResourceChange_revert_resource, fResourceState.getName());

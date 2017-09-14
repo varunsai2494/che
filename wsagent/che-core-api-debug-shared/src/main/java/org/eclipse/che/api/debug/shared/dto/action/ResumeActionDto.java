@@ -17,9 +17,12 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author Anatoliy Bazko */
 @DTO
 public interface ResumeActionDto extends ActionDto, ResumeAction {
+  @Override
   Action.TYPE getType();
 
+  @Override
   void setType(Action.TYPE type);
 
+  @Override
   ResumeActionDto withType(Action.TYPE type);
 }

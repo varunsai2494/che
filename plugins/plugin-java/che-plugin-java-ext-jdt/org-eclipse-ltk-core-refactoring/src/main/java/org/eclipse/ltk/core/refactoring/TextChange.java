@@ -103,6 +103,7 @@ public abstract class TextChange extends TextEditBasedChange {
    *
    * @param group the text edit group to add
    */
+  @Override
   public void addTextEditGroup(TextEditGroup group) {
     addTextEditChangeGroup(new TextEditChangeGroup(this, group));
   }
@@ -195,6 +196,7 @@ public abstract class TextChange extends TextEditBasedChange {
   protected abstract Change createUndoChange(UndoEdit edit);
 
   /** {@inheritDoc} */
+  @Override
   public Change perform(IProgressMonitor pm) throws CoreException {
     pm.beginTask("", 3); //$NON-NLS-1$
     IDocument document = null;
@@ -280,11 +282,13 @@ public abstract class TextChange extends TextEditBasedChange {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getCurrentContent(IProgressMonitor pm) throws CoreException {
     return getCurrentDocument(pm).get();
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getCurrentContent(
       IRegion region, boolean expandRegionToFullLine, int surroundingLines, IProgressMonitor pm)
       throws CoreException {
@@ -353,6 +357,7 @@ public abstract class TextChange extends TextEditBasedChange {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getPreviewContent(IProgressMonitor pm) throws CoreException {
     return getPreviewDocument(pm).get();
   }
@@ -431,6 +436,7 @@ public abstract class TextChange extends TextEditBasedChange {
    * @see #getCurrentContent(IRegion, boolean, int, IProgressMonitor)
    * @since 3.2
    */
+  @Override
   public String getPreviewContent(
       TextEditBasedChangeGroup[] changeGroups,
       IRegion region,
@@ -575,6 +581,7 @@ public abstract class TextChange extends TextEditBasedChange {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void setKeepPreviewEdits(boolean keep) {
     super.setKeepPreviewEdits(keep);
 

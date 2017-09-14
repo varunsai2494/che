@@ -401,6 +401,7 @@ public class JavaSearchScope extends AbstractJavaSearchScope {
    *
    * @see IJavaSearchScope#encloses(String)
    */
+  @Override
   public boolean encloses(String resourcePathString) {
     int separatorIndex = resourcePathString.indexOf(JAR_FILE_ENTRY_SEPARATOR);
     if (separatorIndex != -1) {
@@ -496,6 +497,7 @@ public class JavaSearchScope extends AbstractJavaSearchScope {
   /* (non-Javadoc)
    * @see IJavaSearchScope#encloses(IJavaElement)
    */
+  @Override
   public boolean encloses(IJavaElement element) {
     if (this.elements != null) {
       for (int i = 0, length = this.elements.size(); i < length; i++) {
@@ -526,6 +528,7 @@ public class JavaSearchScope extends AbstractJavaSearchScope {
   /* (non-Javadoc)
    * @see IJavaSearchScope#enclosingProjectsAndJars()
    */
+  @Override
   public IPath[] enclosingProjectsAndJars() {
     return this.enclosingProjectsAndJars;
   }
@@ -558,6 +561,7 @@ public class JavaSearchScope extends AbstractJavaSearchScope {
    * @return The access rule set for given path or null if none is set for it. Returns specific
    *     uninit access rule set when scope does not enclose the given path.
    */
+  @Override
   public AccessRuleSet getAccessRuleSet(String relativePath, String containerPath) {
     int index = indexOf(containerPath, relativePath);
     if (index == -1) {
@@ -597,6 +601,7 @@ public class JavaSearchScope extends AbstractJavaSearchScope {
   /*
    * @see AbstractSearchScope#processDelta(IJavaElementDelta)
    */
+  @Override
   public void processDelta(IJavaElementDelta delta, int eventType) {
     switch (delta.getKind()) {
       case IJavaElementDelta.CHANGED:
@@ -636,6 +641,7 @@ public class JavaSearchScope extends AbstractJavaSearchScope {
   }
 
   /** @see AbstractJavaSearchScope#packageFragmentRoot(String, int, String) */
+  @Override
   public IPackageFragmentRoot packageFragmentRoot(
       String resourcePathString, int jarSeparatorIndex, String jarPath) {
     int index = -1;
@@ -700,6 +706,7 @@ public class JavaSearchScope extends AbstractJavaSearchScope {
     this.threshold = newScope.threshold;
   }
 
+  @Override
   public String toString() {
     StringBuffer result = new StringBuffer("JavaSearchScope on "); //$NON-NLS-1$
     if (this.elements != null) {

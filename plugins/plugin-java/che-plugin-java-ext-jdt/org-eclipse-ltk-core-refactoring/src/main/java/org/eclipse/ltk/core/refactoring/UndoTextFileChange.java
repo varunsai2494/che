@@ -92,6 +92,7 @@ public class UndoTextFileChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getName() {
     return fName;
   }
@@ -113,11 +114,13 @@ public class UndoTextFileChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Object getModifiedElement() {
     return fFile;
   }
 
   /** {@inheritDoc} */
+  @Override
   public Object[] getAffectedObjects() {
     Object modifiedElement = getModifiedElement();
     if (modifiedElement == null) return null;
@@ -125,6 +128,7 @@ public class UndoTextFileChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void initializeValidationData(IProgressMonitor pm) {
     if (pm == null) pm = new NullProgressMonitor();
     pm.beginTask("", 1); //$NON-NLS-1$
@@ -136,6 +140,7 @@ public class UndoTextFileChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
     pm.beginTask("", 1); //$NON-NLS-1$
@@ -158,6 +163,7 @@ public class UndoTextFileChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Change perform(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
     ITextFileBufferManager manager = FileBuffers.getTextFileBufferManager();
@@ -215,6 +221,7 @@ public class UndoTextFileChange extends Change {
     final CoreException[] coreException = new CoreException[1];
     Runnable runnable =
         new Runnable() {
+          @Override
           public void run() {
             synchronized (completionLock) {
               try {
@@ -265,6 +272,7 @@ public class UndoTextFileChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void dispose() {
     if (fValidationState != null) {
       fValidationState.dispose();

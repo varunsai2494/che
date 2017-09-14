@@ -9,6 +9,7 @@
  */
 package org.eclipse.che.plugin.java.server.jdt.refactoring;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -95,6 +96,7 @@ public abstract class RefactoringTest extends BaseTest {
   //		super(name);
   //	}
 
+  @Override
   public void setUp() throws Exception {
     fRoot = RefactoringTestSetup.getDefaultSourceFolder();
     fPackageP = RefactoringTestSetup.getPackageP();
@@ -309,6 +311,7 @@ public abstract class RefactoringTest extends BaseTest {
     if (fIsPreDeltaTest) {
       IResourceChangeListener listener =
           new IResourceChangeListener() {
+            @Override
             public void resourceChanged(IResourceChangeEvent event) {
               if (create.getConditionCheckingStatus().isOK() && perform.changeExecuted()) {
                 TestModelProvider.assertTrue(event.getDelta());
@@ -461,7 +464,7 @@ public abstract class RefactoringTest extends BaseTest {
 
   //-----------------------
   public static InputStream getStream(String content) {
-    return new ByteArrayInputStream(content.getBytes());
+    return new ByteArrayInputStream(content.getBytes(UTF_8));
   }
 
   public static IPackageFragmentRoot getSourceFolder(IJavaProject javaProject, String name)
@@ -490,7 +493,7 @@ public abstract class RefactoringTest extends BaseTest {
   }
 
   public static String getContents(InputStream in) throws IOException {
-    BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    BufferedReader br = new BufferedReader(new InputStreamReader(in, UTF_8));
 
     StringBuffer sb = new StringBuffer(300);
     try {

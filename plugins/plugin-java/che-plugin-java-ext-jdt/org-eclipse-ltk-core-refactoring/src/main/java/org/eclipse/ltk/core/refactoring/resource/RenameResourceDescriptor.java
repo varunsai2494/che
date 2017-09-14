@@ -106,6 +106,7 @@ public final class RenameResourceDescriptor extends RefactoringDescriptor {
    * @param project the non-empty project name to set, or <code>null</code> for the workspace
    * @see #getProject()
    */
+  @Override
   public void setProject(final String project) {
     super.setProject(project);
   }
@@ -154,6 +155,7 @@ public final class RenameResourceDescriptor extends RefactoringDescriptor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.RefactoringDescriptor#createRefactoring(org.eclipse.ltk.core.refactoring.RefactoringStatus)
    */
+  @Override
   public Refactoring createRefactoring(RefactoringStatus status) throws CoreException {
     IPath resourcePath = getResourcePath();
     if (resourcePath == null) {

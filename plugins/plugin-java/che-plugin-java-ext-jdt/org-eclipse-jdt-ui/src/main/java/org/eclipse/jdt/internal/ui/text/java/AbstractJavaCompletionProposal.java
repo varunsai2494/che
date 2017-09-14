@@ -213,6 +213,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposalExtension#getTriggerCharacters()
    */
+  @Override
   public char[] getTriggerCharacters() {
     return fTriggerCharacters;
   }
@@ -264,6 +265,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposal#apply
    */
+  @Override
   public final void apply(IDocument document) {
     // not used any longer
     apply(document, (char) 0, getReplacementOffset() + getReplacementLength());
@@ -272,6 +274,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension#apply(org.eclipse.jface.text.IDocument, char, int)
    */
+  @Override
   public void apply(IDocument document, char trigger, int offset) {
 
     if (isSupportingRequiredProposals()) {
@@ -431,6 +434,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension1#apply(org.eclipse.jface.text.ITextViewer, char, int, int)
    */
+  @Override
   public void apply(ITextViewer viewer, char trigger, int stateMask, int offset) {
 
     IDocument document = viewer.getDocument();
@@ -497,6 +501,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposal#getSelection
    */
+  @Override
   public Point getSelection(IDocument document) {
     if (!fIsValidated) return null;
     return new Point(getReplacementOffset() + getCursorPosition(), 0);
@@ -505,6 +510,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposal#getContextInformation()
    */
+  @Override
   public IContextInformation getContextInformation() {
     return fContextInformation;
   }
@@ -521,6 +527,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposal#getDisplayString()
    */
+  @Override
   public String getDisplayString() {
     if (fDisplayString != null) return fDisplayString.getString();
     return ""; //$NON-NLS-1$
@@ -529,6 +536,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposal#getAdditionalProposalInfo()
    */
+  @Override
   public String getAdditionalProposalInfo() {
     Object info = getAdditionalProposalInfo(new NullProgressMonitor());
     return info == null ? null : info.toString();
@@ -537,6 +545,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension5#getAdditionalProposalInfo(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public Object getAdditionalProposalInfo(IProgressMonitor monitor) {
     if (getProposalInfo() != null) {
       String info = getProposalInfo().getInfo(monitor);
@@ -628,6 +637,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposalExtension#getContextInformationPosition()
    */
+  @Override
   public int getContextInformationPosition() {
     if (getContextInformation() == null) return getReplacementOffset() - 1;
     return getReplacementOffset() + getCursorPosition();
@@ -655,6 +665,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension3#getCompletionOffset()
    */
+  @Override
   public int getPrefixCompletionStart(IDocument document, int completionOffset) {
     return getReplacementOffset();
   }
@@ -700,6 +711,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension3#getReplacementText()
    */
+  @Override
   public CharSequence getPrefixCompletionText(IDocument document, int completionOffset) {
     if (!isCamelCaseMatching()) return getReplacementString();
 
@@ -710,6 +722,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposal#getImage()
    */
+  @Override
   public Image getImage() {
     return fImage;
   }
@@ -726,6 +739,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see ICompletionProposalExtension#isValidFor(IDocument, int)
    */
+  @Override
   public boolean isValidFor(IDocument document, int offset) {
     return validate(document, offset, null);
   }
@@ -733,6 +747,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#validate(org.eclipse.jface.text.IDocument, int, org.eclipse.jface.text.DocumentEvent)
    */
+  @Override
   public boolean validate(IDocument document, int offset, DocumentEvent event) {
 
     if (!isOffsetValid(offset)) return fIsValidated = false;
@@ -791,6 +806,7 @@ public abstract class AbstractJavaCompletionProposal
    *
    * @return Returns a int
    */
+  @Override
   public int getRelevance() {
     return fRelevance;
   }
@@ -998,6 +1014,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#selected(ITextViewer, boolean)
    */
+  @Override
   public void selected(final ITextViewer viewer, boolean smartToggle) {
     //		repairPresentation(viewer);
     //		fRememberedStyleRange= null;
@@ -1033,6 +1050,7 @@ public abstract class AbstractJavaCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#unselected(ITextViewer)
    */
+  @Override
   public void unselected(ITextViewer viewer) {
     //		if (fTextPresentationListener != null) {
     //			((ITextViewerExtension4)viewer).removeTextPresentationListener(fTextPresentationListener);
@@ -1134,6 +1152,7 @@ public abstract class AbstractJavaCompletionProposal
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension6#getStyledDisplayString()
    * @since 3.4
    */
+  @Override
   public StyledString getStyledDisplayString() {
     return fDisplayString;
   }

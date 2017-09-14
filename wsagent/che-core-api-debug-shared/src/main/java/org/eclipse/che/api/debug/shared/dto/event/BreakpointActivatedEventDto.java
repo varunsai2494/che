@@ -20,10 +20,13 @@ import org.eclipse.che.dto.shared.DTO;
  */
 @DTO
 public interface BreakpointActivatedEventDto extends DebuggerEventDto {
+  @Override
   TYPE getType();
 
+  @Override
   void setType(TYPE type);
 
+  @Override
   BreakpointActivatedEventDto withType(TYPE type);
 
   BreakpointDto getBreakpoint();

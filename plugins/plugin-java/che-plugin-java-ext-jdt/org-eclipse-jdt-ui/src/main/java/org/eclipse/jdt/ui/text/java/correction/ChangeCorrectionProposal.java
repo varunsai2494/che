@@ -88,6 +88,7 @@ public class ChangeCorrectionProposal
   /*
    * @see ICompletionProposal#apply(IDocument)
    */
+  @Override
   public void apply(IDocument document) {
     try {
       performChange(/*JavaPlugin.getActivePage().getActiveEditor(),*/ document);
@@ -203,6 +204,7 @@ public class ChangeCorrectionProposal
   /*
    * @see ICompletionProposal#getAdditionalProposalInfo()
    */
+  @Override
   public String getAdditionalProposalInfo() {
     Object info = getAdditionalProposalInfo(new NullProgressMonitor());
     return info == null ? null : info.toString();
@@ -211,6 +213,7 @@ public class ChangeCorrectionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension5#getAdditionalProposalInfo(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public Object getAdditionalProposalInfo(IProgressMonitor monitor) {
     StringBuffer buf = new StringBuffer();
     buf.append("<p>"); //$NON-NLS-1$
@@ -237,6 +240,7 @@ public class ChangeCorrectionProposal
   /*
    * @see ICompletionProposal#getContextInformation()
    */
+  @Override
   public IContextInformation getContextInformation() {
     return null;
   }
@@ -244,6 +248,7 @@ public class ChangeCorrectionProposal
   /*
    * @see ICompletionProposal#getDisplayString()
    */
+  @Override
   public String getDisplayString() {
     //		String shortCutString= CorrectionCommandHandler.getShortCutString(getCommandId());
     //		if (shortCutString != null) {
@@ -255,6 +260,7 @@ public class ChangeCorrectionProposal
   /* (non-Javadoc)
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension6#getStyledDisplayString()
    */
+  @Override
   public StyledString getStyledDisplayString() {
     StyledString str = new StyledString(getName());
 
@@ -279,6 +285,7 @@ public class ChangeCorrectionProposal
   /*
    * @see ICompletionProposal#getImage()
    */
+  @Override
   public Image getImage() {
     return fImage;
   }
@@ -286,6 +293,7 @@ public class ChangeCorrectionProposal
   /*
    * @see ICompletionProposal#getSelection(IDocument)
    */
+  @Override
   public Point getSelection(IDocument document) {
     return null;
   }
@@ -397,6 +405,7 @@ public class ChangeCorrectionProposal
   /* (non-Javadoc)
    * @see org.eclipse.jdt.ui.text.java.IJavaCompletionProposal#getRelevance()
    */
+  @Override
   public int getRelevance() {
     return fRelevance;
   }
@@ -416,6 +425,7 @@ public class ChangeCorrectionProposal
 
 
   */
+  @Override
   public String getCommandId() {
     return fCommandId;
   }

@@ -81,6 +81,7 @@ public class GapTextStore implements TextStore {
    *     (&gt;=&nbsp;0)
    * @deprecated use {@link GapTextStore#GapTextStore(int, int, float)} instead
    */
+  @Deprecated
   public GapTextStore(int lowWatermark, int highWatermark) {
     /*
      * Legacy constructor. The API contract states that highWatermark is the upper bound for the gap size. Albeit this contract
@@ -136,6 +137,7 @@ public class GapTextStore implements TextStore {
   }
 
   /* @see org.eclipse.jface.text.ITextStore#get(int) */
+  @Override
   public final char get(int offset) {
     if (offset < fGapStart) return fContent[offset];
 
@@ -143,6 +145,7 @@ public class GapTextStore implements TextStore {
   }
 
   /* @see org.eclipse.jface.text.ITextStore#get(int, int) */
+  @Override
   public final String get(int offset, int length) {
     if (fGapStart <= offset) return new String(fContent, offset + gapSize(), length);
 
@@ -157,11 +160,13 @@ public class GapTextStore implements TextStore {
   }
 
   /* @see org.eclipse.jface.text.ITextStore#getLength() */
+  @Override
   public final int getLength() {
     return fContent.length - gapSize();
   }
 
   /* @see org.eclipse.jface.text.ITextStore#set(java.lang.String) */
+  @Override
   public final void set(String text) {
     /*
      * Moves the gap to the end of the content. There is no sensible prediction of where the next change will occur, but at
@@ -172,6 +177,7 @@ public class GapTextStore implements TextStore {
   }
 
   /* @see org.eclipse.jface.text.ITextStore#replace(int, int, java.lang.String) */
+  @Override
   public final void replace(int offset, int length, String text) {
     if (text == null) {
       adjustGap(offset, length, 0);

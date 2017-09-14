@@ -70,5 +70,6 @@ public interface ServiceDescriptor extends Hyperlinks {
    */
   void setVersion(String version);
 
+  @Override
   ServiceDescriptor withLinks(List<Link> links);
 }

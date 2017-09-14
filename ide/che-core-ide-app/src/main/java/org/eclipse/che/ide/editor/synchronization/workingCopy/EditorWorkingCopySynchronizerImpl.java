@@ -57,6 +57,7 @@ public class EditorWorkingCopySynchronizerImpl implements EditorWorkingCopySynch
         .withConsumer(this::onError);
   }
 
+  @Override
   public JsonRpcPromise<Boolean> synchronize(
       String filePath, String projectPath, DirtyRegion dirtyRegion) {
     Type type = dirtyRegion.getType().equals(DirtyRegion.INSERT) ? INSERT : REMOVE;

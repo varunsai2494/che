@@ -61,14 +61,17 @@ public final class JavaMoveProcessor extends MoveProcessor
     status.merge(initializeStatus);
   }
 
+  @Override
   public boolean canChildrenBeDestinations(IReorgDestination destination) {
     return fMovePolicy.canChildrenBeDestinations(destination);
   }
 
+  @Override
   public boolean canElementBeDestination(IReorgDestination destination) {
     return fMovePolicy.canElementBeDestination(destination);
   }
 
+  @Override
   public boolean canEnableQualifiedNameUpdating() {
     return fMovePolicy.canEnableQualifiedNameUpdating();
   }
@@ -95,6 +98,7 @@ public final class JavaMoveProcessor extends MoveProcessor
    * @return <code>true</code> iff <b>Java</b> references to the moved element can be updated
    * @deprecated since 3.5, replaced by {@link #canUpdateJavaReferences()}
    */
+  @Deprecated
   public boolean canUpdateReferences() {
     return canUpdateJavaReferences();
   }
@@ -215,6 +219,7 @@ public final class JavaMoveProcessor extends MoveProcessor
     return result.toArray();
   }
 
+  @Override
   public String getFilePatterns() {
     return fMovePolicy.getFilePatterns();
   }
@@ -237,6 +242,7 @@ public final class JavaMoveProcessor extends MoveProcessor
     return fMovePolicy.getResources();
   }
 
+  @Override
   public boolean getUpdateQualifiedNames() {
     return fMovePolicy.getUpdateQualifiedNames();
   }
@@ -303,6 +309,7 @@ public final class JavaMoveProcessor extends MoveProcessor
     return fMovePolicy.verifyDestination(destination);
   }
 
+  @Override
   public void setFilePatterns(String patterns) {
     fMovePolicy.setFilePatterns(patterns);
   }
@@ -312,6 +319,7 @@ public final class JavaMoveProcessor extends MoveProcessor
     fReorgQueries = queries;
   }
 
+  @Override
   public void setUpdateQualifiedNames(boolean update) {
     fMovePolicy.setUpdateQualifiedNames(update);
   }

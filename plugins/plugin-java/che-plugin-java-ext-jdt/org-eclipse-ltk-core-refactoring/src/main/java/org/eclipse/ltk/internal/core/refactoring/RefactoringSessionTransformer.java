@@ -41,6 +41,7 @@ public final class RefactoringSessionTransformer {
   private static final class AttributeComparator implements Comparator {
 
     /** {@inheritDoc} */
+    @Override
     public int compare(final Object first, final Object second) {
       final Attr predecessor = (Attr) first;
       final Attr successor = (Attr) second;

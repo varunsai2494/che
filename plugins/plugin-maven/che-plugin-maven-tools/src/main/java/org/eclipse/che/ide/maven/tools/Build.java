@@ -227,6 +227,7 @@ public class Build extends BuildBase {
    *
    * <p><b>Note: update methods should not be used on returned list</b>
    */
+  @Override
   public List<Resource> getResources() {
     if (resources == null) {
       return emptyList();
@@ -244,6 +245,7 @@ public class Build extends BuildBase {
    * @param resources new build resources
    * @return this build instance
    */
+  @Override
   public Build setResources(Collection<? extends Resource> resources) {
     if (resources == null || resources.isEmpty()) {
       removeResources();

@@ -40,6 +40,7 @@ public abstract class AbstractJavaSearchResult extends AbstractTextSearchResult
   /* (non-Javadoc)
    * @see org.eclipse.search.ui.text.IEditorMatchAdapter#computeContainedMatches(org.eclipse.search.ui.text.AbstractTextSearchResult, org.eclipse.ui.IEditorPart)
    */
+  @Override
   public Match[] computeContainedMatches(AbstractTextSearchResult result, IFile file) {
     return computeContainedMatches(file);
   }
@@ -92,6 +93,7 @@ public abstract class AbstractJavaSearchResult extends AbstractTextSearchResult
   /* (non-Javadoc)
    * @see org.eclipse.search.ui.ISearchResultCategory#getFile(java.lang.Object)
    */
+  @Override
   public IFile getFile(Object element) {
     if (element instanceof IJavaElement) {
       IJavaElement javaElement = (IJavaElement) element;

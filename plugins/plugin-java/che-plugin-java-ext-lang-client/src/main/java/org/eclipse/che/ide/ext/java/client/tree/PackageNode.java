@@ -64,6 +64,7 @@ public class PackageNode extends ContainerNode {
     presentation.setPresentableIcon(javaResources.packageItem());
   }
 
+  @Override
   protected Node createNode(Resource resource) {
     checkArgument(resource != null, "Not a resource");
 

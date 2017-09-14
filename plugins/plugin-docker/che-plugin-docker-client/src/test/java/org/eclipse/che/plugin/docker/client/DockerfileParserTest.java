@@ -10,12 +10,14 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.Writer;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -53,7 +55,7 @@ public class DockerfileParserTest {
         new File(Thread.currentThread().getContextClassLoader().getResource(".").toURI())
             .getParentFile();
     File file = new File(targetDir, "testParse");
-    FileWriter w = new FileWriter(file);
+    Writer w = Files.newBufferedWriter(file.toPath(), UTF_8);
     w.write(dockerfileContent);
     w.flush();
     w.close();
@@ -116,7 +118,7 @@ public class DockerfileParserTest {
         new File(Thread.currentThread().getContextClassLoader().getResource(".").toURI())
             .getParentFile();
     File file = new File(targetDir, "testParse");
-    FileWriter w = new FileWriter(file);
+    Writer w = Files.newBufferedWriter(file.toPath(), UTF_8);
     w.write(dockerfileContent);
     w.flush();
     w.close();

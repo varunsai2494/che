@@ -43,5 +43,6 @@ public interface WorkspaceRuntimeDto extends WorkspaceRuntime, Hyperlinks {
 
   WorkspaceRuntimeDto withRootFolder(String rootFolder);
 
+  @Override
   WorkspaceRuntimeDto withLinks(List<Link> links);
 }

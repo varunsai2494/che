@@ -54,10 +54,12 @@ public class DefaultFileWatcherNotificationHandler implements FileWatcherNotific
     }
   }
 
+  @Override
   public void started(File watchRoot) {
     LOG.debug("Start watching file events on {}", watchRoot);
   }
 
+  @Override
   public void errorOccurred(File watchRoot, Throwable cause) {
     LOG.warn("Error occurs while watching file events on {}: {}", watchRoot, cause.getMessage());
   }

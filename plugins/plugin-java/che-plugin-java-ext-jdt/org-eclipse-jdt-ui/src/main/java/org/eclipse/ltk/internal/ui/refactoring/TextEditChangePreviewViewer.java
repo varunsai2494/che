@@ -167,6 +167,7 @@ public class TextEditChangePreviewViewer implements IChangePreviewViewer {
   //		return fViewer;
   //	}
 
+  @Override
   public ChangePreview setInput(ChangePreviewViewerInput input) {
     try {
       Change change = input.getChange();

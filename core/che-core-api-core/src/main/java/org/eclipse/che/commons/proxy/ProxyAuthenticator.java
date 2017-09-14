@@ -76,6 +76,7 @@ public class ProxyAuthenticator extends Authenticator {
     }
   }
 
+  @Override
   protected PasswordAuthentication getPasswordAuthentication() {
     Protocol protocol = currentProtocolHolder.get();
     if (protocol != null) {

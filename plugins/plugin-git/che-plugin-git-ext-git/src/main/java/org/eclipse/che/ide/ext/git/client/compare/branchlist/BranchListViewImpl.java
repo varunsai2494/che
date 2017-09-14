@@ -75,11 +75,13 @@ public class BranchListViewImpl extends Window implements BranchListView {
     tableElement.setAttribute("style", "width: 100%");
     SimpleList.ListEventDelegate<Branch> listBranchesDelegate =
         new SimpleList.ListEventDelegate<Branch>() {
+          @Override
           public void onListItemClicked(Element itemElement, Branch itemData) {
             branches.getSelectionModel().setSelectedItem(itemData);
             delegate.onBranchSelected(itemData);
           }
 
+          @Override
           public void onListItemDoubleClicked(Element listItemBase, Branch itemData) {
             delegate.onCompareClicked();
           }

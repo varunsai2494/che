@@ -431,6 +431,7 @@ public final class RefactoringHistoryManager {
         descriptors,
         new Comparator() {
 
+          @Override
           public final int compare(final Object first, final Object second) {
             final RefactoringDescriptor predecessor = (RefactoringDescriptor) first;
             final RefactoringDescriptor successor = (RefactoringDescriptor) second;
@@ -453,6 +454,7 @@ public final class RefactoringHistoryManager {
         proxies,
         new Comparator() {
 
+          @Override
           public final int compare(final Object first, final Object second) {
             final RefactoringDescriptorProxy predecessor = (RefactoringDescriptorProxy) first;
             final RefactoringDescriptorProxy successor = (RefactoringDescriptorProxy) second;
@@ -475,6 +477,7 @@ public final class RefactoringHistoryManager {
         proxies,
         new Comparator() {
 
+          @Override
           public final int compare(final Object first, final Object second) {
             final RefactoringDescriptorProxy predecessor = (RefactoringDescriptorProxy) first;
             final RefactoringDescriptorProxy successor = (RefactoringDescriptorProxy) second;

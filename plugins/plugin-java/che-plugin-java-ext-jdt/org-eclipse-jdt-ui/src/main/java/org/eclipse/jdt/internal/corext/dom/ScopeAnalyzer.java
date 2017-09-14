@@ -91,6 +91,7 @@ public class ScopeAnalyzer {
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean acceptBinding(IBinding binding) {
       if (binding == null) return false;
 
@@ -378,6 +379,7 @@ public class ScopeAnalyzer {
       fIsVisible = true;
     }
 
+    @Override
     public boolean acceptBinding(IBinding binding) {
       if (fFound) return true;
 

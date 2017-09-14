@@ -38,6 +38,7 @@ public abstract class RefactoringStatusContext {
   /*
    * @see java.lang.Object#toString()
    */
+  @Override
   public String toString() {
     Object element = getCorrespondingElement();
     return element == null ? null : element.toString();

@@ -130,11 +130,13 @@ public final class MoveSourceEdit extends TextEdit {
   // ---- Copying -------------------------------------------------------------
 
   /* @see TextEdit#doCopy */
+  @Override
   protected TextEdit doCopy() {
     return new MoveSourceEdit(this);
   }
 
   /* @see TextEdit#postProcessCopy */
+  @Override
   protected void postProcessCopy(TextEditCopier copier) {
     if (fTarget != null) {
       MoveSourceEdit source = (MoveSourceEdit) copier.getCopy(this);
@@ -146,6 +148,7 @@ public final class MoveSourceEdit extends TextEdit {
   // ---- Visitor -------------------------------------------------------------
 
   /* @see TextEdit#accept0 */
+  @Override
   protected void accept0(TextEditVisitor visitor) {
     boolean visitChildren = visitor.visit(this);
     if (visitChildren) {
@@ -154,6 +157,7 @@ public final class MoveSourceEdit extends TextEdit {
   }
 
   // ---- consistency check ----------------------------------------------------------------
+  @Override
   int traverseConsistencyCheck(
       TextEditProcessor processor, Document document, List<List<TextEdit>> sourceEdits) {
     int result = super.traverseConsistencyCheck(processor, document, sourceEdits);
@@ -178,6 +182,7 @@ public final class MoveSourceEdit extends TextEdit {
     return result;
   }
 
+  @Override
   void performConsistencyCheck(TextEditProcessor processor, Document document)
       throws MalformedTreeException {
     if (fTarget == null)
@@ -193,6 +198,7 @@ public final class MoveSourceEdit extends TextEdit {
 
   // ---- source computation --------------------------------------------------------------
 
+  @Override
   void traverseSourceComputation(TextEditProcessor processor, Document document) {
     // always perform source computation independent of processor.considerEdit
     // The target might need the source and the source is computed in a
@@ -200,6 +206,7 @@ public final class MoveSourceEdit extends TextEdit {
     performSourceComputation(processor, document);
   }
 
+  @Override
   void performSourceComputation(TextEditProcessor processor, Document document) {
     try {
       TextEdit[] children = removeChildren();
@@ -237,6 +244,7 @@ public final class MoveSourceEdit extends TextEdit {
 
   // ---- document updating ----------------------------------------------------------------
 
+  @Override
   int performDocumentUpdating(Document document) throws BadLocationException {
     document.replace(getOffset(), getLength(), ""); //$NON-NLS-1$
     fDelta = -getLength();
@@ -246,6 +254,7 @@ public final class MoveSourceEdit extends TextEdit {
   // ---- region updating --------------------------------------------------------------
 
   /* @see TextEdit#deleteChildren */
+  @Override
   boolean deleteChildren() {
     return false;
   }

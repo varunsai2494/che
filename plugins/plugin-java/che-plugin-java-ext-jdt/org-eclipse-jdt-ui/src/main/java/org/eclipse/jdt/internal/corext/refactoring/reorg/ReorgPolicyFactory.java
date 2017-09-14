@@ -266,6 +266,7 @@ public final class ReorgPolicyFactory {
       return copyFileToContainer(unit, container, nameProposer, copyQueries);
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm, INewNameQueries copyQueries) {
       IFile[] file = getFiles();
       IFolder[] folders = getFolders();
@@ -374,6 +375,7 @@ public final class ReorgPolicyFactory {
       return fModifications;
     }
 
+    @Override
     public String getPolicyId() {
       return POLICY_COPY_RESOURCE;
     }
@@ -388,6 +390,7 @@ public final class ReorgPolicyFactory {
       return IJavaRefactorings.COPY;
     }
 
+    @Override
     public ReorgExecutionLog getReorgExecutionLog() {
       return fReorgExecutionLog;
     }
@@ -439,6 +442,7 @@ public final class ReorgPolicyFactory {
       return new CopyResourceChange(res, destination, nameQuery);
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm, INewNameQueries copyQueries) {
       NewNameProposer nameProposer = new NewNameProposer();
       IPackageFragmentRoot[] roots = getPackageFragmentRoots();
@@ -520,6 +524,7 @@ public final class ReorgPolicyFactory {
       return fModifications;
     }
 
+    @Override
     public String getPolicyId() {
       return POLICY_COPY_ROOTS;
     }
@@ -534,6 +539,7 @@ public final class ReorgPolicyFactory {
       return IJavaRefactorings.COPY;
     }
 
+    @Override
     public ReorgExecutionLog getReorgExecutionLog() {
       return fReorgExecutionLog;
     }
@@ -592,6 +598,7 @@ public final class ReorgPolicyFactory {
       }
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm, INewNameQueries newNameQueries)
         throws JavaModelException {
       NewNameProposer nameProposer = new NewNameProposer();
@@ -677,6 +684,7 @@ public final class ReorgPolicyFactory {
       return fModifications;
     }
 
+    @Override
     public String getPolicyId() {
       return POLICY_COPY_PACKAGES;
     }
@@ -691,6 +699,7 @@ public final class ReorgPolicyFactory {
       return IJavaRefactorings.COPY;
     }
 
+    @Override
     public ReorgExecutionLog getReorgExecutionLog() {
       return fReorgExecutionLog;
     }
@@ -715,6 +724,7 @@ public final class ReorgPolicyFactory {
       return super.canEnable() && (getSourceCu() != null || getSourceClassFile() != null);
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm, INewNameQueries copyQueries)
         throws JavaModelException {
       try {
@@ -838,6 +848,7 @@ public final class ReorgPolicyFactory {
       return fModifications;
     }
 
+    @Override
     public String getPolicyId() {
       return POLICY_COPY_MEMBERS;
     }
@@ -852,6 +863,7 @@ public final class ReorgPolicyFactory {
       return IJavaRefactorings.COPY;
     }
 
+    @Override
     public ReorgExecutionLog getReorgExecutionLog() {
       return fReorgExecutionLog;
     }
@@ -987,6 +999,7 @@ public final class ReorgPolicyFactory {
       return null;
     }
 
+    @Override
     public final ChangeDescriptor getDescriptor() {
       final Map<String, String> arguments = new HashMap<String, String>();
       final int length = fFiles.length + fFolders.length + fCus.length;
@@ -1080,6 +1093,7 @@ public final class ReorgPolicyFactory {
       return (IPackageFragment) javaDest.getAncestor(IJavaElement.PACKAGE_FRAGMENT);
     }
 
+    @Override
     public final IJavaElement[] getJavaElements() {
       return fCus;
     }
@@ -1090,6 +1104,7 @@ public final class ReorgPolicyFactory {
       return null;
     }
 
+    @Override
     public final IResource[] getResources() {
       return ReorgUtils.union(fFiles, fFolders);
     }
@@ -1353,15 +1368,18 @@ public final class ReorgPolicyFactory {
       fQualifiedNameSearchResult = new QualifiedNameSearchResult();
     }
 
+    @Override
     public boolean canEnableQualifiedNameUpdating() {
       return getCus().length > 0 && !JavaElementUtil.isDefaultPackage(getCommonParent());
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateJavaReferences() {
       return true;
     }
 
+    @Override
     public boolean canUpdateQualifiedNames() {
       if (!canEnableQualifiedNameUpdating()) return false;
 
@@ -1465,6 +1483,7 @@ public final class ReorgPolicyFactory {
       return moveFileToContainer(cu, container);
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm) throws JavaModelException {
       if (!fUpdateReferences) {
         return createSimpleMoveChange(pm);
@@ -1584,10 +1603,12 @@ public final class ReorgPolicyFactory {
       return new ParentChecker(getResources(), getJavaElements()).getCommonParent();
     }
 
+    @Override
     public CreateTargetExecutionLog getCreateTargetExecutionLog() {
       return fCreateTargetExecutionLog;
     }
 
+    @Override
     public ICreateTargetQuery getCreateTargetQuery(ICreateTargetQueries createQueries) {
       return createQueries.createNewPackageQuery();
     }
@@ -1620,6 +1641,7 @@ public final class ReorgPolicyFactory {
       return RefactoringCoreMessages.ReorgPolicyFactory_move_description_singular;
     }
 
+    @Override
     public String getFilePatterns() {
       return fFilePatterns;
     }
@@ -1665,6 +1687,7 @@ public final class ReorgPolicyFactory {
       return fModifications;
     }
 
+    @Override
     public String getPolicyId() {
       return POLICY_MOVE_RESOURCES;
     }
@@ -1692,10 +1715,12 @@ public final class ReorgPolicyFactory {
       return IJavaRefactorings.MOVE;
     }
 
+    @Override
     public boolean getUpdateQualifiedNames() {
       return fUpdateQualifiedNames;
     }
 
+    @Override
     public boolean getUpdateReferences() {
       return fUpdateReferences;
     }
@@ -1710,6 +1735,7 @@ public final class ReorgPolicyFactory {
           pm);
     }
 
+    @Override
     public boolean hasAllInputSet() {
       if (getResourceDestination() == null && getJavaElementDestination() == null) return false;
       if (canUpdateQualifiedNames()) return false;
@@ -1743,10 +1769,12 @@ public final class ReorgPolicyFactory {
       return super.initialize(arguments);
     }
 
+    @Override
     public boolean isTextualMove() {
       return false;
     }
 
+    @Override
     public Change postCreateChange(Change[] participantChanges, IProgressMonitor pm)
         throws CoreException {
       if (fQualifiedNameSearchResult != null) {
@@ -1757,19 +1785,23 @@ public final class ReorgPolicyFactory {
       }
     }
 
+    @Override
     public void setDestinationCheck(boolean check) {
       fCheckDestination = check;
     }
 
+    @Override
     public void setFilePatterns(String patterns) {
       Assert.isNotNull(patterns);
       fFilePatterns = patterns;
     }
 
+    @Override
     public void setUpdateQualifiedNames(boolean update) {
       fUpdateQualifiedNames = update;
     }
 
+    @Override
     public void setUpdateReferences(boolean update) {
       fUpdateReferences = update;
     }
@@ -1890,6 +1922,7 @@ public final class ReorgPolicyFactory {
       return new MovePackageFragmentRootChange(root, destination.getProject(), null);
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm) throws JavaModelException {
       IPackageFragmentRoot[] roots = getPackageFragmentRoots();
       pm.beginTask("", roots.length); //$NON-NLS-1$
@@ -1925,10 +1958,12 @@ public final class ReorgPolicyFactory {
           project, description, comment.asString(), arguments, flags);
     }
 
+    @Override
     public CreateTargetExecutionLog getCreateTargetExecutionLog() {
       return fCreateTargetExecutionLog;
     }
 
+    @Override
     public ICreateTargetQuery getCreateTargetQuery(ICreateTargetQueries createQueries) {
       return null;
     }
@@ -1975,6 +2010,7 @@ public final class ReorgPolicyFactory {
       return fModifications;
     }
 
+    @Override
     public String getPolicyId() {
       return POLICY_MOVE_ROOTS;
     }
@@ -1989,15 +2025,18 @@ public final class ReorgPolicyFactory {
       return IJavaRefactorings.MOVE;
     }
 
+    @Override
     public boolean isTextualMove() {
       return false;
     }
 
+    @Override
     public Change postCreateChange(Change[] participantChanges, IProgressMonitor pm)
         throws CoreException {
       return null;
     }
 
+    @Override
     public void setDestinationCheck(boolean check) {
       fCheckDestination = check;
     }
@@ -2030,47 +2069,57 @@ public final class ReorgPolicyFactory {
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canEnableQualifiedNameUpdating() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean getUpdateQualifiedNames() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateQualifiedNames() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setUpdateQualifiedNames(boolean update) {}
 
     /** {@inheritDoc} */
+    @Override
     public void setFilePatterns(String patterns) {}
 
     /** {@inheritDoc} */
+    @Override
     public String getFilePatterns() {
       return null;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateJavaReferences() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean getUpdateReferences() {
       return fUpdateReferences;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setUpdateReferences(boolean update) {
       fUpdateReferences = update;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean hasAllInputSet() {
       return getJavaElementDestination() != null || getResourceDestination() != null;
     }
@@ -2127,6 +2176,7 @@ public final class ReorgPolicyFactory {
       return new MoveResourceChange(pack.getResource(), destination);
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm) throws JavaModelException {
       IPackageFragment[] fragments = getPackages();
       pm.beginTask("", fragments.length); //$NON-NLS-1$
@@ -2160,10 +2210,12 @@ public final class ReorgPolicyFactory {
           project, description, comment.asString(), arguments, flags);
     }
 
+    @Override
     public CreateTargetExecutionLog getCreateTargetExecutionLog() {
       return fCreateTargetExecutionLog;
     }
 
+    @Override
     public ICreateTargetQuery getCreateTargetQuery(ICreateTargetQueries createQueries) {
       return null;
     }
@@ -2208,6 +2260,7 @@ public final class ReorgPolicyFactory {
       return fModifications;
     }
 
+    @Override
     public String getPolicyId() {
       return POLICY_MOVE_PACKAGES;
     }
@@ -2222,15 +2275,18 @@ public final class ReorgPolicyFactory {
       return IJavaRefactorings.MOVE;
     }
 
+    @Override
     public boolean isTextualMove() {
       return false;
     }
 
+    @Override
     public Change postCreateChange(Change[] participantChanges, IProgressMonitor pm)
         throws CoreException {
       return null;
     }
 
+    @Override
     public void setDestinationCheck(boolean check) {
       fCheckDestination = check;
     }
@@ -2263,47 +2319,57 @@ public final class ReorgPolicyFactory {
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canEnableQualifiedNameUpdating() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean getUpdateQualifiedNames() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateQualifiedNames() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setUpdateQualifiedNames(boolean update) {}
 
     /** {@inheritDoc} */
+    @Override
     public void setFilePatterns(String patterns) {}
 
     /** {@inheritDoc} */
+    @Override
     public String getFilePatterns() {
       return null;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateJavaReferences() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean getUpdateReferences() {
       return fUpdateReferences;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setUpdateReferences(boolean update) {
       fUpdateReferences = update;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean hasAllInputSet() {
       return getJavaElementDestination() != null || getResourceDestination() != null;
     }
@@ -2325,6 +2391,7 @@ public final class ReorgPolicyFactory {
       return super.canEnable() && getSourceCu() != null;
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm) throws JavaModelException {
       pm.beginTask("", 3); //$NON-NLS-1$
       try {
@@ -2402,10 +2469,12 @@ public final class ReorgPolicyFactory {
           });
     }
 
+    @Override
     public CreateTargetExecutionLog getCreateTargetExecutionLog() {
       return fCreateTargetExecutionLog;
     }
 
+    @Override
     public ICreateTargetQuery getCreateTargetQuery(ICreateTargetQueries createQueries) {
       return null;
     }
@@ -2478,15 +2547,18 @@ public final class ReorgPolicyFactory {
       return IJavaRefactorings.MOVE;
     }
 
+    @Override
     public boolean isTextualMove() {
       return true;
     }
 
+    @Override
     public Change postCreateChange(Change[] participantChanges, IProgressMonitor pm)
         throws CoreException {
       return null;
     }
 
+    @Override
     public void setDestinationCheck(boolean check) {
       fCheckDestination = check;
     }
@@ -2552,6 +2624,7 @@ public final class ReorgPolicyFactory {
       Collections.sort(
           sortedChildren,
           new Comparator<IJavaElement>() {
+            @Override
             public int compare(IJavaElement e1, IJavaElement e2) {
               if (!(e1 instanceof ISourceReference)) return 0;
               if (!(e2 instanceof ISourceReference)) return 0;
@@ -2588,47 +2661,57 @@ public final class ReorgPolicyFactory {
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canEnableQualifiedNameUpdating() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean getUpdateQualifiedNames() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateQualifiedNames() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setUpdateQualifiedNames(boolean update) {}
 
     /** {@inheritDoc} */
+    @Override
     public void setFilePatterns(String patterns) {}
 
     /** {@inheritDoc} */
+    @Override
     public String getFilePatterns() {
       return null;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateJavaReferences() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean getUpdateReferences() {
       return fUpdateReferences;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setUpdateReferences(boolean update) {
       fUpdateReferences = update;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean hasAllInputSet() {
       return getJavaElementDestination() != null || getResourceDestination() != null;
     }
@@ -2644,6 +2727,7 @@ public final class ReorgPolicyFactory {
         "org.eclipse.jdt.ui.moveMembers"; //$NON-NLS-1$
 
     /** {@inheritDoc} */
+    @Override
     public String getPolicyId() {
       return POLICY_MOVE_MEMBERS;
     }
@@ -2659,6 +2743,7 @@ public final class ReorgPolicyFactory {
         "org.eclipse.jdt.ui.moveImportDeclarations"; //$NON-NLS-1$
 
     /** {@inheritDoc} */
+    @Override
     public String getPolicyId() {
       return POLICY_MOVE_IMPORT_DECLARATIONS;
     }
@@ -2767,6 +2852,7 @@ public final class ReorgPolicyFactory {
       return false;
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm, INewNameQueries copyQueries) {
       return new NullChange();
     }
@@ -2781,6 +2867,7 @@ public final class ReorgPolicyFactory {
       return UNUSED_STRING;
     }
 
+    @Override
     public ChangeDescriptor getDescriptor() {
       return null;
     }
@@ -2795,10 +2882,12 @@ public final class ReorgPolicyFactory {
       return UNUSED_STRING;
     }
 
+    @Override
     public IJavaElement[] getJavaElements() {
       return new IJavaElement[0];
     }
 
+    @Override
     public String getPolicyId() {
       return NO_POLICY;
     }
@@ -2813,10 +2902,12 @@ public final class ReorgPolicyFactory {
       return NO_ID;
     }
 
+    @Override
     public ReorgExecutionLog getReorgExecutionLog() {
       return null;
     }
 
+    @Override
     public IResource[] getResources() {
       return new IResource[0];
     }
@@ -2847,14 +2938,17 @@ public final class ReorgPolicyFactory {
       return false;
     }
 
+    @Override
     public Change createChange(IProgressMonitor pm) {
       return new NullChange();
     }
 
+    @Override
     public CreateTargetExecutionLog getCreateTargetExecutionLog() {
       return new CreateTargetExecutionLog();
     }
 
+    @Override
     public ICreateTargetQuery getCreateTargetQuery(ICreateTargetQueries createQueries) {
       return null;
     }
@@ -2869,6 +2963,7 @@ public final class ReorgPolicyFactory {
       return UNUSED_STRING;
     }
 
+    @Override
     public ChangeDescriptor getDescriptor() {
       return null;
     }
@@ -2883,10 +2978,12 @@ public final class ReorgPolicyFactory {
       return UNUSED_STRING;
     }
 
+    @Override
     public IJavaElement[] getJavaElements() {
       return new IJavaElement[0];
     }
 
+    @Override
     public String getPolicyId() {
       return NO_POLICY;
     }
@@ -2901,6 +2998,7 @@ public final class ReorgPolicyFactory {
       return NO_ID;
     }
 
+    @Override
     public IResource[] getResources() {
       return new IResource[0];
     }
@@ -2910,15 +3008,18 @@ public final class ReorgPolicyFactory {
       return new RefactoringStatus();
     }
 
+    @Override
     public boolean isTextualMove() {
       return true;
     }
 
+    @Override
     public Change postCreateChange(Change[] participantChanges, IProgressMonitor pm)
         throws CoreException {
       return null;
     }
 
+    @Override
     public void setDestinationCheck(boolean check) {
       fCheckDestination = check;
     }
@@ -2937,45 +3038,55 @@ public final class ReorgPolicyFactory {
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canEnableQualifiedNameUpdating() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean getUpdateQualifiedNames() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateQualifiedNames() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setUpdateQualifiedNames(boolean update) {}
 
     /** {@inheritDoc} */
+    @Override
     public void setFilePatterns(String patterns) {}
 
     /** {@inheritDoc} */
+    @Override
     public String getFilePatterns() {
       return null;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canUpdateJavaReferences() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean getUpdateReferences() {
       return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void setUpdateReferences(boolean update) {}
 
     /** {@inheritDoc} */
+    @Override
     public boolean hasAllInputSet() {
       return getJavaElementDestination() != null || getResourceDestination() != null;
     }
@@ -3055,6 +3166,7 @@ public final class ReorgPolicyFactory {
         final String project,
         int flags);
 
+    @Override
     public final ChangeDescriptor getDescriptor() {
       final Map<String, String> arguments = new HashMap<String, String>();
       final int length = fPackageFragmentRoots.length;
@@ -3093,6 +3205,7 @@ public final class ReorgPolicyFactory {
       return getDestinationAsJavaProject(getJavaElementDestination());
     }
 
+    @Override
     public IJavaElement[] getJavaElements() {
       return fPackageFragmentRoots;
     }
@@ -3101,6 +3214,7 @@ public final class ReorgPolicyFactory {
       return fPackageFragmentRoots;
     }
 
+    @Override
     public IResource[] getResources() {
       return new IResource[0];
     }
@@ -3315,6 +3429,7 @@ public final class ReorgPolicyFactory {
         final String project,
         int flags);
 
+    @Override
     public final ChangeDescriptor getDescriptor() {
       final Map<String, String> arguments = new HashMap<String, String>();
       final int length = fPackageFragments.length;
@@ -3369,6 +3484,7 @@ public final class ReorgPolicyFactory {
       return null;
     }
 
+    @Override
     public IJavaElement[] getJavaElements() {
       return fPackageFragments;
     }
@@ -3377,6 +3493,7 @@ public final class ReorgPolicyFactory {
       return fPackageFragments;
     }
 
+    @Override
     public IResource[] getResources() {
       return new IResource[0];
     }
@@ -3509,6 +3626,7 @@ public final class ReorgPolicyFactory {
     private IReorgDestination fDestination;
 
     /** {@inheritDoc} */
+    @Override
     public boolean canChildrenBeDestinations(IReorgDestination destination) {
       if (destination instanceof JavaElementDestination) {
         return canChildrenBeDestinations(((JavaElementDestination) destination).getJavaElement());
@@ -3540,6 +3658,7 @@ public final class ReorgPolicyFactory {
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean canElementBeDestination(IReorgDestination destination) {
       if (destination instanceof JavaElementDestination) {
         return canElementBeDestination(((JavaElementDestination) destination).getJavaElement());
@@ -3576,6 +3695,7 @@ public final class ReorgPolicyFactory {
       return true;
     }
 
+    @Override
     public boolean canEnable() throws JavaModelException {
       IResource[] resources = getResources();
       for (int i = 0; i < resources.length; i++) {
@@ -3592,11 +3712,13 @@ public final class ReorgPolicyFactory {
     }
 
     /** {@inheritDoc} */
+    @Override
     public int getSaveMode() {
       //return RefactoringSaveHelper.SAVE_ALL;
       return 2;
     }
 
+    @Override
     public RefactoringStatus checkFinalConditions(
         IProgressMonitor pm, CheckConditionsContext context, IReorgQueries reorgQueries)
         throws CoreException {
@@ -3635,6 +3757,7 @@ public final class ReorgPolicyFactory {
 
     protected abstract String getHeaderPatternPlural();
 
+    @Override
     public final IJavaElement getJavaElementDestination() {
       if (!(fDestination instanceof JavaElementDestination)) return null;
 
@@ -3676,6 +3799,7 @@ public final class ReorgPolicyFactory {
 
     protected abstract String getRefactoringId();
 
+    @Override
     public final IResource getResourceDestination() {
       if (!(fDestination instanceof ResourceDestination)) return null;
 
@@ -3683,6 +3807,7 @@ public final class ReorgPolicyFactory {
       return resourceDestination.getResource();
     }
 
+    @Override
     public RefactoringStatus initialize(JavaRefactoringArguments arguments) {
       String handle = arguments.getAttribute(ATTRIBUTE_DESTINATION);
       if (handle != null) {
@@ -3757,6 +3882,7 @@ public final class ReorgPolicyFactory {
       }
     }
 
+    @Override
     public final RefactoringParticipant[] loadParticipants(
         RefactoringStatus status,
         RefactoringProcessor processor,
@@ -3772,11 +3898,13 @@ public final class ReorgPolicyFactory {
     }
 
     /** {@inheritDoc} */
+    @Override
     public final void setDestination(IReorgDestination destination) {
       fDestination = destination;
     }
 
     /** {@inheritDoc} */
+    @Override
     public RefactoringStatus verifyDestination(IReorgDestination destination)
         throws JavaModelException {
       if (destination instanceof JavaElementDestination) {
@@ -4240,6 +4368,7 @@ public final class ReorgPolicyFactory {
         final String project,
         int flags);
 
+    @Override
     public final ChangeDescriptor getDescriptor() {
       final Map<String, String> arguments = new HashMap<String, String>();
       final int length = fJavaElements.length;
@@ -4277,10 +4406,12 @@ public final class ReorgPolicyFactory {
       return new RefactoringChangeDescriptor(descriptor);
     }
 
+    @Override
     public final IJavaElement[] getJavaElements() {
       return fJavaElements;
     }
 
+    @Override
     public final IResource[] getResources() {
       return new IResource[0];
     }

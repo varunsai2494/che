@@ -77,6 +77,7 @@ public class DeleteResourceChange extends ResourceChange {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.resource.ResourceChange#getModifiedResource()
    */
+  @Override
   protected IResource getModifiedResource() {
     return getResource();
   }
@@ -92,6 +93,7 @@ public class DeleteResourceChange extends ResourceChange {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.Change#getName()
    */
+  @Override
   public String getName() {
     IPath path = fResourcePath.makeRelative();
     String label =
@@ -125,6 +127,7 @@ public class DeleteResourceChange extends ResourceChange {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.Change#perform(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public Change perform(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
 
@@ -147,6 +150,7 @@ public class DeleteResourceChange extends ResourceChange {
       if (resource.isAccessible()) {
         resource.accept(
             new IResourceVisitor() {
+              @Override
               public boolean visit(IResource curr) throws CoreException {
                 try {
                   if (curr instanceof IFile) {
@@ -205,6 +209,7 @@ public class DeleteResourceChange extends ResourceChange {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.Change#getDescriptor()
    */
+  @Override
   public ChangeDescriptor getDescriptor() {
     return fDescriptor;
   }

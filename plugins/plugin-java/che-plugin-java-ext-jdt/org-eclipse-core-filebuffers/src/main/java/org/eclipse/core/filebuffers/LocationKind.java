@@ -57,6 +57,7 @@ public final class LocationKind {
   /*
    * @see java.lang.Object#toString()
    */
+  @Override
   public String toString() {
     return fName;
   }

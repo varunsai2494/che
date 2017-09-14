@@ -390,6 +390,7 @@ public interface IJavaRefactorings {
    * @deprecated Since 1.2. Use {@link
    *     org.eclipse.ltk.core.refactoring.resource.RenameResourceDescriptor#ID} instead.
    */
+  @Deprecated
   public static final String RENAME_RESOURCE = "org.eclipse.jdt.ui.rename.resource"; //$NON-NLS-1$
 
   /**

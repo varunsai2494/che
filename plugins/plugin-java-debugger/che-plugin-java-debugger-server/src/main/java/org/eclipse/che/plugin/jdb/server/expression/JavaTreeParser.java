@@ -434,10 +434,12 @@ public class JavaTreeParser extends TreeParser {
     this.state.ruleMemo = new HashMap[289 + 1];
   }
 
+  @Override
   public String[] getTokenNames() {
     return JavaTreeParser.tokenNames;
   }
 
+  @Override
   public String getGrammarFileName() {
     return "org/eclipse/che/plugin/jdb/server/expression/JavaTreeParser.g";
   }

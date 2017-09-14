@@ -91,7 +91,7 @@ public final class RenameJavaElementDescriptor extends JavaRefactoringDescriptor
    * @deprecated Replaced by {@link
    *     org.eclipse.ltk.core.refactoring.resource.RenameResourceDescriptor#ID}
    */
-  private static final String RENAME_RESOURCE = IJavaRefactorings.RENAME_RESOURCE;
+  @Deprecated private static final String RENAME_RESOURCE = IJavaRefactorings.RENAME_RESOURCE;
 
   /** The delegate attribute */
   private boolean fDelegate = false;
@@ -272,6 +272,7 @@ public final class RenameJavaElementDescriptor extends JavaRefactoringDescriptor
   }
 
   /** {@inheritDoc} */
+  @Override
   protected void populateArgumentMap() {
     super.populateArgumentMap();
     JavaRefactoringDescriptorUtil.setString(fArguments, ATTRIBUTE_NAME, fName);
@@ -434,6 +435,7 @@ public final class RenameJavaElementDescriptor extends JavaRefactoringDescriptor
    * @param project the non-empty project name to set, or <code>null</code> for the workspace
    * @see #getProject()
    */
+  @Override
   public void setProject(final String project) {
     super.setProject(project);
   }
@@ -532,6 +534,7 @@ public final class RenameJavaElementDescriptor extends JavaRefactoringDescriptor
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus validateDescriptor() {
     RefactoringStatus status = super.validateDescriptor();
     if (fName == null || "".equals(fName)) //$NON-NLS-1$

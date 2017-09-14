@@ -10,6 +10,8 @@
  */
 package org.testng.che.tests;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -61,7 +63,7 @@ public class ListeneterTest {
             new OutputStream() {
               @Override
               public void write(int b) throws IOException {
-                buffer.append(new String(new byte[] {(byte) b}));
+                buffer.append(new String(new byte[] {(byte) b}, UTF_8));
               }
             }));
   }

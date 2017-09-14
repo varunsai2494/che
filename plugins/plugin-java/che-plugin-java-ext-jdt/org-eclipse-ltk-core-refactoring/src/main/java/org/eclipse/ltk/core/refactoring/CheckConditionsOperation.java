@@ -61,6 +61,7 @@ public class CheckConditionsOperation implements IWorkspaceRunnable {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void run(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
     try {

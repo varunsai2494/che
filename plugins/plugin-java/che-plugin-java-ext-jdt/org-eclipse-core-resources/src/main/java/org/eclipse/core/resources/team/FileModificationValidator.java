@@ -46,6 +46,7 @@ public abstract class FileModificationValidator implements IFileModificationVali
    *     Clients should call {@link #validateEdit(IFile[], FileModificationValidationContext)}
    *     instead.
    */
+  @Override
   @Deprecated
   public final IStatus validateEdit(IFile[] files, Object context) {
     FileModificationValidationContext validationContext;
@@ -69,6 +70,7 @@ public abstract class FileModificationValidator implements IFileModificationVali
    * @see IFile#setContents(java.io.InputStream, int, org.eclipse.core.runtime.IProgressMonitor)
    * @see IFile#appendContents(java.io.InputStream, int, org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public IStatus validateSave(IFile file) {
     return validateEdit(new IFile[] {file}, (FileModificationValidationContext) null);
   }

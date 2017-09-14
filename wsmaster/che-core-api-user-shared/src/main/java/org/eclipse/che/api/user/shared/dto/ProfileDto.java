@@ -30,11 +30,13 @@ public interface ProfileDto extends Profile {
 
   void setUserId(String id);
 
+  @Override
   @ApiModelProperty("Profile ID")
   String getUserId();
 
   ProfileDto withUserId(String id);
 
+  @Override
   @ApiModelProperty("Profile attributes")
   Map<String, String> getAttributes();
 

@@ -182,6 +182,7 @@ public class UnusedCodeCleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     if (UnusedCodeFix.isUnusedImport(problem))
       return isEnabled(CleanUpConstants.REMOVE_UNUSED_CODE_IMPORTS);

@@ -115,6 +115,7 @@ public class ParticipantDescriptor {
     return true;
   }
 
+  @Override
   public String toString() {
     return "name= "
         + getName()

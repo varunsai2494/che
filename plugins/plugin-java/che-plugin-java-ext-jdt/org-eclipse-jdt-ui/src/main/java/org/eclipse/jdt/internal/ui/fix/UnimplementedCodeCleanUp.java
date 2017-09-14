@@ -131,6 +131,7 @@ public class UnimplementedCodeCleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     int id = problem.getProblemId();
     if (id == IProblem.AbstractMethodMustBeImplemented

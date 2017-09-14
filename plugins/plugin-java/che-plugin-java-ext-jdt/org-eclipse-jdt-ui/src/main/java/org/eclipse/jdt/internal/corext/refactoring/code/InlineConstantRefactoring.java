@@ -1019,6 +1019,7 @@ public class InlineConstantRefactoring extends Refactoring {
     engine.setStatus(status);
     engine.setRequestor(
         new IRefactoringSearchRequestor() {
+          @Override
           public SearchMatch acceptSearchMatch(SearchMatch match) {
             return match.isInsideDocComment() ? null : match;
           }

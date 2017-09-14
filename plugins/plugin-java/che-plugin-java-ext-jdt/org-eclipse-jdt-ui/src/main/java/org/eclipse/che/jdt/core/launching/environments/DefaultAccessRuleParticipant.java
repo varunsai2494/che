@@ -37,6 +37,7 @@ public class DefaultAccessRuleParticipant implements IAccessRuleParticipant {
    * .IExecutionEnvironment, org.eclipse.jdt.launching.IVMInstall, org.eclipse.jdt.launching.LibraryLocation[], org.eclipse.jdt.core
    * .IJavaProject)
    */
+  @Override
   public IAccessRule[][] getAccessRules(
       IExecutionEnvironment environment,
       IVMInstallType vm,

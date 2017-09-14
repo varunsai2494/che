@@ -59,10 +59,12 @@ public class RenamePrivateFieldTest extends RefactoringTest {
     ParticipantTesting.init();
   }
 
+  @Override
   protected String getRefactoringPath() {
     return REFACTORING_PATH;
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();
@@ -74,6 +76,7 @@ public class RenamePrivateFieldTest extends RefactoringTest {
     fIsPreDeltaTest = true;
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();

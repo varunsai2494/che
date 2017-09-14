@@ -9,6 +9,8 @@
  */
 package org.eclipse.ltk.internal.core.refactoring.resource.undostates;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URI;
@@ -80,6 +82,7 @@ public class FileUndoState extends AbstractResourceUndoState {
     this.fileContentDescription = fileContentDescription;
   }
 
+  @Override
   public void recordStateFromHistory(IResource resource, IProgressMonitor monitor)
       throws CoreException {
     Assert.isLegal(resource.getType() == IResource.FILE);
@@ -98,6 +101,7 @@ public class FileUndoState extends AbstractResourceUndoState {
              *
              * @see org.eclipse.ui.internal.ide.undo.IFileContentDescription#exists()
              */
+            @Override
             public boolean exists() {
               return state.exists();
             }
@@ -107,6 +111,7 @@ public class FileUndoState extends AbstractResourceUndoState {
              *
              * @see org.eclipse.ui.internal.ide.undo.IFileContentDescription#getContents()
              */
+            @Override
             public InputStream getContents() throws CoreException {
               return state.getContents();
             }
@@ -116,6 +121,7 @@ public class FileUndoState extends AbstractResourceUndoState {
              *
              * @see org.eclipse.ui.internal.ide.undo.IFileContentDescription#getCharset()
              */
+            @Override
             public String getCharset() throws CoreException {
               return state.getCharset();
             }
@@ -123,12 +129,14 @@ public class FileUndoState extends AbstractResourceUndoState {
     }
   }
 
+  @Override
   public IResource createResourceHandle() {
     IWorkspaceRoot workspaceRoot = parent.getWorkspace().getRoot();
     IPath fullPath = parent.getFullPath().append(name);
     return workspaceRoot.getFile(fullPath);
   }
 
+  @Override
   public void createExistentResourceFromHandle(IResource resource, IProgressMonitor monitor)
       throws CoreException {
 
@@ -149,7 +157,7 @@ public class FileUndoState extends AbstractResourceUndoState {
       } else {
         InputStream contents =
             new ByteArrayInputStream(
-                RefactoringCoreMessages.FileDescription_ContentsCouldNotBeRestored.getBytes());
+                RefactoringCoreMessages.FileDescription_ContentsCouldNotBeRestored.getBytes(UTF_8));
         // Retrieve the contents from the file content
         // description. Other file state attributes, such as timestamps,
         // have already been retrieved from the original IResource
@@ -174,6 +182,7 @@ public class FileUndoState extends AbstractResourceUndoState {
     }
   }
 
+  @Override
   public boolean isValid() {
     if (location != null) {
       return super.isValid();
@@ -181,6 +190,7 @@ public class FileUndoState extends AbstractResourceUndoState {
     return super.isValid() && fileContentDescription != null && fileContentDescription.exists();
   }
 
+  @Override
   public String getName() {
     return name;
   }
@@ -202,6 +212,7 @@ public class FileUndoState extends AbstractResourceUndoState {
     return states[0];
   }
 
+  @Override
   protected void restoreResourceAttributes(IResource resource) throws CoreException {
     super.restoreResourceAttributes(resource);
     Assert.isLegal(resource instanceof IFile);

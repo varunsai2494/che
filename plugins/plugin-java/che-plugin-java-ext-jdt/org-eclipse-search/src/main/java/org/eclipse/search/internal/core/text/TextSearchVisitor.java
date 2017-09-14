@@ -60,26 +60,32 @@ public class TextSearchVisitor {
       fContent = content;
     }
 
+    @Override
     public IFile getFile() {
       return fFile;
     }
 
+    @Override
     public int getMatchOffset() {
       return fOffset;
     }
 
+    @Override
     public int getMatchLength() {
       return fLength;
     }
 
+    @Override
     public int getFileContentLength() {
       return fContent.length();
     }
 
+    @Override
     public char getFileContentChar(int offset) {
       return fContent.charAt(offset);
     }
 
+    @Override
     public String getFileContent(int offset, int length) {
       return fContent.subSequence(offset, offset + length).toString(); // must pass a copy!
     }
@@ -122,6 +128,7 @@ public class TextSearchVisitor {
         new Job(SearchMessages.TextSearchVisitor_progress_updating_job) {
           private int fLastNumberOfScannedFiles = 0;
 
+          @Override
           public IStatus run(IProgressMonitor inner) {
             while (!inner.isCanceled()) {
               IFile file = fCurrentFile;

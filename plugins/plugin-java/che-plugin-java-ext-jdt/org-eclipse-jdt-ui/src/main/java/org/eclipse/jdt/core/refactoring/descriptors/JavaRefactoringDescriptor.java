@@ -250,6 +250,7 @@ public abstract class JavaRefactoringDescriptor extends RefactoringDescriptor {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Refactoring createRefactoring(final RefactoringStatus status) throws CoreException {
     Refactoring refactoring = null;
     final String id = getID();
@@ -309,6 +310,7 @@ public abstract class JavaRefactoringDescriptor extends RefactoringDescriptor {
    * @param comment the details comment to set, or <code>null</code> to set no details comment
    * @see #getComment()
    */
+  @Override
   public void setComment(final String comment) {
     super.setComment(comment);
   }
@@ -322,6 +324,7 @@ public abstract class JavaRefactoringDescriptor extends RefactoringDescriptor {
    * @param description the non-empty description of the refactoring to set
    * @see #getDescription()
    */
+  @Override
   public void setDescription(final String description) {
     super.setDescription(description);
   }
@@ -344,6 +347,7 @@ public abstract class JavaRefactoringDescriptor extends RefactoringDescriptor {
    * @see #JAR_REFACTORING
    * @see #JAR_SOURCE_ATTACHMENT
    */
+  @Override
   public void setFlags(final int flags) {
     super.setFlags(flags);
   }
@@ -357,6 +361,7 @@ public abstract class JavaRefactoringDescriptor extends RefactoringDescriptor {
    * @param project the non-empty project name to set, or <code>null</code> for the workspace
    * @see #getProject()
    */
+  @Override
   public void setProject(final String project) {
     super.setProject(project);
   }

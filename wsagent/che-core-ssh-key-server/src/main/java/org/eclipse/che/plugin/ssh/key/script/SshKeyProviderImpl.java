@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.ssh.key.script;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.inject.Inject;
 import java.io.IOException;
 import java.util.Optional;
@@ -95,6 +97,6 @@ public class SshKeyProviderImpl implements SshKeyProvider {
         LOG.warn(String.format("Not found ssh key uploader for %s", host));
       }
     }
-    return privateKey.getBytes();
+    return privateKey.getBytes(UTF_8);
   }
 }

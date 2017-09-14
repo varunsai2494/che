@@ -172,6 +172,7 @@ public class KeyBindingManager implements KeyBindingAgent {
     return getScheme(activeScheme);
   }
 
+  @Override
   public void setActive(String scheme) {
     if (schemes.containsKey(scheme)) {
       activeScheme = scheme;

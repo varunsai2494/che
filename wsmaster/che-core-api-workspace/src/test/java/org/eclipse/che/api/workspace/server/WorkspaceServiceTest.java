@@ -1247,6 +1247,7 @@ public class WorkspaceServiceTest {
   @Filter
   public static class EnvironmentFilter implements RequestFilter {
 
+    @Override
     public void doFilter(GenericContainerRequest request) {
       EnvironmentContext.getCurrent()
           .setSubject(new SubjectImpl(NAMESPACE, USER_ID, "token", false));

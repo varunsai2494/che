@@ -81,6 +81,7 @@ public final class UseSupertypeDescriptor extends JavaRefactoringDescriptor {
   }
 
   /** {@inheritDoc} */
+  @Override
   protected void populateArgumentMap() {
     super.populateArgumentMap();
     JavaRefactoringDescriptorUtil.setBoolean(fArguments, ATTRIBUTE_INSTANCEOF, fInstanceof);
@@ -133,6 +134,7 @@ public final class UseSupertypeDescriptor extends JavaRefactoringDescriptor {
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus validateDescriptor() {
     RefactoringStatus status = super.validateDescriptor();
     if (fSubType == null)

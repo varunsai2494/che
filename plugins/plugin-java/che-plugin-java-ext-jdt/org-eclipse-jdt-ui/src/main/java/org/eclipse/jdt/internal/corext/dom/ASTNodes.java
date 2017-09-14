@@ -706,6 +706,7 @@ public class ASTNodes {
       fExpressionIsExplicitlyTyped = expressionIsExplicitlyTyped;
     }
 
+    @Override
     public boolean visit(ITypeBinding type) {
       IMethodBinding[] methods = type.getDeclaredMethods();
       for (int i = 0; i < methods.length; i++) {

@@ -515,6 +515,7 @@ public interface IFile extends IResource, IEncodedStorage, IAdaptable {
    * @see IContainer#getDefaultCharset()
    * @since 3.0
    */
+  @Override
   public String getCharset() throws CoreException;
 
   /**
@@ -639,6 +640,7 @@ public interface IFile extends IResource, IEncodedStorage, IAdaptable {
    *           (and {@link ResourcesPlugin#PREF_LIGHTWEIGHT_AUTO_REFRESH} is disabled).
    *     </ul>
    */
+  @Override
   public InputStream getContents() throws CoreException;
 
   /**
@@ -694,6 +696,7 @@ public interface IFile extends IResource, IEncodedStorage, IAdaptable {
    * @see IResource#getFullPath()
    * @see IStorage#getFullPath()
    */
+  @Override
   public IPath getFullPath();
 
   /**
@@ -720,6 +723,7 @@ public interface IFile extends IResource, IEncodedStorage, IAdaptable {
    * @see IResource#getName()
    * @see IStorage#getName()
    */
+  @Override
   public String getName();
 
   /**

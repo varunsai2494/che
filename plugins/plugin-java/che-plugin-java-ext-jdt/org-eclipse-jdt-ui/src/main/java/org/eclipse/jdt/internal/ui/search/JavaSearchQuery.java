@@ -61,6 +61,7 @@ public class JavaSearchQuery implements ISearchQuery {
     private IQueryParticipant fParticipant;
     private JavaSearchResult fSearchResult;
 
+    @Override
     public void reportMatch(Match match) {
       IMatchPresentation participant = fParticipant.getUIParticipant();
       if (participant == null
@@ -79,6 +80,7 @@ public class JavaSearchQuery implements ISearchQuery {
     }
   }
 
+  @Override
   public IStatus run(IProgressMonitor monitor) {
     final JavaSearchResult textResult = (JavaSearchResult) getSearchResult();
     textResult.removeAll();
@@ -96,6 +98,7 @@ public class JavaSearchQuery implements ISearchQuery {
         final int iPrime = i;
         ISafeRunnable runnable =
             new ISafeRunnable() {
+              @Override
               public void handleException(Throwable exception) {
                 ticks[iPrime] = 0;
                 String message = SearchMessages.JavaSearchQuery_error_participant_estimate;
@@ -103,6 +106,7 @@ public class JavaSearchQuery implements ISearchQuery {
                     new Status(IStatus.ERROR, JavaPlugin.getPluginId(), 0, message, exception));
               }
 
+              @Override
               public void run() throws Exception {
                 ticks[iPrime] =
                     participantDescriptors[iPrime].getParticipant().estimateTicks(fPatternData);
@@ -175,6 +179,7 @@ public class JavaSearchQuery implements ISearchQuery {
         final int iPrime = i;
         ISafeRunnable runnable =
             new ISafeRunnable() {
+              @Override
               public void handleException(Throwable exception) {
                 participantDescriptors[iPrime].getDescriptor().disable();
                 String message = SearchMessages.JavaSearchQuery_error_participant_search;
@@ -182,6 +187,7 @@ public class JavaSearchQuery implements ISearchQuery {
                     new Status(IStatus.ERROR, JavaPlugin.getPluginId(), 0, message, exception));
               }
 
+              @Override
               public void run() throws Exception {
 
                 final IQueryParticipant participant =
@@ -219,6 +225,7 @@ public class JavaSearchQuery implements ISearchQuery {
     return SearchPattern.R_EXACT_MATCH;
   }
 
+  @Override
   public String getLabel() {
     return SearchMessages.JavaSearchQuery_label;
   }
@@ -309,14 +316,17 @@ public class JavaSearchQuery implements ISearchQuery {
     else return JavaPluginImages.DESC_OBJS_SEARCH_REF;
   }
 
+  @Override
   public boolean canRerun() {
     return true;
   }
 
+  @Override
   public boolean canRunInBackground() {
     return true;
   }
 
+  @Override
   public ISearchResult getSearchResult() {
     if (fResult == null) {
       JavaSearchResult result = new JavaSearchResult(this);

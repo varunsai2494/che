@@ -54,6 +54,7 @@ public class ArchetypeGenerationStrategy implements GeneratorStrategy {
     vfs = vfsProvider.getVirtualFileSystem();
   }
 
+  @Override
   public String getId() {
     return ARCHETYPE_GENERATION_STRATEGY;
   }

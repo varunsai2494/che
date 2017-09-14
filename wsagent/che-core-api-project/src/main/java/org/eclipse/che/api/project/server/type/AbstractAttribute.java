@@ -30,29 +30,36 @@ public abstract class AbstractAttribute implements Attribute {
     this.variable = variable;
   }
 
+  @Override
   public String getId() {
     return projectType + ':' + name;
   }
 
+  @Override
   public String getProjectType() {
     return projectType;
   }
 
+  @Override
   public String getDescription() {
     return description;
   }
 
+  @Override
   public boolean isRequired() {
     return required;
   }
 
+  @Override
   public boolean isVariable() {
     return variable;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public abstract AttributeValue getValue();
 }

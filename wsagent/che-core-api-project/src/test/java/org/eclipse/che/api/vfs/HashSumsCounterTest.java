@@ -12,6 +12,7 @@ package org.eclipse.che.api.vfs;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doAnswer;
@@ -31,14 +32,14 @@ public class HashSumsCounterTest {
 
   @Test
   public void countsHashSums() throws Exception {
-    VirtualFile fileAB = mockFile("/a/file", "file1".getBytes());
-    VirtualFile fileBA = mockFile("/a/b/file", "file2".getBytes());
+    VirtualFile fileAB = mockFile("/a/file", "file1".getBytes(UTF_8));
+    VirtualFile fileBA = mockFile("/a/b/file", "file2".getBytes(UTF_8));
     VirtualFile folderB = mockFolder("/a/b", fileBA);
     VirtualFile folderA = mockFolder("/a", folderB, fileAB);
     Set<Pair<String, String>> expected =
         newHashSet(
-            Pair.of(countMd5Sum("file1".getBytes()), "file"),
-            Pair.of(countMd5Sum("file2".getBytes()), "b/file"));
+            Pair.of(countMd5Sum("file1".getBytes(UTF_8)), "file"),
+            Pair.of(countMd5Sum("file2".getBytes(UTF_8)), "b/file"));
 
     Set<Pair<String, String>> hashSums =
         newHashSet(new HashSumsCounter(folderA, Hashing.md5()).countHashSums());

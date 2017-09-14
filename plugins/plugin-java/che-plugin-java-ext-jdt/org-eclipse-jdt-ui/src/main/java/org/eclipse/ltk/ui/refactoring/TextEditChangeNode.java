@@ -94,6 +94,7 @@ public class TextEditChangeNode extends InternalTextEditChangeNode {
    *
    * @return the <code>TextEditBasedChange<code>
    */
+  @Override
   public final TextEditBasedChange getTextEditBasedChange() {
     return super.getTextEditBasedChange();
   }
@@ -103,6 +104,7 @@ public class TextEditChangeNode extends InternalTextEditChangeNode {
    *
    * @return a human readable representation of this node
    */
+  @Override
   public String getText() {
     Change change = getTextEditBasedChange();
     if (change instanceof TextFileChange) {
@@ -122,10 +124,12 @@ public class TextEditChangeNode extends InternalTextEditChangeNode {
    *
    * @return the image descriptor representing this node
    */
+  @Override
   public ImageDescriptor getImageDescriptor() {
     return RefactoringPluginImages.DESC_OBJS_FILE_CHANGE;
   }
 
+  @Override
   protected ChildNode[] createChildNodes() {
     TextEditBasedChange change = getTextEditBasedChange();
     if (change instanceof MultiStateTextFileChange) {
@@ -141,6 +145,7 @@ public class TextEditChangeNode extends InternalTextEditChangeNode {
   }
 
   private static class OffsetComparator implements Comparator {
+    @Override
     public int compare(Object o1, Object o2) {
       TextEditBasedChangeGroup c1 = (TextEditBasedChangeGroup) o1;
       TextEditBasedChangeGroup c2 = (TextEditBasedChangeGroup) o2;

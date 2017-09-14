@@ -16,7 +16,9 @@ import org.eclipse.che.dto.shared.DTO;
 @DTO
 public interface MyOtherDTO extends MySuperClassDTO, MySuperSuperClass {
 
+  @Override
   void setName(String name);
 
+  @Override
   MyOtherDTO withName(String name);
 }

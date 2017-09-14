@@ -9,11 +9,13 @@
  */
 package org.eclipse.jdt.internal.core.search.indexing;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
@@ -204,7 +206,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
     if (indexLocation == null) {
       String pathString = containerPath.toOSString();
       CRC32 checksumCalculator = new CRC32();
-      checksumCalculator.update(pathString.getBytes());
+      checksumCalculator.update(pathString.getBytes(UTF_8));
       String fileName = Long.toString(checksumCalculator.getValue()) + ".index"; //$NON-NLS-1$
       if (JobManager.VERBOSE)
         Util.verbose(
@@ -715,6 +717,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
    * Advance to the next available job, once the current one has been completed. Note: clients
    * awaiting until the job count is zero are still waiting at this point.
    */
+  @Override
   protected synchronized void moveToNextJob() {
     // remember that one job was executed, and we will need to save indexes at some point
     this.needToSave = true;
@@ -722,11 +725,13 @@ public class IndexManager extends JobManager implements IIndexConstants {
   }
 
   /** No more job awaiting. */
+  @Override
   protected void notifyIdle(long idlingTime) {
     if (idlingTime > 1000 && this.needToSave) saveIndexes();
   }
 
   /** Name of the background process */
+  @Override
   public String processName() {
     return Messages.process_name;
   }
@@ -923,6 +928,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
   }
 
   /** Flush current state */
+  @Override
   public synchronized void reset() {
     super.reset();
     if (this.indexes != null) {
@@ -1043,6 +1049,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
       final SearchParticipant searchParticipant) {
     request(
         new IndexRequest(container, this) {
+          @Override
           public boolean execute(IProgressMonitor progressMonitor) {
             if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled())
               return true;
@@ -1071,12 +1078,14 @@ public class IndexManager extends JobManager implements IIndexConstants {
             return true;
           }
 
+          @Override
           public String toString() {
             return "indexing " + searchDocument.getPath(); //$NON-NLS-1$
           }
         });
   }
 
+  @Override
   public String toString() {
     StringBuffer buffer = new StringBuffer(10);
     buffer.append(super.toString());
@@ -1238,7 +1247,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
         Util.sort(currentNames);
       }
       File javaLikeNamesFile = new File(pathName, "javaLikeNames.txt"); //$NON-NLS-1$
-      writer = new BufferedWriter(new FileWriter(javaLikeNamesFile));
+      writer = Files.newBufferedWriter(javaLikeNamesFile.toPath(), UTF_8);
       for (int i = 0; i < length - 1; i++) {
         writer.write(currentNames[i]);
         writer.write('\n');
@@ -1262,7 +1271,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
   private void writeIndexMapFile() {
     BufferedWriter writer = null;
     try {
-      writer = new BufferedWriter(new FileWriter(this.indexNamesMapFile));
+      writer = Files.newBufferedWriter(this.indexNamesMapFile.toPath(), UTF_8);
       writer.write(DiskIndex.SIGNATURE);
       writer.write('\n');
       Object[] keys = this.indexStates.keyTable;
@@ -1296,7 +1305,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
   private void writeParticipantsIndexNamesFile() {
     BufferedWriter writer = null;
     try {
-      writer = new BufferedWriter(new FileWriter(this.participantIndexNamesFile));
+      writer = Files.newBufferedWriter(this.participantIndexNamesFile.toPath(), UTF_8);
       writer.write(DiskIndex.SIGNATURE);
       writer.write('\n');
       Object[] indexFiles = this.participantsContainers.keyTable;
@@ -1327,7 +1336,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
   private void writeSavedIndexNamesFile() {
     BufferedWriter writer = null;
     try {
-      writer = new BufferedWriter(new FileWriter(this.savedIndexNamesFile));
+      writer = Files.newBufferedWriter(this.savedIndexNamesFile.toPath(), UTF_8);
       writer.write(DiskIndex.SIGNATURE);
       writer.write('+');
       writer.write(getJavaPluginWorkingLocation().toOSString());

@@ -25,14 +25,17 @@ public class CompositeChangeNode extends AbstractChangeNode {
     fFilter = filter;
   }
 
+  @Override
   public int getActive() {
     return getCompositeChangeActive();
   }
 
+  @Override
   public ImageDescriptor getImageDescriptor() {
     return RefactoringPluginImages.DESC_OBJS_COMPOSITE_CHANGE;
   }
 
+  @Override
   PreviewNode[] doCreateChildren() {
     List children = new ArrayList();
     getFlattendedChildren(children, this, (CompositeChange) getChange());

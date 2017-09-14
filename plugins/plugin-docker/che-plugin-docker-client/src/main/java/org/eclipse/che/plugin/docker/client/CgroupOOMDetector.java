@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.plugin.docker.client.CLibraryFactory.getCLibrary;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -215,7 +216,7 @@ public class CgroupOOMDetector implements DockerOOMDetector {
           LOG.error("Unable open OOM event file '{}' for read", oomf);
           return;
         }
-        final byte[] data = String.format("%d %d", efd, oomfd).getBytes();
+        final byte[] data = String.format("%d %d", efd, oomfd).getBytes(UTF_8);
         if (cLib.write(cfd, data, data.length) != data.length) {
           LOG.error("Unable write event control data to file '{}'", cf);
           return;

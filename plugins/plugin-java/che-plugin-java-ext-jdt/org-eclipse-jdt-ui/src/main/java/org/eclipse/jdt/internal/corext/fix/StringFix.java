@@ -216,6 +216,7 @@ public class StringFix implements IProposableFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public CompilationUnitChange createChange(IProgressMonitor progressMonitor) throws CoreException {
     if (fEditGroups == null || fEditGroups.length == 0) return null;
 
@@ -231,16 +232,19 @@ public class StringFix implements IProposableFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getAdditionalProposalInfo() {
     return null;
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getDisplayString() {
     return fName;
   }
 
   /** {@inheritDoc} */
+  @Override
   public IStatus getStatus() {
     return null;
   }

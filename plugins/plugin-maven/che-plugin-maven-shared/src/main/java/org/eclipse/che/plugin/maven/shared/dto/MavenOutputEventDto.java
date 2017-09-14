@@ -17,6 +17,7 @@ import org.eclipse.che.plugin.maven.shared.event.MavenOutputEvent;
 @DTO
 public interface MavenOutputEventDto extends MavenOutputEvent {
 
+  @Override
   TYPE getType();
 
   /** Returns a type of the output event. */

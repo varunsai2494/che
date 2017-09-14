@@ -70,6 +70,7 @@ public class ProjectDescription extends ContainerDescription {
    *
    * @see org.eclipse.ui.internal.ide.undo.ContainerDescription#createResourceHandle()
    */
+  @Override
   public IResource createResourceHandle() {
     return ResourcesPlugin.getWorkspace().getRoot().getProject(getName());
   }
@@ -80,6 +81,7 @@ public class ProjectDescription extends ContainerDescription {
    * @see org.eclipse.ui.internal.ide.undo.ResourceDescription#createExistentResourceFromHandle(org.eclipse.core.resources.IResource,
    *      org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public void createExistentResourceFromHandle(IResource resource, IProgressMonitor monitor)
       throws CoreException {
     Assert.isLegal(resource instanceof IProject);
@@ -109,6 +111,7 @@ public class ProjectDescription extends ContainerDescription {
    *
    * @see org.eclipse.ui.internal.ide.undo.ContainerDescription#getName()
    */
+  @Override
   public String getName() {
     if (projectDescription != null) {
       return projectDescription.getName();
@@ -121,6 +124,7 @@ public class ProjectDescription extends ContainerDescription {
    *
    * @see org.eclipse.ui.internal.ide.undo.ResourceDescription#verifyExistence(boolean)
    */
+  @Override
   public boolean verifyExistence(boolean checkMembers) {
     // We can only check members if the project is open.
     IProject projectHandle = (IProject) createResourceHandle();

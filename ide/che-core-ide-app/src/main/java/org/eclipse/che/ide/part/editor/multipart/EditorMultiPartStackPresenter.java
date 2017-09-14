@@ -224,6 +224,7 @@ public class EditorMultiPartStackPresenter
     throw new UnsupportedOperationException();
   }
 
+  @Override
   @Nullable
   public EditorPartStack getPartStackByPart(PartPresenter part) {
     if (part == null) {

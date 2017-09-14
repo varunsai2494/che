@@ -26,6 +26,7 @@ import org.eclipse.che.dto.shared.DTO;
  */
 @DTO
 public interface UserDto extends User {
+  @Override
   @ApiModelProperty("User ID")
   String getId();
 
@@ -33,6 +34,7 @@ public interface UserDto extends User {
 
   UserDto withId(String id);
 
+  @Override
   @ApiModelProperty("User alias which is used for oAuth")
   List<String> getAliases();
 
@@ -40,6 +42,7 @@ public interface UserDto extends User {
 
   UserDto withAliases(List<String> aliases);
 
+  @Override
   @ApiModelProperty("User email")
   String getEmail();
 
@@ -47,6 +50,7 @@ public interface UserDto extends User {
 
   UserDto withEmail(String email);
 
+  @Override
   @ApiModelProperty("User name")
   String getName();
 
@@ -54,6 +58,7 @@ public interface UserDto extends User {
 
   UserDto withName(String name);
 
+  @Override
   @ApiModelProperty("User password")
   String getPassword();
 

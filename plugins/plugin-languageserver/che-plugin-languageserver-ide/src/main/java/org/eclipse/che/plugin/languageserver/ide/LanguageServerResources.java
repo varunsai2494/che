@@ -110,12 +110,16 @@ public interface LanguageServerResources extends ClientBundle {
   }
 
   interface QuickOpenListCss extends SimpleList.Css {
+    @Override
     int menuListBorderPx();
 
+    @Override
     String listItem();
 
+    @Override
     String listBase();
 
+    @Override
     String listContainer();
 
     @ClassName("search-match")

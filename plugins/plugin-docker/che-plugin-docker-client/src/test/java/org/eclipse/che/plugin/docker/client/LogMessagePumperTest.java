@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -66,11 +67,11 @@ public class LogMessagePumperTest {
   private InputStream getTestInputStream(String src) throws UnsupportedEncodingException {
     final byte remaining = (byte) src.getBytes("UTF-8").length;
     final byte[] stdoutHeader = {1, 0, 0, 0, 0, 0, 0, remaining};
-    final int capacity = stdoutHeader.length + src.getBytes().length;
+    final int capacity = stdoutHeader.length + src.getBytes(UTF_8).length;
 
     ByteBuffer byteBuffer = ByteBuffer.allocate(capacity);
     byteBuffer.put(stdoutHeader);
-    byteBuffer.put(src.getBytes());
+    byteBuffer.put(src.getBytes(UTF_8));
 
     return new ByteArrayInputStream(byteBuffer.array());
   }

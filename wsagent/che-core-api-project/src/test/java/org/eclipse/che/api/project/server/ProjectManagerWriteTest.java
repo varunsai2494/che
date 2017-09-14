@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.api.project.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -59,6 +60,7 @@ import org.junit.Test;
 public class ProjectManagerWriteTest extends WsAgentTestBase {
   private static final String FILE_CONTENT = "to be or not to be";
 
+  @Override
   @Before
   public void setUp() throws Exception {
 
@@ -943,7 +945,7 @@ public class ProjectManagerWriteTest extends WsAgentTestBase {
     zipOut.putNextEntry(new ZipEntry("folder1/"));
     zipOut.putNextEntry(new ZipEntry("folder1/file1.txt"));
     zipOut.putNextEntry(new ZipEntry("file1"));
-    zipOut.write(fileContent.getBytes());
+    zipOut.write(fileContent.getBytes(UTF_8));
     zipOut.close();
     final InputStream zip = new ByteArrayInputStream(bout.toByteArray());
     final String importType = "_123_";
@@ -1108,7 +1110,7 @@ public class ProjectManagerWriteTest extends WsAgentTestBase {
       zipOut.putNextEntry(new ZipEntry(path));
 
       if (path.contains("file")) {
-        zipOut.write(FILE_CONTENT.getBytes());
+        zipOut.write(FILE_CONTENT.getBytes(UTF_8));
       }
     }
     zipOut.close();

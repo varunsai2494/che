@@ -11,6 +11,7 @@
 package org.eclipse.che.api.project.server;
 
 import static java.lang.String.format;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.singletonList;
 import static javax.ws.rs.HttpMethod.DELETE;
@@ -977,7 +978,7 @@ public class ProjectServiceTest {
     Assert.assertTrue(file.isFile());
     FileEntry _file = (FileEntry) file;
     //assertEquals(_file.getMediaType(), TEXT_PLAIN);
-    assertEquals(new String(_file.contentAsBytes()), myContent);
+    assertEquals(new String(_file.contentAsBytes(), UTF_8), myContent);
   }
 
   @Test
@@ -998,7 +999,7 @@ public class ProjectServiceTest {
             null);
     assertEquals(response.getStatus(), 200, "Error: " + response.getEntity());
     assertEquals(response.getContentType().toString(), TEXT_PLAIN);
-    assertEquals(new String(writer.getBody()), myContent);
+    assertEquals(new String(writer.getBody(), UTF_8), myContent);
   }
 
   @Test
@@ -1019,7 +1020,7 @@ public class ProjectServiceTest {
     VirtualFileEntry file = pm.getProject("my_project").getBaseFolder().getChild("test.xml");
     Assert.assertTrue(file.isFile());
     FileEntry _file = (FileEntry) file;
-    assertEquals(new String(_file.contentAsBytes()), myContent);
+    assertEquals(new String(_file.contentAsBytes(), UTF_8), myContent);
   }
 
   @Test
@@ -1319,7 +1320,8 @@ public class ProjectServiceTest {
                   .getBaseFolder()
                   .getChild("a/b/c/" + destinationFileName)
                   .getVirtualFile()
-                  .getContent());
+                  .getContent(),
+              UTF_8.name());
       theFirstLineFromDestinationFile = inputStreamScanner.nextLine();
       // destination should contain original file's content
       assertEquals(theFirstLineFromDestinationFile, originContent);
@@ -1585,7 +1587,8 @@ public class ProjectServiceTest {
                   .getBaseFolder()
                   .getChild("a/b/c/" + destinationFileName)
                   .getVirtualFile()
-                  .getContent());
+                  .getContent(),
+              UTF_8.name());
       theFirstLineFromDestinationFile = inputStreamScanner.nextLine();
       // destination should contain original file's content
       assertEquals(theFirstLineFromDestinationFile, originContent);

@@ -67,6 +67,7 @@ public class AdvancedQuickAssistProcessor implements IQuickAssistProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IAssistProcessor#hasAssists(org.eclipse.jdt.internal.ui.text.correction.IAssistContext)
    */
+  @Override
   public boolean hasAssists(IInvocationContext context) throws CoreException {
     ASTNode coveringNode = context.getCoveringNode();
     if (coveringNode != null) {
@@ -107,6 +108,7 @@ public class AdvancedQuickAssistProcessor implements IQuickAssistProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IAssistProcessor#getAssists(org.eclipse.jdt.internal.ui.text.correction.IAssistContext, org.eclipse.jdt.internal.ui.text.correction.IProblemLocation[])
    */
+  @Override
   public IJavaCompletionProposal[] getAssists(
       IInvocationContext context, IProblemLocation[] locations) throws CoreException {
     ASTNode coveringNode = context.getCoveringNode();
@@ -2491,6 +2493,7 @@ public class AdvancedQuickAssistProcessor implements IQuickAssistProcessor {
         // prepare inverted expression
         SimpleNameRenameProvider provider =
             new SimpleNameRenameProvider() {
+              @Override
               public SimpleName getRenamed(SimpleName simpleName) {
                 if (simpleName.resolveBinding() == variableBinding) {
                   renamedNames.add(simpleName);

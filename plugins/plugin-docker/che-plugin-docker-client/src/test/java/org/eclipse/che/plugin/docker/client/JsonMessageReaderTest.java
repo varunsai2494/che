@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
@@ -28,7 +29,8 @@ public class JsonMessageReaderTest {
             + "{\"status\":\"The image you are pulling has been verified\",\"id\":\"busybox:latest\"}\n";
 
     final JsonMessageReader<ProgressStatus> reader =
-        new JsonMessageReader<>(new ByteArrayInputStream(src.getBytes()), ProgressStatus.class);
+        new JsonMessageReader<>(
+            new ByteArrayInputStream(src.getBytes(UTF_8)), ProgressStatus.class);
 
     final ProgressStatus status1 = reader.next();
     final ProgressStatus status2 = reader.next();
@@ -44,7 +46,8 @@ public class JsonMessageReaderTest {
     final String src = "not json";
 
     final JsonMessageReader<ProgressStatus> reader =
-        new JsonMessageReader<>(new ByteArrayInputStream(src.getBytes()), ProgressStatus.class);
+        new JsonMessageReader<>(
+            new ByteArrayInputStream(src.getBytes(UTF_8)), ProgressStatus.class);
 
     assertNull(reader.next());
   }

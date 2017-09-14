@@ -110,6 +110,7 @@ public class URLFetcherTest {
   class OneByteURLFetcher extends URLFetcher {
 
     /** Override the limit */
+    @Override
     protected long getLimit() {
       return 1;
     }

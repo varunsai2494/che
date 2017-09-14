@@ -436,6 +436,7 @@ public class JREContainer implements IClasspathContainer {
   }
 
   /** @see IClasspathContainer#getClasspathEntries() */
+  @Override
   public IClasspathEntry[] getClasspathEntries() {
     if (Launching.DEBUG_JRE_CONTAINER) {
       Launching.log("<JRE_CONTAINER> getClasspathEntries() " + this.toString()); //$NON-NLS-1$
@@ -451,6 +452,7 @@ public class JREContainer implements IClasspathContainer {
   }
 
   /** @see IClasspathContainer#getDescription() */
+  @Override
   public String getDescription() {
     String environmentId = null; // JavaRuntime.getExecutionEnvironmentId(getPath());
     String tag = null;
@@ -463,11 +465,13 @@ public class JREContainer implements IClasspathContainer {
   }
 
   /** @see IClasspathContainer#getKind() */
+  @Override
   public int getKind() {
     return IClasspathContainer.K_DEFAULT_SYSTEM;
   }
 
   /** @see IClasspathContainer#getPath() */
+  @Override
   public IPath getPath() {
     return fPath;
   }

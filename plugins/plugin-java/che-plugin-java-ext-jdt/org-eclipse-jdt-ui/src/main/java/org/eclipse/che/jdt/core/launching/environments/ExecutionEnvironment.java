@@ -151,6 +151,7 @@ public class ExecutionEnvironment implements IExecutionEnvironment {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.environments.IExecutionEnvironment#getId()
    */
+  @Override
   public String getId() {
     //		return fElement.getAttribute("id"); //$NON-NLS-1$
     //		throw new UnsupportedOperationException();
@@ -160,6 +161,7 @@ public class ExecutionEnvironment implements IExecutionEnvironment {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.environments.IExecutionEnvironment#getDescription()
    */
+  @Override
   public String getDescription() {
     //		return fElement.getAttribute("description"); //$NON-NLS-1$
     throw new UnsupportedOperationException();
@@ -278,6 +280,7 @@ public class ExecutionEnvironment implements IExecutionEnvironment {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.environments.IExecutionEnvironment#getAccessRules(org.eclipse.jdt.launching.IVMInstall, org.eclipse.jdt.launching.LibraryLocation[], org.eclipse.jdt.core.IJavaProject)
    */
+  @Override
   public IAccessRule[][] getAccessRules(
       IVMInstallType vm, LibraryLocation[] libraries, IJavaProject project) {
     IAccessRuleParticipant[] participants = getParticipants();
@@ -387,6 +390,7 @@ public class ExecutionEnvironment implements IExecutionEnvironment {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.environments.IExecutionEnvironment#getProfileProperties()
    */
+  @Override
   public Properties getProfileProperties() {
     if (!fPropertiesInitialized) {
       fPropertiesInitialized = true;
@@ -443,6 +447,7 @@ public class ExecutionEnvironment implements IExecutionEnvironment {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.environments.IExecutionEnvironment#getSubEnvironments()
    */
+  @Override
   public IExecutionEnvironment[] getSubEnvironments() {
     //		Properties properties = getProfileProperties();
     //		Set<IExecutionEnvironment> subenv = new LinkedHashSet<IExecutionEnvironment>();
@@ -466,6 +471,7 @@ public class ExecutionEnvironment implements IExecutionEnvironment {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.environments.IExecutionEnvironment#getComplianceOptions()
    */
+  @Override
   public Map<String, String> getComplianceOptions() {
     Properties properties = getProfileProperties();
     if (properties != null) {

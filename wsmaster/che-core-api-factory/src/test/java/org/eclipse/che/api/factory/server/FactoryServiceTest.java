@@ -170,6 +170,7 @@ public class FactoryServiceTest {
 
   @Filter
   public static class EnvironmentFilter implements RequestFilter {
+    @Override
     public void doFilter(GenericContainerRequest request) {
       EnvironmentContext context = EnvironmentContext.getCurrent();
       context.setSubject(new SubjectImpl(ADMIN_USER_NAME, USER_ID, ADMIN_USER_PASSWORD, false));

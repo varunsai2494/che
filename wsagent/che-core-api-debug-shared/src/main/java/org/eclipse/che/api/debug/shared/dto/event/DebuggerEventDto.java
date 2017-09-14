@@ -16,6 +16,7 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author Anatoliy Bazko */
 @DTO
 public interface DebuggerEventDto extends DebuggerEvent {
+  @Override
   DebuggerEvent.TYPE getType();
 
   void setType(DebuggerEvent.TYPE type);

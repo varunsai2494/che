@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.api.debugger.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.io.CharStreams;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -65,7 +67,8 @@ public class DebuggerActionProvider implements MessageBodyReader<ActionDto> {
       MultivaluedMap<String, String> httpHeaders,
       InputStream entityStream)
       throws IOException, WebApplicationException {
-    String json = CharStreams.toString(new BufferedReader(new InputStreamReader(entityStream)));
+    String json =
+        CharStreams.toString(new BufferedReader(new InputStreamReader(entityStream, UTF_8)));
 
     JsonParser jsonParser = new JsonParser();
     JsonElement jsonElement = jsonParser.parse(json);

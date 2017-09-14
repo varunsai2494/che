@@ -50,6 +50,7 @@ public class ImportOrganizeTest extends CoreTests {
     super(new ProjectTestSetup());
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
@@ -62,6 +63,7 @@ public class ImportOrganizeTest extends CoreTests {
     JavaCore.setOptions(options);
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();
@@ -74,6 +76,7 @@ public class ImportOrganizeTest extends CoreTests {
   protected IChooseImportQuery createQuery(
       final String name, final String[] choices, final int[] nEntries) {
     return new IChooseImportQuery() {
+      @Override
       public TypeNameMatch[] chooseImports(TypeNameMatch[][] openChoices, ISourceRange[] ranges) {
         assertTrue(name + "-query-nchoices1", choices.length == openChoices.length);
         assertTrue(name + "-query-nchoices2", nEntries.length == openChoices.length);

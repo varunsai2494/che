@@ -58,6 +58,7 @@ public final class DefaultRefactoringDescriptor extends RefactoringDescriptor {
    *
    * @return always null
    */
+  @Override
   public Refactoring createRefactoring(final RefactoringStatus status) throws CoreException {
     status.merge(
         RefactoringStatus.createFatalErrorStatus(

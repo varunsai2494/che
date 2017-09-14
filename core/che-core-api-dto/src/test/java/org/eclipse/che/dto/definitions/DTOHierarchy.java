@@ -54,6 +54,7 @@ public final class DTOHierarchy {
   @DTO
   public interface GrandchildDto extends ChildDto {
 
+    @Override
     GrandchildDto getShadowedField();
 
     void setShadowedField(GrandchildDto v);

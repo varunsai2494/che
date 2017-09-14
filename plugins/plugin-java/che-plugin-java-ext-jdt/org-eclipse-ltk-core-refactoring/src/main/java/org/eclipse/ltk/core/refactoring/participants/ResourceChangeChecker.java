@@ -70,6 +70,7 @@ public class ResourceChangeChecker implements IConditionChecker {
     return fDeltaFactory;
   }
 
+  @Override
   public RefactoringStatus check(IProgressMonitor monitor) throws CoreException {
     IStatus status =
         ResourceChangeValidator.getValidator().validateChange(fDeltaFactory.getDelta(), monitor);
@@ -81,6 +82,7 @@ public class ResourceChangeChecker implements IConditionChecker {
     final List result = new ArrayList();
     root.accept(
         new IResourceDeltaVisitor() {
+          @Override
           public boolean visit(IResourceDelta delta) throws CoreException {
             final IResource resource = delta.getResource();
             if (resource.getType() == IResource.FILE) {

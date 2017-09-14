@@ -141,6 +141,7 @@ public final class JsoStringMap<T> extends JavaScriptObject implements StringMap
     }-*/;
 
   /** {@inheritDoc} */
+  @Override
   public final native JsoArray<T> getValues() /*-{
         var data = [];
         for (var i in this) {

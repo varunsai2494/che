@@ -194,11 +194,13 @@ public final class RefactoringSessionReader extends DefaultHandler {
   /*
    * @see org.xml.sax.helpers.DefaultHandler#setDocumentLocator(org.xml.sax.Locator)
    */
+  @Override
   public void setDocumentLocator(Locator locator) {
     fLocator = locator;
   }
 
   /** {@inheritDoc} */
+  @Override
   public void startElement(
       final String uri,
       final String localName,
@@ -257,6 +259,7 @@ public final class RefactoringSessionReader extends DefaultHandler {
               RefactoringCoreMessages.RefactoringSessionReader_invalid_values_in_xml, fLocator, e) {
             private static final long serialVersionUID = 1L;
 
+            @Override
             public Throwable getCause() { // support proper 1.4-style exception chaining
               return getException();
             }

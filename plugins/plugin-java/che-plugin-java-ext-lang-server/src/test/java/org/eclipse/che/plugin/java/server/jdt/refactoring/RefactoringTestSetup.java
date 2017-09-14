@@ -51,6 +51,7 @@ public class RefactoringTestSetup extends AbstractRefactoringTestSetup {
     throw new Exception(RefactoringTestSetup.class.getName() + " not initialized");
   }
 
+  @Override
   public void setUp() throws Exception {
     super.setUp();
     //		if (JavaPlugin.getActivePage() != null)
@@ -67,6 +68,7 @@ public class RefactoringTestSetup extends AbstractRefactoringTestSetup {
     return JavaProjectHelper.addRTJar(project);
   }
 
+  @Override
   public void tearDown() throws Exception {
     JavaProjectHelper.delete(fgJavaTestProject);
     super.tearDown();

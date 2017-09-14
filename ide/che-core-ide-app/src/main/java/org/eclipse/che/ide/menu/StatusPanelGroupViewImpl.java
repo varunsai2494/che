@@ -108,6 +108,7 @@ public class StatusPanelGroupViewImpl extends Composite
   }
 
   /** Handle closing of all popup windows. */
+  @Override
   public void onCloseMenu() {
     selectedMenuBarItem.setNormalState();
     selectedMenuBarItem = null;

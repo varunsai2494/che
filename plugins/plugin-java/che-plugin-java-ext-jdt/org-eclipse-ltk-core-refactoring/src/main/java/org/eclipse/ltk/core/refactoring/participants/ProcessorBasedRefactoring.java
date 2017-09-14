@@ -87,6 +87,7 @@ public class ProcessorBasedRefactoring extends Refactoring {
       fPreChangeParticipants = list;
     }
 
+    @Override
     protected void internalHandleException(Change change, Throwable e) {
       if (e instanceof OperationCanceledException) return;
 
@@ -111,10 +112,12 @@ public class ProcessorBasedRefactoring extends Refactoring {
       }
     }
 
+    @Override
     protected boolean internalContinueOnCancel() {
       return true;
     }
 
+    @Override
     protected boolean internalProcessOnCancel(Change change) {
       RefactoringParticipant participant = (RefactoringParticipant) fParticipantMap.get(change);
       if (participant == null) return false;
@@ -128,6 +131,7 @@ public class ProcessorBasedRefactoring extends Refactoring {
    *
    * @deprecated use {@link #ProcessorBasedRefactoring(RefactoringProcessor)} instead
    */
+  @Deprecated
   protected ProcessorBasedRefactoring() {}
 
   /**
@@ -179,11 +183,13 @@ public class ProcessorBasedRefactoring extends Refactoring {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getName() {
     return getProcessor().getProcessorName();
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus checkInitialConditions(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
     RefactoringStatus result = new RefactoringStatus();
@@ -200,6 +206,7 @@ public class ProcessorBasedRefactoring extends Refactoring {
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus checkFinalConditions(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
     RefactoringStatus result = new RefactoringStatus();
@@ -274,6 +281,7 @@ public class ProcessorBasedRefactoring extends Refactoring {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Change createChange(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
     pm.beginTask("", fParticipants.size() + 3); //$NON-NLS-1$
@@ -371,6 +379,7 @@ public class ProcessorBasedRefactoring extends Refactoring {
    * @param clazz the adapter class to look up
    * @return the requested adapter or <code>null</code>if no adapter exists.
    */
+  @Override
   public Object getAdapter(Class clazz) {
     if (clazz.isInstance(this)) return this;
     if (clazz.isInstance(getProcessor())) return getProcessor();
@@ -380,6 +389,7 @@ public class ProcessorBasedRefactoring extends Refactoring {
   /* non java-doc
    * for debugging only
    */
+  @Override
   public String toString() {
     return getName();
   }

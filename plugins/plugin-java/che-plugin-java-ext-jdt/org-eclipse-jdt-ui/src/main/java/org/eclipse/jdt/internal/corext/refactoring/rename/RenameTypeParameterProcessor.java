@@ -243,6 +243,7 @@ public class RenameTypeParameterProcessor extends JavaRenameProcessor
     return Checks.checkIfCuBroken(fTypeParameter.getDeclaringMember());
   }
 
+  @Override
   public RefactoringStatus checkNewElementName(String name) throws CoreException {
     Assert.isNotNull(name);
     RefactoringStatus result = Checks.checkTypeParameterName(name, fTypeParameter);
@@ -362,6 +363,7 @@ public class RenameTypeParameterProcessor extends JavaRenameProcessor
     return JavaProcessors.computeAffectedNatures(fTypeParameter);
   }
 
+  @Override
   public String getCurrentElementName() {
     return fTypeParameter.getElementName();
   }
@@ -376,6 +378,7 @@ public class RenameTypeParameterProcessor extends JavaRenameProcessor
     return IDENTIFIER;
   }
 
+  @Override
   public Object getNewElement() throws CoreException {
     IMember member = fTypeParameter.getDeclaringMember();
     if (member instanceof IType) {
@@ -397,6 +400,7 @@ public class RenameTypeParameterProcessor extends JavaRenameProcessor
     return RefactoringCoreMessages.RenameTypeParameterProcessor_name;
   }
 
+  @Override
   public boolean getUpdateReferences() {
     return fUpdateReferences;
   }
@@ -458,6 +462,7 @@ public class RenameTypeParameterProcessor extends JavaRenameProcessor
     return RefactoringAvailabilityTester.isRenameAvailable(fTypeParameter);
   }
 
+  @Override
   public void setUpdateReferences(boolean update) {
     fUpdateReferences = update;
   }

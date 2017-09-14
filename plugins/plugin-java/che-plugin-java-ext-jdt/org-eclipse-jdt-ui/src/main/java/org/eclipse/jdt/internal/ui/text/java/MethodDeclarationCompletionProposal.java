@@ -240,6 +240,7 @@ public class MethodDeclarationCompletionProposal extends JavaTypeCompletionPropo
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension4#isAutoInsertable()
    */
+  @Override
   public boolean isAutoInsertable() {
     return false;
   }

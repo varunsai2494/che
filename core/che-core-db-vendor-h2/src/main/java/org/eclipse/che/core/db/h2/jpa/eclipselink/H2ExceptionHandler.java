@@ -24,6 +24,7 @@ import org.eclipse.persistence.exceptions.ExceptionHandler;
  */
 public class H2ExceptionHandler implements ExceptionHandler {
 
+  @Override
   public Object handleException(RuntimeException exception) {
     if (exception instanceof DatabaseException && exception.getCause() instanceof SQLException) {
       final SQLException sqlEx = (SQLException) exception.getCause();

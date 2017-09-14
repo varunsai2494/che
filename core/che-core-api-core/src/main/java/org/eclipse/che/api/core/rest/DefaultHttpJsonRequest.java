@@ -11,6 +11,7 @@
 package org.eclipse.che.api.core.rest;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
 
 import com.google.common.io.CharStreams;
@@ -222,7 +223,7 @@ public class DefaultHttpJsonRequest implements HttpJsonRequest {
         }
 
         try (OutputStream output = conn.getOutputStream()) {
-          output.write(DtoFactory.getInstance().toJson(body).getBytes());
+          output.write(DtoFactory.getInstance().toJson(body).getBytes(UTF_8));
         }
       }
 
@@ -233,7 +234,7 @@ public class DefaultHttpJsonRequest implements HttpJsonRequest {
           in = conn.getInputStream();
         }
         final String str;
-        try (Reader reader = new InputStreamReader(in)) {
+        try (Reader reader = new InputStreamReader(in, UTF_8)) {
           str = CharStreams.toString(reader);
         }
         final String contentType = conn.getContentType();
@@ -270,7 +271,7 @@ public class DefaultHttpJsonRequest implements HttpJsonRequest {
         throw new IOException(conn.getResponseMessage());
       }
 
-      try (Reader reader = new InputStreamReader(conn.getInputStream())) {
+      try (Reader reader = new InputStreamReader(conn.getInputStream(), UTF_8)) {
         return new DefaultHttpJsonResponse(CharStreams.toString(reader), responseCode);
       }
     } finally {

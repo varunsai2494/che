@@ -33,16 +33,19 @@ public class PythonProjectWizardRegistrar implements ProjectWizardRegistrar {
     wizardPages = new ArrayList<>();
   }
 
+  @Override
   @NotNull
   public String getProjectTypeId() {
     return PYTHON_ID;
   }
 
+  @Override
   @NotNull
   public String getCategory() {
     return PYTHON_CATEGORY;
   }
 
+  @Override
   @NotNull
   public List<Provider<? extends WizardPage<MutableProjectConfig>>> getWizardPages() {
     return wizardPages;

@@ -70,6 +70,7 @@ public class MachineEntityImpl implements MachineEntity {
     return machineConfig;
   }
 
+  @Override
   public String getId() {
     return machineDescriptor.getId();
   }
@@ -119,6 +120,7 @@ public class MachineEntityImpl implements MachineEntity {
     return runtimeProperties;
   }
 
+  @Override
   public String getTerminalUrl() {
     for (Link link : machineLinks) {
       if (Constants.TERMINAL_REFERENCE.equals(link.getRel())) {
@@ -136,6 +138,7 @@ public class MachineEntityImpl implements MachineEntity {
     throw new RuntimeException(message);
   }
 
+  @Override
   public String getExecAgentUrl() {
     for (Link link : machineLinks) {
       if (Constants.EXEC_AGENT_REFERENCE.equals(link.getRel())) {

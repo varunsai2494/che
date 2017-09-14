@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.git.impl;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.eclipse.che.dto.server.DtoFactory.newDto;
@@ -61,7 +62,7 @@ public class ResetTest {
     GitConnection connection = connectToGitRepositoryWithContent(connectionFactory, repository);
     File aaa = addFile(connection, "aaa", "aaa\n");
     FileOutputStream fos = new FileOutputStream(new File(connection.getWorkingDir(), "README.txt"));
-    fos.write("MODIFIED\n".getBytes());
+    fos.write("MODIFIED\n".getBytes(UTF_8));
     fos.flush();
     fos.close();
     String initMessage = connection.log(LogParams.create()).getCommits().get(0).getMessage();
@@ -87,7 +88,7 @@ public class ResetTest {
     GitConnection connection = connectToGitRepositoryWithContent(connectionFactory, repository);
     File aaa = addFile(connection, "aaa", "aaa\n");
     FileOutputStream fos = new FileOutputStream(new File(connection.getWorkingDir(), "README.txt"));
-    fos.write("MODIFIED\n".getBytes());
+    fos.write("MODIFIED\n".getBytes(UTF_8));
     fos.flush();
     fos.close();
     String initMessage = connection.log(LogParams.create()).getCommits().get(0).getMessage();
@@ -114,7 +115,7 @@ public class ResetTest {
     GitConnection connection = connectToGitRepositoryWithContent(connectionFactory, repository);
     File aaa = addFile(connection, "aaa", "aaa\n");
     FileOutputStream fos = new FileOutputStream(new File(connection.getWorkingDir(), "README.txt"));
-    fos.write("MODIFIED\n".getBytes());
+    fos.write("MODIFIED\n".getBytes(UTF_8));
     fos.flush();
     fos.close();
     String initMessage = connection.log(LogParams.create()).getCommits().get(0).getMessage();

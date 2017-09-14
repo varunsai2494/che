@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.api.git;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -67,8 +69,10 @@ public class GitConfigurationCheckerTest {
     Assert.assertTrue(
         "New global .gitignore file should be created.", Files.exists(gitignoreFilePath));
     Assert.assertEquals(
-        excludesfilePropertyContent, new String(Files.readAllBytes(globalGitconfigFilePath)));
-    Assert.assertEquals(GITIGNORE_FILE_CONTENT, new String(Files.readAllBytes(gitignoreFilePath)));
+        excludesfilePropertyContent,
+        new String(Files.readAllBytes(globalGitconfigFilePath), UTF_8));
+    Assert.assertEquals(
+        GITIGNORE_FILE_CONTENT, new String(Files.readAllBytes(gitignoreFilePath), UTF_8));
   }
 
   @Test
@@ -77,15 +81,16 @@ public class GitConfigurationCheckerTest {
         String.format("\n" + "[core]\n" + "\texcludesfile = %s" + "\n", gitignoreFilePath);
     createGitconfigFile(false);
     final String existingGitconfigFileContent =
-        new String(Files.readAllBytes(globalGitconfigFilePath));
+        new String(Files.readAllBytes(globalGitconfigFilePath), UTF_8);
     checker.start();
 
     Assert.assertTrue(Files.exists(globalGitconfigFilePath));
     Assert.assertEquals(
         "'core.excludesfile' property should be appended to the existing global .gitconfig file",
         existingGitconfigFileContent + excludesfilePropertyContent,
-        new String(Files.readAllBytes(globalGitconfigFilePath)));
-    Assert.assertEquals(GITIGNORE_FILE_CONTENT, new String(Files.readAllBytes(gitignoreFilePath)));
+        new String(Files.readAllBytes(globalGitconfigFilePath), UTF_8));
+    Assert.assertEquals(
+        GITIGNORE_FILE_CONTENT, new String(Files.readAllBytes(gitignoreFilePath), UTF_8));
   }
 
   @Test
@@ -95,7 +100,7 @@ public class GitConfigurationCheckerTest {
     createGitconfigFile(true);
     final byte[] existingGitconfigFileContent = Files.readAllBytes(globalGitconfigFilePath);
     final String existingGitignoreFileContent =
-        new String(Files.readAllBytes(existingGitignoreFilePath));
+        new String(Files.readAllBytes(existingGitignoreFilePath), UTF_8);
     checker.start();
 
     Assert.assertArrayEquals(
@@ -108,15 +113,15 @@ public class GitConfigurationCheckerTest {
     Assert.assertEquals(
         "New content should be appended to the existing global .gitignore file.",
         existingGitignoreFileContent + GITIGNORE_FILE_CONTENT,
-        new String(Files.readAllBytes(existingGitignoreFilePath)));
+        new String(Files.readAllBytes(existingGitignoreFilePath), UTF_8));
   }
 
   private static void createGitconfigFile(boolean withExcludesfileProperty) throws Exception {
     String gitconfigFileContent = "some existed content\n";
     if (withExcludesfileProperty) {
-      Files.write(existingGitignoreFilePath, "some content\n".getBytes());
+      Files.write(existingGitignoreFilePath, "some content\n".getBytes(UTF_8));
       gitconfigFileContent = gitconfigFileContent + excludesfilePropertyContent;
     }
-    Files.write(globalGitconfigFilePath, gitconfigFileContent.getBytes());
+    Files.write(globalGitconfigFilePath, gitconfigFileContent.getBytes(UTF_8));
   }
 }

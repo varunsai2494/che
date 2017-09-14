@@ -158,6 +158,7 @@ public class AddImportsOperation implements IWorkspaceRunnable {
    * @throws CoreException if accessing the CU or rewritting the imports fails
    * @throws OperationCanceledException Runtime error thrown when operation is canceled.
    */
+  @Override
   public void run(IProgressMonitor monitor) throws CoreException, OperationCanceledException {
     if (monitor == null) {
       monitor = new NullProgressMonitor();

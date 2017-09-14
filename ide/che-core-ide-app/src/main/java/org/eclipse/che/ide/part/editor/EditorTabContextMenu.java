@@ -65,6 +65,7 @@ public class EditorTabContextMenu extends ContextMenu {
     return IdeActions.GROUP_EDITOR_TAB_CONTEXT_MENU;
   }
 
+  @Override
   protected ActionGroup updateActions() {
     final ActionGroup mainActionGroup = (ActionGroup) actionManager.getAction(getGroupMenu());
     if (mainActionGroup == null) {

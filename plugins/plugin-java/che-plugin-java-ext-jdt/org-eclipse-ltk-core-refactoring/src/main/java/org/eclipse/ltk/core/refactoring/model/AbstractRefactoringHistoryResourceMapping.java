@@ -56,6 +56,7 @@ public abstract class AbstractRefactoringHistoryResourceMapping extends Resource
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean equals(final Object object) {
     if (object instanceof AbstractRefactoringHistoryResourceMapping) {
       final AbstractRefactoringHistoryResourceMapping mapping =
@@ -66,11 +67,13 @@ public abstract class AbstractRefactoringHistoryResourceMapping extends Resource
   }
 
   /** {@inheritDoc} */
+  @Override
   public final Object getModelObject() {
     return fRefactoringHistory;
   }
 
   /** {@inheritDoc} */
+  @Override
   public final IProject[] getProjects() {
     final Set set = new HashSet();
     final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -107,6 +110,7 @@ public abstract class AbstractRefactoringHistoryResourceMapping extends Resource
   }
 
   /** {@inheritDoc} */
+  @Override
   public final ResourceTraversal[] getTraversals(
       final ResourceMappingContext context, final IProgressMonitor monitor) throws CoreException {
     if (fResourceTraversals == null) {
@@ -128,6 +132,7 @@ public abstract class AbstractRefactoringHistoryResourceMapping extends Resource
   }
 
   /** {@inheritDoc} */
+  @Override
   public int hashCode() {
     return fRefactoringHistory.hashCode();
   }

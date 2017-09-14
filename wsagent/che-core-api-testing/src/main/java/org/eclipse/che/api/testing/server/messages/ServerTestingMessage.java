@@ -163,6 +163,7 @@ public class ServerTestingMessage implements TestingMessage {
     return messageName;
   }
 
+  @Override
   public Map<String, String> getAttributes() {
     return new HashMap<>(attributes);
   }

@@ -17,10 +17,12 @@ public class DefaultChangeNode extends AbstractChangeNode {
     super(parent, change);
   }
 
+  @Override
   public int getActive() {
     return getDefaultChangeActive();
   }
 
+  @Override
   public PreviewNode[] doCreateChildren() {
     return EMPTY_CHILDREN;
   }

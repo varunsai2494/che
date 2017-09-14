@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.api.project.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
@@ -32,6 +33,7 @@ import org.junit.Test;
 /** @author gazarenkov */
 public class ExtensionCasesTest extends WsAgentTestBase {
 
+  @Override
   @Before
   public void setUp() throws Exception {
 
@@ -81,7 +83,7 @@ public class ExtensionCasesTest extends WsAgentTestBase {
           public void onProjectInitialized(ProjectRegistry registry, FolderEntry projectFolder)
               throws ServerException, NotFoundException, ConflictException, ForbiddenException {
 
-            projectFolder.createFile("generated", "test".getBytes());
+            projectFolder.createFile("generated", "test".getBytes(UTF_8));
             projectFolder.createFolder("project2");
             projectRegistry.setProjectType("/project1/project2", BaseProjectType.ID, false);
 

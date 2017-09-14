@@ -75,6 +75,7 @@ public class CompletionJavadocTest extends QuickFixTest {
     return proposals;
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
@@ -85,6 +86,7 @@ public class CompletionJavadocTest extends QuickFixTest {
     fSourceFolder = JavaProjectHelper.addSourceContainer(fJProject1, "src");
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();

@@ -192,6 +192,7 @@ public final class Modifier /*extends ASTNode implements IExtendedModifier*/ {
      * @return the keyword for the modifier
      * @see #toKeyword(String)
      */
+    @Override
     public String toString() {
       return this.keyword;
     }

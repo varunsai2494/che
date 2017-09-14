@@ -73,10 +73,12 @@ public class ResourceModifications {
       super(resource);
     }
 
+    @Override
     public void buildDelta(IResourceChangeDescriptionFactory builder) {
       builder.delete(fResource);
     }
 
+    @Override
     public IPath getDestinationPath() {
       return null;
     }
@@ -87,10 +89,12 @@ public class ResourceModifications {
       super(resource);
     }
 
+    @Override
     public void buildDelta(IResourceChangeDescriptionFactory builder) {
       builder.change((IFile) fResource);
     }
 
+    @Override
     public IPath getDestinationPath() {
       return null;
     }
@@ -101,10 +105,12 @@ public class ResourceModifications {
       super(resource);
     }
 
+    @Override
     public void buildDelta(IResourceChangeDescriptionFactory builder) {
       builder.create(fResource);
     }
 
+    @Override
     public IPath getDestinationPath() {
       return fResource.getFullPath();
     }
@@ -118,10 +124,12 @@ public class ResourceModifications {
       fDestination = destination;
     }
 
+    @Override
     public void buildDelta(IResourceChangeDescriptionFactory builder) {
       builder.move(fResource, fDestination);
     }
 
+    @Override
     public IPath getDestinationPath() {
       return fDestination;
     }
@@ -135,10 +143,12 @@ public class ResourceModifications {
       fDestination = destination;
     }
 
+    @Override
     public void buildDelta(IResourceChangeDescriptionFactory builder) {
       builder.copy(fResource, fDestination);
     }
 
+    @Override
     public IPath getDestinationPath() {
       return fDestination;
     }

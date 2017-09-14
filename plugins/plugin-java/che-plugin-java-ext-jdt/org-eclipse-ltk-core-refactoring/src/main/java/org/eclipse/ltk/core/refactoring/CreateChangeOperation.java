@@ -95,6 +95,7 @@ public class CreateChangeOperation implements IWorkspaceRunnable {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void run(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
     fChange = null;
@@ -142,6 +143,7 @@ public class CreateChangeOperation implements IWorkspaceRunnable {
         final CompositeChange composite =
             new CompositeChange(fChange.getName()) {
 
+              @Override
               public final ChangeDescriptor getDescriptor() {
                 String name = fChange.getName();
                 if (name.length() == 0)

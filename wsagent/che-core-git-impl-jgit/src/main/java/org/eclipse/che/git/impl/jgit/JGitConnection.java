@@ -14,6 +14,7 @@ package org.eclipse.che.git.impl.jgit;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.lang.String.format;
 import static java.lang.System.lineSeparator;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.attribute.PosixFilePermission.OWNER_READ;
 import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
@@ -498,6 +499,7 @@ class JGitConnection implements GitConnection {
     return branches;
   }
 
+  @Override
   public void clone(CloneParams params) throws GitException, UnauthorizedException {
     String remoteUri = params.getRemoteUrl();
     boolean removeIfFailed = false;
@@ -758,7 +760,7 @@ class JGitConnection implements GitConnection {
           }
           ObjectId objectId = treeWalk.getObjectId(0);
           ObjectLoader loader = repository.open(objectId);
-          content = new String(loader.getBytes());
+          content = new String(loader.getBytes(), UTF_8);
         }
       }
     } catch (IOException exception) {
@@ -1864,6 +1866,7 @@ class JGitConnection implements GitConnection {
     final String keepDirectoryPath = sourcePath + "/" + directory;
     IOFileFilter folderFilter =
         new DirectoryFileFilter() {
+          @Override
           public boolean accept(File dir) {
             String directoryPath = dir.getPath();
             return !(directoryPath.startsWith(keepDirectoryPath)
@@ -2054,6 +2057,7 @@ class JGitConnection implements GitConnection {
    * @return the name of the branch
    * @throws GitException if any exception occurs
    */
+  @Override
   public String getCurrentBranch() throws GitException {
     try {
       return Repository.shortenRefName(repository.exactRef(Constants.HEAD).getLeaf().getName());

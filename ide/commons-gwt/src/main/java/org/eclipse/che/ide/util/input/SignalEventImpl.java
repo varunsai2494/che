@@ -346,11 +346,13 @@ public class SignalEventImpl implements SignalEvent {
     }-*/;
 
   /** @return Event type as a string, e.g. "keypress" */
+  @Override
   public final String getType() {
     return nativeEvent.getType();
   }
 
   /** @return The target element of the event */
+  @Override
   public Element getTarget() {
     return asEvent().getTarget();
   }
@@ -358,11 +360,13 @@ public class SignalEventImpl implements SignalEvent {
   /**
    * @return true if the event is a key event TODO(danilatos): Have a top level EventSignalType enum
    */
+  @Override
   public final boolean isKeyEvent() {
     return KEY_EVENTS.contains(nativeEvent.getType());
   }
 
   /** @return true if it is an IME composition event */
+  @Override
   public final boolean isCompositionEvent() {
     return COMPOSITION_EVENTS.contains(getType());
   }
@@ -374,6 +378,7 @@ public class SignalEventImpl implements SignalEvent {
    *
    * @return true if this is an IME input event
    */
+  @Override
   public final boolean isImeKeyEvent() {
     return getKeyCode() == SignalKeyLogic.IME_CODE;
   }
@@ -381,6 +386,7 @@ public class SignalEventImpl implements SignalEvent {
   /**
    * @return true if this is a mouse event TODO(danilatos): Have a top level EventSignalType enum
    */
+  @Override
   public final boolean isMouseEvent() {
     return MOUSE_EVENTS.contains(getType());
   }
@@ -391,32 +397,38 @@ public class SignalEventImpl implements SignalEvent {
    *
    * @return true if this is an event involving some use of mouse buttons
    */
+  @Override
   public final boolean isMouseButtonEvent() {
     return MOUSE_BUTTON_EVENTS.contains(getType());
   }
 
   /** @return true if this is a mouse event but not {@link #isMouseButtonEvent()} */
+  @Override
   public final boolean isMouseButtonlessEvent() {
     return MOUSE_BUTTONLESS_EVENTS.contains(getType());
   }
 
   /** @return true if this is a "click" event */
+  @Override
   public final boolean isClickEvent() {
     return "click".equals(getType());
   }
 
   /** @return True if this is a dom mutation event */
+  @Override
   public final boolean isMutationEvent() {
     // What about DOMMouseScroll?
     return getType().startsWith("DOM");
   }
 
   /** @return true if this is any sort of clipboard event */
+  @Override
   public final boolean isClipboardEvent() {
     return CLIPBOARD_EVENTS.contains(getType());
   }
 
   /** @return If this is a focus event */
+  @Override
   public final boolean isFocusEvent() {
     return FOCUS_EVENTS.contains(getType());
   }
@@ -424,6 +436,7 @@ public class SignalEventImpl implements SignalEvent {
   /**
    * @return true if this is a paste event TODO(danilatos): Make a ClipboardSignalType enum instead
    */
+  @Override
   public final boolean isPasteEvent() {
     return (UserAgent.isIE() ? "beforepaste" : "paste").equals(nativeEvent.getType());
   }
@@ -431,6 +444,7 @@ public class SignalEventImpl implements SignalEvent {
   /**
    * @return true if this is a cut event TODO(danilatos): Make a ClipboardSignalType enum instead
    */
+  @Override
   public final boolean isCutEvent() {
     return (UserAgent.isIE() ? "beforecut" : "cut").equals(nativeEvent.getType());
   }
@@ -438,6 +452,7 @@ public class SignalEventImpl implements SignalEvent {
   /**
    * @return true if this is a copy event TODO(danilatos): Make a ClipboardSignalType enum instead
    */
+  @Override
   public final boolean isCopyEvent() {
     return "copy".equals(nativeEvent.getType());
   }
@@ -446,6 +461,7 @@ public class SignalEventImpl implements SignalEvent {
    * @return true if the command key is depressed
    * @see SignalKeyLogic#commandIsCtrl()
    */
+  @Override
   public final boolean getCommandKey() {
     return logic.commandIsCtrl() ? getCtrlKey() : getMetaKey();
   }
@@ -455,27 +471,32 @@ public class SignalEventImpl implements SignalEvent {
   }
 
   /** @return true if the ctrl key is depressed */
+  @Override
   public final boolean getCtrlKey() {
     return nativeEvent.getCtrlKey();
   }
 
   /** @return true if the meta key is depressed */
+  @Override
   public final boolean getMetaKey() {
     return nativeEvent.getMetaKey();
   }
 
   /** @return true if the alt key is depressed */
+  @Override
   public final boolean getAltKey() {
     // TODO(danilatos): Handle Alt vs Option on OSX?
     return nativeEvent.getAltKey();
   }
 
   /** @return true if the shift key is depressed */
+  @Override
   public final boolean getShiftKey() {
     return nativeEvent.getShiftKey();
   }
 
   /** @return The underlying event view of this event */
+  @Override
   public final Event asEvent() {
     return (Event) nativeEvent;
   }
@@ -485,6 +506,7 @@ public class SignalEventImpl implements SignalEvent {
    *
    * @return The move unit of this event
    */
+  @Override
   public final MoveUnit getMoveUnit() {
     if (getKeySignalType() == KeySignalType.DELETE) {
       if (UserAgent.isMac()) {
@@ -553,6 +575,7 @@ public class SignalEventImpl implements SignalEvent {
    * @param modifier
    * @return True if the given letter is pressed, and only the given modifiers.
    */
+  @Override
   public final boolean isCombo(int letter, KeyModifier modifier) {
     assert letter > 0 && letter < shiftMappings.length;
     int keyCode = getKeyCode();
@@ -568,6 +591,7 @@ public class SignalEventImpl implements SignalEvent {
    * @return true, if the given letter was pressed without modifiers. Takes into account the caps
    *     lock key being pressed (it will be as if it weren't pressed)
    */
+  @Override
   public final boolean isOnly(int letter) {
     return isCombo(letter, KeyModifier.NONE);
   }
@@ -581,11 +605,13 @@ public class SignalEventImpl implements SignalEvent {
    * @return The key signal type of this even, or null if it is not a key event
    * @see SignalEvent.KeySignalType
    */
+  @Override
   public KeySignalType getKeySignalType() {
     return this.keySignalType;
   }
 
   /** @return The gwtKeyCode of this event, with some minor compatibility adjustments */
+  @Override
   public int getKeyCode() {
     return this.cachedKeyCode;
   }

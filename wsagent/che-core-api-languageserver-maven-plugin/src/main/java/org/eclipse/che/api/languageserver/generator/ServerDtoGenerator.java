@@ -9,9 +9,10 @@
  */
 package org.eclipse.che.api.languageserver.generator;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -47,6 +48,7 @@ public class ServerDtoGenerator extends DtoGenerator {
     out.println("import java.io.IOException;");
   }
 
+  @Override
   protected void writeEnvSpecificToJson(String indent, PrintWriter out) {
     out.println(indent + INDENT + "public void toJson(Writer w) {");
     out.println(indent + INDENT + INDENT + "try {");
@@ -72,7 +74,8 @@ public class ServerDtoGenerator extends DtoGenerator {
     File outServiceFile =
         new File(targetFolder, "META-INF/services/org.eclipse.che.dto.server.DtoFactoryVisitor");
     Files.createDirectories(outServiceFile.toPath().getParent());
-    try (BufferedWriter serviceFileWriter = new BufferedWriter(new FileWriter(outServiceFile))) {
+    try (BufferedWriter serviceFileWriter =
+        Files.newBufferedWriter(outServiceFile.toPath(), UTF_8)) {
       serviceFileWriter.write(targetPackage + "." + targetName);
     }
   }

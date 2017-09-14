@@ -53,12 +53,14 @@ public class Rules implements IResourceRuleFactory, ILifecycleListener {
   }
 
   /** Obtains the scheduling rule from the appropriate factory for a build operation. */
+  @Override
   public ISchedulingRule buildRule() {
     //team hook currently cannot change this rule
     return root;
   }
 
   /** Obtains the scheduling rule from the appropriate factories for a copy operation. */
+  @Override
   public ISchedulingRule copyRule(IResource source, IResource destination) {
     if (source.getType() == IResource.ROOT || destination.getType() == IResource.ROOT) return root;
     //source is not modified, destination is created
@@ -66,12 +68,14 @@ public class Rules implements IResourceRuleFactory, ILifecycleListener {
   }
 
   /** Obtains the scheduling rule from the appropriate factory for a create operation. */
+  @Override
   public ISchedulingRule createRule(IResource resource) {
     if (resource.getType() == IResource.ROOT) return root;
     return factoryFor(resource).createRule(resource);
   }
 
   /** Obtains the scheduling rule from the appropriate factory for a delete operation. */
+  @Override
   public ISchedulingRule deleteRule(IResource resource) {
     if (resource.getType() == IResource.ROOT) return root;
     return factoryFor(resource).deleteRule(resource);
@@ -93,6 +97,7 @@ public class Rules implements IResourceRuleFactory, ILifecycleListener {
   /* (non-Javadoc)
    * @see org.eclipse.core.internal.events.ILifecycleListener#handleEvent(org.eclipse.core.internal.events.LifecycleEvent)
    */
+  @Override
   public void handleEvent(LifecycleEvent event) {
     //clear resource rule factory for projects that are about to be closed
     //or deleted. It is ok to do this during a PRE event because the rule
@@ -106,6 +111,7 @@ public class Rules implements IResourceRuleFactory, ILifecycleListener {
   }
 
   /** Obtains the scheduling rule from the appropriate factory for a charset change operation. */
+  @Override
   public ISchedulingRule charsetRule(IResource resource) {
     if (resource.getType() == IResource.ROOT) return null;
     return factoryFor(resource).charsetRule(resource);
@@ -114,24 +120,28 @@ public class Rules implements IResourceRuleFactory, ILifecycleListener {
   /**
    * Obtains the scheduling rule from the appropriate factory for a derived flag change operation.
    */
+  @Override
   public ISchedulingRule derivedRule(IResource resource) {
     //team hook currently cannot change this rule
     return null;
   }
 
   /** Obtains the scheduling rule from the appropriate factory for a marker change operation. */
+  @Override
   public ISchedulingRule markerRule(IResource resource) {
     //team hook currently cannot change this rule
     return null;
   }
 
   /** Obtains the scheduling rule from the appropriate factory for a modify operation. */
+  @Override
   public ISchedulingRule modifyRule(IResource resource) {
     if (resource.getType() == IResource.ROOT) return root;
     return factoryFor(resource).modifyRule(resource);
   }
 
   /** Obtains the scheduling rule from the appropriate factories for a move operation. */
+  @Override
   public ISchedulingRule moveRule(IResource source, IResource destination) {
     if (source.getType() == IResource.ROOT || destination.getType() == IResource.ROOT) return root;
     //treat a move across projects as a create on the destination and a delete on the source
@@ -142,6 +152,7 @@ public class Rules implements IResourceRuleFactory, ILifecycleListener {
   }
 
   /** Obtains the scheduling rule from the appropriate factory for a refresh operation. */
+  @Override
   public ISchedulingRule refreshRule(IResource resource) {
     if (resource.getType() == IResource.ROOT) return root;
     return factoryFor(resource).refreshRule(resource);
@@ -156,6 +167,7 @@ public class Rules implements IResourceRuleFactory, ILifecycleListener {
   }
 
   /** Combines rules for each parameter to validateEdit from the corresponding rule factories. */
+  @Override
   public ISchedulingRule validateEditRule(IResource[] resources) {
     if (resources.length == 0) return null;
     //optimize rule for single file

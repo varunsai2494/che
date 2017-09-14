@@ -25,6 +25,7 @@ public abstract class CopyParticipant extends RefactoringParticipant {
   private CopyArguments fArguments;
 
   /** {@inheritDoc} */
+  @Override
   protected final void initialize(RefactoringArguments arguments) {
     fArguments = (CopyArguments) arguments;
   }

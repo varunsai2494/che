@@ -34,6 +34,7 @@ public class JavaSearchResult extends AbstractJavaSearchResult {
   /* (non-Javadoc)
    * @see org.eclipse.search.ui.ISearchResult#getImageDescriptor()
    */
+  @Override
   public ImageDescriptor getImageDescriptor() {
     return fQuery.getImageDescriptor();
   }
@@ -41,6 +42,7 @@ public class JavaSearchResult extends AbstractJavaSearchResult {
   /* (non-Javadoc)
    * @see org.eclipse.search.ui.ISearchResult#getLabel()
    */
+  @Override
   public String getLabel() {
     return fQuery.getResultLabel(getMatchCount());
   }
@@ -48,6 +50,7 @@ public class JavaSearchResult extends AbstractJavaSearchResult {
   /* (non-Javadoc)
    * @see org.eclipse.search.ui.ISearchResult#getTooltip()
    */
+  @Override
   public String getTooltip() {
     return getLabel();
   }
@@ -72,6 +75,7 @@ public class JavaSearchResult extends AbstractJavaSearchResult {
   /* (non-Javadoc)
    * @see org.eclipse.search.ui.ISearchResult#getQuery()
    */
+  @Override
   public ISearchQuery getQuery() {
     return fQuery;
   }

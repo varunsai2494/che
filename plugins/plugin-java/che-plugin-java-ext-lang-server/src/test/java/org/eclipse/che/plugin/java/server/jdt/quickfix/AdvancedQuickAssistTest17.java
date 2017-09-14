@@ -41,6 +41,7 @@ public class AdvancedQuickAssistTest17 extends QuickFixTest {
     super(new Java17ProjectTestSetup());
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
@@ -68,6 +69,7 @@ public class AdvancedQuickAssistTest17 extends QuickFixTest {
     fSourceFolder = JavaProjectHelper.addSourceContainer(fJProject1, "src");
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();

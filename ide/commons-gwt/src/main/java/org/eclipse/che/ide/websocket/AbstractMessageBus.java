@@ -123,6 +123,7 @@ abstract class AbstractMessageBus implements MessageBus {
         };
   }
 
+  @Override
   public void cancelReconnection() {
     reconnectionAttemptsCounter = MAX_RECONNECTION_ATTEMPTS;
     reconnectionTimer.cancel();

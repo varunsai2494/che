@@ -438,6 +438,7 @@ public class MavenProject {
     public String testOutputDirectory;
     public String outputDirectory;
 
+    @Override
     public Info clone() {
       try {
         Info newInfo = (Info) super.clone();

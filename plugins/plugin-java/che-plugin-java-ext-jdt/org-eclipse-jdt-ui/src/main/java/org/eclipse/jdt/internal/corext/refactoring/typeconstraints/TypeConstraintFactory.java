@@ -83,24 +83,29 @@ public class TypeConstraintFactory implements ITypeConstraintFactory {
     }
   }
 
+  @Override
   public ITypeConstraint[] createSubtypeConstraint(ConstraintVariable v1, ConstraintVariable v2) {
     return createConstraint(v1, v2, ConstraintOperator.createSubTypeOperator());
   }
 
+  @Override
   public ITypeConstraint[] createStrictSubtypeConstraint(
       ConstraintVariable v1, ConstraintVariable v2) {
     return createConstraint(v1, v2, ConstraintOperator.createStrictSubtypeOperator());
   }
 
+  @Override
   public ITypeConstraint[] createEqualsConstraint(ConstraintVariable v1, ConstraintVariable v2) {
     return createConstraint(v1, v2, ConstraintOperator.createEqualsOperator());
   }
 
+  @Override
   public ITypeConstraint[] createDefinesConstraint(ConstraintVariable v1, ConstraintVariable v2) {
     return createConstraint(v1, v2, ConstraintOperator.createDefinesOperator());
   }
 
   /** {@inheritDoc} Avoid creating constraints involving primitive types and self-constraints. */
+  @Override
   public boolean filter(ConstraintVariable v1, ConstraintVariable v2, ConstraintOperator operator) {
     if ((v1.getBinding() != null
             && v1.getBinding().isPrimitive()
@@ -119,6 +124,7 @@ public class TypeConstraintFactory implements ITypeConstraintFactory {
    *
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.ITypeConstraintFactory#createCompositeOrTypeConstraint(org.eclipse.jdt.internal.corext.refactoring.typeconstraints.ITypeConstraint[])
    */
+  @Override
   public CompositeOrTypeConstraint createCompositeOrTypeConstraint(ITypeConstraint[] constraints) {
     ConstraintVariable left = ((SimpleTypeConstraint) constraints[0]).getLeft();
     String bounds = ""; //$NON-NLS-1$

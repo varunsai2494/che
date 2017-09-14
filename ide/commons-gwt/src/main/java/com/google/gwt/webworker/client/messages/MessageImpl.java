@@ -28,6 +28,7 @@ public abstract class MessageImpl extends Jso implements Message {
   protected MessageImpl() {}
 
   /** @return the type of the JsonMessage so the client knows how to route it. */
+  @Override
   public final native int getType() /*-{
         return this[@com.google.gwt.webworker.client.messages.MessageImpl::TYPE_FIELD] ||
             @com.google.gwt.webworker.client.messages.MessageImpl::NON_ROUTABLE_TYPE;

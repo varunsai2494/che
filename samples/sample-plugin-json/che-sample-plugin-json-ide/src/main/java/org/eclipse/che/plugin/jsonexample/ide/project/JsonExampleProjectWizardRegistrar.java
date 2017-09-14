@@ -37,16 +37,19 @@ public class JsonExampleProjectWizardRegistrar implements ProjectWizardRegistrar
     wizardPagesProviders.add(schemaUrlWizardPageProvider);
   }
 
+  @Override
   @NotNull
   public String getProjectTypeId() {
     return Constants.JSON_EXAMPLE_PROJECT_TYPE_ID;
   }
 
+  @Override
   @NotNull
   public String getCategory() {
     return Constants.JSON_EXAMPLE_CATEGORY;
   }
 
+  @Override
   @NotNull
   public List<Provider<? extends WizardPage<MutableProjectConfig>>> getWizardPages() {
     return wizardPagesProviders;

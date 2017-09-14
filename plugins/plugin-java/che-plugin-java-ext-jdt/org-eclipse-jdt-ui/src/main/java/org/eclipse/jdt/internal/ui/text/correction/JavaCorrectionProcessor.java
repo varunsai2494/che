@@ -196,6 +196,7 @@ public class JavaCorrectionProcessor
   /*
    * @see IContentAssistProcessor#computeCompletionProposals(ITextViewer, int)
    */
+  @Override
   public ICompletionProposal[] computeQuickAssistProposals(
       IQuickAssistInvocationContext quickAssistContext) {
     //		ISourceViewer viewer= quickAssistContext.getSourceViewer();
@@ -335,12 +336,14 @@ public class JavaCorrectionProcessor
       SafeRunner.run(this);
     }
 
+    @Override
     public void run() throws Exception {
       safeRun(fDescriptor);
     }
 
     protected abstract void safeRun(ContributedProcessorDescriptor processor) throws Exception;
 
+    @Override
     public void handleException(Throwable exception) {
       if (fMulti == null) {
         fMulti =
@@ -541,6 +544,7 @@ public class JavaCorrectionProcessor
   /*
    * @see IContentAssistProcessor#getErrorMessage()
    */
+  @Override
   public String getErrorMessage() {
     return fErrorMessage;
   }
@@ -549,6 +553,7 @@ public class JavaCorrectionProcessor
    * @see org.eclipse.jface.text.quickassist.IQuickAssistProcessor#canFix(org.eclipse.jface.text.source.Annotation)
    * @since 3.2
    */
+  @Override
   public boolean canFix(Annotation annotation) {
     return hasCorrections(annotation);
   }
@@ -558,6 +563,7 @@ public class JavaCorrectionProcessor
    * .IQuickAssistInvocationContext)
    * @since 3.2
    */
+  @Override
   public boolean canAssist(IQuickAssistInvocationContext invocationContext) {
     if (invocationContext instanceof IInvocationContext)
       return hasAssists((IInvocationContext) invocationContext);

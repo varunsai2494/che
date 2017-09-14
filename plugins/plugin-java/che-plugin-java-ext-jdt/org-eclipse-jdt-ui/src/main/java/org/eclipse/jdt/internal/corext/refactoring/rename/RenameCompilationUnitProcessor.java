@@ -153,15 +153,18 @@ public final class RenameCompilationUnitProcessor extends JavaRenameProcessor
 
   //---- IRenameProcessor -------------------------------------
 
+  @Override
   public String getCurrentElementName() {
     return getSimpleCUName();
   }
 
+  @Override
   public String getCurrentElementQualifier() {
     IPackageFragment pack = (IPackageFragment) fCu.getParent();
     return pack.getElementName();
   }
 
+  @Override
   public RefactoringStatus checkNewElementName(String newName) throws CoreException {
     Assert.isNotNull(newName, "new name"); //$NON-NLS-1$
     String typeName = removeFileNameExtension(newName);
@@ -178,6 +181,7 @@ public final class RenameCompilationUnitProcessor extends JavaRenameProcessor
     if (fWillRenameType) fRenameTypeProcessor.setNewElementName(removeFileNameExtension(newName));
   }
 
+  @Override
   public Object getNewElement() {
     IPackageFragment pack = (IPackageFragment) fCu.getParent();
     if (JavaConventionsUtil.validateCompilationUnitName(getNewElementName(), pack).getSeverity()
@@ -187,26 +191,31 @@ public final class RenameCompilationUnitProcessor extends JavaRenameProcessor
 
   //---- ITextUpdating ---------------------------------------------
 
+  @Override
   public boolean canEnableTextUpdating() {
     if (fRenameTypeProcessor == null) return false;
     return fRenameTypeProcessor.canEnableTextUpdating();
   }
 
+  @Override
   public boolean getUpdateTextualMatches() {
     if (fRenameTypeProcessor == null) return false;
     return fRenameTypeProcessor.getUpdateTextualMatches();
   }
 
+  @Override
   public void setUpdateTextualMatches(boolean update) {
     if (fRenameTypeProcessor != null) fRenameTypeProcessor.setUpdateTextualMatches(update);
   }
 
   //---- IReferenceUpdating -----------------------------------
 
+  @Override
   public void setUpdateReferences(boolean update) {
     if (fRenameTypeProcessor != null) fRenameTypeProcessor.setUpdateReferences(update);
   }
 
+  @Override
   public boolean getUpdateReferences() {
     if (fRenameTypeProcessor == null) return false;
     return fRenameTypeProcessor.getUpdateReferences();
@@ -214,26 +223,31 @@ public final class RenameCompilationUnitProcessor extends JavaRenameProcessor
 
   //---- IQualifiedNameUpdating -------------------------------
 
+  @Override
   public boolean canEnableQualifiedNameUpdating() {
     if (fRenameTypeProcessor == null) return false;
     return fRenameTypeProcessor.canEnableQualifiedNameUpdating();
   }
 
+  @Override
   public boolean getUpdateQualifiedNames() {
     if (fRenameTypeProcessor == null) return false;
     return fRenameTypeProcessor.getUpdateQualifiedNames();
   }
 
+  @Override
   public void setUpdateQualifiedNames(boolean update) {
     if (fRenameTypeProcessor == null) return;
     fRenameTypeProcessor.setUpdateQualifiedNames(update);
   }
 
+  @Override
   public String getFilePatterns() {
     if (fRenameTypeProcessor == null) return null;
     return fRenameTypeProcessor.getFilePatterns();
   }
 
+  @Override
   public void setFilePatterns(String patterns) {
     if (fRenameTypeProcessor == null) return;
     fRenameTypeProcessor.setFilePatterns(patterns);
@@ -241,21 +255,25 @@ public final class RenameCompilationUnitProcessor extends JavaRenameProcessor
 
   // ---- ISimilarDeclarationUpdating ------------------------------
 
+  @Override
   public boolean canEnableSimilarDeclarationUpdating() {
     if (fRenameTypeProcessor == null) return false;
     else return fRenameTypeProcessor.canEnableSimilarDeclarationUpdating();
   }
 
+  @Override
   public void setUpdateSimilarDeclarations(boolean update) {
     if (fRenameTypeProcessor == null) return;
     fRenameTypeProcessor.setUpdateSimilarDeclarations(update);
   }
 
+  @Override
   public boolean getUpdateSimilarDeclarations() {
     if (fRenameTypeProcessor == null) return false;
     return fRenameTypeProcessor.getUpdateSimilarDeclarations();
   }
 
+  @Override
   public int getMatchStrategy() {
     if (fRenameTypeProcessor == null)
       return RenamingNameSuggestor
@@ -263,6 +281,7 @@ public final class RenameCompilationUnitProcessor extends JavaRenameProcessor
     return fRenameTypeProcessor.getMatchStrategy();
   }
 
+  @Override
   public void setMatchStrategy(int selectedStrategy) {
     if (fRenameTypeProcessor == null) return;
     fRenameTypeProcessor.setMatchStrategy(selectedStrategy);
@@ -273,11 +292,13 @@ public final class RenameCompilationUnitProcessor extends JavaRenameProcessor
     return fRenameTypeProcessor.getSimilarElements();
   }
 
+  @Override
   public IResource getRefactoredResource(IResource element) {
     if (fRenameTypeProcessor == null) return element;
     return fRenameTypeProcessor.getRefactoredResource(element);
   }
 
+  @Override
   public IJavaElement getRefactoredJavaElement(IJavaElement element) {
     if (fRenameTypeProcessor == null) return element;
     return fRenameTypeProcessor.getRefactoredJavaElement(element);

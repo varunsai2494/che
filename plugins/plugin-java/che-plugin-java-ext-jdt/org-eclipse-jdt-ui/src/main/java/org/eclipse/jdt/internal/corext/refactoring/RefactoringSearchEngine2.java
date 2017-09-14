@@ -58,6 +58,7 @@ public final class RefactoringSearchEngine2 {
   /** Default implementation of a search requestor */
   private static class DefaultSearchRequestor implements IRefactoringSearchRequestor {
 
+    @Override
     public final SearchMatch acceptSearchMatch(final SearchMatch match) {
       return match;
     }

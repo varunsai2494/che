@@ -146,6 +146,7 @@ public class DebuggerTest extends BaseTest {
 
   private AbstractDebugger debugger;
 
+  @Override
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);

@@ -43,6 +43,7 @@ import org.eclipse.ltk.internal.core.refactoring.history.RefactoringHistoryServi
 public abstract class RefactoringDescriptorProxy extends PlatformObject implements Comparable {
 
   /** {@inheritDoc} */
+  @Override
   public int compareTo(final Object object) {
     if (object instanceof RefactoringDescriptorProxy) {
       final RefactoringDescriptorProxy proxy = (RefactoringDescriptorProxy) object;
@@ -55,6 +56,7 @@ public abstract class RefactoringDescriptorProxy extends PlatformObject implemen
   }
 
   /** {@inheritDoc} */
+  @Override
   public final boolean equals(final Object object) {
     if (object instanceof RefactoringDescriptorProxy) {
       final RefactoringDescriptorProxy proxy = (RefactoringDescriptorProxy) object;
@@ -86,6 +88,7 @@ public abstract class RefactoringDescriptorProxy extends PlatformObject implemen
   public abstract long getTimeStamp();
 
   /** {@inheritDoc} */
+  @Override
   public final int hashCode() {
     int code = getDescription().hashCode();
     final long stamp = getTimeStamp();

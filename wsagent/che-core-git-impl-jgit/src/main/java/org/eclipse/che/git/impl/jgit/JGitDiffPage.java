@@ -13,11 +13,14 @@ package org.eclipse.che.git.impl.jgit;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.lang.System.lineSeparator;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.List;
@@ -320,7 +323,7 @@ class JGitDiffPage extends DiffPage {
   }
 
   private void writeNames(List<DiffEntry> diff, OutputStream out) throws IOException {
-    PrintWriter writer = new PrintWriter(out);
+    PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(out, UTF_8)));
     for (DiffEntry de : diff) {
       writer.print(
           (de.getChangeType() == ChangeType.DELETE ? de.getOldPath() : de.getNewPath())
@@ -330,7 +333,7 @@ class JGitDiffPage extends DiffPage {
   }
 
   private void writeNamesAndStatus(List<DiffEntry> diff, OutputStream out) throws IOException {
-    PrintWriter writer = new PrintWriter(out);
+    PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(out, UTF_8)));
     int diffSize = diff.size();
     for (DiffEntry de : diff) {
       if (de.getChangeType() == ChangeType.ADD) {

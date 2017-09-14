@@ -1650,12 +1650,14 @@ public class DeltaProcessor {
         // wrap callbacks with Safe runnable for subsequent listeners to be called when some are causing grief
         SafeRunner.run(
             new ISafeRunnable() {
+              @Override
               public void handleException(Throwable exception) {
                 Util.log(
                     exception,
                     "Exception occurred in listener of Java element change notification"); //$NON-NLS-1$
               }
 
+              @Override
               public void run() throws Exception {
                 PerformanceStats stats = null;
                 if (PERF) {
@@ -1684,12 +1686,14 @@ public class DeltaProcessor {
       // wrap callbacks with Safe runnable for subsequent listeners to be called when some are causing grief
       SafeRunner.run(
           new ISafeRunnable() {
+            @Override
             public void handleException(Throwable exception) {
               Util.log(
                   exception,
                   "Exception occurred in listener of Java element change notification"); //$NON-NLS-1$
             }
 
+            @Override
             public void run() throws Exception {
               TypeHierarchy typeHierarchy = (TypeHierarchy) listener;
               if (typeHierarchy.hasFineGrainChanges()) {
@@ -2858,6 +2862,7 @@ public class DeltaProcessor {
       this.outputCount = outputCount;
     }
 
+    @Override
     public String toString() {
       if (this.paths == null) return "<none>"; //$NON-NLS-1$
       StringBuffer buffer = new StringBuffer();
@@ -2941,6 +2946,7 @@ public class DeltaProcessor {
       return this.rootPath.equals(path) && this.project.getProject().getFullPath().isPrefixOf(path);
     }
 
+    @Override
     public String toString() {
       StringBuffer buffer = new StringBuffer("project="); //$NON-NLS-1$
       if (this.project == null) {

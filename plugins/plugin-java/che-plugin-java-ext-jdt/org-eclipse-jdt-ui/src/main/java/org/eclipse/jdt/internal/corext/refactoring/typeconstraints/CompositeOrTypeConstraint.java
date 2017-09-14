@@ -33,6 +33,7 @@ public class CompositeOrTypeConstraint implements ITypeConstraint {
     Arrays.sort(
         constraints,
         new Comparator<ITypeConstraint>() {
+          @Override
           public int compare(ITypeConstraint o1, ITypeConstraint o2) {
             return o2.toString().compareTo(o1.toString());
           }
@@ -43,6 +44,7 @@ public class CompositeOrTypeConstraint implements ITypeConstraint {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.experiments.ITypeConstraint#toResolvedString()
    */
+  @Override
   public String toResolvedString() {
     StringBuffer buff = new StringBuffer();
     for (int i = 0; i < fConstraints.length; i++) {
@@ -56,6 +58,7 @@ public class CompositeOrTypeConstraint implements ITypeConstraint {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.experiments.ITypeConstraint#isSimpleTypeConstraint()
    */
+  @Override
   public boolean isSimpleTypeConstraint() {
     return false;
   }

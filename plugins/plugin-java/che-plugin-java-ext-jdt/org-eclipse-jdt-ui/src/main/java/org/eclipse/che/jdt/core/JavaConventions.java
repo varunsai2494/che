@@ -64,6 +64,7 @@ public final class JavaConventions {
    *     otherwise
    * @deprecated Overlapping roots are allowed in 2.1
    */
+  @Deprecated
   public static boolean isOverlappingRoots(IPath rootPath1, IPath rootPath2) {
     if (rootPath1 == null || rootPath2 == null) {
       return false;
@@ -130,6 +131,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validateCompilationUnitName(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validateCompilationUnitName(String name) {
     return validateCompilationUnitName(
         name, CompilerOptions.VERSION_1_3, CompilerOptions.VERSION_1_3);
@@ -222,6 +224,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validateClassFileName(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validateClassFileName(String name) {
     return validateClassFileName(name, CompilerOptions.VERSION_1_3, CompilerOptions.VERSION_1_3);
   }
@@ -304,6 +307,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validateFieldName(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validateFieldName(String name) {
     return validateIdentifier(name, CompilerOptions.VERSION_1_3, CompilerOptions.VERSION_1_3);
   }
@@ -337,6 +341,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validateIdentifier(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validateIdentifier(String id) {
     return validateIdentifier(id, CompilerOptions.VERSION_1_3, CompilerOptions.VERSION_1_3);
   }
@@ -381,6 +386,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validateImportDeclaration(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validateImportDeclaration(String name) {
     return validateImportDeclaration(
         name, CompilerOptions.VERSION_1_3, CompilerOptions.VERSION_1_3);
@@ -439,6 +445,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validateJavaTypeName(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validateJavaTypeName(String name) {
     return validateJavaTypeName(
         name, org.eclipse.jdt.core.JavaCore.VERSION_1_3, org.eclipse.jdt.core.JavaCore.VERSION_1_3);
@@ -550,6 +557,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validateMethodName(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validateMethodName(String name) {
     return validateMethodName(name, CompilerOptions.VERSION_1_3, CompilerOptions.VERSION_1_3);
   }
@@ -589,6 +597,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validatePackageName(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validatePackageName(String name) {
     return validatePackageName(name, CompilerOptions.VERSION_1_3, CompilerOptions.VERSION_1_3);
   }
@@ -784,6 +793,7 @@ public final class JavaConventions {
    * @deprecated Use {@link #validateTypeVariableName(String id, String sourceLevel, String
    *     complianceLevel)} instead
    */
+  @Deprecated
   public static IStatus validateTypeVariableName(String name) {
     return validateIdentifier(name, CompilerOptions.VERSION_1_3, CompilerOptions.VERSION_1_3);
   }

@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.core.internal.preferences;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -683,7 +685,7 @@ public class ChePreferences implements IEclipsePreferences {
   @Override
   public void putByteArray(String key, byte[] value) {
     if (key == null || value == null) throw new NullPointerException();
-    String newValue = new String(Base64.encode(value));
+    String newValue = new String(Base64.encode(value), UTF_8);
     String oldValue = internalPut(key, newValue);
     if (!newValue.equals(oldValue)) {
       makeDirty();
@@ -694,7 +696,7 @@ public class ChePreferences implements IEclipsePreferences {
   @Override
   public byte[] getByteArray(String key, byte[] defaultValue) {
     String value = internalGet(key);
-    return value == null ? defaultValue : Base64.decode(value.getBytes());
+    return value == null ? defaultValue : Base64.decode(value.getBytes(UTF_8));
   }
 
   @Override
@@ -742,6 +744,7 @@ public class ChePreferences implements IEclipsePreferences {
     /* (non-Javadoc)
      * @see java.util.Hashtable#keys()
      */
+    @Override
     public synchronized Enumeration keys() {
       TreeSet set = new TreeSet();
       for (Enumeration e = super.keys(); e.hasMoreElements(); ) set.add(e.nextElement());
@@ -751,10 +754,12 @@ public class ChePreferences implements IEclipsePreferences {
     /* (non-Javadoc)
      * @see java.util.Hashtable#entrySet()
      */
+    @Override
     public Set entrySet() {
       TreeSet set =
           new TreeSet(
               new Comparator() {
+                @Override
                 public int compare(Object e1, Object e2) {
                   String s1 = (String) ((Map.Entry) e1).getKey();
                   String s2 = (String) ((Map.Entry) e2).getKey();

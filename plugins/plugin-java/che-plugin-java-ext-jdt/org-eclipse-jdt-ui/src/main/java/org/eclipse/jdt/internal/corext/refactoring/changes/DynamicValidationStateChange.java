@@ -99,6 +99,7 @@ public class DynamicValidationStateChange extends CompositeChange
     final Change[] result = new Change[1];
     IWorkspaceRunnable runnable =
         new IWorkspaceRunnable() {
+          @Override
           public void run(IProgressMonitor monitor) throws CoreException {
             result[0] = DynamicValidationStateChange.super.perform(monitor);
           }
@@ -117,6 +118,7 @@ public class DynamicValidationStateChange extends CompositeChange
     return result;
   }
 
+  @Override
   public void workspaceChanged() {
     long currentTime = System.currentTimeMillis();
     if (currentTime - fTimeStamp < LIFE_TIME) return;
@@ -132,10 +134,12 @@ public class DynamicValidationStateChange extends CompositeChange
       final Change change = children[i];
       SafeRunner.run(
           new ISafeRunnable() {
+            @Override
             public void run() throws Exception {
               change.dispose();
             }
 
+            @Override
             public void handleException(Throwable exception) {
               JavaPlugin.log(exception);
             }

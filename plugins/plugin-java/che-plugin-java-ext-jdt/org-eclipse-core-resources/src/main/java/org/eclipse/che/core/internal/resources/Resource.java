@@ -157,6 +157,7 @@ public abstract class Resource implements IResource, IPathRequestor, ICoreConsta
     if (depth == IResource.DEPTH_INFINITE) {
       accept(
           new IResourceProxyVisitor() {
+            @Override
             public boolean visit(IResourceProxy proxy) throws CoreException {
               return visitor.visit(proxy.requestResource());
             }
@@ -505,8 +506,10 @@ public abstract class Resource implements IResource, IPathRequestor, ICoreConsta
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public abstract int getType();
 
+  @Override
   public IWorkspace getWorkspace() {
     return workspace;
   }
@@ -521,6 +524,7 @@ public abstract class Resource implements IResource, IPathRequestor, ICoreConsta
   /* (non-Javadoc)
    * @see IResource#isAccessible()
    */
+  @Override
   public boolean isAccessible() {
     return exists();
   }
@@ -823,6 +827,7 @@ public abstract class Resource implements IResource, IPathRequestor, ICoreConsta
   /* (non-Javadoc)
    * @see IResource#getPathVariableManager()
    */
+  @Override
   public IPathVariableManager getPathVariableManager() {
     //        if (getProject() == null)
     //            return workspace.getPathVariableManager();

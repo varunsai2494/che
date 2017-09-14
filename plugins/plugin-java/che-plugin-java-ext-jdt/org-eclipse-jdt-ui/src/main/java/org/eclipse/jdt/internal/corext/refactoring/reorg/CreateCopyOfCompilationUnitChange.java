@@ -106,6 +106,7 @@ public final class CreateCopyOfCompilationUnitChange extends CreateTextFileChang
         new IRefactoringSearchRequestor() {
           TypeOccurrenceCollector fTypeOccurrenceCollector = new TypeOccurrenceCollector(type);
 
+          @Override
           public SearchMatch acceptSearchMatch(SearchMatch match) {
             try {
               return fTypeOccurrenceCollector.acceptSearchMatch2(copy, match);

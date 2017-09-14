@@ -36,16 +36,19 @@ public class MavenProjectWizardRegistrar implements ProjectWizardRegistrar {
     wizardPages.add(mavenPagePresenter);
   }
 
+  @Override
   @NotNull
   public String getProjectTypeId() {
     return MAVEN_ID;
   }
 
+  @Override
   @NotNull
   public String getCategory() {
     return JAVA_CATEGORY;
   }
 
+  @Override
   @NotNull
   public List<Provider<? extends WizardPage<MutableProjectConfig>>> getWizardPages() {
     return wizardPages;

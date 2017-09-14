@@ -75,6 +75,7 @@ public interface Resources
   @Source("xml/xml.svg")
   SVGResource xmlFile();
 
+  @Override
   @Source("console/clear.svg")
   SVGResource clear();
 

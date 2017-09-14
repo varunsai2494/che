@@ -55,10 +55,12 @@ public class ParameterMethodModel {
     return this.parameterType;
   }
 
+  @Override
   public int hashCode() {
     return hash(this.parameterName, this.parameterType);
   }
 
+  @Override
   public boolean equals(Object other) {
     if (other == null) {
       return false;
@@ -71,6 +73,7 @@ public class ParameterMethodModel {
         && this.parameterType.equals(((ParameterMethodModel) other).parameterType);
   }
 
+  @Override
   public String toString() {
     return "ParameterMethodModel[" + this.parameterName + "/" + this.parameterType + "]";
   }

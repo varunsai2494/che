@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.api.workspace.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -154,7 +155,7 @@ public class WorkspaceConfigJsonAdapterTest {
   private static String loadContent(String filename) throws IOException {
     try (Reader r =
         new InputStreamReader(
-            Thread.currentThread().getContextClassLoader().getResourceAsStream(filename))) {
+            Thread.currentThread().getContextClassLoader().getResourceAsStream(filename), UTF_8)) {
       return CharStreams.toString(r);
     }
   }

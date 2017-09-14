@@ -174,6 +174,7 @@ public abstract class ContainerDescription extends AbstractResourceDescription {
    * @see org.eclipse.ui.internal.ide.undo.ResourceDescription#recordStateFromHistory(org.eclipse.core.resources.IResource,
    *      org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public void recordStateFromHistory(IResource resource, IProgressMonitor monitor)
       throws CoreException {
     monitor.beginTask(UndoMessages.FolderDescription_SavingUndoInfoProgress, 100);
@@ -200,6 +201,7 @@ public abstract class ContainerDescription extends AbstractResourceDescription {
    *
    * @return the name of the container.
    */
+  @Override
   public String getName() {
     return name;
   }
@@ -247,6 +249,7 @@ public abstract class ContainerDescription extends AbstractResourceDescription {
    *
    * @see org.eclipse.ui.internal.ide.undo.ResourceDescription#restoreResourceAttributes(org.eclipse.core.resources.IResource)
    */
+  @Override
   protected void restoreResourceAttributes(IResource resource) throws CoreException {
     super.restoreResourceAttributes(resource);
     Assert.isLegal(resource instanceof IContainer);
@@ -279,6 +282,7 @@ public abstract class ContainerDescription extends AbstractResourceDescription {
    *
    * @see org.eclipse.ui.internal.ide.undo.ResourceDescription#verifyExistence(boolean)
    */
+  @Override
   public boolean verifyExistence(boolean checkMembers) {
     boolean existence = super.verifyExistence(checkMembers);
     if (existence) {

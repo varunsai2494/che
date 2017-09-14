@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.github.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.io.BufferedReader;
@@ -82,7 +84,7 @@ public class GitHubKeyUploader implements SshKeyUploader {
 
     final Map<String, String> postParams = new HashMap<>(2);
     postParams.put("title", "IDE SSH Key (" + new SimpleDateFormat().format(new Date()) + ")");
-    postParams.put("key", new String(publicKey.getBytes()));
+    postParams.put("key", new String(publicKey.getBytes(UTF_8), UTF_8));
 
     final String postBody = JsonHelper.toJson(postParams);
 
@@ -99,7 +101,7 @@ public class GitHubKeyUploader implements SshKeyUploader {
       conn.setRequestProperty(HttpHeaders.CONTENT_LENGTH, String.valueOf(postBody.length()));
       conn.setDoOutput(true);
       try (OutputStream out = conn.getOutputStream()) {
-        out.write(postBody.getBytes());
+        out.write(postBody.getBytes(UTF_8));
       }
       responseCode = conn.getResponseCode();
     } finally {
@@ -125,7 +127,7 @@ public class GitHubKeyUploader implements SshKeyUploader {
       conn.setRequestProperty(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON);
       if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
         try (BufferedReader reader =
-            new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            new BufferedReader(new InputStreamReader(conn.getInputStream(), UTF_8))) {
           String line;
           while ((line = reader.readLine()) != null) {
             answer.append(line).append('\n');

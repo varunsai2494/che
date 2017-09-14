@@ -193,6 +193,7 @@ public class DefaultPositionUpdater implements PositionUpdater {
   /*
    * @see org.eclipse.jface.text.IPositionUpdater#update(org.eclipse.jface.text. DocumentEvent)
    */
+  @Override
   public void update(DocumentEvent event) {
 
     try {

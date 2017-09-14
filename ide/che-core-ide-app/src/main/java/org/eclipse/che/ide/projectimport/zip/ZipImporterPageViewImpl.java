@@ -154,6 +154,7 @@ public class ZipImporterPageViewImpl extends Composite implements ZipImporterPag
     skipFirstLevel.setValue(skip);
   }
 
+  @Override
   public void setDelegate(@NotNull ActionDelegate delegate) {
     this.delegate = delegate;
   }

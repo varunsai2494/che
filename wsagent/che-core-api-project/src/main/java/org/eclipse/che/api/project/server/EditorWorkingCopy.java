@@ -11,6 +11,7 @@
 package org.eclipse.che.api.project.server;
 
 import static java.lang.String.format;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.api.project.shared.dto.EditorChangesDto.Type.INSERT;
 import static org.eclipse.che.api.project.shared.dto.EditorChangesDto.Type.REMOVE;
 
@@ -63,7 +64,7 @@ public class EditorWorkingCopy {
    * @return content ot the working copy
    */
   public String getContentAsString() {
-    return new String(getContentAsBytes());
+    return new String(getContentAsBytes(), UTF_8);
   }
 
   /**
@@ -93,7 +94,7 @@ public class EditorWorkingCopy {
    * @return current working copy after updating content
    */
   EditorWorkingCopy updateContent(String content) {
-    updateContent(content.getBytes());
+    updateContent(content.getBytes(UTF_8));
     return this;
   }
 

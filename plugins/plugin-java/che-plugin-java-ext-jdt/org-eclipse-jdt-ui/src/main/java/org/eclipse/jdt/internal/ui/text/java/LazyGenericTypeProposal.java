@@ -88,6 +88,7 @@ public class LazyGenericTypeProposal extends LazyJavaTypeCompletionProposal
     /*
      * @see org.eclipse.jface.text.contentassist.IContextInformation#getContextDisplayString()
      */
+    @Override
     public String getContextDisplayString() {
       return fContextDisplayString;
     }
@@ -95,6 +96,7 @@ public class LazyGenericTypeProposal extends LazyJavaTypeCompletionProposal
     /*
      * @see org.eclipse.jface.text.contentassist.IContextInformation#getImage()
      */
+    @Override
     public Image getImage() {
       return fImage;
     }
@@ -102,6 +104,7 @@ public class LazyGenericTypeProposal extends LazyJavaTypeCompletionProposal
     /*
      * @see org.eclipse.jface.text.contentassist.IContextInformation#getInformationDisplayString()
      */
+    @Override
     public String getInformationDisplayString() {
       return fInformationDisplayString;
     }
@@ -126,6 +129,7 @@ public class LazyGenericTypeProposal extends LazyJavaTypeCompletionProposal
     /*
      * @see org.eclipse.jface.text.contentassist.IContextInformationExtension#getContextInformationPosition()
      */
+    @Override
     public int getContextInformationPosition() {
       return fPosition;
     }

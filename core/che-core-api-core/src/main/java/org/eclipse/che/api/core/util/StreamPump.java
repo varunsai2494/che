@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.api.core.util;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,7 +27,7 @@ public final class StreamPump implements Runnable {
 
   public synchronized void start(Process process, LineConsumer lineConsumer) {
     this.lineConsumer = lineConsumer;
-    bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+    bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), UTF_8));
     final Thread t = new Thread(this, "StreamPump");
     t.setDaemon(true);
     t.start();

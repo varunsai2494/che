@@ -191,6 +191,7 @@ public class GetterSetterCompletionProposal extends JavaTypeCompletionProposal
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension4#isAutoInsertable()
    */
+  @Override
   public boolean isAutoInsertable() {
     return false;
   }

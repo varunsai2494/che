@@ -69,6 +69,7 @@ public class WorkspaceDescription extends ModelObject implements IWorkspaceDescr
   }
 
   /** @see IWorkspaceDescription#getBuildOrder() */
+  @Override
   public String[] getBuildOrder() {
     return getBuildOrder(true);
   }
@@ -87,26 +88,31 @@ public class WorkspaceDescription extends ModelObject implements IWorkspaceDescr
   }
 
   /** @see IWorkspaceDescription#getFileStateLongevity() */
+  @Override
   public long getFileStateLongevity() {
     return fileStateLongevity;
   }
 
   /** @see IWorkspaceDescription#getMaxBuildIterations() */
+  @Override
   public int getMaxBuildIterations() {
     return maxBuildIterations;
   }
 
   /** @see IWorkspaceDescription#getMaxFileStates() */
+  @Override
   public int getMaxFileStates() {
     return maxFileStates;
   }
 
   /** @see IWorkspaceDescription#getMaxFileStateSize() */
+  @Override
   public long getMaxFileStateSize() {
     return maxFileStateSize;
   }
 
   /** @see IWorkspaceDescription#isApplyFileStatePolicy() */
+  @Override
   public boolean isApplyFileStatePolicy() {
     return applyFileStatePolicy;
   }
@@ -116,6 +122,7 @@ public class WorkspaceDescription extends ModelObject implements IWorkspaceDescr
   }
 
   /** @see IWorkspaceDescription#getSnapshotInterval() */
+  @Override
   public long getSnapshotInterval() {
     return snapshotInterval;
   }
@@ -125,6 +132,7 @@ public class WorkspaceDescription extends ModelObject implements IWorkspaceDescr
   }
 
   /** @see IWorkspaceDescription#isAutoBuilding() */
+  @Override
   public boolean isAutoBuilding() {
     return autoBuilding;
   }
@@ -134,41 +142,49 @@ public class WorkspaceDescription extends ModelObject implements IWorkspaceDescr
   }
 
   /** @see IWorkspaceDescription#setAutoBuilding(boolean) */
+  @Override
   public void setAutoBuilding(boolean value) {
     autoBuilding = value;
   }
 
   /** @see IWorkspaceDescription#setBuildOrder(String[]) */
+  @Override
   public void setBuildOrder(String[] value) {
     buildOrder = (value == null) ? null : (String[]) value.clone();
   }
 
   /** @see IWorkspaceDescription#setFileStateLongevity(long) */
+  @Override
   public void setFileStateLongevity(long time) {
     fileStateLongevity = time;
   }
 
   /** @see IWorkspaceDescription#setMaxBuildIterations(int) */
+  @Override
   public void setMaxBuildIterations(int number) {
     maxBuildIterations = number;
   }
 
   /** @see IWorkspaceDescription#setMaxFileStates(int) */
+  @Override
   public void setMaxFileStates(int number) {
     maxFileStates = number;
   }
 
   /** @see IWorkspaceDescription#setMaxFileStateSize(long) */
+  @Override
   public void setMaxFileStateSize(long size) {
     maxFileStateSize = size;
   }
 
   /** @see IWorkspaceDescription#setApplyFileStatePolicy(boolean) */
+  @Override
   public void setApplyFileStatePolicy(boolean apply) {
     applyFileStatePolicy = apply;
   }
 
   /** @see IWorkspaceDescription#setSnapshotInterval(long) */
+  @Override
   public void setSnapshotInterval(long snapshotInterval) {
     this.snapshotInterval = snapshotInterval;
   }

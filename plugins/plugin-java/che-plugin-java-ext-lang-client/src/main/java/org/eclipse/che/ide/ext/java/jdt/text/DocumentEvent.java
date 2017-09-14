@@ -119,6 +119,7 @@ public class DocumentEvent {
    * @see java.lang.Object#toString()
    * @since 3.4
    */
+  @Override
   public String toString() {
     StringBuffer buffer = new StringBuffer();
     buffer.append("offset: "); //$NON-NLS-1$

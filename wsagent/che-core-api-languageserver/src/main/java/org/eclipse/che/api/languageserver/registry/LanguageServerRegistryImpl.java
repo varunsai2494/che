@@ -104,6 +104,7 @@ public class LanguageServerRegistryImpl implements LanguageServerRegistry {
                 left == null ? right : new ServerCapabilitiesOverlay(left, right).compute());
   }
 
+  @Override
   public ServerCapabilities initialize(String fileUri) throws LanguageServerException {
     String projectPath = extractProjectPath(fileUri);
     if (projectPath == null) {
@@ -231,6 +232,7 @@ public class LanguageServerRegistryImpl implements LanguageServerRegistry {
     return LanguageServiceUtils.prefixURI(fileEntry.getProject());
   }
 
+  @Override
   public List<Collection<InitializedLanguageServer>> getApplicableLanguageServers(String fileUri)
       throws LanguageServerException {
     String projectPath = extractProjectPath(fileUri);

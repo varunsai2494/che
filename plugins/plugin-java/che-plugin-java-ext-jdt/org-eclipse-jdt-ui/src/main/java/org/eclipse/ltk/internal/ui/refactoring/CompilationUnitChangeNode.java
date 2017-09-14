@@ -113,6 +113,7 @@ public class CompilationUnitChangeNode extends TextEditChangeNode {
   }
 
   private static class OffsetComparator implements Comparator<TextEditBasedChangeGroup> {
+    @Override
     public int compare(TextEditBasedChangeGroup c1, TextEditBasedChangeGroup c2) {
       int p1 = getOffset(c1);
       int p2 = getOffset(c2);

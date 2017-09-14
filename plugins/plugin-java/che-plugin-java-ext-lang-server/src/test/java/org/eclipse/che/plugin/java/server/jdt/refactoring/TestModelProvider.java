@@ -26,6 +26,7 @@ import org.junit.Assert;
 public class TestModelProvider extends ModelProvider {
 
   private static class Sorter implements Comparator {
+    @Override
     public int compare(Object o1, Object o2) {
       IResourceDelta d1 = (IResourceDelta) o1;
       IResourceDelta d2 = (IResourceDelta) o2;
@@ -51,6 +52,7 @@ public class TestModelProvider extends ModelProvider {
     LAST_DELTA = null;
   }
 
+  @Override
   public IStatus validateChange(IResourceDelta delta, IProgressMonitor pm) {
     LAST_DELTA = delta;
     return super.validateChange(delta, pm);
@@ -267,6 +269,7 @@ public class TestModelProvider extends ModelProvider {
     try {
       delta.accept(
           new IResourceDeltaVisitor() {
+            @Override
             public boolean visit(IResourceDelta d) throws CoreException {
               Assert.assertTrue("Not a copy delta", (d.getKind() & ~IResourceDelta.CHANGED) == 0);
               return true;

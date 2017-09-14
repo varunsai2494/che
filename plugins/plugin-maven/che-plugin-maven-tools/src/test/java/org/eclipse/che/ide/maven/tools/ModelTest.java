@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.ide.maven.tools;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static java.util.Collections.singletonMap;
@@ -1918,11 +1919,11 @@ public class ModelTest {
   }
 
   private String read(File file) throws IOException {
-    return new String(Files.readAllBytes(file.toPath()));
+    return new String(Files.readAllBytes(file.toPath()), UTF_8);
   }
 
   private void write(File file, String content) throws IOException {
-    Files.write(file.toPath(), content.getBytes());
+    Files.write(file.toPath(), content.getBytes(UTF_8));
   }
 
   private Path targetDir() throws URISyntaxException {

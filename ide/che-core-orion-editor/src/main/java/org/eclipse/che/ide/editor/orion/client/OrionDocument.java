@@ -163,6 +163,7 @@ public class OrionDocument extends AbstractDocument {
     this.editorOverlay.setCaretOffset(getIndexFromPosition(position));
   }
 
+  @Override
   public int getCursorOffset() {
     return this.editorOverlay.getTextView().getCaretOffset();
   }
@@ -198,6 +199,7 @@ public class OrionDocument extends AbstractDocument {
     return this.positionConverter;
   }
 
+  @Override
   public void replace(int offset, int length, String text) {
     this.editorOverlay.getModel().setText(text, offset, offset + length);
     updateModificationTimeStamp();
@@ -219,6 +221,7 @@ public class OrionDocument extends AbstractDocument {
     }
   }
 
+  @Override
   public int getContentsCharCount() {
     return this.editorOverlay.getModel().getCharCount();
   }

@@ -33,15 +33,18 @@ public final class MonitoringCreateTargetQueries implements ICreateTargetQueries
   }
 
   /** {@inheritDoc} */
+  @Override
   public ICreateTargetQuery createNewPackageQuery() {
     return new ICreateTargetQuery() {
 
+      @Override
       public Object getCreatedTarget(Object selection) {
         final Object target = fDelegate.createNewPackageQuery().getCreatedTarget(selection);
         fLog.markAsCreated(selection, target);
         return target;
       }
 
+      @Override
       public String getNewButtonLabel() {
         return fDelegate.createNewPackageQuery().getNewButtonLabel();
       }

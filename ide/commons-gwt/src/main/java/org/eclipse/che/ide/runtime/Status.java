@@ -120,6 +120,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public IStatus[] getChildren() {
     return theEmptyStatusArray;
   }
@@ -127,6 +128,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public int getCode() {
     return code;
   }
@@ -134,6 +136,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public Throwable getException() {
     return exception;
   }
@@ -141,6 +144,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public String getMessage() {
     return message;
   }
@@ -148,6 +152,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public String getPlugin() {
     return pluginId;
   }
@@ -155,6 +160,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public int getSeverity() {
     return severity;
   }
@@ -162,6 +168,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public boolean isMultiStatus() {
     return false;
   }
@@ -169,6 +176,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public boolean isOK() {
     return severity == OK;
   }
@@ -176,6 +184,7 @@ public class Status implements IStatus {
   /*
    * (Intentionally not javadoc'd) Implements the corresponding method on <code>IStatus</code>.
    */
+  @Override
   public boolean matches(int severityMask) {
     return (severity & severityMask) != 0;
   }
@@ -235,6 +244,7 @@ public class Status implements IStatus {
   }
 
   /** Returns a string representation of the status, suitable for debugging purposes only. */
+  @Override
   public String toString() {
     StringBuffer buf = new StringBuffer();
     buf.append("Status "); //$NON-NLS-1$

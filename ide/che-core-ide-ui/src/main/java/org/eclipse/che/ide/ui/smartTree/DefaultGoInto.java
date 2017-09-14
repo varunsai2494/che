@@ -41,6 +41,7 @@ public class DefaultGoInto implements GoInto {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void bind(Tree tree) {
     this.tree = tree;
   }
@@ -61,6 +62,7 @@ public class DefaultGoInto implements GoInto {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean activate(Node node) {
     if (!node.supportGoInto()) {
       return false;
@@ -95,11 +97,13 @@ public class DefaultGoInto implements GoInto {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean isActive() {
     return active;
   }
 
   /** {@inheritDoc} */
+  @Override
   public void reset() {
     //reset selection
     tree.getSelectionModel().deselectAll();
@@ -130,6 +134,7 @@ public class DefaultGoInto implements GoInto {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Node getLastUsed() {
     return node;
   }

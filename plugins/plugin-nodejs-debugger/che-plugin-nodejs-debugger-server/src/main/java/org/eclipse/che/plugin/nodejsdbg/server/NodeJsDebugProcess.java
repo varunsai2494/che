@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.nodejsdbg.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -50,7 +52,7 @@ public class NodeJsDebugProcess implements NodeJsProcessObservable {
     this.outputSeparator = outputSeparator;
 
     process = initializeNodeJsDebugProcess(options);
-    processWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+    processWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream(), UTF_8));
 
     executor =
         Executors.newScheduledThreadPool(

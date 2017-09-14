@@ -73,10 +73,12 @@ public class ConfirmDialogViewImpl extends Window implements ConfirmDialogView {
     this.content.setWidget(content);
   }
 
+  @Override
   public void setOkButtonLabel(String label) {
     footer.setOkButtonLabel(label);
   }
 
+  @Override
   public void setCancelButtonLabel(String label) {
     footer.setCancelButtonLabel(label);
   }

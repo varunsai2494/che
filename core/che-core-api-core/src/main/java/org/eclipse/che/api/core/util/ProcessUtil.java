@@ -11,6 +11,7 @@
 package org.eclipse.che.api.core.util;
 
 import static java.lang.String.format;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.common.base.Joiner;
 import java.io.BufferedReader;
@@ -45,9 +46,9 @@ public final class ProcessUtil {
   public static void process(Process p, LineConsumer stdout, LineConsumer stderr)
       throws IOException {
     try (BufferedReader inputReader =
-            new BufferedReader(new InputStreamReader(p.getInputStream()));
+            new BufferedReader(new InputStreamReader(p.getInputStream(), UTF_8));
         BufferedReader errorReader =
-            new BufferedReader(new InputStreamReader(p.getErrorStream()))) {
+            new BufferedReader(new InputStreamReader(p.getErrorStream(), UTF_8))) {
       String line;
       while ((line = inputReader.readLine()) != null) {
         stdout.writeLine(line);
@@ -68,7 +69,7 @@ public final class ProcessUtil {
    */
   public static void process(Process p, LineConsumer stdout) throws IOException {
     try (BufferedReader inputReader =
-        new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+        new BufferedReader(new InputStreamReader(p.getInputStream(), UTF_8))) {
       String line;
       while ((line = inputReader.readLine()) != null) {
         stdout.writeLine(line);

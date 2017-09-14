@@ -33,12 +33,14 @@ public abstract class InternalLanguageElementNode extends TextEditChangeNode.Chi
     super(parent);
   }
 
+  @Override
   public ChangePreviewViewerDescriptor getChangePreviewViewerDescriptor() throws CoreException {
     InternalTextEditChangeNode element = getTextEditChangeNode();
     if (element == null) return null;
     return element.getChangePreviewViewerDescriptor();
   }
 
+  @Override
   public ChangePreview feedInput(IChangePreviewViewer viewer, List categories)
       throws CoreException {
     InternalTextEditChangeNode element = getTextEditChangeNode();
@@ -59,6 +61,7 @@ public abstract class InternalLanguageElementNode extends TextEditChangeNode.Chi
     return null;
   }
 
+  @Override
   public void setEnabled(boolean enabled) {
     for (Iterator iter = fChildren.iterator(); iter.hasNext(); ) {
       PreviewNode element = (PreviewNode) iter.next();
@@ -66,10 +69,12 @@ public abstract class InternalLanguageElementNode extends TextEditChangeNode.Chi
     }
   }
 
+  @Override
   public void setEnabledShallow(boolean enabled) {
     // do nothing. We don't manage an own enablement state.
   }
 
+  @Override
   public int getActive() {
     Assert.isTrue(fChildren.size() > 0);
     int result = ((PreviewNode) fChildren.get(0)).getActive();
@@ -81,16 +86,19 @@ public abstract class InternalLanguageElementNode extends TextEditChangeNode.Chi
     return result;
   }
 
+  @Override
   public PreviewNode[] getChildren() {
     if (fChildren == null) return PreviewNode.EMPTY_CHILDREN;
     return (PreviewNode[]) fChildren.toArray(new PreviewNode[fChildren.size()]);
   }
 
+  @Override
   boolean hasOneGroupCategory(List categories) {
     if (fChildren == null) return false;
     return getGroupCategorySet().containsOneCategory(categories);
   }
 
+  @Override
   public boolean hasDerived() {
     if (fChildren == null) return false;
     for (Iterator iter = fChildren.iterator(); iter.hasNext(); ) {

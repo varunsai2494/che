@@ -21,6 +21,7 @@ import org.testng.annotations.Test;
 /** @author gazarenkov */
 public class VfsWatcherTest extends WsAgentTestBase {
 
+  @Override
   @BeforeMethod
   public void setUp() throws Exception {
     super.setUp();

@@ -25,6 +25,7 @@ public final class TypeVariable2 extends ConstraintVariable2 implements ITypeCon
     fRange = range;
   }
 
+  @Override
   public CompilationUnitRange getRange() {
     return fRange;
   }
@@ -51,10 +52,12 @@ public final class TypeVariable2 extends ConstraintVariable2 implements ITypeCon
         && getType() == otherTypeVariable.getType();
   }
 
+  @Override
   public void setCompilationUnit(ICompilationUnit unit) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public ICompilationUnit getCompilationUnit() {
     return fRange.getCompilationUnit();
   }

@@ -125,6 +125,7 @@ public class UnimplementedCodeFix extends CompilationUnitRewriteOperationsFix {
           new CompilationUnitRewriteOperation[] {operation});
     } else {
       return new IProposableFix() {
+        @Override
         public CompilationUnitChange createChange(IProgressMonitor progressMonitor)
             throws CoreException {
           CompilationUnitChange change =
@@ -145,14 +146,17 @@ public class UnimplementedCodeFix extends CompilationUnitRewriteOperationsFix {
           return change;
         }
 
+        @Override
         public String getAdditionalProposalInfo() {
           return new String();
         }
 
+        @Override
         public String getDisplayString() {
           return CorrectionMessages.UnimplementedMethodsCorrectionProposal_description;
         }
 
+        @Override
         public IStatus getStatus() {
           return new Status(
               IStatus.ERROR,

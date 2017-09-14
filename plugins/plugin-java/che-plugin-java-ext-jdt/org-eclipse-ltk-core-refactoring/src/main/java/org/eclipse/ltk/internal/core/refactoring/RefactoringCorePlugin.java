@@ -120,6 +120,7 @@ public class RefactoringCorePlugin extends Plugin {
     return fgUndoManager;
   }
 
+  @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
     RefactoringContributionManager.getInstance().connect();
@@ -129,6 +130,7 @@ public class RefactoringCorePlugin extends Plugin {
     service.addHistoryListener(fRefactoringHistoryListener);
   }
 
+  @Override
   public void stop(BundleContext context) throws Exception {
     if (fRefactoringUndoContext != null) {
       IUndoContext workspaceContext =

@@ -51,6 +51,7 @@ public class ModifierCorrectionsQuickFixTest17 extends QuickFixTest {
   //		return new Java17ProjectTestSetup(test);
   //	}
 
+  @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
@@ -74,6 +75,7 @@ public class ModifierCorrectionsQuickFixTest17 extends QuickFixTest {
     fSourceFolder = JavaProjectHelper.addSourceContainer(fJProject1, "src");
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();

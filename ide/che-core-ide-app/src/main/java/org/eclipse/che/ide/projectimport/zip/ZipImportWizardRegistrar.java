@@ -34,11 +34,13 @@ public class ZipImportWizardRegistrar implements ImportWizardRegistrar {
     wizardPages.add(provider);
   }
 
+  @Override
   @NotNull
   public String getImporterId() {
     return Constants.ZIP_IMPORTER_ID;
   }
 
+  @Override
   @NotNull
   public List<Provider<? extends WizardPage<MutableProjectConfig>>> getWizardPages() {
     return wizardPages;

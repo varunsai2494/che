@@ -41,6 +41,7 @@ public class Rename18Test extends RefactoringTest {
   private static final String REFACTORING_PATH = "RenameTests18/";
   Java18Setup setup = new Java18Setup();
 
+  @Override
   protected String getRefactoringPath() {
     return REFACTORING_PATH;
   }
@@ -50,6 +51,7 @@ public class Rename18Test extends RefactoringTest {
     ParticipantTesting.init();
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();

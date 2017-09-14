@@ -20,6 +20,7 @@ import org.eclipse.che.ide.api.data.tree.Node;
  */
 public interface NodeUniqueKeyProvider extends UniqueKeyProvider<Node> {
   /** {@inheritDoc} */
+  @Override
   @NotNull
   String getKey(@NotNull Node item);
 }

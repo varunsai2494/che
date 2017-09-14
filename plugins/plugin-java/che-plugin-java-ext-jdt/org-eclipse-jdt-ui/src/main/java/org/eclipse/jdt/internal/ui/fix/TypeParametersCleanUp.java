@@ -107,6 +107,7 @@ public class TypeParametersCleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     int problemId = problem.getProblemId();
 

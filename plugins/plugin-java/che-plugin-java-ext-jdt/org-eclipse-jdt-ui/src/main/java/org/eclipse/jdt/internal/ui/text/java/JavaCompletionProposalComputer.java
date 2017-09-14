@@ -54,6 +54,7 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
     /*
      * @see IContextInformation#getContextDisplayString()
      */
+    @Override
     public String getContextDisplayString() {
       return fContextInformation.getContextDisplayString();
     }
@@ -61,6 +62,7 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
     /*
      * @see IContextInformation#getImage()
      */
+    @Override
     public Image getImage() {
       return fContextInformation.getImage();
     }
@@ -68,6 +70,7 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
     /*
      * @see IContextInformation#getInformationDisplayString()
      */
+    @Override
     public String getInformationDisplayString() {
       return fContextInformation.getInformationDisplayString();
     }
@@ -75,6 +78,7 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
     /*
      * @see IContextInformationExtension#getContextInformationPosition()
      */
+    @Override
     public int getContextInformationPosition() {
       return fPosition;
     }
@@ -168,6 +172,7 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalComputer#computeContextInformation(org.eclipse.jface.text
    * .contentassist.TextContentAssistInvocationContext, org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public List<IContextInformation> computeContextInformation(
       ContentAssistInvocationContext context, IProgressMonitor monitor) {
     if (context instanceof JavaContentAssistInvocationContext) {
@@ -185,6 +190,7 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalComputer#computeCompletionProposals(org.eclipse.jface.text
    * .contentassist.TextContentAssistInvocationContext, org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public List<ICompletionProposal> computeCompletionProposals(
       ContentAssistInvocationContext context, IProgressMonitor monitor) {
     if (context instanceof JavaContentAssistInvocationContext) {
@@ -285,24 +291,32 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
 
       private long fEndTime;
 
+      @Override
       public void beginTask(String name, int totalWork) {
         fEndTime = System.currentTimeMillis() + timeout;
       }
 
+      @Override
       public boolean isCanceled() {
         return fEndTime <= System.currentTimeMillis();
       }
 
+      @Override
       public void done() {}
 
+      @Override
       public void internalWorked(double work) {}
 
+      @Override
       public void setCanceled(boolean value) {}
 
+      @Override
       public void setTaskName(String name) {}
 
+      @Override
       public void subTask(String name) {}
 
+      @Override
       public void worked(int work) {}
     };
   }
@@ -340,6 +354,7 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
   /*
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalComputer#getErrorMessage()
    */
+  @Override
   public String getErrorMessage() {
     return fErrorMessage;
   }
@@ -347,11 +362,13 @@ public class JavaCompletionProposalComputer implements IJavaCompletionProposalCo
   /*
    * @see org.eclipse.jdt.ui.text.java.IJavaCompletionProposalComputer#sessionStarted()
    */
+  @Override
   public void sessionStarted() {}
 
   /*
    * @see org.eclipse.jdt.ui.text.java.IJavaCompletionProposalComputer#sessionEnded()
    */
+  @Override
   public void sessionEnded() {
     fErrorMessage = null;
   }

@@ -75,6 +75,7 @@ public class ProblemLocation implements IProblemLocation {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IProblemLocation#getProblemId()
    */
+  @Override
   public int getProblemId() {
     return fId;
   }
@@ -82,6 +83,7 @@ public class ProblemLocation implements IProblemLocation {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IProblemLocation#getProblemArguments()
    */
+  @Override
   public String[] getProblemArguments() {
     return fArguments;
   }
@@ -89,6 +91,7 @@ public class ProblemLocation implements IProblemLocation {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IProblemLocation#getLength()
    */
+  @Override
   public int getLength() {
     return fLength;
   }
@@ -96,6 +99,7 @@ public class ProblemLocation implements IProblemLocation {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IProblemLocation#getOffset()
    */
+  @Override
   public int getOffset() {
     return fOffset;
   }
@@ -103,6 +107,7 @@ public class ProblemLocation implements IProblemLocation {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.ui.text.java.IProblemLocation#isError()
    */
+  @Override
   public boolean isError() {
     return fIsError;
   }
@@ -110,6 +115,7 @@ public class ProblemLocation implements IProblemLocation {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.ui.text.java.IProblemLocation#getMarkerType()
    */
+  @Override
   public String getMarkerType() {
     return fMarkerType;
   }
@@ -118,6 +124,7 @@ public class ProblemLocation implements IProblemLocation {
    * (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IProblemLocation#getCoveringNode(org.eclipse.jdt.core.dom.CompilationUnit)
    */
+  @Override
   public ASTNode getCoveringNode(CompilationUnit astRoot) {
     NodeFinder finder = new NodeFinder(astRoot, fOffset, fLength);
     return finder.getCoveringNode();
@@ -127,6 +134,7 @@ public class ProblemLocation implements IProblemLocation {
    * (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IProblemLocation#getCoveredNode(org.eclipse.jdt.core.dom.CompilationUnit)
    */
+  @Override
   public ASTNode getCoveredNode(CompilationUnit astRoot) {
     NodeFinder finder = new NodeFinder(astRoot, fOffset, fLength);
     return finder.getCoveredNode();

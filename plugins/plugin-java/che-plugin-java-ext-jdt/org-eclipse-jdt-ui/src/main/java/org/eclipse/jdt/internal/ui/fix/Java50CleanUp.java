@@ -174,6 +174,7 @@ public class Java50CleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     int id = problem.getProblemId();
 

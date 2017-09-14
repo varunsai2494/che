@@ -11,6 +11,7 @@
 package org.eclipse.che.plugin.svn.server;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.singletonList;
 import static org.eclipse.che.dto.server.DtoFactory.newDto;
 import static org.eclipse.che.plugin.svn.server.utils.InfoUtils.getRelativeUrl;
@@ -834,7 +835,7 @@ public class SubversionApi {
     if (value.contains("\n")) {
       try {
         valueFile = java.nio.file.Files.createTempFile("svn-propset-value-", null);
-        java.nio.file.Files.write(valueFile, value.getBytes());
+        java.nio.file.Files.write(valueFile, value.getBytes(UTF_8));
         uArgs.add("-F");
         uArgs.add(valueFile.toString());
       } catch (IOException e) {

@@ -142,6 +142,7 @@ public class ClasspathJar extends CodenvyClasspathLocation {
     return packageNames;
   }
 
+  @Override
   public void cleanup() {
     if (this.zipFile != null && this.closeZipFileAtEnd) {
       try {
@@ -153,6 +154,7 @@ public class ClasspathJar extends CodenvyClasspathLocation {
     this.knownPackageNames = null;
   }
 
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (!(o instanceof ClasspathJar)) return false;
@@ -163,6 +165,7 @@ public class ClasspathJar extends CodenvyClasspathLocation {
     return this.zipFilename.equals(jar.zipFilename) && lastModified() == jar.lastModified();
   }
 
+  @Override
   public NameEnvironmentAnswer findClass(
       String binaryFileName, String qualifiedPackageName, String qualifiedBinaryFileName) {
     if (!isPackage(qualifiedPackageName)) return null; // most common case
@@ -183,15 +186,18 @@ public class ClasspathJar extends CodenvyClasspathLocation {
     return null;
   }
 
+  @Override
   public IPath getProjectRelativePath() {
     if (this.resource == null) return null;
     return this.resource.getProjectRelativePath();
   }
 
+  @Override
   public int hashCode() {
     return this.zipFilename == null ? super.hashCode() : this.zipFilename.hashCode();
   }
 
+  @Override
   public boolean isPackage(String qualifiedPackageName) {
     SimpleSet knownPackages = getKnownPackages();
     return knownPackages.includes(qualifiedPackageName);
@@ -221,12 +227,14 @@ public class ClasspathJar extends CodenvyClasspathLocation {
     return this.lastModified;
   }
 
+  @Override
   public String toString() {
     String start = "Classpath jar file " + this.zipFilename; //$NON-NLS-1$
     if (this.accessRuleSet == null) return start;
     return start + " with " + this.accessRuleSet; //$NON-NLS-1$
   }
 
+  @Override
   public String debugPathString() {
     long time = lastModified();
     if (time == 0) return this.zipFilename;

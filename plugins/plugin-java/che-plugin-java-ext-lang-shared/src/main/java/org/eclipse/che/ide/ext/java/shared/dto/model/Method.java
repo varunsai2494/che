@@ -29,8 +29,10 @@ public interface Method extends Member {
    *
    * @return the simple name of this method
    */
+  @Override
   String getElementName();
 
+  @Override
   void setElementName(String elementName);
 
   /** @return name of the return type */

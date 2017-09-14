@@ -386,6 +386,7 @@ public class JavaContext extends CompilationUnitContext {
     Arrays.sort(
         variables,
         new Comparator<Variable>() {
+          @Override
           public int compare(Variable o1, Variable o2) {
             return rank(o1) - rank(o2);
           }

@@ -359,6 +359,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.Change#dispose()
    */
+  @Override
   public final void dispose() {
     if (fValidationState != null) {
       fValidationState.dispose();
@@ -368,6 +369,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.TextEditBasedChange#getCurrentContent(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public final String getCurrentContent(final IProgressMonitor monitor) throws CoreException {
     return getCurrentDocument(monitor).get();
   }
@@ -375,6 +377,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.TextEditBasedChange#getCurrentContent(org.eclipse.jface.text.IRegion,boolean,int,org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public final String getCurrentContent(
       final IRegion region,
       final boolean expand,
@@ -415,6 +418,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.Change#getModifiedElement()
    */
+  @Override
   public final Object getModifiedElement() {
     return fFile;
   }
@@ -422,6 +426,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.TextEditBasedChange#getPreviewContent(org.eclipse.ltk.core.refactoring.TextEditBasedChangeGroup[],org.eclipse.jface.text.IRegion,boolean,int,org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public final String getPreviewContent(
       final TextEditBasedChangeGroup[] groups,
       final IRegion region,
@@ -477,6 +482,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
           final TextEditProcessor processor =
               new TextEditProcessor(document, copy, TextEdit.NONE) {
 
+                @Override
                 protected final boolean considerEdit(final TextEdit edit) {
 
                   final TextEdit originalEdit = (TextEdit) originalMap.get(edit);
@@ -513,6 +519,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
           final IDocumentListener listener =
               new IDocumentListener() {
 
+                @Override
                 public final void documentAboutToBeChanged(final DocumentEvent event) {
                   final ComposableUndoEdit edit = new ComposableUndoEdit();
 
@@ -525,6 +532,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
                   eventUndos.addFirst(edit);
                 }
 
+                @Override
                 public final void documentChanged(final DocumentEvent event) {
                   // Do nothing
                 }
@@ -548,6 +556,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
       final IPositionUpdater positionUpdater =
           new IPositionUpdater() {
 
+            @Override
             public final void update(final DocumentEvent event) {
 
               final int eventOffset = event.getOffset();
@@ -737,6 +746,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.TextEditBasedChange#getPreviewContent(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public final String getPreviewContent(final IProgressMonitor monitor) throws CoreException {
     return getPreviewDocument(monitor).get();
   }
@@ -788,6 +798,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.Change#initializeValidationData(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public final void initializeValidationData(IProgressMonitor monitor) {
     if (monitor == null) monitor = new NullProgressMonitor();
     monitor.beginTask("", 1); //$NON-NLS-1$
@@ -801,6 +812,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.Change#isValid(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public final RefactoringStatus isValid(IProgressMonitor monitor)
       throws CoreException, OperationCanceledException {
     if (monitor == null) monitor = new NullProgressMonitor();
@@ -845,6 +857,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.Change#perform(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public final Change perform(final IProgressMonitor monitor) throws CoreException {
     monitor.beginTask("", 3); //$NON-NLS-1$
 
@@ -899,6 +912,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
     final BadLocationException[] exception = new BadLocationException[1];
     Runnable runnable =
         new Runnable() {
+          @Override
           public void run() {
             synchronized (completionLock) {
               try {
@@ -977,6 +991,7 @@ public class MultiStateTextFileChange extends TextEditBasedChange {
   /*
    * @see org.eclipse.ltk.core.refactoring.TextEditBasedChange#setKeepPreviewEdits(boolean)
    */
+  @Override
   public final void setKeepPreviewEdits(final boolean keep) {
     super.setKeepPreviewEdits(keep);
 

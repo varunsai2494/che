@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.java.plain.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.mockito.Mockito.mock;
 
 import java.io.File;
@@ -149,8 +150,8 @@ public abstract class BaseTest {
     FolderEntry codenvyFolder = parent.createFolder(".che");
     FolderEntry libFolder = parent.createFolder("lib");
 
-    libFolder.createFile("a.jar", "text".getBytes());
-    codenvyFolder.createFile("classpath", classpath.getBytes());
+    libFolder.createFile("a.jar", "text".getBytes(UTF_8));
+    codenvyFolder.createFile("classpath", classpath.getBytes(UTF_8));
 
     projectRegistry.setProjectType(
         parent.getPath().toString(), PlainJavaProjectConstants.JAVAC_PROJECT_ID, false);

@@ -11,6 +11,7 @@
 package org.eclipse.che.plugin.gdb.server;
 
 import static java.lang.String.format;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -301,7 +302,8 @@ public class Gdb extends GdbProcess {
       throws IOException, GdbTerminatedException, InterruptedException {
     LOG.debug(command);
 
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+    BufferedWriter writer =
+        new BufferedWriter(new OutputStreamWriter(process.getOutputStream(), UTF_8));
     writer.write(command);
     writer.newLine();
     writer.flush();

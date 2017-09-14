@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.sun.jna.Library;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.LongByReference;
@@ -30,7 +32,7 @@ public interface CLibrary extends Library {
     public byte[] sun_path;
 
     public SockAddrUn(String path) {
-      byte[] pathBytes = path.getBytes();
+      byte[] pathBytes = path.getBytes(UTF_8);
       if (pathBytes.length > UNIX_PATH_MAX) {
         throw new IllegalArgumentException(String.format("Path '%s' is too long. ", path));
       }

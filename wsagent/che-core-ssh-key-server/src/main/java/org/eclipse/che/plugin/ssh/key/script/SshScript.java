@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.ssh.key.script;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -76,7 +78,7 @@ public abstract class SshScript {
   private File storeSshScript(String keyPath) throws ServerException {
     File sshScriptFile = new File(rootFolder, getSshKeyFileName());
     try (FileOutputStream fos = new FileOutputStream(sshScriptFile)) {
-      fos.write(getSshScriptTemplate().replace("$ssh_key", keyPath).getBytes());
+      fos.write(getSshScriptTemplate().replace("$ssh_key", keyPath).getBytes(UTF_8));
     } catch (IOException e) {
       LOG.error("It is not possible to store {} ssh key", keyPath);
       throw new ServerException("Can't store SSH key");

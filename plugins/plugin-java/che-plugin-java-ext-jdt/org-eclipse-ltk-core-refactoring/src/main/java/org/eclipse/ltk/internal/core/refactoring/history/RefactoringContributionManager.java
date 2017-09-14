@@ -199,6 +199,7 @@ public final class RefactoringContributionManager implements IRegistryChangeList
   }
 
   /** {@inheritDoc} */
+  @Override
   public void registryChanged(final IRegistryChangeEvent event) {
     fContributionCache = null;
     fIdCache = null;

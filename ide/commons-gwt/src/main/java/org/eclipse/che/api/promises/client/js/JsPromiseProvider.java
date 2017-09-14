@@ -93,6 +93,7 @@ public class JsPromiseProvider implements PromiseProvider {
   }
 
   /** {@inheritDoc} */
+  @Override
   public final native <U> JsPromise<U> reject(PromiseError reason) /*-{
         return Promise.reject(reason);
     }-*/;

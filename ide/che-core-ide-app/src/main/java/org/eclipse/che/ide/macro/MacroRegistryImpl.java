@@ -35,6 +35,7 @@ public class MacroRegistryImpl implements MacroRegistry {
     this.macros = new HashMap<>();
   }
 
+  @Override
   @Inject(optional = true)
   public void register(Set<Macro> macros) {
     for (Macro macro : macros) {

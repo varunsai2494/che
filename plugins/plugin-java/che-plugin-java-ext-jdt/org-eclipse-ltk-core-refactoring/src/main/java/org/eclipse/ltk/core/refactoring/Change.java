@@ -259,6 +259,7 @@ public abstract class Change implements IAdaptable {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Object getAdapter(Class adapter) {
     Object result = Platform.getAdapterManager().getAdapter(this, adapter);
     if (result != null) return result;

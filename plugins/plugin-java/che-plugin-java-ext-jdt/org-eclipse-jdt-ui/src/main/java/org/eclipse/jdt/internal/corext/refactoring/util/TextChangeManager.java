@@ -86,6 +86,7 @@ public class TextChangeManager {
     Arrays.sort(
         cus,
         new Comparator<ICompilationUnit>() {
+          @Override
           public int compare(ICompilationUnit o1, ICompilationUnit o2) {
             String name1 = o1.getElementName();
             String name2 = o2.getElementName();

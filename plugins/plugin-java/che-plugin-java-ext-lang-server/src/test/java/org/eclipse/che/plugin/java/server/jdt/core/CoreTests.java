@@ -31,6 +31,7 @@ public class CoreTests extends BaseTest {
     this.setup = setup;
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();

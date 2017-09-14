@@ -105,6 +105,7 @@ public class UnnecessaryCodeCleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     if (problem.getProblemId() == IProblem.UnnecessaryCast)
       return isEnabled(CleanUpConstants.REMOVE_UNNECESSARY_CASTS);

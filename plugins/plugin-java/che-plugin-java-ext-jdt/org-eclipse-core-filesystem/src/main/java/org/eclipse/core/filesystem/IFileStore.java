@@ -218,6 +218,7 @@ public interface IFileStore extends IAdaptable {
    * @return A child file store.
    * @deprecated use {@link #getFileStore(IPath)} instead
    */
+  @Deprecated
   public IFileStore getChild(IPath path);
 
   /**
@@ -490,6 +491,7 @@ public interface IFileStore extends IAdaptable {
    *
    * @return A string representation of this store.
    */
+  @Override
   public String toString();
 
   /**

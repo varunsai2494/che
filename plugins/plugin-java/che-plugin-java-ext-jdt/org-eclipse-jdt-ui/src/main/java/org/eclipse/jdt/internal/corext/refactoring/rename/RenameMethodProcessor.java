@@ -203,10 +203,12 @@ public abstract class RenameMethodProcessor extends JavaRenameProcessor
 
   //---- INameUpdating -------------------------------------
 
+  @Override
   public final String getCurrentElementName() {
     return fMethod.getElementName();
   }
 
+  @Override
   public final RefactoringStatus checkNewElementName(String newName) {
     Assert.isNotNull(newName, "new name"); //$NON-NLS-1$
 
@@ -241,6 +243,7 @@ public abstract class RenameMethodProcessor extends JavaRenameProcessor
         fMethod.getDeclaringType(), JavaElementLabels.ALL_DEFAULT);
   }
 
+  @Override
   public Object getNewElement() {
     return fMethod.getDeclaringType().getMethod(getNewElementName(), fMethod.getParameterTypes());
   }
@@ -273,32 +276,39 @@ public abstract class RenameMethodProcessor extends JavaRenameProcessor
 
   //---- IReferenceUpdating -----------------------------------
 
+  @Override
   public final void setUpdateReferences(boolean update) {
     fUpdateReferences = update;
   }
 
+  @Override
   public boolean getUpdateReferences() {
     return fUpdateReferences;
   }
 
   //------------------- IDelegateUpdating ----------------------
 
+  @Override
   public boolean canEnableDelegateUpdating() {
     return true;
   }
 
+  @Override
   public boolean getDelegateUpdating() {
     return fDelegateUpdating;
   }
 
+  @Override
   public void setDelegateUpdating(boolean updating) {
     fDelegateUpdating = updating;
   }
 
+  @Override
   public boolean getDeprecateDelegates() {
     return fDelegateDeprecation;
   }
 
+  @Override
   public void setDeprecateDelegates(boolean deprecate) {
     fDelegateDeprecation = deprecate;
   }

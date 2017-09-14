@@ -59,12 +59,14 @@ public class GroupCategory {
     return fDescription;
   }
 
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) return true;
     if (obj == null || !getClass().equals(obj.getClass())) return false;
     return fId.equals(((GroupCategory) obj).fId);
   }
 
+  @Override
   public int hashCode() {
     return fId.hashCode();
   }

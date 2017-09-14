@@ -189,6 +189,7 @@ public class RenameTypeProcessor extends JavaRenameProcessor
 
   public static final class ParticipantDescriptorFilter implements IParticipantDescriptorFilter {
 
+    @Override
     public boolean select(IConfigurationElement element, RefactoringStatus status) {
       IConfigurationElement[] params = element.getChildren(PARAM);
       for (int i = 0; i < params.length; i++) {
@@ -292,14 +293,17 @@ public class RenameTypeProcessor extends JavaRenameProcessor
 
   //---- IRenameProcessor ----------------------------------------------
 
+  @Override
   public String getCurrentElementName() {
     return fType.getElementName();
   }
 
+  @Override
   public String getCurrentElementQualifier() {
     return JavaModelUtil.getTypeContainerName(fType);
   }
 
+  @Override
   public RefactoringStatus checkNewElementName(String newName) {
     Assert.isNotNull(newName, "new name"); //$NON-NLS-1$
     RefactoringStatus result = Checks.checkTypeName(newName, fType);
@@ -308,6 +312,7 @@ public class RenameTypeProcessor extends JavaRenameProcessor
     return result;
   }
 
+  @Override
   public Object getNewElement() {
     if (Checks.isTopLevel(fType)) {
       return getNewCompilationUnit().getType(getNewElementName());
@@ -359,46 +364,56 @@ public class RenameTypeProcessor extends JavaRenameProcessor
 
   //---- ITextUpdating -------------------------------------------------
 
+  @Override
   public boolean canEnableTextUpdating() {
     return true;
   }
 
+  @Override
   public boolean getUpdateTextualMatches() {
     return fUpdateTextualMatches;
   }
 
+  @Override
   public void setUpdateTextualMatches(boolean update) {
     fUpdateTextualMatches = update;
   }
 
   //---- IReferenceUpdating --------------------------------------
 
+  @Override
   public void setUpdateReferences(boolean update) {
     fUpdateReferences = update;
   }
 
+  @Override
   public boolean getUpdateReferences() {
     return fUpdateReferences;
   }
 
   //---- IQualifiedNameUpdating ----------------------------------
 
+  @Override
   public boolean canEnableQualifiedNameUpdating() {
     return !fType.getPackageFragment().isDefaultPackage() && !(fType.getParent() instanceof IType);
   }
 
+  @Override
   public boolean getUpdateQualifiedNames() {
     return fUpdateQualifiedNames;
   }
 
+  @Override
   public void setUpdateQualifiedNames(boolean update) {
     fUpdateQualifiedNames = update;
   }
 
+  @Override
   public String getFilePatterns() {
     return fFilePatterns;
   }
 
+  @Override
   public void setFilePatterns(String patterns) {
     Assert.isNotNull(patterns);
     fFilePatterns = patterns;
@@ -406,6 +421,7 @@ public class RenameTypeProcessor extends JavaRenameProcessor
 
   // ---- ISimilarDeclarationUpdating
 
+  @Override
   public boolean canEnableSimilarDeclarationUpdating() {
 
     //		IProduct product= Platform.getProduct();
@@ -418,18 +434,22 @@ public class RenameTypeProcessor extends JavaRenameProcessor
     return true;
   }
 
+  @Override
   public void setUpdateSimilarDeclarations(boolean update) {
     fUpdateSimilarElements = update;
   }
 
+  @Override
   public boolean getUpdateSimilarDeclarations() {
     return fUpdateSimilarElements;
   }
 
+  @Override
   public int getMatchStrategy() {
     return fRenamingStrategy;
   }
 
+  @Override
   public void setMatchStrategy(int selectedStrategy) {
     fRenamingStrategy = selectedStrategy;
   }
@@ -445,6 +465,7 @@ public class RenameTypeProcessor extends JavaRenameProcessor
   }
 
   /** {@inheritDoc} */
+  @Override
   public IResource getRefactoredResource(IResource element) {
     if (element instanceof IFile) {
       if (Checks.isTopLevel(fType) && element.equals(fType.getResource()))
@@ -454,6 +475,7 @@ public class RenameTypeProcessor extends JavaRenameProcessor
   }
 
   /** {@inheritDoc} */
+  @Override
   public IJavaElement getRefactoredJavaElement(IJavaElement element) {
     if (element instanceof ICompilationUnit) {
       if (Checks.isTopLevel(fType) && element.equals(fType.getCompilationUnit()))

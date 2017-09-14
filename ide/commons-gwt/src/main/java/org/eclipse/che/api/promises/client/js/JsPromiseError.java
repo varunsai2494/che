@@ -54,6 +54,7 @@ public class JsPromiseError extends JavaScriptObject implements PromiseError {
         return result;
     }-*/;
 
+  @Override
   public final native String getMessage() /*-{
         return this.message;
     }-*/;

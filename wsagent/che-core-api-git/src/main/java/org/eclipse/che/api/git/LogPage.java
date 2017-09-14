@@ -10,8 +10,12 @@
  */
 package org.eclipse.che.api.git;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,7 +49,7 @@ public class LogPage implements Log, InfoPage {
   /** @see InfoPage#writeTo(java.io.OutputStream) */
   @Override
   public void writeTo(OutputStream out) throws IOException {
-    PrintWriter writer = new PrintWriter(out);
+    PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(out, UTF_8)));
     DateFormat df = (DateFormat) dateFormat.clone();
     for (Revision commit : commits) {
       writer.format("commit %s\n", commit.getId());

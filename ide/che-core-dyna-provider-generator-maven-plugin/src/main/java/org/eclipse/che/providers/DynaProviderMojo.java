@@ -10,9 +10,10 @@
  */
 package org.eclipse.che.providers;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
@@ -52,7 +53,7 @@ public class DynaProviderMojo extends AbstractMojo {
     } catch (IOException e) {
       throw new MojoExecutionException("Can't create packages folders", e);
     }
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))) {
+    try (BufferedWriter writer = Files.newBufferedWriter(outFile.toPath(), UTF_8)) {
       writer.write(generator.generate());
     } catch (IOException e) {
       throw new MojoExecutionException("Can't write file content", e);

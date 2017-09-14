@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.machine.ssh.jsch;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSchException;
 import java.io.BufferedReader;
@@ -51,7 +53,7 @@ public class JschSshProcess implements SshProcess {
   public void start(LineConsumer output) throws MachineException {
     try (PipedOutputStream pipedOS = new PipedOutputStream();
         PipedInputStream pipedIS = new PipedInputStream(pipedOS);
-        BufferedReader outReader = new BufferedReader(new InputStreamReader(pipedIS))) {
+        BufferedReader outReader = new BufferedReader(new InputStreamReader(pipedIS, UTF_8))) {
 
       exec.setOutputStream(pipedOS);
       exec.setExtOutputStream(pipedOS);
@@ -71,8 +73,9 @@ public class JschSshProcess implements SshProcess {
   @Override
   public void start(LineConsumer out, LineConsumer err) throws MachineException {
     try (BufferedReader outReader =
-            new BufferedReader(new InputStreamReader(exec.getInputStream()));
-        BufferedReader errReader = new BufferedReader(new InputStreamReader(exec.getErrStream()))) {
+            new BufferedReader(new InputStreamReader(exec.getInputStream(), UTF_8));
+        BufferedReader errReader =
+            new BufferedReader(new InputStreamReader(exec.getErrStream(), UTF_8))) {
 
       exec.connect();
 

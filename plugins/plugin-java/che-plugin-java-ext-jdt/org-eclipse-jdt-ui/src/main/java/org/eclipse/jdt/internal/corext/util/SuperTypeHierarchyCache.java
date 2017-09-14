@@ -36,6 +36,7 @@ public class SuperTypeHierarchyCache {
       markAsAccessed();
     }
 
+    @Override
     public void typeHierarchyChanged(ITypeHierarchy typeHierarchy) {
       removeHierarchyEntryFromCache(this);
     }

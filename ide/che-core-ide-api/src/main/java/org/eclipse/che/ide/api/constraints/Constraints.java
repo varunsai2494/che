@@ -54,6 +54,7 @@ public class Constraints {
     this.relativeId = relativeId;
   }
 
+  @Override
   public Constraints clone() {
     if (myAnchor != null) {
       return new Constraints(myAnchor, relativeId);

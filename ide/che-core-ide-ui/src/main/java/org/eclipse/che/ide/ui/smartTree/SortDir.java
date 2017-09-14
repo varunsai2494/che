@@ -23,6 +23,7 @@ public enum SortDir {
     @Override
     public <X> Comparator<X> comparator(final Comparator<X> c) {
       return new Comparator<X>() {
+        @Override
         public int compare(X o1, X o2) {
           return c.compare(o1, o2);
         }
@@ -35,6 +36,7 @@ public enum SortDir {
     @Override
     public <X> Comparator<X> comparator(final Comparator<X> c) {
       return new Comparator<X>() {
+        @Override
         public int compare(X o1, X o2) {
           return c.compare(o2, o1);
         }

@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.core.db.jpa;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static java.util.Collections.singletonMap;
@@ -176,7 +177,7 @@ public final class TestObjectsFactory {
                 new StackComponentImpl(id + "-component2", id + "-component2-version")))
         .setSource(new StackSourceImpl(id + "-type", id + "-origin"))
         .setStackIcon(
-            new StackIcon(id + "-icon", id + "-media-type", "0x1234567890abcdef".getBytes()))
+            new StackIcon(id + "-icon", id + "-media-type", "0x1234567890abcdef".getBytes(UTF_8)))
         .build();
   }
 

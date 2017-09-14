@@ -16,36 +16,42 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author Anatoliy Bazko */
 @DTO
 public interface DebuggerInfoDto extends DebuggerInfo {
+  @Override
   String getHost();
 
   void setHost(String host);
 
   DebuggerInfoDto withHost(String host);
 
+  @Override
   int getPort();
 
   void setPort(int port);
 
   DebuggerInfoDto withPort(int port);
 
+  @Override
   String getName();
 
   void setName(String name);
 
   DebuggerInfoDto withName(String name);
 
+  @Override
   String getVersion();
 
   void setVersion(String version);
 
   DebuggerInfoDto withVersion(String version);
 
+  @Override
   int getPid();
 
   void setPid(int pid);
 
   DebuggerInfoDto withPid(int pid);
 
+  @Override
   String getFile();
 
   void setFile(String file);

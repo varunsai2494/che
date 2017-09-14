@@ -25,6 +25,7 @@ public abstract class MoveParticipant extends RefactoringParticipant {
   private MoveArguments fArguments;
 
   /** {@inheritDoc} */
+  @Override
   protected final void initialize(RefactoringArguments arguments) {
     fArguments = (MoveArguments) arguments;
   }

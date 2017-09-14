@@ -18,12 +18,16 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author Anatoliy Bazko */
 @DTO
 public interface StartActionDto extends ActionDto, StartAction {
+  @Override
   TYPE getType();
 
+  @Override
   void setType(TYPE type);
 
+  @Override
   StartActionDto withType(TYPE type);
 
+  @Override
   List<BreakpointDto> getBreakpoints();
 
   void setBreakpoints(List<BreakpointDto> breakpoints);

@@ -113,6 +113,7 @@ public class CommandManagerImpl implements CommandManager, WsAgentComponent {
             });
   }
 
+  @Override
   public void fetchCommands() {
     workspaceCommandManager
         .getCommands(appContext.getWorkspaceId())

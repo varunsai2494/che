@@ -12,6 +12,7 @@ package org.eclipse.che.plugin.docker.client;
 
 import static com.google.common.base.MoreObjects.firstNonNull;
 import static com.google.common.net.UrlEscapers.urlPathSegmentEscaper;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static javax.ws.rs.core.Response.Status.CREATED;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.NOT_MODIFIED;
@@ -1395,7 +1396,7 @@ public class DockerConnector {
 
   protected <T> T parseResponseStreamAndClose(InputStream inputStream, Class<T> clazz)
       throws IOException {
-    try (InputStreamReader reader = new InputStreamReader(inputStream)) {
+    try (InputStreamReader reader = new InputStreamReader(inputStream, UTF_8)) {
       T objectFromJson = GSON.fromJson(reader, clazz);
       if (objectFromJson == null) {
         LOG.error(
@@ -1411,7 +1412,7 @@ public class DockerConnector {
 
   protected <T> T parseResponseStreamAndClose(InputStream inputStream, TypeToken<T> tt)
       throws IOException {
-    try (InputStreamReader reader = new InputStreamReader(inputStream)) {
+    try (InputStreamReader reader = new InputStreamReader(inputStream, UTF_8)) {
       T objectFromJson = GSON.fromJson(reader, tt.getType());
       if (objectFromJson == null) {
         LOG.error(
@@ -1426,7 +1427,7 @@ public class DockerConnector {
   }
 
   protected DockerException getDockerException(DockerResponse response) throws IOException {
-    try (InputStreamReader isr = new InputStreamReader(response.getInputStream())) {
+    try (InputStreamReader isr = new InputStreamReader(response.getInputStream(), UTF_8)) {
       String dockerResponseContent = CharStreams.toString(isr);
       return new DockerException(
           "Error response from docker API, status: "

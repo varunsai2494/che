@@ -86,6 +86,7 @@ public class WorkspaceHolder extends WorkspaceProjectsSyncer {
    * @param project project to add
    * @throws ServerException
    */
+  @Override
   protected void addProject(ProjectConfig project) throws ServerException {
 
     final UriBuilder builder =
@@ -107,6 +108,7 @@ public class WorkspaceHolder extends WorkspaceProjectsSyncer {
    * @param project project to update
    * @throws ServerException
    */
+  @Override
   protected void updateProject(ProjectConfig project) throws ServerException {
 
     final UriBuilder builder =
@@ -123,6 +125,7 @@ public class WorkspaceHolder extends WorkspaceProjectsSyncer {
     }
   }
 
+  @Override
   protected void removeProject(ProjectConfig project) throws ServerException {
 
     final UriBuilder builder =

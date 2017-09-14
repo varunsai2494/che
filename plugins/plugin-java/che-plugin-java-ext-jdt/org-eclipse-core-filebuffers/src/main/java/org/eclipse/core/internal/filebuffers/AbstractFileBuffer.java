@@ -66,6 +66,7 @@ public abstract class AbstractFileBuffer implements IFileBuffer, IStateValidatio
   /*
    * @see org.eclipse.core.filebuffers.IStateValidationSupport#validationStateAboutToBeChanged()
    */
+  @Override
   public void validationStateAboutToBeChanged() {
     fManager.fireStateChanging(this);
   }
@@ -73,6 +74,7 @@ public abstract class AbstractFileBuffer implements IFileBuffer, IStateValidatio
   /*
    * @see org.eclipse.core.filebuffers.IStateValidationSupport#validationStateChangeFailed()
    */
+  @Override
   public void validationStateChangeFailed() {
     fManager.fireStateChangeFailed(this);
   }
@@ -80,6 +82,7 @@ public abstract class AbstractFileBuffer implements IFileBuffer, IStateValidatio
   /*
    * @see org.eclipse.core.filebuffers.IFileBuffer#getModificationStamp()
    */
+  @Override
   public long getModificationStamp() {
     IFileInfo info = fFileStore.fetchInfo();
     return info.exists() ? info.getLastModified() : IDocumentExtension4.UNKNOWN_MODIFICATION_STAMP;

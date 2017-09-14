@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.singletonList;
 import static java.util.Collections.singletonMap;
@@ -165,8 +166,8 @@ public class DockerConnectorTest {
   private static final String API_VERSION_PREFIX = "";
   private static final String[] CMD_WITH_ARGS = {"command", "arg1", "arg2"};
   private static final String[] CMD_ARGS = {"arg1", "arg2"};
-  private static final byte[] STREAM_DATA_BYTES = STREAM_DATA.getBytes();
-  private static final byte[] DOCKER_RESPONSE_BYTES = DOCKER_RESPONSE.getBytes();
+  private static final byte[] STREAM_DATA_BYTES = STREAM_DATA.getBytes(UTF_8);
+  private static final byte[] DOCKER_RESPONSE_BYTES = DOCKER_RESPONSE.getBytes(UTF_8);
 
   private static final int CONTAINER_EXIT_CODE = 0;
 
@@ -207,7 +208,7 @@ public class DockerConnectorTest {
                 authManager,
                 dockerApiVersionPathPrefixProvider));
 
-    inputStream = spy(new ByteArrayInputStream(ERROR_MESSAGE.getBytes()));
+    inputStream = spy(new ByteArrayInputStream(ERROR_MESSAGE.getBytes(UTF_8)));
     when(dockerResponse.getInputStream()).thenReturn(inputStream);
   }
 
@@ -797,7 +798,7 @@ public class DockerConnectorTest {
     GetContainerLogsParams getContainerLogsParams = GetContainerLogsParams.create(CONTAINER);
 
     when(dockerResponse.getInputStream())
-        .thenReturn(new ByteArrayInputStream("container not found".getBytes()));
+        .thenReturn(new ByteArrayInputStream("container not found".getBytes(UTF_8)));
     when(dockerResponse.getStatus()).thenReturn(RESPONSE_NOT_FOUND_CODE);
 
     dockerConnector.getContainerLogs(getContainerLogsParams, logMessageProcessor);
@@ -873,7 +874,7 @@ public class DockerConnectorTest {
   public void execStartShouldThrowExecNotFoundIf404Received() throws IOException {
     StartExecParams startExecParams = StartExecParams.create(EXEC_ID);
 
-    doReturn(new ByteArrayInputStream(EXCEPTION_ERROR_MESSAGE.getBytes()))
+    doReturn(new ByteArrayInputStream(EXCEPTION_ERROR_MESSAGE.getBytes(UTF_8)))
         .when(dockerResponse)
         .getInputStream();
     when(dockerResponse.getStatus()).thenReturn(RESPONSE_NOT_FOUND_CODE);
@@ -1018,7 +1019,8 @@ public class DockerConnectorTest {
                 new ByteArrayInputStream(STREAM_DATA_BYTES), dockerConnection));
 
     String response =
-        CharStreams.toString(new InputStreamReader(dockerConnector.getResource(getResourceParams)));
+        CharStreams.toString(
+            new InputStreamReader(dockerConnector.getResource(getResourceParams), UTF_8));
 
     verify(dockerConnectionFactory).openConnection(any(URI.class));
     verify(dockerConnection).method(REQUEST_METHOD_GET);
@@ -1043,7 +1045,7 @@ public class DockerConnectorTest {
     when(dockerResponse.getInputStream())
         .thenReturn(
             new CloseConnectionInputStream(
-                new ByteArrayInputStream(ERROR_MESSAGE.getBytes()), dockerConnection));
+                new ByteArrayInputStream(ERROR_MESSAGE.getBytes(UTF_8)), dockerConnection));
 
     dockerConnector.getResource(getResourceParams);
 
@@ -1078,12 +1080,12 @@ public class DockerConnectorTest {
       throws IOException {
     InputStream source =
         new CloseConnectionInputStream(
-            new ByteArrayInputStream(ERROR_MESSAGE.getBytes()), dockerConnection);
+            new ByteArrayInputStream(ERROR_MESSAGE.getBytes(UTF_8)), dockerConnection);
     PutResourceParams putResourceParams = PutResourceParams.create(CONTAINER, PATH_TO_FILE, source);
 
     when(dockerResponse.getStatus()).thenReturn(RESPONSE_ERROR_CODE);
     when(dockerResponse.getInputStream())
-        .thenReturn(new ByteArrayInputStream(ERROR_MESSAGE.getBytes()));
+        .thenReturn(new ByteArrayInputStream(ERROR_MESSAGE.getBytes(UTF_8)));
 
     dockerConnector.putResource(putResourceParams);
 
@@ -1136,7 +1138,7 @@ public class DockerConnectorTest {
 
     doReturn(
             new ByteArrayInputStream(
-                ("{\"stream\":\"Successfully built " + imageId + "\"}").getBytes()))
+                ("{\"stream\":\"Successfully built " + imageId + "\"}").getBytes(UTF_8)))
         .when(dockerResponse)
         .getInputStream();
 
@@ -1175,7 +1177,7 @@ public class DockerConnectorTest {
 
     doReturn(
             new ByteArrayInputStream(
-                ("{\"stream\":\"Successfully built " + imageId + "\"}").getBytes()))
+                ("{\"stream\":\"Successfully built " + imageId + "\"}").getBytes(UTF_8)))
         .when(dockerResponse)
         .getInputStream();
 
@@ -1244,7 +1246,7 @@ public class DockerConnectorTest {
 
     doReturn(
             new ByteArrayInputStream(
-                ("{\"stream\":\"Successfully built " + imageId + "\"}").getBytes()))
+                ("{\"stream\":\"Successfully built " + imageId + "\"}").getBytes(UTF_8)))
         .when(dockerResponse)
         .getInputStream();
 
@@ -1319,7 +1321,7 @@ public class DockerConnectorTest {
     BuildImageParams getEventsParams =
         BuildImageParams.create(dockerfile).withAuthConfigs(authConfigs);
 
-    doReturn(new ByteArrayInputStream("c96d378b4911: Already exists".getBytes()))
+    doReturn(new ByteArrayInputStream("c96d378b4911: Already exists".getBytes(UTF_8)))
         .when(dockerResponse)
         .getInputStream();
 
@@ -1405,7 +1407,7 @@ public class DockerConnectorTest {
     when(dockerResponse.getInputStream())
         .thenReturn(
             new ByteArrayInputStream(
-                ("{\"status\":\"latest: digest: " + DIGEST + " size: 1234\"}").getBytes()));
+                ("{\"status\":\"latest: digest: " + DIGEST + " size: 1234\"}").getBytes(UTF_8)));
 
     dockerConnector.push(pushParams, progressMonitor);
 
@@ -1426,7 +1428,7 @@ public class DockerConnectorTest {
     when(dockerResponse.getInputStream())
         .thenReturn(
             new ByteArrayInputStream(
-                ("{\"status\":\"latest: digest: " + DIGEST + " size: 1234\"}").getBytes()));
+                ("{\"status\":\"latest: digest: " + DIGEST + " size: 1234\"}").getBytes(UTF_8)));
 
     dockerConnector.push(pushParams, progressMonitor);
 
@@ -1468,7 +1470,7 @@ public class DockerConnectorTest {
             + "{\"progress\":\"[===============>    ] 75%\"}\n";
 
     when(dockerResponse.getInputStream())
-        .thenReturn(new ByteArrayInputStream(dockerPushOutput.getBytes()));
+        .thenReturn(new ByteArrayInputStream(dockerPushOutput.getBytes(UTF_8)));
     PushParams pushParams = PushParams.create(REPOSITORY);
 
     dockerConnector.push(pushParams, progressMonitor);
@@ -1496,7 +1498,7 @@ public class DockerConnectorTest {
             + "{\"error\":\"test error\"}\n";
 
     when(dockerResponse.getInputStream())
-        .thenReturn(new ByteArrayInputStream(dockerPushOutput.getBytes()));
+        .thenReturn(new ByteArrayInputStream(dockerPushOutput.getBytes(UTF_8)));
     PushParams pushParams = PushParams.create(REPOSITORY);
 
     dockerConnector.push(pushParams, progressMonitor);
@@ -1516,7 +1518,7 @@ public class DockerConnectorTest {
             + " size: 12345\"}";
 
     when(dockerResponse.getInputStream())
-        .thenReturn(new ByteArrayInputStream(dockerPushOutput.getBytes()));
+        .thenReturn(new ByteArrayInputStream(dockerPushOutput.getBytes(UTF_8)));
 
     assertEquals(
         DIGEST,
@@ -1714,7 +1716,7 @@ public class DockerConnectorTest {
 
     Version parsedVersion =
         dockerConnector.parseResponseStreamAndClose(
-            new ByteArrayInputStream(response.getBytes()), Version.class);
+            new ByteArrayInputStream(response.getBytes(UTF_8)), Version.class);
 
     assertEquals(parsedVersion, version);
   }
@@ -1754,7 +1756,7 @@ public class DockerConnectorTest {
 
     List<Image> images =
         dockerConnector.parseResponseStreamAndClose(
-            new ByteArrayInputStream(response.getBytes()), new TypeToken<List<Image>>() {});
+            new ByteArrayInputStream(response.getBytes(UTF_8)), new TypeToken<List<Image>>() {});
     assertEquals(images.size(), 2);
     Image actualImage1 = images.get(0);
     Image actualImage2 = images.get(1);
@@ -1797,7 +1799,7 @@ public class DockerConnectorTest {
 
     List<ContainerListEntry> containers =
         dockerConnector.parseResponseStreamAndClose(
-            new ByteArrayInputStream(response.getBytes()),
+            new ByteArrayInputStream(response.getBytes(UTF_8)),
             new TypeToken<List<ContainerListEntry>>() {});
     assertEquals(containers.size(), 1);
     ContainerListEntry actualContainer1 = containers.get(0);
@@ -1818,7 +1820,7 @@ public class DockerConnectorTest {
 
     List<ContainerListEntry> containers =
         dockerConnector.parseResponseStreamAndClose(
-            new ByteArrayInputStream(response.getBytes()),
+            new ByteArrayInputStream(response.getBytes(UTF_8)),
             new TypeToken<List<ContainerListEntry>>() {});
     assertEquals(containers.size(), 0);
   }
@@ -1830,7 +1832,7 @@ public class DockerConnectorTest {
   )
   public void shouldThrowIOExceptionWhenParseEmptyResponseStringByClass() throws IOException {
     dockerConnector.parseResponseStreamAndClose(
-        new ByteArrayInputStream("".getBytes()), Version.class);
+        new ByteArrayInputStream("".getBytes(UTF_8)), Version.class);
   }
 
   @Test(
@@ -1840,7 +1842,7 @@ public class DockerConnectorTest {
   )
   public void shouldThrowIOExceptionWhenParseEmptyResponseStringByTypeToken() throws IOException {
     dockerConnector.parseResponseStreamAndClose(
-        new ByteArrayInputStream("".getBytes()), new TypeToken<List<ContainerListEntry>>() {});
+        new ByteArrayInputStream("".getBytes(UTF_8)), new TypeToken<List<ContainerListEntry>>() {});
   }
 
   @Test
@@ -1864,7 +1866,7 @@ public class DockerConnectorTest {
     Network network = createNetwork();
     List<Network> originNetworks = singletonList(network);
     ByteArrayInputStream inputStream =
-        new ByteArrayInputStream(GSON.toJson(originNetworks).getBytes());
+        new ByteArrayInputStream(GSON.toJson(originNetworks).getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
     GetNetworksParams getNetworksParams =
         GetNetworksParams.create().withFilters(new Filters().withFilter("key", "value1", "value2"));
@@ -1891,7 +1893,7 @@ public class DockerConnectorTest {
   public void shouldThrowExceptionOnGetNetworksIfResponseCodeIsNot20x() throws Exception {
     // given
     doReturn(404).when(dockerResponse).getStatus();
-    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes());
+    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
 
     // when
@@ -1916,7 +1918,7 @@ public class DockerConnectorTest {
     // given
     Network originNetwork = createNetwork();
     ByteArrayInputStream inputStream =
-        new ByteArrayInputStream(GSON.toJson(originNetwork).getBytes());
+        new ByteArrayInputStream(GSON.toJson(originNetwork).getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
 
     // when
@@ -1941,7 +1943,7 @@ public class DockerConnectorTest {
   public void shouldThrowExceptionOnInspectNetworkIfResponseCodeIsNot20x() throws Exception {
     // given
     doReturn(404).when(dockerResponse).getStatus();
-    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes());
+    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
 
     // when
@@ -1955,7 +1957,7 @@ public class DockerConnectorTest {
     NetworkCreated originNetworkCreated =
         new NetworkCreated().withId("some_id").withWarning("some_warning");
     ByteArrayInputStream inputStream =
-        new ByteArrayInputStream(GSON.toJson(originNetworkCreated).getBytes());
+        new ByteArrayInputStream(GSON.toJson(originNetworkCreated).getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
 
     // when
@@ -1971,7 +1973,7 @@ public class DockerConnectorTest {
     ArgumentCaptor<byte[]> argumentCaptor = ArgumentCaptor.forClass(byte[].class);
     verify(dockerConnection).entity(argumentCaptor.capture());
     assertEquals(
-        argumentCaptor.getValue(), GSON.toJson(createNetworkParams.getNetwork()).getBytes());
+        argumentCaptor.getValue(), GSON.toJson(createNetworkParams.getNetwork()).getBytes(UTF_8));
     verify(dockerConnection).request();
     verify(dockerResponse).getStatus();
     verify(dockerResponse).getInputStream();
@@ -1985,7 +1987,7 @@ public class DockerConnectorTest {
   public void shouldThrowExceptionOnCreateNetworkIfResponseCodeIsNot20x() throws Exception {
     // given
     doReturn(404).when(dockerResponse).getStatus();
-    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes());
+    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
     CreateNetworkParams createNetworkParams = CreateNetworkParams.create(createNewNetwork());
 
@@ -2032,7 +2034,7 @@ public class DockerConnectorTest {
     verify(dockerConnection).entity(argumentCaptor.capture());
     assertEquals(
         argumentCaptor.getValue(),
-        GSON.toJson(connectToNetworkParams.getConnectContainer()).getBytes());
+        GSON.toJson(connectToNetworkParams.getConnectContainer()).getBytes(UTF_8));
     verify(dockerConnection).request();
     verify(dockerResponse).getStatus();
   }
@@ -2045,7 +2047,7 @@ public class DockerConnectorTest {
   public void shouldThrowExceptionOnConnectToNetworkIfResponseCodeIsNot20x() throws Exception {
     // given
     doReturn(404).when(dockerResponse).getStatus();
-    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes());
+    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
     ConnectContainerToNetworkParams connectToNetworkParams =
         ConnectContainerToNetworkParams.create("net_id", createConnectContainer());
@@ -2094,7 +2096,7 @@ public class DockerConnectorTest {
     verify(dockerConnection).entity(argumentCaptor.capture());
     assertEquals(
         argumentCaptor.getValue(),
-        GSON.toJson(disconnectFromNetworkParams.getDisconnectContainer()).getBytes());
+        GSON.toJson(disconnectFromNetworkParams.getDisconnectContainer()).getBytes(UTF_8));
     verify(dockerConnection).request();
     verify(dockerResponse).getStatus();
   }
@@ -2107,7 +2109,7 @@ public class DockerConnectorTest {
   public void shouldThrowExceptionOnDisconnectFromNetworkIfResponseCodeIsNot20x() throws Exception {
     // given
     doReturn(404).when(dockerResponse).getStatus();
-    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes());
+    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
     DisconnectContainerFromNetworkParams disconnectFromNetworkParams =
         DisconnectContainerFromNetworkParams.create(
@@ -2154,7 +2156,7 @@ public class DockerConnectorTest {
   public void shouldThrowExceptionOnRemoveNetworkIfResponseCodeIsNot20x() throws Exception {
     // given
     doReturn(404).when(dockerResponse).getStatus();
-    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes());
+    ByteArrayInputStream inputStream = new ByteArrayInputStream("exc_message".getBytes(UTF_8));
     doReturn(inputStream).when(dockerResponse).getInputStream();
     RemoveNetworkParams removeNetworkParams = RemoveNetworkParams.create("net_id");
 

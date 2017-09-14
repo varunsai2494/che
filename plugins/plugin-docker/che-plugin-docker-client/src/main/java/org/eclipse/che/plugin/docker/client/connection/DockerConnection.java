@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.docker.client.connection;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.io.ByteStreams;
 import java.io.Closeable;
 import java.io.IOException;
@@ -95,6 +97,7 @@ public abstract class DockerConnection implements Closeable {
       String method, String path, String query, List<Pair<String, ?>> headers, Entity<?> entity)
       throws IOException;
 
+  @Override
   public abstract void close();
 
   abstract static class Entity<T> {
@@ -130,7 +133,7 @@ public abstract class DockerConnection implements Closeable {
 
     @Override
     public void writeTo(OutputStream output) throws IOException {
-      output.write(entity.getBytes());
+      output.write(entity.getBytes(UTF_8));
       output.flush();
     }
   }

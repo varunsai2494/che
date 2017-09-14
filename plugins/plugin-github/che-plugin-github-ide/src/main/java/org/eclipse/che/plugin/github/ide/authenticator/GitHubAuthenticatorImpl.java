@@ -85,6 +85,7 @@ public class GitHubAuthenticatorImpl
     view.showDialog();
   }
 
+  @Override
   public Promise<OAuthStatus> authenticate(String authenticationUrl) {
     this.authenticationUrl = authenticationUrl;
 

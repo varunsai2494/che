@@ -85,6 +85,7 @@ public class JavaPartitionScanner implements PartitionScanner, JavaPartitions {
   /*
    * @see org.eclipse.jface.text.rules.ITokenScanner#nextToken()
    */
+  @Override
   public Token nextToken() {
 
     // emulate JavaPartitionScanner
@@ -453,6 +454,7 @@ public class JavaPartitionScanner implements PartitionScanner, JavaPartitions {
     }
   }
 
+  @Override
   public void setScannedString(String content) {
 
     fScanner.setScannedString(content);
@@ -478,6 +480,7 @@ public class JavaPartitionScanner implements PartitionScanner, JavaPartitions {
   /*
    * @see ITokenScanner#getTokenLength()
    */
+  @Override
   public int getTokenLength() {
     return fTokenLength;
   }
@@ -485,6 +488,7 @@ public class JavaPartitionScanner implements PartitionScanner, JavaPartitions {
   /*
    * @see ITokenScanner#getTokenOffset()
    */
+  @Override
   public int getTokenOffset() {
     return fTokenOffset;
   }

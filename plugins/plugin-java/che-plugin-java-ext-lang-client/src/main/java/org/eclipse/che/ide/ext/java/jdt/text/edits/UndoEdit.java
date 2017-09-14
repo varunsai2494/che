@@ -36,6 +36,7 @@ public final class UndoEdit extends TextEdit {
   /*
    * @see org.eclipse.text.edits.TextEdit#internalAdd(org.eclipse.text.edits.TextEdit )
    */
+  @Override
   void internalAdd(TextEdit child) throws MalformedTreeException {
     throw new MalformedTreeException(
         null, this, "Cannot add children to an undo edit"); //$NON-NLS-1$
@@ -44,25 +45,30 @@ public final class UndoEdit extends TextEdit {
   /*
    * @see org.eclipse.text.edits.MultiTextEdit#aboutToBeAdded(org.eclipse.text.edits .TextEdit)
    */
+  @Override
   void aboutToBeAdded(TextEdit parent) {
     throw new MalformedTreeException(
         parent, this, "Cannot add an undo edit to another edit"); //$NON-NLS-1$
   }
 
+  @Override
   UndoEdit dispatchPerformEdits(TextEditProcessor processor) throws BadLocationException {
     return processor.executeUndo();
   }
 
+  @Override
   void dispatchCheckIntegrity(TextEditProcessor processor) throws MalformedTreeException {
     processor.checkIntegrityUndo();
   }
 
   /* @see org.eclipse.text.edits.TextEdit#doCopy() */
+  @Override
   protected TextEdit doCopy() {
     return new UndoEdit(this);
   }
 
   /* @see TextEdit#accept0 */
+  @Override
   protected void accept0(TextEditVisitor visitor) {
     boolean visitChildren = visitor.visit(this);
     if (visitChildren) {
@@ -71,6 +77,7 @@ public final class UndoEdit extends TextEdit {
   }
 
   /* @see TextEdit#performDocumentUpdating */
+  @Override
   int performDocumentUpdating(Document document) throws BadLocationException {
     fDelta = 0;
     return fDelta;
@@ -90,6 +97,7 @@ public final class UndoEdit extends TextEdit {
     internalSetLength(length);
   }
 
+  @Override
   boolean deleteChildren() {
     return false;
   }

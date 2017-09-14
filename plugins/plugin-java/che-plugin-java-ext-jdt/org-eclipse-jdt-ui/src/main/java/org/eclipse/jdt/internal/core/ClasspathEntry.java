@@ -1061,6 +1061,7 @@ tag if no children*/);
     return newPath;
   }
 
+  @Override
   public boolean combineAccessRules() {
     return this.combineAccessRules;
   }
@@ -1142,6 +1143,7 @@ tag if no children*/);
   }
 
   /** Returns true if the given object is a classpath entry with equivalent attributes. */
+  @Override
   public boolean equals(Object object) {
     if (this == object) return true;
     if (object instanceof org.eclipse.jdt.internal.core.ClasspathEntry) {
@@ -1191,6 +1193,7 @@ tag if no children*/);
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry#getAccessRules() */
+  @Override
   public IAccessRule[] getAccessRules() {
     if (this.accessRuleSet == null) return NO_ACCESS_RULES;
     AccessRule[] rules = this.accessRuleSet.getAccessRules();
@@ -1206,59 +1209,71 @@ tag if no children*/);
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry */
+  @Override
   public int getContentKind() {
     return this.contentKind;
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry */
+  @Override
   public int getEntryKind() {
     return this.entryKind;
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry#getExclusionPatterns() */
+  @Override
   public IPath[] getExclusionPatterns() {
     return this.exclusionPatterns;
   }
 
+  @Override
   public IClasspathAttribute[] getExtraAttributes() {
     return this.extraAttributes;
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry#getExclusionPatterns() */
+  @Override
   public IPath[] getInclusionPatterns() {
     return this.inclusionPatterns;
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry#getOutputLocation() */
+  @Override
   public IPath getOutputLocation() {
     return this.specificOutputLocation;
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry */
+  @Override
   public IPath getPath() {
     return this.path;
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry */
+  @Override
   public IPath getSourceAttachmentPath() {
     return this.sourceAttachmentPath;
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry */
+  @Override
   public IPath getSourceAttachmentRootPath() {
     return this.sourceAttachmentRootPath;
   }
 
+  @Override
   public IClasspathEntry getReferencingEntry() {
     return this.referencingEntry;
   }
 
   /** Returns the hash code for this classpath entry */
+  @Override
   public int hashCode() {
     return this.path.hashCode();
   }
 
   /** @see org.eclipse.jdt.core.IClasspathEntry#isExported() */
+  @Override
   public boolean isExported() {
     return this.isExported;
   }
@@ -1283,6 +1298,7 @@ tag if no children*/);
   }
 
   /** Returns a printable representation of this classpath entry. */
+  @Override
   public String toString() {
     StringBuffer buffer = new StringBuffer();
     //		Object target = JavaModel.getTarget(getPath(), true);
@@ -1470,6 +1486,8 @@ tag if no children*/);
    * @see org.eclipse.jdt.core.IClasspathEntry
    * @deprecated
    */
+  @Override
+  @Deprecated
   public IClasspathEntry getResolvedEntry() {
 
     return JavaCore.getResolvedClasspathEntry(this);

@@ -56,6 +56,7 @@ public interface IFileState extends IEncodedStorage, IAdaptable {
    *       <li>This state does not exist.
    *     </ul>
    */
+  @Override
   public InputStream getContents() throws CoreException;
 
   /**
@@ -66,6 +67,7 @@ public interface IFileState extends IEncodedStorage, IAdaptable {
    * @see IResource#getFullPath()
    * @see IStorage#getFullPath()
    */
+  @Override
   public IPath getFullPath();
 
   /**
@@ -86,6 +88,7 @@ public interface IFileState extends IEncodedStorage, IAdaptable {
    * @see IResource#getName()
    * @see IStorage#getName()
    */
+  @Override
   public String getName();
 
   /**
@@ -94,5 +97,6 @@ public interface IFileState extends IEncodedStorage, IAdaptable {
    *
    * @see IStorage
    */
+  @Override
   public boolean isReadOnly();
 }

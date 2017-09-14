@@ -58,11 +58,13 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
     /*
      * @see org.eclipse.jface.text.IDocumentListener#documentAboutToBeChanged(org.eclipse.jface.text.DocumentEvent)
      */
+    @Override
     public void documentAboutToBeChanged(DocumentEvent event) {}
 
     /*
      * @see org.eclipse.jface.text.IDocumentListener#documentChanged(org.eclipse.jface.text.DocumentEvent)
      */
+    @Override
     public void documentChanged(DocumentEvent event) {
       fCanBeSaved = true;
       removeFileBufferContentListeners();
@@ -127,6 +129,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.filebuffers.ITextFileBuffer#getDocument()
    */
+  @Override
   public IDocument getDocument() {
     return fDocument;
   }
@@ -134,6 +137,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.filebuffers.ITextFileBuffer#getAnnotationModel()
    */
+  @Override
   public IAnnotationModel getAnnotationModel() {
     //		synchronized (fAnnotationModelCreationLock) {
     //			if (fAnnotationModel == null && !isDisconnected()) {
@@ -149,6 +153,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.filebuffers.ITextFileBuffer#getEncoding()
    */
+  @Override
   public String getEncoding() {
     if (!fIsCacheUpdated) cacheEncodingState();
     return fEncoding;
@@ -157,6 +162,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.filebuffers.ITextFileBuffer#setEncoding(java.lang.String)
    */
+  @Override
   public void setEncoding(String encoding) {
     fExplicitEncoding = encoding;
     if (encoding == null || encoding.equals(fEncoding)) fIsCacheUpdated = false;
@@ -169,6 +175,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.filebuffers.ITextFileBuffer#getStatus()
    */
+  @Override
   public IStatus getStatus() {
     if (!isDisconnected()) {
       if (fStatus != null) return fStatus;
@@ -217,6 +224,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.filebuffers.IFileBuffer#revert(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public void revert(IProgressMonitor monitor) throws CoreException {
     if (isDisconnected()) return;
 
@@ -278,6 +286,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
    * @see org.eclipse.core.filebuffers.IFileBuffer#getContentType()
    * @since 3.1
    */
+  @Override
   public IContentType getContentType() throws CoreException {
     InputStream stream = null;
     try {
@@ -322,6 +331,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.internal.filebuffers.FileBuffer#addFileBufferContentListeners()
    */
+  @Override
   protected void addFileBufferContentListeners() {
     if (fDocument != null) fDocument.addDocumentListener(fDocumentListener);
   }
@@ -329,6 +339,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.internal.filebuffers.FileBuffer#removeFileBufferContentListeners()
    */
+  @Override
   protected void removeFileBufferContentListeners() {
     if (fDocument != null) fDocument.removeDocumentListener(fDocumentListener);
   }
@@ -336,6 +347,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.internal.filebuffers.FileBuffer#initializeFileBufferContent(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   protected void initializeFileBufferContent(IProgressMonitor monitor) throws CoreException {
     try {
       fDocument = fManager.createEmptyDocument(getLocationOrName(), LocationKind.LOCATION);
@@ -350,6 +362,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.internal.filebuffers.ResourceFileBuffer#connected()
    */
+  @Override
   protected void connected() {
     super.connected();
     if (fAnnotationModel != null) fAnnotationModel.connect(fDocument);
@@ -358,6 +371,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.internal.filebuffers.ResourceFileBuffer#disconnected()
    */
+  @Override
   protected void disconnected() {
     if (fAnnotationModel != null) fAnnotationModel.disconnect(fDocument);
     super.disconnected();
@@ -407,6 +421,7 @@ public class FileStoreTextFileBuffer extends FileStoreFileBuffer implements ITex
   /*
    * @see org.eclipse.core.internal.filebuffers.FileBuffer#commitFileBufferContent(org.eclipse.core.runtime.IProgressMonitor, boolean)
    */
+  @Override
   protected void commitFileBufferContent(IProgressMonitor monitor, boolean overwrite)
       throws CoreException {
     //		if (!isSynchronized() && !overwrite)

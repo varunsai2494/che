@@ -16,9 +16,12 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author Anatoliy Bazko */
 @DTO
 public interface StepOutActionDto extends ActionDto, StepOutAction {
+  @Override
   TYPE getType();
 
+  @Override
   void setType(TYPE type);
 
+  @Override
   StepOutActionDto withType(TYPE type);
 }

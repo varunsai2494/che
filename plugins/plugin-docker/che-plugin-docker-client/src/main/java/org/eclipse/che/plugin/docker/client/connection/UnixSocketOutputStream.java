@@ -31,6 +31,7 @@ public class UnixSocketOutputStream extends OutputStream {
     write(new byte[] {(byte) b}, 0, 1);
   }
 
+  @Override
   public void write(byte[] b) throws IOException {
     write(b, 0, b.length);
   }

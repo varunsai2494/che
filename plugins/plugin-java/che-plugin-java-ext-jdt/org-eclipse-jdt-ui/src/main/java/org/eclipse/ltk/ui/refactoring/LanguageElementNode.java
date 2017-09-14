@@ -61,6 +61,7 @@ public abstract class LanguageElementNode extends InternalLanguageElementNode {
    * @return the text region of this language element node
    * @throws CoreException if the source region can't be obtained
    */
+  @Override
   public abstract IRegion getTextRange() throws CoreException;
 
   /**
@@ -69,6 +70,7 @@ public abstract class LanguageElementNode extends InternalLanguageElementNode {
    * @param child the child node to add
    * @noreference This method is not intended to be referenced by clients.
    */
+  @Override
   protected void internalAddChild(ChildNode child) {
     super.internalAddChild(child);
   }

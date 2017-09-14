@@ -30,6 +30,7 @@ public class ProcessUtilTest {
     final CountDownLatch latch = new CountDownLatch(1);
     final long start = System.currentTimeMillis();
     new Thread() {
+      @Override
       public void run() {
         try {
           ProcessUtil.process(

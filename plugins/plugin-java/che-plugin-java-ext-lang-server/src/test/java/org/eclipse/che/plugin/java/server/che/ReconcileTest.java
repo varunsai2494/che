@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.java.server.che;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
@@ -50,7 +51,7 @@ public class ReconcileTest extends BaseTest {
     File file = new File(wsPath, path.toOSString());
     try {
       file.delete();
-      Files.write(file.toPath(), contents.getBytes(), StandardOpenOption.CREATE);
+      Files.write(file.toPath(), contents.getBytes(UTF_8), StandardOpenOption.CREATE);
     } catch (IOException e) {
       e.printStackTrace();
     }

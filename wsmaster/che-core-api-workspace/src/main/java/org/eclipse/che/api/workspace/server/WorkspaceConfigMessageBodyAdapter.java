@@ -11,6 +11,7 @@
 package org.eclipse.che.api.workspace.server;
 
 import static java.nio.charset.Charset.defaultCharset;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.regex.Pattern.DOTALL;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
@@ -58,7 +59,7 @@ public class WorkspaceConfigMessageBodyAdapter implements MessageBodyAdapter {
 
   @Override
   public InputStream adapt(InputStream entityStream) throws WebApplicationException, IOException {
-    try (Reader r = new InputStreamReader(entityStream)) {
+    try (Reader r = new InputStreamReader(entityStream, UTF_8)) {
       return new ByteArrayInputStream(adapt(CharStreams.toString(r)).getBytes(defaultCharset()));
     } catch (IllegalArgumentException x) {
       throw new WebApplicationException(x.getMessage(), x, BAD_REQUEST);

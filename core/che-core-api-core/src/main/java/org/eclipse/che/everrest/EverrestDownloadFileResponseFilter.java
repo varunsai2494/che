@@ -34,6 +34,7 @@ public class EverrestDownloadFileResponseFilter extends DownloadFileResponseFilt
    *
    * @param containerResponse the response to use
    */
+  @Override
   public void doFilter(GenericContainerResponse containerResponse) {
     containerResponse.getResponse();
 

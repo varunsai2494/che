@@ -68,6 +68,7 @@ public class GitOutputConsolePresenter
    *
    * @param text text that need to be shown
    */
+  @Override
   public void print(String text) {
     String[] lines = text.split("\n");
     for (String line : lines) {
@@ -96,6 +97,7 @@ public class GitOutputConsolePresenter
   }
 
   /** {@inheritDoc} */
+  @Override
   public void clear() {
     view.clear();
   }

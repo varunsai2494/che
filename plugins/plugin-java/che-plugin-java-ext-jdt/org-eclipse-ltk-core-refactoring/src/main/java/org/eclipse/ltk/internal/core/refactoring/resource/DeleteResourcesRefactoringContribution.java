@@ -35,6 +35,7 @@ public class DeleteResourcesRefactoringContribution extends RefactoringContribut
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.RefactoringContribution#retrieveArgumentMap(org.eclipse.ltk.core.refactoring.RefactoringDescriptor)
    */
+  @Override
   public Map retrieveArgumentMap(RefactoringDescriptor descriptor) {
     if (descriptor instanceof DeleteResourcesDescriptor) {
       DeleteResourcesDescriptor deleteDesc = (DeleteResourcesDescriptor) descriptor;
@@ -57,6 +58,7 @@ public class DeleteResourcesRefactoringContribution extends RefactoringContribut
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.RefactoringContribution#createDescriptor()
    */
+  @Override
   public RefactoringDescriptor createDescriptor() {
     return new DeleteResourcesDescriptor();
   }
@@ -64,6 +66,7 @@ public class DeleteResourcesRefactoringContribution extends RefactoringContribut
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.RefactoringContribution#createDescriptor(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Map, int)
    */
+  @Override
   public RefactoringDescriptor createDescriptor(
       String id, String project, String description, String comment, Map arguments, int flags)
       throws IllegalArgumentException {

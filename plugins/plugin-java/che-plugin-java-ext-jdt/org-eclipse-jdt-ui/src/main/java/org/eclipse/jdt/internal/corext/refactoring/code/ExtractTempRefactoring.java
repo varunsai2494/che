@@ -885,6 +885,7 @@ public class ExtractTempRefactoring extends Refactoring {
     Comparator<IASTFragment> comparator =
         new Comparator<IASTFragment>() {
 
+          @Override
           public int compare(IASTFragment o1, IASTFragment o2) {
             return o1.getStartPosition() - o2.getStartPosition();
           }

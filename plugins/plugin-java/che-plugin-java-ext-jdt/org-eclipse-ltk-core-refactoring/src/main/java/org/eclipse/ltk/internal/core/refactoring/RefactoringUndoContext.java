@@ -14,10 +14,12 @@ import org.eclipse.core.resources.ResourcesPlugin;
 
 public class RefactoringUndoContext implements IUndoContext {
 
+  @Override
   public String getLabel() {
     return RefactoringCoreMessages.RefactoringUndoContext_label;
   }
 
+  @Override
   public boolean matches(IUndoContext context) {
     if (this == context) return true;
     IUndoContext workspaceContext =

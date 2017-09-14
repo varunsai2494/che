@@ -31,6 +31,7 @@ public class ExplorerCurrentFilePathMacroTest extends AbstractExplorerMacroTest 
 
   private ExplorerCurrentFilePathMacro provider;
 
+  @Override
   @Before
   public void init() throws Exception {
     super.init();

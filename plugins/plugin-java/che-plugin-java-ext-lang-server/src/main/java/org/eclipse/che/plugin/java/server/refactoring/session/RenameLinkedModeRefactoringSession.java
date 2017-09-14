@@ -103,6 +103,7 @@ public class RenameLinkedModeRefactoringSession extends RefactoringSession {
     Arrays.sort(
         sameNodes,
         new Comparator<ASTNode>() {
+          @Override
           public int compare(ASTNode o1, ASTNode o2) {
             return rank(o1) - rank(o2);
           }

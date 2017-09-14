@@ -54,6 +54,7 @@ public class TestLanguageServerLauncher extends LanguageServerLauncherTemplate {
     return Files.exists(launchScript);
   }
 
+  @Override
   protected LanguageServer connectToLanguageServer(
       final Process languageServerProcess, LanguageClient client) {
     Launcher<LanguageServer> launcher =
@@ -66,6 +67,7 @@ public class TestLanguageServerLauncher extends LanguageServerLauncherTemplate {
     return launcher.getRemoteProxy();
   }
 
+  @Override
   protected Process startLanguageServerProcess(String projectPath) throws LanguageServerException {
     ProcessBuilder processBuilder = new ProcessBuilder(launchScript.toString());
     processBuilder.redirectInput(ProcessBuilder.Redirect.PIPE);
@@ -77,6 +79,7 @@ public class TestLanguageServerLauncher extends LanguageServerLauncherTemplate {
     }
   }
 
+  @Override
   public LanguageServerDescription getDescription() {
     return DESCRIPTION;
   }

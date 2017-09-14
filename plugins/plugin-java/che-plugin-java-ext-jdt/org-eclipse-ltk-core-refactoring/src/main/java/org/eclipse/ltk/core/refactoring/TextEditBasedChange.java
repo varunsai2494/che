@@ -58,6 +58,7 @@ public abstract class TextEditBasedChange extends Change {
       fExcludes = flatten(excludes);
     }
 
+    @Override
     protected boolean considerEdit(TextEdit edit) {
       if (fExcludes != null) {
         for (int i = 0; i < fExcludes.length; i++) {
@@ -288,6 +289,7 @@ public abstract class TextEditBasedChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getName() {
     return fName;
   }
@@ -359,6 +361,7 @@ public abstract class TextEditBasedChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void setEnabled(boolean enabled) {
     super.setEnabled(enabled);
     for (Iterator iter = fChangeGroups.iterator(); iter.hasNext(); ) {

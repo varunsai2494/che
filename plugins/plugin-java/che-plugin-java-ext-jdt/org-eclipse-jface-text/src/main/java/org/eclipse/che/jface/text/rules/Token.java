@@ -35,7 +35,7 @@ public class Token implements IToken {
    *
    * @deprecated will be removed
    */
-  public static final IToken OTHER = new Token(T_OTHER);
+  @Deprecated public static final IToken OTHER = new Token(T_OTHER);
 
   /** The type of this token */
   private int fType;
@@ -80,6 +80,7 @@ public class Token implements IToken {
   /*
    * @see IToken#getData()
    */
+  @Override
   public Object getData() {
     return fData;
   }
@@ -87,6 +88,7 @@ public class Token implements IToken {
   /*
    * @see IToken#isOther()
    */
+  @Override
   public boolean isOther() {
     return (fType == T_OTHER);
   }
@@ -94,6 +96,7 @@ public class Token implements IToken {
   /*
    * @see IToken#isEOF()
    */
+  @Override
   public boolean isEOF() {
     return (fType == T_EOF);
   }
@@ -101,6 +104,7 @@ public class Token implements IToken {
   /*
    * @see IToken#isWhitespace()
    */
+  @Override
   public boolean isWhitespace() {
     return (fType == T_WHITESPACE);
   }
@@ -108,6 +112,7 @@ public class Token implements IToken {
   /*
    * @see IToken#isUndefined()
    */
+  @Override
   public boolean isUndefined() {
     return (fType == T_UNDEFINED);
   }

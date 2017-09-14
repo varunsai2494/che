@@ -28,8 +28,10 @@ public interface ImportDeclaration extends JavaElement {
    *
    * @return the name that has been imported
    */
+  @Override
   String getElementName();
 
+  @Override
   void setElementName(String elementName);
 
   /**

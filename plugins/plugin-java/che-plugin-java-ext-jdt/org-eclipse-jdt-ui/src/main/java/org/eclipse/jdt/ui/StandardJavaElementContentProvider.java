@@ -77,6 +77,7 @@ public class StandardJavaElementContentProvider
    *     compilation unit children are always provided as working copies. The Java Model does not
    *     support the 'original' mode anymore.
    */
+  @Deprecated
   public StandardJavaElementContentProvider(boolean provideMembers, boolean provideWorkingCopy) {
     this(provideMembers);
   }
@@ -120,6 +121,7 @@ public class StandardJavaElementContentProvider
    * @deprecated Since 3.0 compilation unit children are always provided as working copies. The Java
    *     model does not support the 'original' mode anymore.
    */
+  @Deprecated
   public boolean getProvideWorkingCopy() {
     return fProvideWorkingCopy;
   }
@@ -129,6 +131,7 @@ public class StandardJavaElementContentProvider
    * @deprecated Since 3.0 compilation unit children are always provided from the working copy. The
    *     Java model offers a unified world and does not support the 'original' mode anymore.
    */
+  @Deprecated
   public void setProvideWorkingCopy(boolean b) {
     fProvideWorkingCopy = b;
   }
@@ -136,6 +139,7 @@ public class StandardJavaElementContentProvider
   /* (non-Javadoc)
    * @see IWorkingCopyProvider#providesWorkingCopies()
    */
+  @Override
   public boolean providesWorkingCopies() {
     return getProvideWorkingCopy();
   }
@@ -143,6 +147,7 @@ public class StandardJavaElementContentProvider
   /* (non-Javadoc)
    * Method declared on IStructuredContentProvider.
    */
+  @Override
   public Object[] getElements(Object parent) {
     return getChildren(parent);
   }
@@ -150,16 +155,19 @@ public class StandardJavaElementContentProvider
   /* (non-Javadoc)
    * Method declared on IContentProvider.
    */
+  @Override
   public void inputChanged(/*Viewer viewer,*/ Object oldInput, Object newInput) {}
 
   /* (non-Javadoc)
    * Method declared on IContentProvider.
    */
+  @Override
   public void dispose() {}
 
   /* (non-Javadoc)
    * Method declared on ITreeContentProvider.
    */
+  @Override
   public Object[] getChildren(Object element) {
     if (!exists(element)) return NO_CHILDREN;
 
@@ -193,6 +201,7 @@ public class StandardJavaElementContentProvider
   /* (non-Javadoc)
    * @see ITreeContentProvider
    */
+  @Override
   public boolean hasChildren(Object element) {
     if (getProvideMembers()) {
       // assume CUs and class files are never empty
@@ -228,6 +237,7 @@ public class StandardJavaElementContentProvider
   /* (non-Javadoc)
    * Method declared on ITreeContentProvider.
    */
+  @Override
   public Object getParent(Object element) {
     if (!exists(element)) return null;
     return internalGetParent(element);

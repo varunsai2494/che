@@ -42,6 +42,7 @@ public class CoreException extends Exception {
    *
    * @return the cause for this exception
    */
+  @Override
   public Throwable getCause() {
     return status.getException();
   }

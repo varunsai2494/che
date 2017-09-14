@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.api.workspace.server.spi.tck;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.eclipse.che.api.workspace.server.spi.tck.WorkspaceDaoTest.createWorkspaceConfig;
@@ -220,7 +221,7 @@ public class StackDaoTest {
     source.setOrigin("new-source");
 
     // Set a new icon
-    stack.setStackIcon(new StackIcon("new-name", "new-media", "new-data".getBytes()));
+    stack.setStackIcon(new StackIcon("new-name", "new-media", "new-data".getBytes(UTF_8)));
 
     stackDao.update(stack);
 
@@ -305,7 +306,8 @@ public class StackDaoTest {
                     new StackComponentImpl(id + "-component2", id + "-component2-version")))
             .setSource(new StackSourceImpl(id + "-type", id + "-origin"))
             .setStackIcon(
-                new StackIcon(id + "-icon", id + "-media-type", "0x1234567890abcdef".getBytes()))
+                new StackIcon(
+                    id + "-icon", id + "-media-type", "0x1234567890abcdef".getBytes(UTF_8)))
             .build();
     final WorkspaceConfigImpl config = createWorkspaceConfig("test");
     stack.setWorkspaceConfig(config);

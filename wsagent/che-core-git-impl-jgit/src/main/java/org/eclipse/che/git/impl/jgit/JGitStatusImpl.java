@@ -12,6 +12,7 @@
 package org.eclipse.che.git.impl.jgit;
 
 import static java.lang.System.lineSeparator;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -105,7 +106,7 @@ public class JGitStatusImpl implements Status, InfoPage {
       }
     }
 
-    out.write(status.toString().getBytes());
+    out.write(status.toString().getBytes(UTF_8));
   }
 
   @Override

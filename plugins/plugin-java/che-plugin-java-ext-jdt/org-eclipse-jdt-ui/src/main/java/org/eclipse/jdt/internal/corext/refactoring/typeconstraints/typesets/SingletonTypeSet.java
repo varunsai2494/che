@@ -131,14 +131,17 @@ public class SingletonTypeSet extends TypeSet {
     return new Iterator<TType>() {
       private boolean done = false;
 
+      @Override
       public void remove() {
         throw new UnsupportedOperationException();
       }
 
+      @Override
       public boolean hasNext() {
         return !done;
       }
 
+      @Override
       public TType next() {
         done = true;
         return fType;

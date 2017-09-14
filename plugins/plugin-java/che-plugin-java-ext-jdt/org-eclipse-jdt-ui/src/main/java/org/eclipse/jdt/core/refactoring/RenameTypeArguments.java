@@ -74,6 +74,7 @@ public class RenameTypeArguments extends RenameArguments {
   /* (non-Javadoc)
    * @see RefactoringArguments#toString()
    */
+  @Override
   public String toString() {
     return super.toString()
         + (updateSimilarDeclarations

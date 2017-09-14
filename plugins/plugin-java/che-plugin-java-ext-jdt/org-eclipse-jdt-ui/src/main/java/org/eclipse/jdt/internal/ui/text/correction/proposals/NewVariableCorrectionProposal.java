@@ -375,6 +375,7 @@ public class NewVariableCorrectionProposal extends LinkedCorrectionProposal {
       Arrays.sort(
           names,
           new Comparator<SimpleName>() {
+            @Override
             public int compare(SimpleName s1, SimpleName s2) {
               return s1.getStartPosition() - s2.getStartPosition();
             }

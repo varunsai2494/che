@@ -155,6 +155,7 @@ public class ContainerGenerator {
     ResourcesPlugin.getWorkspace()
         .run(
             new IWorkspaceRunnable() {
+              @Override
               public void run(IProgressMonitor monitor) throws CoreException {
                 monitor.beginTask(
                     "IDEWorkbenchMessages.ContainerGenerator_progressMessage",

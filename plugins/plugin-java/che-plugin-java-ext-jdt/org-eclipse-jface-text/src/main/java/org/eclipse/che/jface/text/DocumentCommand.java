@@ -84,6 +84,7 @@ public class DocumentCommand {
     /*
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */
+    @Override
     public int compareTo(final Object object) {
       if (isEqual(object)) return 0;
 
@@ -125,6 +126,7 @@ public class DocumentCommand {
     /*
      * @see java.util.Iterator#hasNext()
      */
+    @Override
     public boolean hasNext() {
       return fListIterator.hasPrevious();
     }
@@ -132,6 +134,7 @@ public class DocumentCommand {
     /*
      * @see java.util.Iterator#next()
      */
+    @Override
     public Object next() {
       return fListIterator.previous();
     }
@@ -139,6 +142,7 @@ public class DocumentCommand {
     /*
      * @see java.util.Iterator#remove()
      */
+    @Override
     public void remove() {
       throw new UnsupportedOperationException();
     }
@@ -176,6 +180,7 @@ public class DocumentCommand {
     /*
      * @see java.util.Iterator#hasNext()
      */
+    @Override
     public boolean hasNext() {
       return fCommand != null || fIterator.hasNext();
     }
@@ -183,6 +188,7 @@ public class DocumentCommand {
     /*
      * @see java.util.Iterator#next()
      */
+    @Override
     public Object next() {
 
       if (!hasNext()) throw new NoSuchElementException();
@@ -214,6 +220,7 @@ public class DocumentCommand {
     /*
      * @see java.util.Iterator#remove()
      */
+    @Override
     public void remove() {
       throw new UnsupportedOperationException();
     }

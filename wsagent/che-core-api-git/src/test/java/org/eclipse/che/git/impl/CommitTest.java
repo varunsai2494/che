@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.git.impl;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.Files.write;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -213,7 +214,8 @@ public class CommitTest {
     //Prepare unstaged new file
     addFile(connection, "newFile", "content");
     //Prepare unstaged editing
-    write(new File(connection.getWorkingDir(), "README.txt").toPath(), "new content".getBytes());
+    write(
+        new File(connection.getWorkingDir(), "README.txt").toPath(), "new content".getBytes(UTF_8));
 
     //when
     connection.commit(CommitParams.create("test commit"));

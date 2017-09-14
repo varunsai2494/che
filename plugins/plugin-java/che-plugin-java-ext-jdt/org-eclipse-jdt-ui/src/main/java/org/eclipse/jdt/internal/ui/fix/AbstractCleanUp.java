@@ -36,6 +36,7 @@ public abstract class AbstractCleanUp implements ICleanUp {
    * @see org.eclipse.jdt.ui.cleanup.ICleanUp#setOptions(org.eclipse.jdt.ui.cleanup.CleanUpOptions)
    * @since 3.5
    */
+  @Override
   public void setOptions(CleanUpOptions options) {
     Assert.isLegal(options != null);
     fOptions = options;
@@ -45,6 +46,7 @@ public abstract class AbstractCleanUp implements ICleanUp {
    * @see org.eclipse.jdt.ui.cleanup.ICleanUp#getStepDescriptions()
    * @since 3.5
    */
+  @Override
   public String[] getStepDescriptions() {
     return new String[0];
   }
@@ -58,6 +60,7 @@ public abstract class AbstractCleanUp implements ICleanUp {
    * @see org.eclipse.jdt.ui.cleanup.ICleanUp#getRequirements()
    * @since 3.5
    */
+  @Override
   public CleanUpRequirements getRequirements() {
     return new CleanUpRequirements(false, false, false, null);
   }
@@ -66,6 +69,7 @@ public abstract class AbstractCleanUp implements ICleanUp {
    * @see org.eclipse.jdt.ui.cleanup.ICleanUp#checkPreConditions(org.eclipse.jdt.core.IJavaProject, org.eclipse.jdt.core.ICompilationUnit[], org.eclipse.core.runtime.IProgressMonitor)
    * @since 3.5
    */
+  @Override
   public RefactoringStatus checkPreConditions(
       IJavaProject project, ICompilationUnit[] compilationUnits, IProgressMonitor monitor)
       throws CoreException {
@@ -76,6 +80,7 @@ public abstract class AbstractCleanUp implements ICleanUp {
    * @see org.eclipse.jdt.ui.cleanup.ICleanUp#createFix(org.eclipse.jdt.ui.cleanup.CleanUpContext)
    * @since 3.5
    */
+  @Override
   public ICleanUpFix createFix(CleanUpContext context) throws CoreException {
     return null;
   }
@@ -84,6 +89,7 @@ public abstract class AbstractCleanUp implements ICleanUp {
    * @see org.eclipse.jdt.ui.cleanup.ICleanUp#checkPostConditions(org.eclipse.core.runtime.IProgressMonitor)
    * @since 3.5
    */
+  @Override
   public RefactoringStatus checkPostConditions(IProgressMonitor monitor) throws CoreException {
     return new RefactoringStatus();
   }

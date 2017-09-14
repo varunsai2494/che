@@ -57,11 +57,13 @@ public class CopyOnWriteTextStore implements TextStore {
     }
 
     /* @see org.eclipse.jface.text.ITextStore#get(int) */
+    @Override
     public char get(int offset) {
       return fText.charAt(offset);
     }
 
     /* @see org.eclipse.jface.text.ITextStore#get(int, int) */
+    @Override
     public String get(int offset, int length) {
       if (length < fCopyLimit) {
         // create a copy to avoid sharing of contained char[] - bug 292664
@@ -71,6 +73,7 @@ public class CopyOnWriteTextStore implements TextStore {
     }
 
     /* @see org.eclipse.jface.text.ITextStore#getLength() */
+    @Override
     public int getLength() {
       return fText.length();
     }
@@ -78,12 +81,14 @@ public class CopyOnWriteTextStore implements TextStore {
     /*
      * @see org.eclipse.jface.text.ITextStore#replace(int, int, java.lang.String)
      */
+    @Override
     public void replace(int offset, int length, String text) {
       // modification not supported
       throw new UnsupportedOperationException();
     }
 
     /* @see org.eclipse.jface.text.ITextStore#set(java.lang.String) */
+    @Override
     public void set(String text) {
       // modification not supported
       throw new UnsupportedOperationException();
@@ -109,21 +114,25 @@ public class CopyOnWriteTextStore implements TextStore {
   }
 
   /* @see org.eclipse.jface.text.ITextStore#get(int) */
+  @Override
   public char get(int offset) {
     return fTextStore.get(offset);
   }
 
   /* @see org.eclipse.jface.text.ITextStore#get(int, int) */
+  @Override
   public String get(int offset, int length) {
     return fTextStore.get(offset, length);
   }
 
   /* @see org.eclipse.jface.text.ITextStore#getLength() */
+  @Override
   public int getLength() {
     return fTextStore.getLength();
   }
 
   /* @see org.eclipse.jface.text.ITextStore#replace(int, int, java.lang.String) */
+  @Override
   public void replace(int offset, int length, String text) {
     if (fTextStore != fModifiableTextStore) {
       String content = fTextStore.get(0, fTextStore.getLength());
@@ -134,6 +143,7 @@ public class CopyOnWriteTextStore implements TextStore {
   }
 
   /* @see org.eclipse.jface.text.ITextStore#set(java.lang.String) */
+  @Override
   public void set(String text) {
     fTextStore = new StringTextStore(text);
     fModifiableTextStore.set(""); //$NON-NLS-1$

@@ -17,6 +17,7 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author andrew00x */
 @DTO
 public interface VariablePathDto extends VariablePath {
+  @Override
   List<String> getPath();
 
   void setPath(List<String> path);

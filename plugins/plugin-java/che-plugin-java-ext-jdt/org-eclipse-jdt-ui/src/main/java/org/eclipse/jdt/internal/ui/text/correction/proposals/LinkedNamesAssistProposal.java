@@ -110,6 +110,7 @@ public class LinkedNamesAssistProposal
   /* (non-Javadoc)
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#apply(org.eclipse.jface.text.ITextViewer, char, int, int)
    */
+  @Override
   public void apply(ITextViewer viewer, char trigger, int stateMask, int offset) {
     try {
       Point seletion = viewer.getSelectedRange();
@@ -133,6 +134,7 @@ public class LinkedNamesAssistProposal
           sameNodes,
           new Comparator<ASTNode>() {
 
+            @Override
             public int compare(ASTNode o1, ASTNode o2) {
               return rank(o1) - rank(o2);
             }
@@ -195,6 +197,7 @@ public class LinkedNamesAssistProposal
   /*
    * @see ICompletionProposal#apply(IDocument)
    */
+  @Override
   public void apply(IDocument document) {
     // can't do anything
   }
@@ -202,6 +205,7 @@ public class LinkedNamesAssistProposal
   /*
    * @see ICompletionProposal#getSelection(IDocument)
    */
+  @Override
   public Point getSelection(IDocument document) {
     return null;
   }
@@ -209,6 +213,7 @@ public class LinkedNamesAssistProposal
   /*
    * @see ICompletionProposal#getAdditionalProposalInfo()
    */
+  @Override
   public String getAdditionalProposalInfo() {
     return CorrectionMessages.LinkedNamesAssistProposal_proposalinfo;
   }
@@ -216,6 +221,7 @@ public class LinkedNamesAssistProposal
   /*
    * @see ICompletionProposal#getDisplayString()
    */
+  @Override
   public String getDisplayString() {
     //		String shortCutString = CorrectionCommandHandler.getShortCutString(getCommandId());
     //		if (shortCutString != null) {
@@ -227,6 +233,7 @@ public class LinkedNamesAssistProposal
   /* (non-Javadoc)
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension6#getStyledDisplayString()
    */
+  @Override
   public StyledString getStyledDisplayString() {
     StyledString str = new StyledString(fLabel);
 
@@ -242,6 +249,7 @@ public class LinkedNamesAssistProposal
   /*
    * @see ICompletionProposal#getImage()
    */
+  @Override
   public Image getImage() {
     return JavaPluginImages.get(JavaPluginImages.IMG_CORRECTION_LINKED_RENAME);
   }
@@ -249,6 +257,7 @@ public class LinkedNamesAssistProposal
   /*
    * @see ICompletionProposal#getContextInformation()
    */
+  @Override
   public IContextInformation getContextInformation() {
     return null;
   }
@@ -256,6 +265,7 @@ public class LinkedNamesAssistProposal
   /*
    * @see IJavaCompletionProposal#getRelevance()
    */
+  @Override
   public int getRelevance() {
     return fRelevance;
   }
@@ -263,17 +273,20 @@ public class LinkedNamesAssistProposal
   /* (non-Javadoc)
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#selected(org.eclipse.jface.text.ITextViewer, boolean)
    */
+  @Override
   public void selected(ITextViewer textViewer, boolean smartToggle) {}
 
   /* (non-Javadoc)
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#unselected(org.eclipse.jface.text.ITextViewer)
    */
+  @Override
   public void unselected(ITextViewer textViewer) {}
 
   /* (non-Javadoc)
    * @see org.eclipse.jface.text.contentassist.ICompletionProposalExtension2#validate(org.eclipse.jface.text.IDocument, int, org
    * .eclipse.jface.text.DocumentEvent)
    */
+  @Override
   public boolean validate(IDocument document, int offset, DocumentEvent event) {
     return false;
   }
@@ -281,6 +294,7 @@ public class LinkedNamesAssistProposal
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.ui.text.correction.IShortcutProposal#getProposalId()
    */
+  @Override
   public String getCommandId() {
     return ASSIST_ID;
   }

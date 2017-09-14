@@ -109,6 +109,7 @@ abstract class TreeLineTracker implements LineTracker {
     byte balance;
 
     /* @see java.lang.Object#toString() */
+    @Override
     public final String toString() {
       String bal;
       switch (balance) {
@@ -555,6 +556,7 @@ abstract class TreeLineTracker implements LineTracker {
   /*
    * @see org.eclipse.jface.text.ILineTracker#replace(int, int, java.lang.String)
    */
+  @Override
   public final void replace(int offset, int length, String text) throws BadLocationException {
     if (ASSERT) checkTree();
 
@@ -1007,6 +1009,7 @@ abstract class TreeLineTracker implements LineTracker {
   protected abstract DelimiterInfo nextDelimiterInfo(String text, int offset);
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineDelimiter(int) */
+  @Override
   public final String getLineDelimiter(int line) throws BadLocationException {
     Node node = nodeByLine(line);
     return node.delimiter == NO_DELIM ? null : node.delimiter;
@@ -1015,6 +1018,7 @@ abstract class TreeLineTracker implements LineTracker {
   /*
    * @see org.eclipse.jface.text.ILineTracker#computeNumberOfLines(java.lang.String)
    */
+  @Override
   public final int computeNumberOfLines(String text) {
     int count = 0;
     int start = 0;
@@ -1028,6 +1032,7 @@ abstract class TreeLineTracker implements LineTracker {
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getNumberOfLines() */
+  @Override
   public final int getNumberOfLines() {
     // TODO track separately?
     Node node = fRoot;
@@ -1040,6 +1045,7 @@ abstract class TreeLineTracker implements LineTracker {
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getNumberOfLines(int, int) */
+  @Override
   public final int getNumberOfLines(int offset, int length) throws BadLocationException {
     if (length == 0) return 1;
 
@@ -1050,22 +1056,26 @@ abstract class TreeLineTracker implements LineTracker {
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineOffset(int) */
+  @Override
   public final int getLineOffset(int line) throws BadLocationException {
     return offsetByLine(line);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineLength(int) */
+  @Override
   public final int getLineLength(int line) throws BadLocationException {
     Node node = nodeByLine(line);
     return node.length;
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineNumberOfOffset(int) */
+  @Override
   public final int getLineNumberOfOffset(int offset) throws BadLocationException {
     return lineByOffset(offset);
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineInformationOfOffset(int) */
+  @Override
   public final Region getLineInformationOfOffset(final int offset) throws BadLocationException {
     // Inline nodeByOffset start as we need both node and offset
     int remaining = offset;
@@ -1093,6 +1103,7 @@ abstract class TreeLineTracker implements LineTracker {
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#getLineInformation(int) */
+  @Override
   public final Region getLineInformation(int line) throws BadLocationException {
     try {
       // Inline nodeByLine start
@@ -1153,6 +1164,7 @@ abstract class TreeLineTracker implements LineTracker {
   }
 
   /* @see org.eclipse.jface.text.ILineTracker#set(java.lang.String) */
+  @Override
   public final void set(String text) {
     fRoot = new Node(0, NO_DELIM);
     try {
@@ -1163,6 +1175,7 @@ abstract class TreeLineTracker implements LineTracker {
   }
 
   /* @see java.lang.Object#toString() */
+  @Override
   public String toString() {
     int depth = computeDepth(fRoot);
     int WIDTH = 30;

@@ -54,6 +54,7 @@ public class JsonStringMapImpl<T> implements JsonStringMap<T> {
     return delegate.get(key);
   }
 
+  @Override
   public T put(String key, T value) {
     return delegate.put(key, value);
   }
@@ -63,6 +64,7 @@ public class JsonStringMapImpl<T> implements JsonStringMap<T> {
     return delegate.remove(key);
   }
 
+  @Override
   public void putAll(Map<? extends String, ? extends T> m) {
     delegate.putAll(m);
   }

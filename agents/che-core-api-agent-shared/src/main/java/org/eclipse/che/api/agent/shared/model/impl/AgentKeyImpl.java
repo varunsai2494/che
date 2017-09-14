@@ -34,10 +34,12 @@ public class AgentKeyImpl implements AgentKey {
     this(agent.getId(), agent.getVersion());
   }
 
+  @Override
   public String getId() {
     return id;
   }
 
+  @Override
   public String getVersion() {
     return version;
   }

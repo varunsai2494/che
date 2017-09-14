@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.maven.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.plugin.maven.shared.MavenAttributes.MAVEN_ID;
 import static org.mockito.Mockito.mock;
 
@@ -226,7 +227,7 @@ public abstract class BaseTest {
   protected FolderEntry createTestProject(String name, String pomContent)
       throws ServerException, NotFoundException, ConflictException, ForbiddenException {
     FolderEntry folder = pm.getProjectsRoot().createFolder(name);
-    folder.createFile("pom.xml", getPomContent(pomContent).getBytes());
+    folder.createFile("pom.xml", getPomContent(pomContent).getBytes(UTF_8));
     projectRegistry.setProjectType(folder.getPath().toString(), MAVEN_ID, false);
 
     //inform DeltaProcessingStat about new project
@@ -245,7 +246,7 @@ public abstract class BaseTest {
     File pomFile = new File(file, "pom.xml");
 
     FileOutputStream outputStream = new FileOutputStream(pomFile);
-    outputStream.write(getPomContent(pomContent).getBytes());
+    outputStream.write(getPomContent(pomContent).getBytes(UTF_8));
     outputStream.flush();
     outputStream.close();
     return pomFile;

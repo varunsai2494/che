@@ -65,6 +65,7 @@ public class StandardVMType implements IVMInstallType {
    */
   private static FilenameFilter fgArchiveFilter =
       new FilenameFilter() {
+        @Override
         public boolean accept(File arg0, String arg1) {
           return arg1.endsWith(".zip") || arg1.endsWith(".jar"); //$NON-NLS-1$//$NON-NLS-2$
         }
@@ -155,6 +156,7 @@ public class StandardVMType implements IVMInstallType {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.IVMInstallType#getName()
    */
+  @Override
   public String getName() {
     return "Standard VM";
   }
@@ -231,6 +233,7 @@ public class StandardVMType implements IVMInstallType {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.IVMInstallType#detectInstallLocation()
    */
+  @Override
   public File detectInstallLocation() {
     // do not detect on the Mac OS
     //        if (Platform.getOS().equals(Constants.OS_MACOSX)) {
@@ -371,6 +374,7 @@ public class StandardVMType implements IVMInstallType {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.IVMInstallType#getDefaultLibraryLocations(java.io.File)
    */
+  @Override
   public LibraryLocation[] getDefaultLibraryLocations(File installLocation) {
     //NOTE: We do not add libraries from the "endorsed" directory explicitly, as
     //the bootpath contains these entries already (if they exist).
@@ -548,6 +552,7 @@ public class StandardVMType implements IVMInstallType {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.launching.IVMInstallType#validateInstallLocation(java.io.File)
    */
+  @Override
   public IStatus validateInstallLocation(File javaHome) {
     IStatus status = null;
     File javaExecutable = findJavaExecutable(javaHome);

@@ -25,6 +25,7 @@ public abstract class DeleteParticipant extends RefactoringParticipant {
   private DeleteArguments fArguments;
 
   /** {@inheritDoc} */
+  @Override
   protected final void initialize(RefactoringArguments arguments) {
     fArguments = (DeleteArguments) arguments;
   }

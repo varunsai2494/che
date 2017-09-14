@@ -25,6 +25,7 @@ public abstract class ChangeClasspathOperation extends JavaModelOperation {
     this.canChangeResources = canChangeResources;
   }
 
+  @Override
   protected boolean canModifyRoots() {
     // changing the classpath can modify roots
     return true;
@@ -89,10 +90,12 @@ public abstract class ChangeClasspathOperation extends JavaModelOperation {
     }
   }
 
+  @Override
   protected ISchedulingRule getSchedulingRule() {
     return null; // no lock taken while changing classpath
   }
 
+  @Override
   public boolean isReadOnly() {
     return !this.canChangeResources;
   }

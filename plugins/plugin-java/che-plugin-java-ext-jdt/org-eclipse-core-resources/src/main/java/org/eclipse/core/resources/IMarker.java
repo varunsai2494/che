@@ -284,6 +284,7 @@ public interface IMarker extends IAdaptable {
    * @param object the other object
    * @return an indication of whether the objects are equal
    */
+  @Override
   public boolean equals(Object object);
 
   /**

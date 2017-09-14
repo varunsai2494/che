@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.api.git;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -96,7 +98,7 @@ public class GitConfigurationChecker {
     writeCodenvyExcludesToFile(DEFAULT_GITIGNORE_FILE_PATH);
     Files.write(
         GLOBAL_GITCONFIG_FILE_PATH,
-        getExcludesfilePropertyDefaultContent().getBytes(),
+        getExcludesfilePropertyDefaultContent().getBytes(UTF_8),
         StandardOpenOption.APPEND);
   }
 

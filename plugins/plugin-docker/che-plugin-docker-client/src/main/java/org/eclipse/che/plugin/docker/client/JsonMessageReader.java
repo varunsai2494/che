@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
@@ -44,7 +46,7 @@ public class JsonMessageReader<T> {
    */
   public JsonMessageReader(InputStream source, Class<T> messageClass) {
     // we need to push back only 1 char, read more further
-    this.reader = new PushbackReader(new InputStreamReader(source), 1);
+    this.reader = new PushbackReader(new InputStreamReader(source, UTF_8), 1);
     this.streamParser = new JsonStreamParser(reader);
     this.messageClass = messageClass;
   }

@@ -88,6 +88,7 @@ public class ProblemAnnotation extends Annotation
   }
 
   /** @return */
+  @Override
   public int getLayer() {
     return fLayer;
   }

@@ -30,11 +30,13 @@ public class ReorgDestinationFactory {
     }
 
     /** {@inheritDoc} */
+    @Override
     public Object getDestination() {
       return fDestination;
     }
 
     /** {@inheritDoc} */
+    @Override
     public int getLocation() {
       return fLocation;
     }

@@ -460,10 +460,12 @@ public class JavaParser extends Parser {
     return adaptor;
   }
 
+  @Override
   public String[] getTokenNames() {
     return JavaParser.tokenNames;
   }
 
+  @Override
   public String getGrammarFileName() {
     return "org/eclipse/che/plugin/jdb/server/expression/Java.g";
   }
@@ -530,6 +532,7 @@ public class JavaParser extends Parser {
   public static class javaSource_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -621,6 +624,7 @@ public class JavaParser extends Parser {
   public static class compilationUnit_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -780,6 +784,7 @@ public class JavaParser extends Parser {
   public static class typeDecls_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -884,6 +889,7 @@ public class JavaParser extends Parser {
   public static class packageDeclaration_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -954,6 +960,7 @@ public class JavaParser extends Parser {
   public static class importDeclaration_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -1072,6 +1079,7 @@ public class JavaParser extends Parser {
   public static class typeDeclaration_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -1236,6 +1244,7 @@ public class JavaParser extends Parser {
   public static class classTypeDeclaration_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -1438,6 +1447,7 @@ public class JavaParser extends Parser {
   public static class classExtendsClause_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -1538,6 +1548,7 @@ public class JavaParser extends Parser {
   public static class interfaceExtendsClause_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -1640,6 +1651,7 @@ public class JavaParser extends Parser {
   public static class implementsClause_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -1742,6 +1754,7 @@ public class JavaParser extends Parser {
   public static class genericTypeParameterList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -1907,6 +1920,7 @@ public class JavaParser extends Parser {
   public static class genericTypeListClosing_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -2134,6 +2148,7 @@ public class JavaParser extends Parser {
   public static class genericTypeParameter_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -2266,6 +2281,7 @@ public class JavaParser extends Parser {
   public static class bound_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -2408,6 +2424,7 @@ public class JavaParser extends Parser {
   public static class enumTypeDeclaration_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -2545,6 +2562,7 @@ public class JavaParser extends Parser {
   public static class enumBody_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -2654,6 +2672,7 @@ public class JavaParser extends Parser {
   public static class enumScopeDeclarations_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -2757,6 +2776,7 @@ public class JavaParser extends Parser {
   public static class enumClassScopeDeclarations_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -2906,6 +2926,7 @@ public class JavaParser extends Parser {
   public static class enumConstants_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -3000,6 +3021,7 @@ public class JavaParser extends Parser {
   public static class enumConstant_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -3111,6 +3133,7 @@ public class JavaParser extends Parser {
   public static class interfaceTypeDeclaration_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -3285,6 +3308,7 @@ public class JavaParser extends Parser {
   public static class typeList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -3375,6 +3399,7 @@ public class JavaParser extends Parser {
   public static class classBody_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -3529,6 +3554,7 @@ public class JavaParser extends Parser {
   public static class interfaceBody_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -3682,6 +3708,7 @@ public class JavaParser extends Parser {
   public static class classScopeDeclarations_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -4603,6 +4630,7 @@ public class JavaParser extends Parser {
   public static class interfaceScopeDeclarations_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -5188,6 +5216,7 @@ public class JavaParser extends Parser {
   public static class classFieldDeclaratorList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -5328,6 +5357,7 @@ public class JavaParser extends Parser {
   public static class classFieldDeclarator_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -5459,6 +5489,7 @@ public class JavaParser extends Parser {
   public static class interfaceFieldDeclaratorList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -5600,6 +5631,7 @@ public class JavaParser extends Parser {
   public static class interfaceFieldDeclarator_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -5714,6 +5746,7 @@ public class JavaParser extends Parser {
   public static class variableDeclaratorId_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -5795,6 +5828,7 @@ public class JavaParser extends Parser {
   public static class variableInitializer_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -5906,6 +5940,7 @@ public class JavaParser extends Parser {
   public static class arrayDeclarator_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -5999,6 +6034,7 @@ public class JavaParser extends Parser {
   public static class arrayDeclaratorList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -6134,6 +6170,7 @@ public class JavaParser extends Parser {
   public static class arrayInitializer_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -6368,6 +6405,7 @@ public class JavaParser extends Parser {
   public static class throwsClause_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -6468,6 +6506,7 @@ public class JavaParser extends Parser {
   public static class modifierList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -6597,6 +6636,7 @@ public class JavaParser extends Parser {
   public static class modifier_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -6878,6 +6918,7 @@ public class JavaParser extends Parser {
   public static class localModifierList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -6996,6 +7037,7 @@ public class JavaParser extends Parser {
   public static class localModifier_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -7087,6 +7129,7 @@ public class JavaParser extends Parser {
   public static class type_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -7183,6 +7226,7 @@ public class JavaParser extends Parser {
   public static class simpleType_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -7312,6 +7356,7 @@ public class JavaParser extends Parser {
   public static class objectType_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -7437,6 +7482,7 @@ public class JavaParser extends Parser {
   public static class objectTypeSimplified_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -7560,6 +7606,7 @@ public class JavaParser extends Parser {
   public static class qualifiedTypeIdent_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -7699,6 +7746,7 @@ public class JavaParser extends Parser {
   public static class qualifiedTypeIdentSimplified_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -7838,6 +7886,7 @@ public class JavaParser extends Parser {
   public static class typeIdent_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -7918,6 +7967,7 @@ public class JavaParser extends Parser {
   public static class typeIdentSimplified_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -8000,6 +8050,7 @@ public class JavaParser extends Parser {
   public static class primitiveType_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -8075,6 +8126,7 @@ public class JavaParser extends Parser {
   public static class genericTypeArgumentList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -8244,6 +8296,7 @@ public class JavaParser extends Parser {
   public static class genericTypeArgument_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -8435,6 +8488,7 @@ public class JavaParser extends Parser {
   public static class genericWildcardBoundType_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -8513,6 +8567,7 @@ public class JavaParser extends Parser {
   public static class genericTypeArgumentListSimplified_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -8683,6 +8738,7 @@ public class JavaParser extends Parser {
   public static class genericTypeArgumentSimplified_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -8785,6 +8841,7 @@ public class JavaParser extends Parser {
   public static class qualifiedIdentList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -8878,6 +8935,7 @@ public class JavaParser extends Parser {
   public static class formalParameterList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -9292,6 +9350,7 @@ public class JavaParser extends Parser {
   public static class formalParameterStandardDecl_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -9410,6 +9469,7 @@ public class JavaParser extends Parser {
   public static class formalParameterVarArgDecl_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -9536,6 +9596,7 @@ public class JavaParser extends Parser {
   public static class qualifiedIdentifier_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -9697,6 +9758,7 @@ public class JavaParser extends Parser {
   public static class annotationList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -9821,6 +9883,7 @@ public class JavaParser extends Parser {
   public static class annotation_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -9908,6 +9971,7 @@ public class JavaParser extends Parser {
   public static class annotationInit_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -10017,6 +10081,7 @@ public class JavaParser extends Parser {
   public static class annotationInitializers_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -10286,6 +10351,7 @@ public class JavaParser extends Parser {
   public static class annotationInitializer_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -10356,6 +10422,7 @@ public class JavaParser extends Parser {
   public static class annotationElementValue_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -10508,6 +10575,7 @@ public class JavaParser extends Parser {
   public static class annotationElementValueExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -10601,6 +10669,7 @@ public class JavaParser extends Parser {
   public static class annotationElementValueArrayInitializer_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -10858,6 +10927,7 @@ public class JavaParser extends Parser {
   public static class annotationTypeDeclaration_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -10973,6 +11043,7 @@ public class JavaParser extends Parser {
   public static class annotationBody_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -11125,6 +11196,7 @@ public class JavaParser extends Parser {
   public static class annotationScopeDeclarations_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -11424,6 +11496,7 @@ public class JavaParser extends Parser {
   public static class annotationDefaultValue_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -11491,6 +11564,7 @@ public class JavaParser extends Parser {
   public static class block_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -11643,6 +11717,7 @@ public class JavaParser extends Parser {
   public static class blockStatement_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -11742,6 +11817,7 @@ public class JavaParser extends Parser {
   public static class localVariableDeclaration_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -11858,6 +11934,7 @@ public class JavaParser extends Parser {
   public static class statement_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -13301,6 +13378,7 @@ public class JavaParser extends Parser {
   public static class catches_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -13428,6 +13506,7 @@ public class JavaParser extends Parser {
   public static class catchClause_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -13512,6 +13591,7 @@ public class JavaParser extends Parser {
   public static class finallyClause_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -13596,6 +13676,7 @@ public class JavaParser extends Parser {
   public static class switchBlockLabels_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -13731,6 +13812,7 @@ public class JavaParser extends Parser {
   public static class switchCaseLabels_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -13812,6 +13894,7 @@ public class JavaParser extends Parser {
   public static class switchCaseLabel_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -13930,6 +14013,7 @@ public class JavaParser extends Parser {
   public static class switchDefaultLabel_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -14041,6 +14125,7 @@ public class JavaParser extends Parser {
   public static class forInit_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -14223,6 +14308,7 @@ public class JavaParser extends Parser {
   public static class forCondition_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -14352,6 +14438,7 @@ public class JavaParser extends Parser {
   public static class forUpdater_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -14481,6 +14568,7 @@ public class JavaParser extends Parser {
   public static class parenthesizedExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -14590,6 +14678,7 @@ public class JavaParser extends Parser {
   public static class expressionList_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -14680,6 +14769,7 @@ public class JavaParser extends Parser {
   public static class expression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -14771,6 +14861,7 @@ public class JavaParser extends Parser {
   public static class assignmentExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15154,6 +15245,7 @@ public class JavaParser extends Parser {
   public static class conditionalExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15262,6 +15354,7 @@ public class JavaParser extends Parser {
   public static class logicalOrExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15362,6 +15455,7 @@ public class JavaParser extends Parser {
   public static class logicalAndExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15463,6 +15557,7 @@ public class JavaParser extends Parser {
   public static class inclusiveOrExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15561,6 +15656,7 @@ public class JavaParser extends Parser {
   public static class exclusiveOrExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15656,6 +15752,7 @@ public class JavaParser extends Parser {
   public static class andExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15752,6 +15849,7 @@ public class JavaParser extends Parser {
   public static class equalityExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15893,6 +15991,7 @@ public class JavaParser extends Parser {
   public static class instanceOfExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -15983,6 +16082,7 @@ public class JavaParser extends Parser {
   public static class relationalExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -16183,6 +16283,7 @@ public class JavaParser extends Parser {
   public static class shiftExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -16355,6 +16456,7 @@ public class JavaParser extends Parser {
   public static class additiveExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -16495,6 +16597,7 @@ public class JavaParser extends Parser {
   public static class multiplicativeExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -16659,6 +16762,7 @@ public class JavaParser extends Parser {
   public static class unaryExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -17011,6 +17115,7 @@ public class JavaParser extends Parser {
   public static class unaryExpressionNotPlusMinus_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -17258,6 +17363,7 @@ public class JavaParser extends Parser {
   public static class postfixedExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -18085,6 +18191,7 @@ public class JavaParser extends Parser {
   public static class primaryExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -19070,6 +19177,7 @@ public class JavaParser extends Parser {
   public static class qualifiedIdentExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -19951,6 +20059,7 @@ public class JavaParser extends Parser {
   public static class newExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -20341,6 +20450,7 @@ public class JavaParser extends Parser {
   public static class innerNewExpression_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -20518,6 +20628,7 @@ public class JavaParser extends Parser {
   public static class newArrayConstruction_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -20723,6 +20834,7 @@ public class JavaParser extends Parser {
   public static class arguments_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -20868,6 +20980,7 @@ public class JavaParser extends Parser {
   public static class literal_return extends ParserRuleReturnScope {
     CommonTree tree;
 
+    @Override
     public Object getTree() {
       return tree;
     }
@@ -23433,6 +23546,7 @@ public class JavaParser extends Parser {
       this.transition = DFA36_transition;
     }
 
+    @Override
     public String getDescription() {
       return "449:1: classScopeDeclarations : ( block -> ^( CLASS_INSTANCE_INITIALIZER block ) | STATIC block -> ^( "
           + "CLASS_STATIC_INITIALIZER[$STATIC, \"CLASS_STATIC_INITIALIZER\"] block ) | modifierList ( ( genericTypeParameterList )"
@@ -23446,6 +23560,7 @@ public class JavaParser extends Parser {
           + "typeDeclaration | SEMI );";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;
@@ -23708,6 +23823,7 @@ public class JavaParser extends Parser {
       this.transition = DFA43_transition;
     }
 
+    @Override
     public String getDescription() {
       return "468:1: interfaceScopeDeclarations : ( modifierList ( ( genericTypeParameterList )? ( type IDENT formalParameterList ("
           + " arrayDeclaratorList )? ( throwsClause )? SEMI -> ^( FUNCTION_METHOD_DECL modifierList ( genericTypeParameterList )? "
@@ -23717,6 +23833,7 @@ public class JavaParser extends Parser {
           + "interfaceFieldDeclaratorList ) ) | typeDeclaration | SEMI );";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;
@@ -23973,12 +24090,14 @@ public class JavaParser extends Parser {
       this.transition = DFA86_transition;
     }
 
+    @Override
     public String getDescription() {
       return "723:1: annotationScopeDeclarations : ( modifierList type ( IDENT LPAREN RPAREN ( annotationDefaultValue )? SEMI -> ^("
           + " ANNOTATION_METHOD_DECL modifierList type IDENT ( annotationDefaultValue )? ) | classFieldDeclaratorList SEMI -> ^( "
           + "VAR_DECLARATION modifierList type classFieldDeclaratorList ) ) | typeDeclaration );";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;
@@ -24263,10 +24382,12 @@ public class JavaParser extends Parser {
       this.transition = DFA88_transition;
     }
 
+    @Override
     public String getDescription() {
       return "744:1: blockStatement : ( localVariableDeclaration SEMI | typeDeclaration | statement );";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;
@@ -24422,6 +24543,7 @@ public class JavaParser extends Parser {
       this.transition = DFA97_transition;
     }
 
+    @Override
     public String getDescription() {
       return "756:1: statement : ( block | ASSERT expr1= expression ( COLON expr2= expression SEMI -> ^( ASSERT $expr1 $expr2) | "
           + "SEMI -> ^( ASSERT $expr1) ) | IF parenthesizedExpression ifStat= statement ( ELSE elseStat= statement -> ^( IF "
@@ -24502,10 +24624,12 @@ public class JavaParser extends Parser {
       this.transition = DFA91_transition;
     }
 
+    @Override
     public String getDescription() {
       return "767:9: ( forInit SEMI forCondition SEMI forUpdater RPAREN statement -> ^( FOR forInit forCondition forUpdater statement ) | localModifierList type IDENT COLON expression RPAREN statement -> ^( FOR_EACH[$FOR, \"FOR_EACH\"] localModifierList type IDENT expression statement ) )";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;
@@ -24643,10 +24767,12 @@ public class JavaParser extends Parser {
       this.transition = DFA103_transition;
     }
 
+    @Override
     public String getDescription() {
       return "816:1: forInit : ( localVariableDeclaration -> ^( FOR_INIT localVariableDeclaration ) | expressionList -> ^( FOR_INIT expressionList ) | -> ^( FOR_INIT ) );";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;
@@ -24747,10 +24873,12 @@ public class JavaParser extends Parser {
       this.transition = DFA127_transition;
     }
 
+    @Override
     public String getDescription() {
       return "951:1: unaryExpressionNotPlusMinus : ( NOT unaryExpression -> ^( NOT unaryExpression ) | LOGICAL_NOT unaryExpression -> ^( LOGICAL_NOT unaryExpression ) | LPAREN type RPAREN unaryExpression -> ^( CAST_EXPR[$LPAREN, \"CAST_EXPR\"] type unaryExpression ) | postfixedExpression );";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;
@@ -24836,6 +24964,7 @@ public class JavaParser extends Parser {
       this.transition = DFA139_transition;
     }
 
+    @Override
     public String getDescription() {
       return "986:1: primaryExpression : ( parenthesizedExpression | literal | newExpression | qualifiedIdentExpression | genericTypeArgumentListSimplified ( SUPER ( arguments -> ^( SUPER_CONSTRUCTOR_CALL[$SUPER, \"SUPER_CONSTRUCTOR_CALL\"] genericTypeArgumentListSimplified arguments ) | DOT IDENT arguments -> ^( METHOD_CALL ^( DOT SUPER IDENT ) genericTypeArgumentListSimplified arguments ) ) | IDENT arguments -> ^( METHOD_CALL IDENT genericTypeArgumentListSimplified arguments ) | THIS arguments -> ^( THIS_CONSTRUCTOR_CALL[$THIS, \"THIS_CONSTRUCTOR_CALL\"] genericTypeArgumentListSimplified arguments ) ) | ( THIS -> THIS ) ( arguments -> ^( THIS_CONSTRUCTOR_CALL[$THIS, \"THIS_CONSTRUCTOR_CALL\"] arguments ) )? | SUPER arguments -> ^( SUPER_CONSTRUCTOR_CALL[$SUPER, \"SUPER_CONSTRUCTOR_CALL\"] arguments ) | ( SUPER DOT IDENT ) ( arguments -> ^( METHOD_CALL ^( DOT SUPER IDENT ) arguments ) | -> ^( DOT SUPER IDENT ) ) | ( primitiveType -> primitiveType ) ( arrayDeclarator -> ^( arrayDeclarator $primaryExpression) )* DOT CLASS -> ^( DOT $primaryExpression CLASS ) | VOID DOT CLASS -> ^( DOT VOID CLASS ) );";
     }
@@ -24929,10 +25058,12 @@ public class JavaParser extends Parser {
       this.transition = DFA143_transition;
     }
 
+    @Override
     public String getDescription() {
       return "1022:9: ( ( arrayDeclarator -> ^( arrayDeclarator $qualifiedIdentExpression) )+ ( DOT CLASS -> ^( DOT $qualifiedIdentExpression CLASS ) ) | arguments -> ^( METHOD_CALL qualifiedIdentifier arguments ) | outerDot= DOT ( CLASS -> ^( DOT qualifiedIdentifier CLASS ) | genericTypeArgumentListSimplified (Super= SUPER arguments -> ^( SUPER_CONSTRUCTOR_CALL[$Super, \"SUPER_CONSTRUCTOR_CALL\"] qualifiedIdentifier genericTypeArgumentListSimplified arguments ) | SUPER innerDot= DOT IDENT arguments -> ^( METHOD_CALL ^( $innerDot ^( $outerDot qualifiedIdentifier SUPER ) IDENT ) genericTypeArgumentListSimplified arguments ) | IDENT arguments -> ^( METHOD_CALL ^( DOT qualifiedIdentifier IDENT ) genericTypeArgumentListSimplified arguments ) ) | THIS -> ^( DOT qualifiedIdentifier THIS ) | Super= SUPER arguments -> ^( SUPER_CONSTRUCTOR_CALL[$Super, \"SUPER_CONSTRUCTOR_CALL\"] qualifiedIdentifier arguments ) | innerNewExpression -> ^( DOT qualifiedIdentifier innerNewExpression ) ) )?";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;
@@ -25064,10 +25195,12 @@ public class JavaParser extends Parser {
       this.transition = DFA150_transition;
     }
 
+    @Override
     public String getDescription() {
       return "()* loopback of 1061:36: ( LBRACK expression RBRACK )*";
     }
 
+    @Override
     public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
       TokenStream input = (TokenStream) _input;
       int _s = s;

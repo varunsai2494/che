@@ -63,6 +63,7 @@ public class ConvertForLoopQuickFixTest extends QuickFixTest {
   //		return new ProjectTestSetup(test);
   //	}
 
+  @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
@@ -80,6 +81,7 @@ public class ConvertForLoopQuickFixTest extends QuickFixTest {
     fConvertLoopProposal = null;
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();
@@ -2312,6 +2314,7 @@ public class ConvertForLoopQuickFixTest extends QuickFixTest {
     final ForStatement[] statement = new ForStatement[1];
     ast.accept(
         new GenericVisitor() {
+          @Override
           protected boolean visitNode(ASTNode node) {
             if (node instanceof ForStatement) {
               statement[0] = (ForStatement) node;

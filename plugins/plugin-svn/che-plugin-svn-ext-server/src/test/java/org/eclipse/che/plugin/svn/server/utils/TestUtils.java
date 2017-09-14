@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.svn.server.utils;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -214,7 +215,7 @@ public class TestUtils {
 
       if (!path.endsWith("/") && fileForPath.createNewFile()) {
         Files.write(
-            ("This is the file '" + pathParts[pathParts.length - 1] + "'.").getBytes(),
+            ("This is the file '" + pathParts[pathParts.length - 1] + "'.").getBytes(UTF_8),
             fileForPath);
 
         pathsToAdd.add(path.substring(1));

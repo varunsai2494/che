@@ -85,6 +85,7 @@ public class CompositeChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getName() {
     return fName;
   }
@@ -173,6 +174,7 @@ public class CompositeChange extends Change {
    *
    * <p>Client are allowed to extend this method.
    */
+  @Override
   public void setEnabled(boolean enabled) {
     super.setEnabled(enabled);
     for (Iterator iter = fChanges.iterator(); iter.hasNext(); ) {
@@ -187,6 +189,7 @@ public class CompositeChange extends Change {
    *
    * <p>Client are allowed to extend this method.
    */
+  @Override
   public void initializeValidationData(IProgressMonitor pm) {
     pm.beginTask("", fChanges.size()); //$NON-NLS-1$
     for (Iterator iter = fChanges.iterator(); iter.hasNext(); ) {
@@ -206,6 +209,7 @@ public class CompositeChange extends Change {
    *
    * <p>Client are allowed to extend this method.
    */
+  @Override
   public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException {
     RefactoringStatus result = new RefactoringStatus();
     pm.beginTask("", fChanges.size()); //$NON-NLS-1$
@@ -230,6 +234,7 @@ public class CompositeChange extends Change {
    *
    * <p>Client are allowed to extend this method.
    */
+  @Override
   public Change perform(IProgressMonitor pm) throws CoreException {
     fUndoUntilException = null;
     List undos = new ArrayList(fChanges.size());
@@ -269,10 +274,12 @@ public class CompositeChange extends Change {
         final Change changeToDispose = change;
         SafeRunner.run(
             new ISafeRunnable() {
+              @Override
               public void run() throws Exception {
                 changeToDispose.dispose();
               }
 
+              @Override
               public void handleException(Throwable exception) {
                 RefactoringCorePlugin.log(exception);
               }
@@ -369,15 +376,18 @@ public class CompositeChange extends Change {
    * <p>The composite change sends <code>dispose</code> to all its children. It is guaranteed that
    * all children receive the <code>dispose</code> call.
    */
+  @Override
   public void dispose() {
     for (Iterator iter = fChanges.iterator(); iter.hasNext(); ) {
       final Change change = (Change) iter.next();
       SafeRunner.run(
           new ISafeRunnable() {
+            @Override
             public void run() throws Exception {
               change.dispose();
             }
 
+            @Override
             public void handleException(Throwable exception) {
               RefactoringCorePlugin.log(exception);
             }
@@ -414,6 +424,7 @@ public class CompositeChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Object[] getAffectedObjects() {
     if (fChanges.size() == 0) return new Object[0];
     List result = new ArrayList();
@@ -427,6 +438,7 @@ public class CompositeChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Object getModifiedElement() {
     return null;
   }
@@ -436,6 +448,7 @@ public class CompositeChange extends Change {
    *
    * @since 3.2
    */
+  @Override
   public ChangeDescriptor getDescriptor() {
     for (final Iterator iterator = fChanges.iterator(); iterator.hasNext(); ) {
       final Change change = (Change) iterator.next();
@@ -445,6 +458,7 @@ public class CompositeChange extends Change {
     return null;
   }
 
+  @Override
   public String toString() {
     StringBuffer buff = new StringBuffer();
     buff.append(getName());

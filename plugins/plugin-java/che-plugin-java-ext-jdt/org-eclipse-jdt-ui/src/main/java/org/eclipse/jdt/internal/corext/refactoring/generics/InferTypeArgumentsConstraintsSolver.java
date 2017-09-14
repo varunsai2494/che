@@ -44,6 +44,7 @@ import org.eclipse.jdt.internal.corext.refactoring.typeconstraints2.TypeEquivale
 public class InferTypeArgumentsConstraintsSolver {
 
   private static class TTypeComparator implements Comparator<TType> {
+    @Override
     public int compare(TType o1, TType o2) {
       return o1.getPrettySignature().compareTo(o2.getPrettySignature());
     }

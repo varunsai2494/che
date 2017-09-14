@@ -293,10 +293,12 @@ public class DebuggerViewImpl extends BaseView<DebuggerView.ActionDelegate>
 
     SimpleList.ListEventDelegate<Breakpoint> breakpointListEventDelegate =
         new SimpleList.ListEventDelegate<Breakpoint>() {
+          @Override
           public void onListItemClicked(Element itemElement, Breakpoint itemData) {
             breakpoints.getSelectionModel().setSelectedItem(itemData);
           }
 
+          @Override
           public void onListItemDoubleClicked(Element listItemBase, Breakpoint itemData) {}
         };
 
@@ -313,11 +315,13 @@ public class DebuggerViewImpl extends BaseView<DebuggerView.ActionDelegate>
 
     SimpleList.ListEventDelegate<StackFrameDump> frameListEventDelegate =
         new SimpleList.ListEventDelegate<StackFrameDump>() {
+          @Override
           public void onListItemClicked(Element itemElement, StackFrameDump itemData) {
             frames.getSelectionModel().setSelectedItem(itemData);
             delegate.onSelectedFrame(frames.getSelectionModel().getSelectedIndex());
           }
 
+          @Override
           public void onListItemDoubleClicked(Element listItemBase, StackFrameDump itemData) {}
         };
 

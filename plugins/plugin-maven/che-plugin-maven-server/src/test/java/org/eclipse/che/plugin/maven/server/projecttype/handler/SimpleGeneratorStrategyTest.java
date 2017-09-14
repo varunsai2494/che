@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.maven.server.projecttype.handler;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.ide.ext.java.shared.Constants.SOURCE_FOLDER;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -95,7 +96,8 @@ public class SimpleGeneratorStrategyTest {
     VirtualFileEntry pomFile = pm.getProject("my_project").getBaseFolder().getChild("pom.xml");
     Assert.assertTrue(pomFile.isFile());
     Assert.assertEquals(
-        new String(((FileEntry) pomFile).contentAsBytes()), new String(Files.readAllBytes(pomXml)));
+        new String(((FileEntry) pomFile).contentAsBytes(), UTF_8),
+        new String(Files.readAllBytes(pomXml), UTF_8));
 
     VirtualFileEntry srcFolder =
         pm.getProject("my_project").getBaseFolder().getChild("src/main/java");

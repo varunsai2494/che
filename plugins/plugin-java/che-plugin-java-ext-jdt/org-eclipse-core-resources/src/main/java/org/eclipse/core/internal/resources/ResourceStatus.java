@@ -37,6 +37,7 @@ public class ResourceStatus extends Status implements IResourceStatus {
   }
 
   /** @see IResourceStatus#getPath() */
+  @Override
   public IPath getPath() {
     return path;
   }

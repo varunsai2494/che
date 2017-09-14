@@ -33,6 +33,7 @@ public class DtoGeneratorMojo extends AbstractMojo {
   @Parameter(property = "impl", required = true)
   private String impl;
 
+  @Override
   public void execute() throws MojoExecutionException {
     DtoGenerator dtoGenerator = new DtoGenerator();
     dtoGenerator.setPackageBase(outputDirectory);

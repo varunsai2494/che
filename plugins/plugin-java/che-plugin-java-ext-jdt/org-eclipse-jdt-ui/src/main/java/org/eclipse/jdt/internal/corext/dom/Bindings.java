@@ -652,6 +652,7 @@ public class Bindings {
    * @deprecated use {@link #isSubsignature(IMethodBinding, IMethodBinding)}
    */
   //TODO: rename to isErasureEquivalentMethod and change to two IMethodBinding parameters
+  @Deprecated
   public static boolean isEqualMethod(
       IMethodBinding method, String methodName, ITypeBinding[] parameters) {
     if (!method.getName().equals(methodName)) return false;
@@ -949,6 +950,7 @@ public class Bindings {
    * @deprecated Use {@link #findMethodInHierarchy(ITypeBinding, String, String[])} or {@link
    *     JavaModelUtil}
    */
+  @Deprecated
   public static IMethod findMethod(IMethodBinding method, IType type) throws JavaModelException {
     method = method.getMethodDeclaration();
 
@@ -1221,6 +1223,7 @@ public class Bindings {
    *     two bindings are in the same hierarchy (directly overrides each other), or {@link
    *     #findMethodInHierarchy(ITypeBinding, String, ITypeBinding[])} else.
    */
+  @Deprecated
   public static boolean containsSignatureEquivalentConstructor(
       IMethodBinding[] candidates, IMethodBinding overridable) {
     for (int index = 0; index < candidates.length; index++) {
@@ -1247,6 +1250,7 @@ public class Bindings {
    *     two bindings are in the same hierarchy (directly overrides each other), or {@link
    *     #findMethodInHierarchy(ITypeBinding, String, ITypeBinding[])} else.
    */
+  @Deprecated
   public static boolean areOverriddenMethods(
       IMethodBinding overridden, IMethodBinding overridable) {
 

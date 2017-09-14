@@ -100,6 +100,7 @@ final class OrganizeImportsViewImpl extends Window implements OrganizeImportsVie
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getSelectedImport() {
     return selectedLabel.getText();
   }

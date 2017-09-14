@@ -126,6 +126,7 @@ public class PotentialProgrammingProblemsCleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     if (problem.getProblemId() == IProblem.MissingSerialVersion)
       return (isEnabled(CleanUpConstants.ADD_MISSING_SERIAL_VERSION_ID)

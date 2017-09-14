@@ -65,11 +65,13 @@ public abstract class JavaRenameProcessor extends RenameProcessor implements INa
 
   protected abstract String[] getAffectedProjectNatures() throws CoreException;
 
+  @Override
   public void setNewElementName(String newName) {
     Assert.isNotNull(newName);
     fNewElementName = newName;
   }
 
+  @Override
   public String getNewElementName() {
     return fNewElementName;
   }

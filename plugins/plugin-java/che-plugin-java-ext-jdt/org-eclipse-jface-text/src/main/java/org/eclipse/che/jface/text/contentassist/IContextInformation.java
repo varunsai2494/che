@@ -65,5 +65,6 @@ public interface IContextInformation {
    *
    * @see Object#equals(Object)
    */
+  @Override
   boolean equals(Object object);
 }

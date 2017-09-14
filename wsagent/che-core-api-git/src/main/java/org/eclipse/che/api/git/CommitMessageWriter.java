@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.api.git;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -69,7 +71,7 @@ public final class CommitMessageWriter implements MessageBodyWriter<Revision> {
       MultivaluedMap<String, Object> httpHeaders,
       OutputStream entityStream)
       throws IOException, WebApplicationException {
-    Writer writer = new OutputStreamWriter(entityStream);
+    Writer writer = new OutputStreamWriter(entityStream, UTF_8);
     writer.write('[');
     writer.write(revision.getBranch());
     writer.write(' ');

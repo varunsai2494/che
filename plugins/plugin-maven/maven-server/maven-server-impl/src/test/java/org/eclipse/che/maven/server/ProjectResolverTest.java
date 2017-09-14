@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.maven.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.emptyList;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -270,7 +271,7 @@ public class ProjectResolverTest {
     File pomFile = new File(file, "pom.xml");
 
     FileOutputStream outputStream = new FileOutputStream(pomFile);
-    outputStream.write(getPomContent(pomContent).getBytes());
+    outputStream.write(getPomContent(pomContent).getBytes(UTF_8));
     outputStream.flush();
     outputStream.close();
     return pomFile;

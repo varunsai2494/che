@@ -53,6 +53,7 @@ public class ResolvingProjectStateHolderRegistryImpl
    * @return the holder of Resolving project sate process for the specified project type or {@code
    *     null} if none
    */
+  @Override
   @Nullable
   public ResolvingProjectStateHolder getResolvingProjectStateHolder(String projectType) {
     return resolvingProjectStateHolders.get(projectType);

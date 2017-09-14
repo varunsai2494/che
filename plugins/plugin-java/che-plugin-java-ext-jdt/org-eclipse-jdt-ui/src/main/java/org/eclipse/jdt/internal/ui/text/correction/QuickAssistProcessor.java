@@ -141,6 +141,7 @@ public class QuickAssistProcessor implements IQuickAssistProcessor {
     super();
   }
 
+  @Override
   public boolean hasAssists(IInvocationContext context) throws CoreException {
     ASTNode coveringNode = context.getCoveringNode();
     if (coveringNode != null) {
@@ -185,6 +186,7 @@ public class QuickAssistProcessor implements IQuickAssistProcessor {
     return false;
   }
 
+  @Override
   public IJavaCompletionProposal[] getAssists(
       IInvocationContext context, IProblemLocation[] locations) throws CoreException {
     ASTNode coveringNode = context.getCoveringNode();

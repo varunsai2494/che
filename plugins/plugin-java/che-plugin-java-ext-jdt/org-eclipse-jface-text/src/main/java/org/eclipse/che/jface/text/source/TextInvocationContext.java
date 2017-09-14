@@ -33,6 +33,7 @@ public class TextInvocationContext implements IQuickAssistInvocationContext {
   /*
    * @see org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext#getOffset()
    */
+  @Override
   public int getOffset() {
     return fOffset;
   }
@@ -40,6 +41,7 @@ public class TextInvocationContext implements IQuickAssistInvocationContext {
   /*
    * @see org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext#getLength()
    */
+  @Override
   public int getLength() {
     return fLength;
   }
@@ -47,6 +49,7 @@ public class TextInvocationContext implements IQuickAssistInvocationContext {
   /*
    * @see org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext#getSourceViewer()
    */
+  @Override
   public ISourceViewer getSourceViewer() {
     return fSourceViewer;
   }

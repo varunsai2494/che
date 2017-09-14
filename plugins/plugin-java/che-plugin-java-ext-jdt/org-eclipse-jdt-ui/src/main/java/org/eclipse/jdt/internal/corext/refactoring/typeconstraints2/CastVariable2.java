@@ -28,14 +28,17 @@ public final class CastVariable2 extends ConstraintVariable2 implements ITypeCon
     fExpressionVariable = expressionVariable;
   }
 
+  @Override
   public CompilationUnitRange getRange() {
     return fRange;
   }
 
+  @Override
   public ICompilationUnit getCompilationUnit() {
     return fRange.getCompilationUnit();
   }
 
+  @Override
   public void setCompilationUnit(ICompilationUnit unit) {
     throw new UnsupportedOperationException();
   }

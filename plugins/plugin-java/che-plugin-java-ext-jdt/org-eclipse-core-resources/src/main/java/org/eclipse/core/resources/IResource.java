@@ -1015,6 +1015,7 @@ public interface IResource extends IAdaptable, ISchedulingRule {
    * @see #getFullPath()
    * @see #getWorkspace()
    */
+  @Override
   public boolean equals(Object other);
 
   /**

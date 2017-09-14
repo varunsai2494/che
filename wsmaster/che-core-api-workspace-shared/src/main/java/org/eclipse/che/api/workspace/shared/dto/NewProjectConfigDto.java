@@ -42,22 +42,31 @@ public interface NewProjectConfigDto extends ProjectConfigDto, NewProjectConfig 
   @FactoryParameter(obligation = OPTIONAL)
   Map<String, String> getOptions();
 
+  @Override
   NewProjectConfigDto withName(String name);
 
+  @Override
   NewProjectConfigDto withPath(String path);
 
+  @Override
   NewProjectConfigDto withDescription(String description);
 
+  @Override
   NewProjectConfigDto withType(String type);
 
+  @Override
   NewProjectConfigDto withMixins(List<String> mixins);
 
+  @Override
   NewProjectConfigDto withAttributes(Map<String, List<String>> attributes);
 
+  @Override
   NewProjectConfigDto withSource(SourceStorageDto source);
 
+  @Override
   NewProjectConfigDto withLinks(List<Link> links);
 
+  @Override
   NewProjectConfigDto withProblems(List<ProjectProblemDto> problems);
 
   NewProjectConfigDto withOptions(Map<String, String> options);

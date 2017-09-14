@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.ssh.key.script;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertTrue;
 
@@ -38,7 +39,7 @@ public class SshScriptProviderTest {
 
   @BeforeMethod
   public void setUp() throws FileNotFoundException, ServerException {
-    when(keyProvider.getPrivateKey(URL)).thenReturn(SSH_KEY.getBytes());
+    when(keyProvider.getPrivateKey(URL)).thenReturn(SSH_KEY.getBytes(UTF_8));
   }
 
   @Test

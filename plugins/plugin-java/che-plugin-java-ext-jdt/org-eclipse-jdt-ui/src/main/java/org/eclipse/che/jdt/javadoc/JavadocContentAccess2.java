@@ -11,6 +11,8 @@
  */
 package org.eclipse.che.jdt.javadoc;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -699,7 +701,7 @@ public class JavadocContentAccess2 {
     //		}
     try {
       byte[] bytes = Files.readAllBytes(file.toPath());
-      content = new String(bytes);
+      content = new String(bytes, UTF_8);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -1882,6 +1884,7 @@ public class JavadocContentAccess2 {
       return getInheritedDescription(
           method,
           new DescriptionGetter() {
+            @Override
             public CharSequence getDescription(JavadocContentAccess2 contentAccess) {
               return contentAccess.getMainDescription();
             }
@@ -1901,6 +1904,7 @@ public class JavadocContentAccess2 {
       return getInheritedDescription(
           method,
           new DescriptionGetter() {
+            @Override
             public CharSequence getDescription(JavadocContentAccess2 contentAccess)
                 throws JavaModelException {
               return contentAccess.getInheritedParamDescription(paramIndex);
@@ -1919,6 +1923,7 @@ public class JavadocContentAccess2 {
       return getInheritedDescription(
           method,
           new DescriptionGetter() {
+            @Override
             public CharSequence getDescription(JavadocContentAccess2 contentAccess) {
               return contentAccess.getReturnDescription();
             }
@@ -1938,6 +1943,7 @@ public class JavadocContentAccess2 {
       return getInheritedDescription(
           method,
           new DescriptionGetter() {
+            @Override
             public CharSequence getDescription(JavadocContentAccess2 contentAccess) {
               return contentAccess.getExceptionDescription(simpleName);
             }

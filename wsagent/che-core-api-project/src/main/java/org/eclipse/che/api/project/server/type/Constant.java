@@ -25,6 +25,7 @@ public final class Constant extends AbstractAttribute {
     this.value = new AttributeValue(str);
   }
 
+  @Override
   public AttributeValue getValue() {
     return value;
   }

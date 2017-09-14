@@ -25,6 +25,7 @@ ExposedPorts in JSON response from docker remote API:
 It seems struct{} is reserved for future but it isn't in use for now.
 */
 public class ExposedPort {
+  @Override
   public String toString() {
     return "{}";
   }

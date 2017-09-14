@@ -31,5 +31,6 @@ public interface SystemStateDto extends Hyperlinks {
 
   SystemStateDto withStatus(SystemStatus status);
 
+  @Override
   SystemStateDto withLinks(List<Link> links);
 }

@@ -85,6 +85,7 @@ class WorkspaceModifyOperation /*implements IRunnableWithProgress, IThreadListen
     try {
       IWorkspaceRunnable workspaceRunnable =
           new IWorkspaceRunnable() {
+            @Override
             public void run(IProgressMonitor pm) throws CoreException {
               try {
                 execute(pm);

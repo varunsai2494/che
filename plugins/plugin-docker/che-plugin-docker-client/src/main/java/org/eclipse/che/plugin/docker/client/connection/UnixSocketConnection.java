@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.docker.client.connection;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.plugin.docker.client.CLibrary.AF_UNIX;
 import static org.eclipse.che.plugin.docker.client.CLibrary.SOCK_STREAM;
 import static org.eclipse.che.plugin.docker.client.CLibrary.SockAddrUn;
@@ -80,7 +81,7 @@ public class UnixSocketConnection extends DockerConnection {
   private void writeHttpHeaders(
       OutputStream output, String method, String path, String query, List<Pair<String, ?>> headers)
       throws IOException {
-    final Writer writer = new OutputStreamWriter(output);
+    final Writer writer = new OutputStreamWriter(output, UTF_8);
     writer.write(method);
     writer.write(' ');
     writer.write(path);

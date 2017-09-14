@@ -160,6 +160,7 @@ public class TextDocumentService {
               return truish(server.getInitializeResult().getCapabilities().getCodeActionProvider());
             }
 
+            @Override
             public CompletableFuture<List<? extends Command>> start(
                 InitializedLanguageServer element) {
               return element.getServer().getTextDocumentService().codeAction(params);

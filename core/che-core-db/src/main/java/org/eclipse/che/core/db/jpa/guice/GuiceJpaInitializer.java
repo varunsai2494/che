@@ -29,6 +29,7 @@ public class GuiceJpaInitializer implements JpaInitializer {
 
   @Inject private PersistService persistService;
 
+  @Override
   public void init() {
     try {
       persistService.start();

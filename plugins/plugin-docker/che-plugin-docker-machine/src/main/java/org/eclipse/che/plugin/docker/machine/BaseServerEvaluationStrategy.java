@@ -171,6 +171,7 @@ public abstract class BaseServerEvaluationStrategy extends ServerEvaluationStrat
    *     those found in containerInfo.
    * @return a Map of the servers exposed by the container.
    */
+  @Override
   public Map<String, ServerImpl> getServers(
       ContainerInfo containerInfo, String internalHost, Map<String, ServerConfImpl> serverConfMap) {
     Map<String, ServerImpl> servers = super.getServers(containerInfo, internalHost, serverConfMap);
@@ -351,6 +352,7 @@ public abstract class BaseServerEvaluationStrategy extends ServerEvaluationStrat
     }
 
     /** Gets default external address. */
+    @Override
     public String getExternalAddress() {
       return cheDockerIpExternal != null ? cheDockerIpExternal : cheDockerIp;
     }

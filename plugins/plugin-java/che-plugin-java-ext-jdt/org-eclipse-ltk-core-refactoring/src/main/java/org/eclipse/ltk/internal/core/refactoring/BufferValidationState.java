@@ -204,14 +204,17 @@ class NoStampValidationState extends BufferValidationState {
   private long fContentStamp = IResource.NULL_STAMP;
 
   class DocumentChangedListener implements IDocumentListener {
+    @Override
     public void documentAboutToBeChanged(DocumentEvent event) {}
 
+    @Override
     public void documentChanged(DocumentEvent event) {
       NoStampValidationState.this.documentChanged();
     }
   }
 
   class FileBufferListener implements IFileBufferListener {
+    @Override
     public void bufferCreated(IFileBuffer buffer) {
       // begin https://bugs.eclipse.org/bugs/show_bug.cgi?id=67821
       if (buffer.getLocation().equals(fFile.getFullPath()) && buffer instanceof ITextFileBuffer) {
@@ -222,6 +225,7 @@ class NoStampValidationState extends BufferValidationState {
       // end fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=67821
     }
 
+    @Override
     public void bufferDisposed(IFileBuffer buffer) {
       // begin fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=67821
       if (fDocumentListener != null && buffer.getLocation().equals(fFile.getFullPath())) {
@@ -235,20 +239,28 @@ class NoStampValidationState extends BufferValidationState {
       // end fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=67821
     }
 
+    @Override
     public void bufferContentAboutToBeReplaced(IFileBuffer buffer) {}
 
+    @Override
     public void bufferContentReplaced(IFileBuffer buffer) {}
 
+    @Override
     public void stateChanging(IFileBuffer buffer) {}
 
+    @Override
     public void dirtyStateChanged(IFileBuffer buffer, boolean isDirty) {}
 
+    @Override
     public void stateValidationChanged(IFileBuffer buffer, boolean isStateValidated) {}
 
+    @Override
     public void underlyingFileMoved(IFileBuffer buffer, IPath path) {}
 
+    @Override
     public void underlyingFileDeleted(IFileBuffer buffer) {}
 
+    @Override
     public void stateChangeFailed(IFileBuffer buffer) {}
   }
 
@@ -261,6 +273,7 @@ class NoStampValidationState extends BufferValidationState {
     getDocument().addDocumentListener(fDocumentListener);
   }
 
+  @Override
   public RefactoringStatus isValid(boolean needsSaving, boolean resilientForDerived)
       throws CoreException {
     RefactoringStatus result = super.isValid(needsSaving, resilientForDerived);
@@ -278,6 +291,7 @@ class NoStampValidationState extends BufferValidationState {
     return result;
   }
 
+  @Override
   public void dispose() {
     if (fFileBufferListener != null) {
       FileBuffers.getTextFileBufferManager().removeFileBufferListener(fFileBufferListener);
@@ -310,6 +324,7 @@ class ModificationStampValidationState extends BufferValidationState {
     fModificationStamp = getModificationStamp();
   }
 
+  @Override
   public RefactoringStatus isValid(boolean needsSaving, boolean resilientForDerived)
       throws CoreException {
     RefactoringStatus result = super.isValid(needsSaving, resilientForDerived);

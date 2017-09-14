@@ -194,6 +194,7 @@ public final class MemberVisibilityAdjustor {
      * @see org.eclipse.jdt.internal.corext.refactoring.structure.MemberVisibilityAdjustor.IVisibilityAdjustment#rewriteVisibility(org
      * .eclipse.jdt.internal.corext.refactoring.structure.MemberVisibilityAdjustor, org.eclipse.core.runtime.IProgressMonitor)
      */
+    @Override
     public void rewriteVisibility(
         final MemberVisibilityAdjustor adjustor, final IProgressMonitor monitor)
         throws JavaModelException {

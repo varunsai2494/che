@@ -344,6 +344,7 @@ public class IntroduceParameterObjectDescriptor extends JavaRefactoringDescripto
   /* (non-Javadoc)
    * @see org.eclipse.jdt.core.refactoring.descriptors.JavaRefactoringDescriptor#populateArgumentMap()
    */
+  @Override
   protected void populateArgumentMap() {
     super.populateArgumentMap();
     JavaRefactoringDescriptorUtil.setJavaElement(
@@ -530,6 +531,7 @@ public class IntroduceParameterObjectDescriptor extends JavaRefactoringDescripto
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus validateDescriptor() {
     RefactoringStatus result = super.validateDescriptor();
     if (!result.isOK()) return result;

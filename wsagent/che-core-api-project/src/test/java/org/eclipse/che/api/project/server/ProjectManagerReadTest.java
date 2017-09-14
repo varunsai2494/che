@@ -30,6 +30,7 @@ import org.junit.Test;
 /** @author gazarenkov */
 public class ProjectManagerReadTest extends WsAgentTestBase {
 
+  @Override
   @Before
   public void setUp() throws Exception {
 

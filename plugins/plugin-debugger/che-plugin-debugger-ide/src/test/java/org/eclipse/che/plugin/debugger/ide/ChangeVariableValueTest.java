@@ -53,6 +53,7 @@ public class ChangeVariableValueTest extends BaseTest {
   @Mock private VariablePathDto variablePathDto;
   @Mock private SimpleValueDto simpleValueDto;
 
+  @Override
   @Before
   public void setUp() {
     super.setUp();

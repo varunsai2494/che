@@ -109,6 +109,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor#checkInitialConditions(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
       throws CoreException, OperationCanceledException {
     // allow only projects or only non-projects to be selected;
@@ -125,6 +126,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor#checkFinalConditions(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext)
    */
+  @Override
   public RefactoringStatus checkFinalConditions(IProgressMonitor pm, CheckConditionsContext context)
       throws CoreException, OperationCanceledException {
     pm.beginTask("", 1); //$NON-NLS-1$
@@ -211,6 +213,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
       if (resource instanceof IProject && !((IProject) resource).isOpen()) continue;
       resource.accept(
           new IResourceVisitor() {
+            @Override
             public boolean visit(IResource visitedResource) throws CoreException {
               if (visitedResource instanceof IFile) {
                 checkDirtyFile(result, (IFile) visitedResource);
@@ -243,6 +246,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor#createChange(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
     pm.beginTask(RefactoringCoreMessages.DeleteResourcesProcessor_create_task, fResources.length);
     try {
@@ -292,6 +296,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor#getElements()
    */
+  @Override
   public Object[] getElements() {
     return fResources;
   }
@@ -299,6 +304,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor#getIdentifier()
    */
+  @Override
   public String getIdentifier() {
     return "org.eclipse.ltk.core.refactoring.deleteResourcesProcessor"; //$NON-NLS-1$
   }
@@ -306,6 +312,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor#getProcessorName()
    */
+  @Override
   public String getProcessorName() {
     return RefactoringCoreMessages.DeleteResourcesProcessor_processor_name;
   }
@@ -313,6 +320,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor#isApplicable()
    */
+  @Override
   public boolean isApplicable() throws CoreException {
     for (int i = 0; i < fResources.length; i++) {
       if (!canDelete(fResources[i])) {
@@ -329,6 +337,7 @@ public class DeleteResourcesProcessor extends DeleteProcessor {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor#loadParticipants(org.eclipse.ltk.core.refactoring.RefactoringStatus, org.eclipse.ltk.core.refactoring.participants.SharableParticipants)
    */
+  @Override
   public RefactoringParticipant[] loadParticipants(
       RefactoringStatus status, SharableParticipants sharedParticipants) throws CoreException {
     final ArrayList result = new ArrayList();

@@ -21,10 +21,12 @@ public abstract class InternalTextEditChangeNode extends AbstractChangeNode {
     super(parent, change);
   }
 
+  @Override
   public int getActive() {
     return getCompositeChangeActive();
   }
 
+  @Override
   boolean hasOneGroupCategory(List categories) {
     return ((TextEditBasedChange) getChange()).hasOneGroupCategory(categories);
   }
@@ -33,6 +35,7 @@ public abstract class InternalTextEditChangeNode extends AbstractChangeNode {
     return (TextEditBasedChange) getChange();
   }
 
+  @Override
   final PreviewNode[] doCreateChildren() {
     return createChildNodes();
   }

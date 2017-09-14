@@ -9,6 +9,7 @@
  */
 package org.eclipse.che.plugin.testing.phpunit.server;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.plugin.testing.phpunit.server.PHPUnitTestRunner.LOG;
 
 import com.google.gson.Gson;
@@ -105,7 +106,7 @@ public class PHPUnitTestEngine {
     private void handleReport(final Socket socket) {
       try {
         final BufferedReader reader =
-            new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            new BufferedReader(new InputStreamReader(socket.getInputStream(), UTF_8));
         final PHPUnitMessageParser messageParser = new PHPUnitMessageParser(phpTestsRoot);
         String line;
         Map<String, String> value = null;
@@ -272,7 +273,7 @@ public class PHPUnitTestEngine {
 
     try (InputStream inputStream =
             Files.newInputStream(projectsRoot.resolve(projectPath + "/composer.json"));
-        InputStreamReader reader = new InputStreamReader(inputStream)) {
+        InputStreamReader reader = new InputStreamReader(inputStream, UTF_8)) {
       Gson gson = new GsonBuilder().create();
       Map<String, ?> composerJsonMap = gson.fromJson(reader, LinkedTreeMap.class);
       Map<String, String> requireDev = (Map<String, String>) composerJsonMap.get("require-dev");

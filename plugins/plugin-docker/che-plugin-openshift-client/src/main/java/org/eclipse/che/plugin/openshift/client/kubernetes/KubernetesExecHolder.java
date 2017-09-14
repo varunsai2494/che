@@ -46,6 +46,7 @@ public class KubernetesExecHolder {
     return podName;
   }
 
+  @Override
   public String toString() {
     return String.format(
         "KubernetesExecHolder {command=%s, podName=%s}",

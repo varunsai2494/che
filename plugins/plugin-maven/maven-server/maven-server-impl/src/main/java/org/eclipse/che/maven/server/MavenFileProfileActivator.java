@@ -37,6 +37,7 @@ public class MavenFileProfileActivator extends DetectedProfileActivator implemen
     this.baseDir = baseDir;
   }
 
+  @Override
   protected boolean canDetectActivation(Profile profile) {
     return profile.getActivation() != null && profile.getActivation().getFile() != null;
   }
@@ -45,6 +46,7 @@ public class MavenFileProfileActivator extends DetectedProfileActivator implemen
    * Returns {@code true} if the file exists, if it does then the profile will be active, otherwise
    * returns {@code false}.
    */
+  @Override
   public boolean isActive(Profile profile) {
     Activation activation = profile.getActivation();
     ActivationFile actFile = activation.getFile();
@@ -95,6 +97,7 @@ public class MavenFileProfileActivator extends DetectedProfileActivator implemen
     return new File(path).exists() || new File(baseDir, path).exists();
   }
 
+  @Override
   public void enableLogging(Logger logger) {
     this.logger = logger;
   }

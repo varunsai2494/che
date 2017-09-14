@@ -341,6 +341,7 @@ public class JavaReconciler {
 
   private WorkingCopyOwner createWorkingCopyOwner(ProblemRequestor problemRequestor) {
     return new WorkingCopyOwner() {
+      @Override
       public IProblemRequestor getProblemRequestor(ICompilationUnit unit) {
         return problemRequestor;
       }

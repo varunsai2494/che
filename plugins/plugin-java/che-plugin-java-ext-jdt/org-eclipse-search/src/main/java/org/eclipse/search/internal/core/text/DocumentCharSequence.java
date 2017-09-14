@@ -25,6 +25,7 @@ public class DocumentCharSequence implements CharSequence {
   /* (non-Javadoc)
    * @see java.lang.CharSequence#length()
    */
+  @Override
   public int length() {
     return fDocument.getLength();
   }
@@ -32,6 +33,7 @@ public class DocumentCharSequence implements CharSequence {
   /* (non-Javadoc)
    * @see java.lang.CharSequence#charAt(int)
    */
+  @Override
   public char charAt(int index) {
     try {
       return fDocument.getChar(index);
@@ -43,6 +45,7 @@ public class DocumentCharSequence implements CharSequence {
   /* (non-Javadoc)
    * @see java.lang.CharSequence#subSequence(int, int)
    */
+  @Override
   public CharSequence subSequence(int start, int end) {
     try {
       return fDocument.get(start, end - start);

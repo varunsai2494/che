@@ -284,6 +284,7 @@ public class JsoArray<T> extends JavaScriptObject implements Array<T> {
         return this.splice(index, n);
     }-*/;
 
+  @Override
   public final List<T> toList() {
     List<T> list = new ArrayList<>();
     for (T t : asIterable()) {

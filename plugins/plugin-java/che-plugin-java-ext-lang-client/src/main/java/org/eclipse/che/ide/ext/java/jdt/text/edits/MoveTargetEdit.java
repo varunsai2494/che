@@ -85,11 +85,13 @@ public final class MoveTargetEdit extends TextEdit {
   }
 
   /* @see TextEdit#doCopy */
+  @Override
   protected TextEdit doCopy() {
     return new MoveTargetEdit(this);
   }
 
   /* @see TextEdit#postProcessCopy */
+  @Override
   protected void postProcessCopy(TextEditCopier copier) {
     if (fSource != null) {
       MoveTargetEdit target = (MoveTargetEdit) copier.getCopy(this);
@@ -99,6 +101,7 @@ public final class MoveTargetEdit extends TextEdit {
   }
 
   /* @see TextEdit#accept0 */
+  @Override
   protected void accept0(TextEditVisitor visitor) {
     boolean visitChildren = visitor.visit(this);
     if (visitChildren) {
@@ -109,12 +112,14 @@ public final class MoveTargetEdit extends TextEdit {
   // ---- consistency check ----------------------------------------------------------
 
   /* @see TextEdit#traverseConsistencyCheck */
+  @Override
   int traverseConsistencyCheck(
       TextEditProcessor processor, Document document, List<List<TextEdit>> sourceEdits) {
     return super.traverseConsistencyCheck(processor, document, sourceEdits) + 1;
   }
 
   /* @see TextEdit#performConsistencyCheck */
+  @Override
   void performConsistencyCheck(TextEditProcessor processor, Document document)
       throws MalformedTreeException {
     if (fSource == null)
@@ -127,6 +132,7 @@ public final class MoveTargetEdit extends TextEdit {
   // ---- document updating ----------------------------------------------------------------
 
   /* @see TextEdit#performDocumentUpdating */
+  @Override
   int performDocumentUpdating(Document document) throws BadLocationException {
     String source = fSource.getContent();
     document.replace(getOffset(), getLength(), source);
@@ -151,6 +157,7 @@ public final class MoveTargetEdit extends TextEdit {
   // ---- region updating --------------------------------------------------------------
 
   /* @see org.eclipse.text.edits.TextEdit#traversePassThree */
+  @Override
   int traverseRegionUpdating(
       TextEditProcessor processor, Document document, int accumulatedDelta, boolean delete) {
     // the children got already updated / normalized while they got removed
@@ -164,6 +171,7 @@ public final class MoveTargetEdit extends TextEdit {
     return accumulatedDelta + fDelta;
   }
 
+  @Override
   boolean deleteChildren() {
     return false;
   }

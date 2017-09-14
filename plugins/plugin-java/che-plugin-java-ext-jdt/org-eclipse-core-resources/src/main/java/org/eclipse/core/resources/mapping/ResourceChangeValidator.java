@@ -130,6 +130,7 @@ public final class ResourceChangeValidator {
     try {
       root.accept(
           new IResourceDeltaVisitor() {
+            @Override
             public boolean visit(IResourceDelta delta) {
               return changeDescription.recordChange(delta);
             }

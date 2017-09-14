@@ -99,6 +99,7 @@ public class CheckConditionsContext {
     Collections.sort(
         values,
         new Comparator() {
+          @Override
           public int compare(Object o1, Object o2) {
             // Note there can only be one ResourceOperationChecker. So it
             // is save to not test the case that both objects are

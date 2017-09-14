@@ -75,6 +75,7 @@ public interface IUndoManager {
    * @param change the change that was performed
    * @deprecated use #changePerformed(Change, boolean) instead
    */
+  @Deprecated
   public void changePerformed(Change change);
 
   /**

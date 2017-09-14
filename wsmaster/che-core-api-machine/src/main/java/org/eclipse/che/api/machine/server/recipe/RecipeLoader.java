@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.api.machine.server.recipe;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -96,7 +98,7 @@ public class RecipeLoader {
   private List<RecipeImpl> loadRecipes(String recipesPath) {
     final List<RecipeImpl> recipes = new ArrayList<>();
     try (Reader reader =
-        new BufferedReader(new InputStreamReader(IoUtil.getResource(recipesPath)))) {
+        new BufferedReader(new InputStreamReader(IoUtil.getResource(recipesPath), UTF_8))) {
       recipes.addAll(GSON.fromJson(reader, new TypeToken<List<RecipeImpl>>() {}.getType()));
     } catch (IOException | JsonParseException ex) {
       LOG.error("Failed to deserialize recipes from specified path " + recipesPath, ex);

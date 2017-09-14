@@ -32,6 +32,7 @@ public class TestMoveParticipantShared extends MoveParticipant implements IShara
   List fHandles = new ArrayList(3);
   List fArguments = new ArrayList(3);
 
+  @Override
   public boolean initialize(Object element) {
     fgInstance = this;
     fElements.add(element);
@@ -42,6 +43,7 @@ public class TestMoveParticipantShared extends MoveParticipant implements IShara
     return true;
   }
 
+  @Override
   public void addElement(Object element, RefactoringArguments args) {
     fElements.add(element);
     fArguments.add(args);
@@ -50,14 +52,17 @@ public class TestMoveParticipantShared extends MoveParticipant implements IShara
     else fHandles.add(((IResource) element).getFullPath().toString());
   }
 
+  @Override
   public String getName() {
     return getClass().getName();
   }
 
+  @Override
   public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context) {
     return new RefactoringStatus();
   }
 
+  @Override
   public Change createChange(IProgressMonitor pm) throws CoreException {
     return null;
   }

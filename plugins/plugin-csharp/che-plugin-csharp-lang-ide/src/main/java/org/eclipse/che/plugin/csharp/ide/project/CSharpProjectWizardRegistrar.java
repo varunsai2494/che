@@ -33,16 +33,19 @@ public class CSharpProjectWizardRegistrar implements ProjectWizardRegistrar {
     wizardPages = new ArrayList<>();
   }
 
+  @Override
   @NotNull
   public String getProjectTypeId() {
     return Constants.CSHARP_PROJECT_TYPE_ID;
   }
 
+  @Override
   @NotNull
   public String getCategory() {
     return CSharpExtension.CSHARP_CATEGORY;
   }
 
+  @Override
   @NotNull
   public List<Provider<? extends WizardPage<MutableProjectConfig>>> getWizardPages() {
     return wizardPages;

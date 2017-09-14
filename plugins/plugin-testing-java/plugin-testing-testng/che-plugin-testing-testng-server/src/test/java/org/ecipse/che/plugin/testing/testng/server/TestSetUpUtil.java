@@ -162,6 +162,7 @@ public class TestSetUpUtil {
     JavaModelManager.getJavaModelManager().resetTemporaryCache();
     IWorkspaceRunnable runnable =
         new IWorkspaceRunnable() {
+          @Override
           public void run(IProgressMonitor monitor) throws CoreException {
             //				performDummySearch();
             if (elem instanceof IJavaProject) {

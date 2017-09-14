@@ -111,6 +111,7 @@ public class QuickFixTest extends BaseTest {
     this.setup = setup;
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();
@@ -286,16 +287,20 @@ public class QuickFixTest extends BaseTest {
     final ArrayList problemsList = new ArrayList();
     final IProblemRequestor requestor =
         new IProblemRequestor() {
+          @Override
           public void acceptProblem(IProblem problem) {
             problemsList.add(problem);
           }
 
+          @Override
           public void beginReporting() {
             problemsList.clear();
           }
 
+          @Override
           public void endReporting() {}
 
+          @Override
           public boolean isActive() {
             return true;
           }
@@ -303,6 +308,7 @@ public class QuickFixTest extends BaseTest {
 
     WorkingCopyOwner workingCopyOwner =
         new WorkingCopyOwner() {
+          @Override
           public IProblemRequestor getProblemRequestor(ICompilationUnit workingCopy) {
             return requestor;
           }

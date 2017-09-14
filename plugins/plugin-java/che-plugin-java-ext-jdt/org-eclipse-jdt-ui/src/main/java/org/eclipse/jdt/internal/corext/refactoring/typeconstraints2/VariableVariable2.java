@@ -28,10 +28,12 @@ public final class VariableVariable2 extends ConstraintVariable2
     fKey = binding.getKey();
   }
 
+  @Override
   public void setCompilationUnit(ICompilationUnit unit) {
     fCompilationUnit = unit;
   }
 
+  @Override
   public ICompilationUnit getCompilationUnit() {
     return fCompilationUnit;
   }

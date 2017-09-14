@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.plugin.openshift.client.kubernetes;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import io.fabric8.kubernetes.client.Callback;
 import io.fabric8.kubernetes.client.utils.InputStreamPumper;
 import org.eclipse.che.commons.annotation.Nullable;
@@ -56,7 +58,7 @@ public class KubernetesOutputAdapter implements Callback<byte[]> {
     for (int pos = 0; pos < data.length; pos++) {
       if (data[pos] == '\n' || data[pos] == '\r') {
         offset = pos - start;
-        String line = new String(data, start, offset);
+        String line = new String(data, start, offset, UTF_8);
         lineBuffer.append(line);
         execOutputProcessor.process(new LogMessage(type, lineBuffer.toString()));
         lineBuffer.setLength(0);
@@ -66,7 +68,7 @@ public class KubernetesOutputAdapter implements Callback<byte[]> {
         start = pos + 1;
       }
     }
-    String trailingChars = new String(data, start, data.length - start);
+    String trailingChars = new String(data, start, data.length - start, UTF_8);
     lineBuffer.append(trailingChars);
   }
 }

@@ -101,6 +101,7 @@ public class MultiStateUndoChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void dispose() {
     if (fValidationState != null) {
       fValidationState.dispose();
@@ -108,6 +109,7 @@ public class MultiStateUndoChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public final Object[] getAffectedObjects() {
     Object modifiedElement = getModifiedElement();
     if (modifiedElement == null) return null;
@@ -115,11 +117,13 @@ public class MultiStateUndoChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public final Object getModifiedElement() {
     return fFile;
   }
 
   /** {@inheritDoc} */
+  @Override
   public final String getName() {
     return fName;
   }
@@ -137,6 +141,7 @@ public class MultiStateUndoChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public void initializeValidationData(IProgressMonitor pm) {
     if (pm == null) pm = new NullProgressMonitor();
     pm.beginTask("", 1); //$NON-NLS-1$
@@ -148,6 +153,7 @@ public class MultiStateUndoChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException {
     if (pm == null) pm = new NullProgressMonitor();
     pm.beginTask("", 1); //$NON-NLS-1$
@@ -175,6 +181,7 @@ public class MultiStateUndoChange extends Change {
   }
 
   /** {@inheritDoc} */
+  @Override
   public Change perform(IProgressMonitor pm) throws CoreException {
     if (fValidationState == null || fValidationState.isValid(needsSaving(), false).hasFatalError())
       return new NullChange();

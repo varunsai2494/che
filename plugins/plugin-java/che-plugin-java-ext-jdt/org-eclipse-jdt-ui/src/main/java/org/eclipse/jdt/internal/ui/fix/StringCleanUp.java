@@ -113,6 +113,7 @@ public class StringCleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     if (problem.getProblemId() == IProblem.UnnecessaryNLSTag)
       return isEnabled(CleanUpConstants.REMOVE_UNNECESSARY_NLS_TAGS);

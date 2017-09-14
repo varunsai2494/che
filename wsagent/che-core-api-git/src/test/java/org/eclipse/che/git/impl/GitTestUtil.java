@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.git.impl;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.Files.createDirectories;
 import static java.nio.file.Files.delete;
 import static java.nio.file.Files.exists;
@@ -77,7 +78,7 @@ public class GitTestUtil {
     if (!exists(parent)) {
       createDirectories(parent);
     }
-    return write(parent.resolve(name), content.getBytes()).toFile();
+    return write(parent.resolve(name), content.getBytes(UTF_8)).toFile();
   }
 
   public static void deleteFile(GitConnection connection, String name) throws IOException {

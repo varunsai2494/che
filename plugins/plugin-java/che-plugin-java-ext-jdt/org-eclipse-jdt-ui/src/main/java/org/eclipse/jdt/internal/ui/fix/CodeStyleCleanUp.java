@@ -252,6 +252,7 @@ public class CodeStyleCleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     if (IProblem.UnqualifiedFieldAccess == problem.getProblemId())
       return isEnabled(CleanUpConstants.MEMBER_ACCESSES_NON_STATIC_FIELD_USE_THIS)

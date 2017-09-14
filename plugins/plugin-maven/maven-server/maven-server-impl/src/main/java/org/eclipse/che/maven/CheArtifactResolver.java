@@ -116,6 +116,7 @@ public class CheArtifactResolver implements ArtifactResolver, Disposable {
     if (threads <= 1) {
       executor =
           new Executor() {
+            @Override
             public void execute(Runnable command) {
               command.run();
             }
@@ -443,6 +444,7 @@ public class CheArtifactResolver implements ArtifactResolver, Disposable {
   //
   // ------------------------------------------------------------------------
 
+  @Override
   public ArtifactResolutionResult resolve(ArtifactResolutionRequest request) {
     Artifact rootArtifact = request.getArtifact();
     Set<Artifact> artifacts = request.getArtifactDependencies();
@@ -628,6 +630,7 @@ public class CheArtifactResolver implements ArtifactResolver, Disposable {
 
     static final AtomicInteger THREAD_NUMBER = new AtomicInteger(1);
 
+    @Override
     public Thread newThread(Runnable r) {
       Thread newThread = new Thread(GROUP, r, "resolver-" + THREAD_NUMBER.getAndIncrement());
       newThread.setDaemon(true);
@@ -665,6 +668,7 @@ public class CheArtifactResolver implements ArtifactResolver, Disposable {
       this.result = result;
     }
 
+    @Override
     public void run() {
       ClassLoader old = Thread.currentThread().getContextClassLoader();
       try {

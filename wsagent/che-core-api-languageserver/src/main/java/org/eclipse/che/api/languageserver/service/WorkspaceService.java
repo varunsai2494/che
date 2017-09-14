@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.api.languageserver.service;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.api.languageserver.service.LanguageServiceUtils.prefixURI;
 import static org.eclipse.che.api.languageserver.service.LanguageServiceUtils.removePrefixUri;
 import static org.eclipse.che.api.languageserver.service.LanguageServiceUtils.truish;
@@ -112,11 +113,11 @@ public class WorkspaceService {
 
               @Override
               public void accept(InputStream in, OutputStream out) {
-                OutputStreamWriter w = new OutputStreamWriter(out);
+                OutputStreamWriter w = new OutputStreamWriter(out, UTF_8);
                 undo.addAll(
                     new CharStreamEditor(
                             params.getEdits(),
-                            CharStreamEditor.forReader(new InputStreamReader(in)),
+                            CharStreamEditor.forReader(new InputStreamReader(in, UTF_8)),
                             CharStreamEditor.forWriter(w))
                         .transform());
                 try {

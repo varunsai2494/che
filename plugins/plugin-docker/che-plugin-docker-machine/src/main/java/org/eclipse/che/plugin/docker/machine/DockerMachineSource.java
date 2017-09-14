@@ -164,6 +164,7 @@ public class DockerMachineSource extends MachineSourceImpl {
    * Returns location of this docker image, including all data that are required to reconstruct a
    * new docker machine source.
    */
+  @Override
   public String getLocation() {
     return getLocation(true);
   }

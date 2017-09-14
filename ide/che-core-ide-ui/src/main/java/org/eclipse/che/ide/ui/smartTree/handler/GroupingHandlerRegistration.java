@@ -35,6 +35,7 @@ public class GroupingHandlerRegistration implements HandlerRegistration {
     return registrations;
   }
 
+  @Override
   public void removeHandler() {
     for (HandlerRegistration r : registrations) {
       r.removeHandler();

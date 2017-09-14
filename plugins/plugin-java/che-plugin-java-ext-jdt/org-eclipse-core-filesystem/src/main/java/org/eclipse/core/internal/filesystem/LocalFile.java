@@ -95,11 +95,13 @@ public class LocalFile extends FileStore {
     }
   }
 
+  @Override
   public String[] childNames(int options, IProgressMonitor monitor) {
     String[] names = file.list();
     return (names == null ? EMPTY_STRING_ARRAY : names);
   }
 
+  @Override
   public void copy(IFileStore destFile, int options, IProgressMonitor monitor)
       throws CoreException {
     if (destFile instanceof LocalFile) {
@@ -122,6 +124,7 @@ public class LocalFile extends FileStore {
     super.copy(destFile, options, monitor);
   }
 
+  @Override
   public void delete(int options, IProgressMonitor monitor) throws CoreException {
     if (monitor == null) monitor = new NullProgressMonitor();
     //		else
@@ -137,6 +140,7 @@ public class LocalFile extends FileStore {
     }
   }
 
+  @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof LocalFile)) return false;
     //Mac oddity: file.equals returns false when case is different even when
@@ -147,6 +151,7 @@ public class LocalFile extends FileStore {
     return file.equals(otherFile.file);
   }
 
+  @Override
   public IFileInfo fetchInfo(int options, IProgressMonitor monitor) {
     //		if (LocalFileNativesManager.isUsingNatives()) {
     //			FileInfo info = LocalFileNativesManager.fetchFileInfo(filePath);
@@ -175,14 +180,17 @@ public class LocalFile extends FileStore {
     return info;
   }
 
+  @Override
   public IFileStore getChild(IPath path) {
     return new LocalFile(new File(file, path.toOSString()));
   }
 
+  @Override
   public IFileStore getFileStore(IPath path) {
     return new LocalFile(new Path(file.getPath()).append(path).toFile());
   }
 
+  @Override
   public IFileStore getChild(String name) {
     return new LocalFile(new File(file, name));
   }
@@ -195,15 +203,18 @@ public class LocalFile extends FileStore {
   //		return LocalFileSystem.getInstance();
   //	}
 
+  @Override
   public String getName() {
     return file.getName();
   }
 
+  @Override
   public IFileStore getParent() {
     File parent = file.getParentFile();
     return parent == null ? null : new LocalFile(parent);
   }
 
+  @Override
   public int hashCode() {
     //		if (LocalFileSystem.MACOSX)
     //			return filePath.toLowerCase().hashCode();
@@ -261,6 +272,7 @@ public class LocalFile extends FileStore {
     return false;
   }
 
+  @Override
   public boolean isParentOf(IFileStore other) {
     if (!(other instanceof LocalFile)) return false;
     String thisPath = filePath;
@@ -280,6 +292,7 @@ public class LocalFile extends FileStore {
         || thatPath.charAt(thisLength) == File.separatorChar;
   }
 
+  @Override
   public IFileStore mkdir(int options, IProgressMonitor monitor) throws CoreException {
     boolean shallow = (options & EFS.SHALLOW) != 0;
     //must be a directory
@@ -294,6 +307,7 @@ public class LocalFile extends FileStore {
     return this;
   }
 
+  @Override
   public void move(IFileStore destFile, int options, IProgressMonitor monitor)
       throws CoreException {
     if (!(destFile instanceof LocalFile)) {
@@ -359,6 +373,7 @@ public class LocalFile extends FileStore {
     }
   }
 
+  @Override
   public InputStream openInputStream(int options, IProgressMonitor monitor) throws CoreException {
     monitor = Policy.monitorFor(monitor);
     try {
@@ -376,6 +391,7 @@ public class LocalFile extends FileStore {
     }
   }
 
+  @Override
   public OutputStream openOutputStream(int options, IProgressMonitor monitor) throws CoreException {
     monitor = Policy.monitorFor(monitor);
     try {
@@ -394,6 +410,7 @@ public class LocalFile extends FileStore {
     }
   }
 
+  @Override
   public void putInfo(IFileInfo info, int options, IProgressMonitor monitor) throws CoreException {
     boolean success = true;
     if ((options & EFS.SET_ATTRIBUTES) != 0) {
@@ -410,6 +427,7 @@ public class LocalFile extends FileStore {
   /* (non-Javadoc)
    * @see org.eclipse.core.filesystem.provider.FileStore#toLocalFile(int, org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public File toLocalFile(int options, IProgressMonitor monitor) throws CoreException {
     //		if (options == EFS.CACHE)
     //			return super.toLocalFile(options, monitor);
@@ -419,6 +437,7 @@ public class LocalFile extends FileStore {
   /* (non-Javadoc)
    * @see org.eclipse.core.filesystem.IFileStore#toString()
    */
+  @Override
   public String toString() {
     return file.toString();
   }
@@ -426,6 +445,7 @@ public class LocalFile extends FileStore {
   /* (non-Javadoc)
    * @see org.eclipse.core.filesystem.IFileStore#toURI()
    */
+  @Override
   public URI toURI() {
     if (this.uri == null) {
       this.uri = URIUtil.toURI(filePath);

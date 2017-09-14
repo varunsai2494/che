@@ -54,6 +54,7 @@ public class UndoableOperation2ChangeAdapter
       fTitle = title;
     }
 
+    @Override
     public Object getAdapter(Class adapter) {
       if (String.class.equals(adapter)) return fTitle;
       return fInfoAdapter.getAdapter(adapter);
@@ -100,6 +101,7 @@ public class UndoableOperation2ChangeAdapter
     fLabel = label;
   }
 
+  @Override
   public String getLabel() {
     if (fLabel != null) return fLabel;
     return fActiveChange.getName();
@@ -110,15 +112,18 @@ public class UndoableOperation2ChangeAdapter
     return fActiveChange.getName();
   }
 
+  @Override
   public Object[] getAffectedObjects() {
     if (fActiveChange == null) return null;
     return fActiveChange.getAffectedObjects();
   }
 
+  @Override
   public void addContext(IUndoContext context) {
     if (!fContexts.contains(context)) fContexts.add(context);
   }
 
+  @Override
   public boolean hasContext(IUndoContext context) {
     if (context == null) return false;
     for (int i = 0; i < fContexts.size(); i++) {
@@ -130,18 +135,22 @@ public class UndoableOperation2ChangeAdapter
     return false;
   }
 
+  @Override
   public void removeContext(IUndoContext context) {
     fContexts.remove(context);
   }
 
+  @Override
   public IUndoContext[] getContexts() {
     return (IUndoContext[]) fContexts.toArray(new IUndoContext[fContexts.size()]);
   }
 
+  @Override
   public boolean canExecute() {
     return fExecuteChange != null;
   }
 
+  @Override
   public IStatus execute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
     if (monitor == null) monitor = new NullProgressMonitor();
     try {
@@ -159,10 +168,12 @@ public class UndoableOperation2ChangeAdapter
     }
   }
 
+  @Override
   public boolean canUndo() {
     return fUndoChange != null;
   }
 
+  @Override
   public IStatus undo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
     if (monitor == null) monitor = new NullProgressMonitor();
     try {
@@ -183,6 +194,7 @@ public class UndoableOperation2ChangeAdapter
     }
   }
 
+  @Override
   public IStatus computeUndoableStatus(IProgressMonitor monitor) throws ExecutionException {
     if (fUndoChange == null)
       return new Status(
@@ -210,10 +222,12 @@ public class UndoableOperation2ChangeAdapter
     }
   }
 
+  @Override
   public boolean canRedo() {
     return fRedoChange != null;
   }
 
+  @Override
   public IStatus redo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
     if (monitor == null) monitor = new NullProgressMonitor();
     try {
@@ -234,6 +248,7 @@ public class UndoableOperation2ChangeAdapter
     }
   }
 
+  @Override
   public IStatus computeRedoableStatus(IProgressMonitor monitor) throws ExecutionException {
     if (fRedoChange == null)
       return new Status(
@@ -261,6 +276,7 @@ public class UndoableOperation2ChangeAdapter
     }
   }
 
+  @Override
   public void aboutToNotify(OperationHistoryEvent event) {
     switch (event.getEventType()) {
       case OperationHistoryEvent.ABOUT_TO_EXECUTE:
@@ -275,6 +291,7 @@ public class UndoableOperation2ChangeAdapter
     }
   }
 
+  @Override
   public void dispose() {
     // the active change could be cleared.
     if (fActiveChange != null) fActiveChange.dispose();
@@ -286,6 +303,7 @@ public class UndoableOperation2ChangeAdapter
     if (fActiveChange == null || !fActiveChange.isEnabled()) return result;
     IWorkspaceRunnable runnable =
         new IWorkspaceRunnable() {
+          @Override
           public void run(IProgressMonitor monitor) throws CoreException {
             boolean reverseIsInitialized = false;
             try {

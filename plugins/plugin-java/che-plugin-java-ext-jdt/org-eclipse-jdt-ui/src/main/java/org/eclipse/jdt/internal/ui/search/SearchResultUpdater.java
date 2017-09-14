@@ -41,6 +41,7 @@ public class SearchResultUpdater implements IElementChangedListener, IQueryListe
     // TODO make this work with resources
   }
 
+  @Override
   public void elementChanged(ElementChangedEvent event) {
     //long t0= System.currentTimeMillis();
     IJavaElementDelta delta = event.getDelta();
@@ -121,10 +122,12 @@ public class SearchResultUpdater implements IElementChangedListener, IQueryListe
     }
   }
 
+  @Override
   public void queryAdded(ISearchQuery query) {
     // don't care
   }
 
+  @Override
   public void queryRemoved(ISearchQuery query) {
     if (fResult.equals(query.getSearchResult())) {
       JavaCore.removeElementChangedListener(this);
@@ -142,10 +145,12 @@ public class SearchResultUpdater implements IElementChangedListener, IQueryListe
     }
   }
 
+  @Override
   public void queryStarting(ISearchQuery query) {
     // not interested
   }
 
+  @Override
   public void queryFinished(ISearchQuery query) {
     // not interested
   }

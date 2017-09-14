@@ -44,14 +44,17 @@ public class LinkedProposalModel {
   public Iterator<LinkedProposalPositionGroup> getPositionGroupIterator() {
     if (fPositionGroups == null) {
       return new Iterator<LinkedProposalPositionGroup>() {
+        @Override
         public boolean hasNext() {
           return false;
         }
 
+        @Override
         public LinkedProposalPositionGroup next() {
           return null;
         }
 
+        @Override
         public void remove() {
           throw new UnsupportedOperationException();
         }

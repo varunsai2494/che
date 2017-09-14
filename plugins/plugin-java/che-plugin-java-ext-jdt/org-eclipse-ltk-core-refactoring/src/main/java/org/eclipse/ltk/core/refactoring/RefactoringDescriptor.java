@@ -184,6 +184,7 @@ public abstract class RefactoringDescriptor implements Comparable {
   }
 
   /** {@inheritDoc} */
+  @Override
   public final int compareTo(final Object object) {
     if (object instanceof RefactoringDescriptor) {
       final RefactoringDescriptor descriptor = (RefactoringDescriptor) object;
@@ -238,6 +239,7 @@ public abstract class RefactoringDescriptor implements Comparable {
   }
 
   /** {@inheritDoc} */
+  @Override
   public final boolean equals(final Object object) {
     if (object instanceof RefactoringDescriptor) {
       final RefactoringDescriptor descriptor = (RefactoringDescriptor) object;
@@ -307,6 +309,7 @@ public abstract class RefactoringDescriptor implements Comparable {
   }
 
   /** {@inheritDoc} */
+  @Override
   public final int hashCode() {
     int code = getDescription().hashCode();
     if (fTimeStamp >= 0) code += (17 * fTimeStamp);
@@ -384,6 +387,7 @@ public abstract class RefactoringDescriptor implements Comparable {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String toString() {
 
     final StringBuffer buffer = new StringBuffer(128);

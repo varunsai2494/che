@@ -151,6 +151,7 @@ public class ResetToCommitViewImpl extends Window implements ResetToCommitView {
   }
 
   public interface TableRes extends CellTable.Resources {
+    @Override
     @Source({
       CellTable.Style.DEFAULT_CSS,
       "org/eclipse/che/ide/ext/git/client/reset/commit/custom.css"

@@ -58,6 +58,7 @@ public abstract class AbstractProposalSorter
    *     equal to, or greater than the second
    * @see java.util.Comparator#compare(Object, Object)
    */
+  @Override
   public abstract int compare(ICompletionProposal p1, ICompletionProposal p2);
 
   /**

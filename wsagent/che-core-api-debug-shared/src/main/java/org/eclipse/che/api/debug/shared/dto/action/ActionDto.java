@@ -16,6 +16,7 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author Anatoliy Bazko */
 @DTO
 public interface ActionDto extends Action {
+  @Override
   Action.TYPE getType();
 
   void setType(Action.TYPE type);

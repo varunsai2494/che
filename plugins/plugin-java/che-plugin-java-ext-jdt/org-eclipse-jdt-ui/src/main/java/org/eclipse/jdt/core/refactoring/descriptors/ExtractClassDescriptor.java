@@ -102,6 +102,7 @@ public class ExtractClassDescriptor extends JavaRefactoringDescriptor {
       this.fNewFieldName = newFieldName;
     }
 
+    @Override
     public int hashCode() {
       final int prime = 31;
       int result = 1;
@@ -109,6 +110,7 @@ public class ExtractClassDescriptor extends JavaRefactoringDescriptor {
       return result;
     }
 
+    @Override
     public boolean equals(Object obj) {
       if (this == obj) return true;
       if (obj == null) return false;
@@ -120,6 +122,7 @@ public class ExtractClassDescriptor extends JavaRefactoringDescriptor {
       return true;
     }
 
+    @Override
     public String toString() {
       return "Field:"
           + fFieldName
@@ -378,6 +381,7 @@ public class ExtractClassDescriptor extends JavaRefactoringDescriptor {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.core.refactoring.descriptors.JavaRefactoringDescriptor#populateArgumentMap()
    */
+  @Override
   protected void populateArgumentMap() {
     super.populateArgumentMap();
     if (fFields != null) {
@@ -403,6 +407,7 @@ public class ExtractClassDescriptor extends JavaRefactoringDescriptor {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.core.refactoring.descriptors.JavaRefactoringDescriptor#validateDescriptor()
    */
+  @Override
   public RefactoringStatus validateDescriptor() {
     RefactoringStatus status = super.validateDescriptor();
     if (getType() == null) status.addFatalError("The type may not be null"); //$NON-NLS-1$

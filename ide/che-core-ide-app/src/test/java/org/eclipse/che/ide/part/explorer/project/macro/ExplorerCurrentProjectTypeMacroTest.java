@@ -29,6 +29,7 @@ public class ExplorerCurrentProjectTypeMacroTest extends AbstractExplorerMacroTe
 
   private ExplorerCurrentProjectTypeMacro provider;
 
+  @Override
   @Before
   public void init() throws Exception {
     super.init();

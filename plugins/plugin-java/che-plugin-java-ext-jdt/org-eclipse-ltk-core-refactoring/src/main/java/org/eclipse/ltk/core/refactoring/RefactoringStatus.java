@@ -621,6 +621,7 @@ public class RefactoringStatus {
    * (non java-doc)
    * for debugging only
    */
+  @Override
   public String toString() {
     StringBuffer buff = new StringBuffer();
     buff.append("<") //$NON-NLS-1$

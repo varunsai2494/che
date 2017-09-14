@@ -74,12 +74,14 @@ public class MultiTextEdit extends TextEdit {
   }
 
   /** {@inheritDoc} */
+  @Override
   final boolean isDefined() {
     if (fDefined) return true;
     return hasChildren();
   }
 
   /** {@inheritDoc} */
+  @Override
   public final int getOffset() {
     if (fDefined) return super.getOffset();
 
@@ -90,6 +92,7 @@ public class MultiTextEdit extends TextEdit {
   }
 
   /** {@inheritDoc} */
+  @Override
   public final int getLength() {
     if (fDefined) return super.getLength();
 
@@ -102,6 +105,7 @@ public class MultiTextEdit extends TextEdit {
   }
 
   /** {@inheritDoc} */
+  @Override
   public final boolean covers(TextEdit other) {
     if (fDefined) return super.covers(other);
     // an undefined multiple text edit covers everything
@@ -109,17 +113,20 @@ public class MultiTextEdit extends TextEdit {
   }
 
   /* @see org.eclipse.text.edits.TextEdit#canZeroLengthCover() */
+  @Override
   protected boolean canZeroLengthCover() {
     return true;
   }
 
   /* @see TextEdit#copy */
+  @Override
   protected TextEdit doCopy() {
     //Assert.isTrue(MultiTextEdit.class == getClass(), "Subclasses must reimplement copy0"); //$NON-NLS-1$
     return new MultiTextEdit(this);
   }
 
   /* @see TextEdit#accept0 */
+  @Override
   protected void accept0(TextEditVisitor visitor) {
     boolean visitChildren = visitor.visit(this);
     if (visitChildren) {
@@ -131,6 +138,7 @@ public class MultiTextEdit extends TextEdit {
    * @see org.eclipse.text.edits.TextEdit#adjustOffset(int)
    * @since 3.1
    */
+  @Override
   void adjustOffset(int delta) {
     if (fDefined) super.adjustOffset(delta);
   }
@@ -139,27 +147,32 @@ public class MultiTextEdit extends TextEdit {
    * @see org.eclipse.text.edits.TextEdit#adjustLength(int)
    * @since 3.1
    */
+  @Override
   void adjustLength(int delta) {
     if (fDefined) super.adjustLength(delta);
   }
 
   /* @see TextEdit#performConsistencyCheck */
+  @Override
   void performConsistencyCheck(TextEditProcessor processor, Document document)
       throws MalformedTreeException {
     checkIntegrity();
   }
 
   /* @see TextEdit#performDocumentUpdating */
+  @Override
   int performDocumentUpdating(Document document) throws BadLocationException {
     fDelta = 0;
     return fDelta;
   }
 
   /* @see TextEdit#deleteChildren */
+  @Override
   boolean deleteChildren() {
     return false;
   }
 
+  @Override
   void aboutToBeAdded(TextEdit parent) {
     defineRegion(parent.getOffset());
   }
@@ -181,6 +194,7 @@ public class MultiTextEdit extends TextEdit {
    * @see org.eclipse.text.edits.TextEdit#internalToString(java.lang.StringBuffer, int)
    * @since 3.3
    */
+  @Override
   void internalToString(StringBuffer buffer, int indent) {
     super.internalToString(buffer, indent);
     if (!fDefined) buffer.append(" [undefined]"); //$NON-NLS-1$

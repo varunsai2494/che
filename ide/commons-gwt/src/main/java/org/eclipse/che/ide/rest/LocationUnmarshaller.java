@@ -23,11 +23,13 @@ public class LocationUnmarshaller implements Unmarshallable<String> {
   private String result;
 
   /** {@inheritDoc} */
+  @Override
   public void unmarshal(Response response) throws UnmarshallerException {
     result = response.getHeader("Location");
   }
 
   /** {@inheritDoc} */
+  @Override
   public String getPayload() {
     return result;
   }

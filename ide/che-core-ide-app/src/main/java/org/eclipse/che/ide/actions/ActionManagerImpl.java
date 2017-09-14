@@ -366,6 +366,7 @@ public class ActionManagerImpl implements ActionManager {
 
   public Comparator<String> getRegistrationOrderComparator() {
     return new Comparator<String>() {
+      @Override
       public int compare(String id1, String id2) {
         return myId2Index.get(id1) - myId2Index.get(id2);
       }

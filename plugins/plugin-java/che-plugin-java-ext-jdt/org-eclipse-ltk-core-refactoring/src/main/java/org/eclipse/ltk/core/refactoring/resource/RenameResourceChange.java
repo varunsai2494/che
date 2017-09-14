@@ -66,6 +66,7 @@ public class RenameResourceChange extends ResourceChange {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.Change#getDescriptor()
    */
+  @Override
   public ChangeDescriptor getDescriptor() {
     return fDescriptor;
   }
@@ -82,6 +83,7 @@ public class RenameResourceChange extends ResourceChange {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.resource.ResourceChange#getModifiedResource()
    */
+  @Override
   protected IResource getModifiedResource() {
     return getResource();
   }
@@ -89,6 +91,7 @@ public class RenameResourceChange extends ResourceChange {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.Change#getName()
    */
+  @Override
   public String getName() {
     return Messages.format(
         RefactoringCoreMessages.RenameResourceChange_name,
@@ -114,6 +117,7 @@ public class RenameResourceChange extends ResourceChange {
   /* (non-Javadoc)
    * @see org.eclipse.ltk.core.refactoring.Change#perform(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public Change perform(IProgressMonitor pm) throws CoreException {
     try {
       pm.beginTask(RefactoringCoreMessages.RenameResourceChange_progress_description, 1);

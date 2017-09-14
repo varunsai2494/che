@@ -117,6 +117,7 @@ public class NullAnnotationsCleanUp extends AbstractMultiFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean canFix(ICompilationUnit compilationUnit, IProblemLocation problem) {
     int id = problem.getProblemId();
     if (id == this.handledProblemID) {

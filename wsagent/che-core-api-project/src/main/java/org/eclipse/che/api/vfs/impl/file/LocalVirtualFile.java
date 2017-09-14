@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.api.vfs.impl.file;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.api.vfs.impl.file.LocalVirtualFileSystem.MAX_BUFFER_SIZE;
 
 import com.google.common.io.ByteStreams;
@@ -121,7 +122,7 @@ public class LocalVirtualFile implements VirtualFile {
 
   @Override
   public String getContentAsString() throws ForbiddenException, ServerException {
-    return new String(getContentAsBytes());
+    return new String(getContentAsBytes(), UTF_8);
   }
 
   @Override
@@ -150,7 +151,7 @@ public class LocalVirtualFile implements VirtualFile {
   @Override
   public VirtualFile updateContent(String content, String lockToken)
       throws ForbiddenException, ServerException {
-    return updateContent(content.getBytes(), lockToken);
+    return updateContent(content.getBytes(UTF_8), lockToken);
   }
 
   @Override
@@ -226,6 +227,7 @@ public class LocalVirtualFile implements VirtualFile {
     return copyTo(parent, null, false);
   }
 
+  @Override
   public LocalVirtualFile copyTo(VirtualFile parent, String name, boolean overwrite)
       throws ForbiddenException, ConflictException, ServerException {
     return fileSystem.copy(this, (LocalVirtualFile) parent, name, overwrite);
@@ -237,6 +239,7 @@ public class LocalVirtualFile implements VirtualFile {
     return moveTo(parent, null, false, null);
   }
 
+  @Override
   public LocalVirtualFile moveTo(
       VirtualFile parent, String name, boolean overwrite, String lockToken)
       throws ForbiddenException, ConflictException, ServerException {
@@ -319,7 +322,7 @@ public class LocalVirtualFile implements VirtualFile {
   @Override
   public VirtualFile createFile(String name, String content)
       throws ForbiddenException, ConflictException, ServerException {
-    return createFile(name, content == null ? null : content.getBytes());
+    return createFile(name, content == null ? null : content.getBytes(UTF_8));
   }
 
   @Override

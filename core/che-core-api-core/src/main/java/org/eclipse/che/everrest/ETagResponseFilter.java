@@ -52,6 +52,7 @@ public class ETagResponseFilter implements ResponseFilter {
    *
    * @param containerResponse the response to use
    */
+  @Override
   public void doFilter(GenericContainerResponse containerResponse) {
 
     // get entity of the response

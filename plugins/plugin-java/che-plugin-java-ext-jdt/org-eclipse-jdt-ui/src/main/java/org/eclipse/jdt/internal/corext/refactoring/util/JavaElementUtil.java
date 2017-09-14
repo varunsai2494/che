@@ -220,6 +220,7 @@ public class JavaElementUtil {
   public static IMember[] sortByOffset(IMember[] members) {
     Comparator<IMember> comparator =
         new Comparator<IMember>() {
+          @Override
           public int compare(IMember o1, IMember o2) {
             try {
               return o1.getNameRange().getOffset() - o2.getNameRange().getOffset();

@@ -11,6 +11,7 @@
 package org.eclipse.che.dto.server;
 
 import static java.lang.String.format;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -239,7 +240,7 @@ public final class DtoFactory {
    * @throws IOException if an i/o error occurs
    */
   public <T> T createDtoFromJson(InputStream json, Class<T> dtoInterface) throws IOException {
-    return createDtoFromJson(new InputStreamReader(json), dtoInterface);
+    return createDtoFromJson(new InputStreamReader(json, UTF_8), dtoInterface);
   }
 
   //
@@ -286,7 +287,7 @@ public final class DtoFactory {
    */
   public <T> JsonArray<T> createListDtoFromJson(InputStream json, Class<T> dtoInterface)
       throws IOException {
-    return createListDtoFromJson(new InputStreamReader(json), dtoInterface);
+    return createListDtoFromJson(new InputStreamReader(json, UTF_8), dtoInterface);
   }
 
   //
@@ -350,7 +351,7 @@ public final class DtoFactory {
    */
   public <T> JsonStringMap<T> createMapDtoFromJson(InputStream json, Class<T> dtoInterface)
       throws IOException {
-    return createMapDtoFromJson(new InputStreamReader(json), dtoInterface);
+    return createMapDtoFromJson(new InputStreamReader(json, UTF_8), dtoInterface);
   }
 
   //

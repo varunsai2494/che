@@ -11,6 +11,7 @@
 package org.eclipse.che.plugin.docker.client;
 
 import static com.google.common.collect.Sets.newHashSet;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.inject.Inject;
 import java.util.Base64;
@@ -74,7 +75,7 @@ public class DockerRegistryAuthResolver {
       authConfigJson = JsonHelper.toJson(authConfig);
     }
 
-    return Base64.getEncoder().encodeToString(authConfigJson.getBytes());
+    return Base64.getEncoder().encodeToString(authConfigJson.getBytes(UTF_8));
   }
 
   /**
@@ -95,7 +96,7 @@ public class DockerRegistryAuthResolver {
 
     authConfigs = normalizeDockerHubRegistryUrl(authConfigs);
 
-    return Base64.getEncoder().encodeToString(JsonHelper.toJson(authConfigs).getBytes());
+    return Base64.getEncoder().encodeToString(JsonHelper.toJson(authConfigs).getBytes(UTF_8));
   }
 
   /**
@@ -115,7 +116,7 @@ public class DockerRegistryAuthResolver {
       return "Basic "
           + Base64.getEncoder()
               .encodeToString(
-                  (authConfig.getUsername() + ':' + authConfig.getPassword()).getBytes());
+                  (authConfig.getUsername() + ':' + authConfig.getPassword()).getBytes(UTF_8));
     }
     return "";
   }

@@ -49,6 +49,7 @@ public abstract class TextSearchEngine {
    */
   public static TextSearchEngine createDefault() {
     return new TextSearchEngine() {
+      @Override
       public IStatus search(
           TextSearchScope scope,
           TextSearchRequestor requestor,
@@ -57,6 +58,7 @@ public abstract class TextSearchEngine {
         return new TextSearchVisitor(requestor, searchPattern).search(scope, monitor);
       }
 
+      @Override
       public IStatus search(
           IFile[] scope,
           TextSearchRequestor requestor,

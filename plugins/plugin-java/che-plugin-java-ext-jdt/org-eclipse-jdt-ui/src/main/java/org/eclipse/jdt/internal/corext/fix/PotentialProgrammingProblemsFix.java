@@ -82,6 +82,7 @@ public class PotentialProgrammingProblemsFix extends CompilationUnitRewriteOpera
       fIdsTable = new Hashtable<String, Long>();
     }
 
+    @Override
     public RefactoringStatus initialize(IProgressMonitor monitor) throws CoreException {
       if (monitor == null) monitor = new NullProgressMonitor();
 
@@ -135,6 +136,7 @@ public class PotentialProgrammingProblemsFix extends CompilationUnitRewriteOpera
     }
 
     /** {@inheritDoc} */
+    @Override
     public Long getSerialVersionId(ITypeBinding binding) {
       return fIdsTable.get(binding.getKey());
     }
@@ -308,10 +310,12 @@ public class PotentialProgrammingProblemsFix extends CompilationUnitRewriteOpera
     if (defaultId) {
       fCurrentContext =
           new ISerialVersionFixContext() {
+            @Override
             public Long getSerialVersionId(ITypeBinding binding) {
               return new Long(1);
             }
 
+            @Override
             public RefactoringStatus initialize(IProgressMonitor pm) throws CoreException {
               return new RefactoringStatus();
             }
@@ -322,10 +326,12 @@ public class PotentialProgrammingProblemsFix extends CompilationUnitRewriteOpera
           new ISerialVersionFixContext() {
             private Random rng;
 
+            @Override
             public Long getSerialVersionId(ITypeBinding binding) {
               return new Long(rng.nextLong());
             }
 
+            @Override
             public RefactoringStatus initialize(IProgressMonitor pm) throws CoreException {
               rng = new Random((new Date()).getTime());
               return new RefactoringStatus();

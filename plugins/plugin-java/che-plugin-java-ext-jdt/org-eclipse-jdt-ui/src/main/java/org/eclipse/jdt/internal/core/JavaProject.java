@@ -9,6 +9,7 @@
  */
 package org.eclipse.jdt.internal.core;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.jdt.internal.core.JavaModelManager.PerProjectInfo;
 import static org.eclipse.jdt.internal.core.JavaModelManager.getJavaModelManager;
 import static org.eclipse.jdt.internal.core.JavaModelManager.getTarget;
@@ -193,6 +194,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
    *     exception occurs while accessing its corresponding resource
    * @see org.eclipse.jdt.core.IClasspathEntry
    */
+  @Override
   public IClasspathEntry[] getRawClasspath() throws JavaModelException {
     PerProjectInfo perProjectInfo = getPerProjectInfo();
     IClasspathEntry[] classpath = perProjectInfo.rawClasspath;
@@ -740,6 +742,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
    */
   public PerProjectInfo newTemporaryInfo() {
     return new PerProjectInfo(this.project.getProject()) {
+      @Override
       protected ClasspathChange addClasspathChange() {
         return null;
       }
@@ -1145,7 +1148,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
     } catch (UnsupportedEncodingException e) {
       Util.log(e, "Could not read .classpath with UTF-8 encoding"); //$NON-NLS-1$
       // fallback to default
-      xmlClasspath = new String(bytes);
+      xmlClasspath = new String(bytes, UTF_8);
     }
     return decodeClasspath(xmlClasspath, unknownElements);
   }
@@ -1218,6 +1221,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
     return entries;
   }
 
+  @Override
   public IClasspathEntry decodeClasspathEntry(String encodedEntry) {
 
     try {
@@ -1253,6 +1257,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
     return new IClasspathEntry[] {JavaCore.newSourceEntry(this.project.getFullPath())};
   }
 
+  @Override
   public int hashCode() {
     return this.project.hashCode();
   }
@@ -1369,6 +1374,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
   }
 
   /** @see IJavaProject */
+  @Override
   public IPackageFragmentRoot getPackageFragmentRoot(IResource resource) {
     return getPackageFragmentRoot(resource, null /*no entry path*/);
   }
@@ -1409,6 +1415,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
         .getOption(optionName, inheritJavaCoreOptions, getEclipsePreferences());
   }
 
+  @Override
   public Map getOptions(boolean inheritJavaCoreOptions) {
 
     // initialize to the defaults from JavaCore options pool
@@ -1667,6 +1674,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
     return JavaElement.JEM_JAVAPROJECT;
   }
 
+  @Override
   public IPath getPath() {
     return project.getFullPath();
   }
@@ -1759,6 +1767,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
   }
 
   /** Returns a new element info for this element. */
+  @Override
   protected Object createElementInfo() {
     return new JavaProjectElementInfo();
   }
@@ -1771,6 +1780,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
     return JavaModelStatus.VERIFIED_OK;
   }
 
+  @Override
   protected JavaModelStatus newDoesNotExistStatus() {
     return new JavaModelStatus(IJavaModelStatusConstants.ELEMENT_DOES_NOT_EXIST, this);
   }
@@ -1865,6 +1875,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
    *
    * @see JavaElement#equals(Object)
    */
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
 
@@ -2128,7 +2139,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
     } catch (UnsupportedEncodingException e) {
       Util.log(e, "Could not write .classpath with UTF-8 encoding "); //$NON-NLS-1$
       // fallback to default
-      bytes = value.getBytes();
+      bytes = value.getBytes(UTF_8);
     }
     InputStream inputStream = new ByteArrayInputStream(bytes);
     // update the resource content
@@ -2234,6 +2245,7 @@ public class JavaProject extends Openable implements IJavaProject, SuffixConstan
     }
   }
 
+  @Override
   public String encodeClasspathEntry(IClasspathEntry classpathEntry) {
     try {
       ByteArrayOutputStream s = new ByteArrayOutputStream();

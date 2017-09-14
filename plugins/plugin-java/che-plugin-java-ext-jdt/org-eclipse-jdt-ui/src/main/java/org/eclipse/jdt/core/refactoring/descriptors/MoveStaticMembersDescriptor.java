@@ -86,6 +86,7 @@ public final class MoveStaticMembersDescriptor extends JavaRefactoringDescriptor
   }
 
   /** {@inheritDoc} */
+  @Override
   protected void populateArgumentMap() {
     super.populateArgumentMap();
     String project = getProject();
@@ -135,6 +136,7 @@ public final class MoveStaticMembersDescriptor extends JavaRefactoringDescriptor
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringStatus validateDescriptor() {
     final RefactoringStatus status = super.validateDescriptor();
     if (fType == null)

@@ -178,6 +178,7 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#getDocumentPartitioner() */
+  @Override
   public DocumentPartitioner getDocumentPartitioner() {
     return getDocumentPartitioner(DEFAULT_PARTITIONING);
   }
@@ -205,6 +206,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#setDocumentPartitioner(org.eclipse.jface .text.IDocumentPartitioner)
    */
+  @Override
   public void setDocumentPartitioner(DocumentPartitioner partitioner) {
     setDocumentPartitioner(DEFAULT_PARTITIONING, partitioner);
   }
@@ -232,6 +234,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#addDocumentListener(org.eclipse.jface .text.IDocumentListener)
    */
+  @Override
   public void addDocumentListener(DocumentListener listener) {
     Assert.isNotNull(listener);
     fDocumentListeners.add(listener);
@@ -240,6 +243,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#removeDocumentListener(org.eclipse.jface .text.IDocumentListener)
    */
+  @Override
   public void removeDocumentListener(DocumentListener listener) {
     Assert.isNotNull(listener);
     fDocumentListeners.remove(listener);
@@ -264,6 +268,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#addDocumentPartitioningListener(org.eclipse .jface.text.IDocumentPartitioningListener)
    */
+  @Override
   public void addDocumentPartitioningListener(DocumentPartitioningListener listener) {
     Assert.isNotNull(listener);
     fDocumentPartitioningListeners.add(listener);
@@ -273,6 +278,7 @@ public abstract class AbstractDocument implements Document {
    * @see org.eclipse.jface.text.IDocument#removeDocumentPartitioningListener(org
    * .eclipse.jface.text.IDocumentPartitioningListener)
    */
+  @Override
   public void removeDocumentPartitioningListener(DocumentPartitioningListener listener) {
     Assert.isNotNull(listener);
     fDocumentPartitioningListeners.remove(listener);
@@ -281,6 +287,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#addPosition(java.lang.String, org.eclipse.jface.text.Position)
    */
+  @Override
   public void addPosition(String category, Position position)
       throws BadLocationException, BadPositionCategoryException {
 
@@ -304,6 +311,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#addPosition(org.eclipse.jface.text.Position )
    */
+  @Override
   public void addPosition(Position position) throws BadLocationException {
     try {
       addPosition(DEFAULT_CATEGORY, position);
@@ -314,6 +322,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#addPositionCategory(java.lang.String)
    */
+  @Override
   public void addPositionCategory(String category) {
 
     if (category == null) return;
@@ -327,6 +336,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#addPositionUpdater(org.eclipse.jface. text.IPositionUpdater)
    */
+  @Override
   public void addPositionUpdater(PositionUpdater updater) {
     insertPositionUpdater(updater, fPositionUpdaters.size());
   }
@@ -334,6 +344,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#containsPosition(java.lang.String, int, int)
    */
+  @Override
   public boolean containsPosition(String category, int offset, int length) {
 
     if (category == null) return false;
@@ -360,6 +371,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#containsPositionCategory(java.lang.String )
    */
+  @Override
   public boolean containsPositionCategory(String category) {
     return category != null && fPositions.containsKey(category);
   }
@@ -432,6 +444,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#computeIndexInCategory(java.lang.String, int)
    */
+  @Override
   public int computeIndexInCategory(String category, int offset)
       throws BadLocationException, BadPositionCategoryException {
 
@@ -562,12 +575,14 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#getChar(int) */
+  @Override
   public char getChar(int pos) throws BadLocationException {
     if ((0 > pos) || (pos >= getLength())) throw new BadLocationException();
     return getStore().get(pos);
   }
 
   /* @see org.eclipse.jface.text.IDocument#getContentType(int) */
+  @Override
   public String getContentType(int offset) throws BadLocationException {
     String contentType = null;
     try {
@@ -580,6 +595,7 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLegalContentTypes() */
+  @Override
   public String[] getLegalContentTypes() {
     String[] contentTypes = null;
     try {
@@ -592,16 +608,19 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLength() */
+  @Override
   public int getLength() {
     return getStore().getLength();
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLineDelimiter(int) */
+  @Override
   public String getLineDelimiter(int line) throws BadLocationException {
     return getTracker().getLineDelimiter(line);
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLegalLineDelimiters() */
+  @Override
   public String[] getLegalLineDelimiters() {
     return getTracker().getLegalLineDelimiters();
   }
@@ -648,36 +667,43 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLineLength(int) */
+  @Override
   public int getLineLength(int line) throws BadLocationException {
     return getTracker().getLineLength(line);
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLineOfOffset(int) */
+  @Override
   public int getLineOfOffset(int pos) throws BadLocationException {
     return getTracker().getLineNumberOfOffset(pos);
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLineOffset(int) */
+  @Override
   public int getLineOffset(int line) throws BadLocationException {
     return getTracker().getLineOffset(line);
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLineInformation(int) */
+  @Override
   public Region getLineInformation(int line) throws BadLocationException {
     return getTracker().getLineInformation(line);
   }
 
   /* @see org.eclipse.jface.text.IDocument#getLineInformationOfOffset(int) */
+  @Override
   public Region getLineInformationOfOffset(int offset) throws BadLocationException {
     return getTracker().getLineInformationOfOffset(offset);
   }
 
   /* @see org.eclipse.jface.text.IDocument#getNumberOfLines() */
+  @Override
   public int getNumberOfLines() {
     return getTracker().getNumberOfLines();
   }
 
   /* @see org.eclipse.jface.text.IDocument#getNumberOfLines(int, int) */
+  @Override
   public int getNumberOfLines(int offset, int length) throws BadLocationException {
     return getTracker().getNumberOfLines(offset, length);
   }
@@ -685,11 +711,13 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#computeNumberOfLines(java.lang.String)
    */
+  @Override
   public int computeNumberOfLines(String text) {
     return getTracker().computeNumberOfLines(text);
   }
 
   /* @see org.eclipse.jface.text.IDocument#getPartition(int) */
+  @Override
   public TypedRegion getPartition(int offset) throws BadLocationException {
     TypedRegion partition = null;
     try {
@@ -702,6 +730,7 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#computePartitioning(int, int) */
+  @Override
   public TypedRegion[] computePartitioning(int offset, int length) throws BadLocationException {
     TypedRegion[] partitioning = null;
     try {
@@ -714,6 +743,7 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#getPositions(java.lang.String) */
+  @Override
   public Position[] getPositions(String category) throws BadPositionCategoryException {
 
     if (category == null) throw new BadPositionCategoryException();
@@ -727,6 +757,7 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#getPositionCategories() */
+  @Override
   public String[] getPositionCategories() {
     String[] categories = new String[fPositions.size()];
     Iterator<String> keys = fPositions.keySet().iterator();
@@ -735,6 +766,7 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#getPositionUpdaters() */
+  @Override
   public PositionUpdater[] getPositionUpdaters() {
     PositionUpdater[] updaters = new PositionUpdater[fPositionUpdaters.size()];
     fPositionUpdaters.toArray(updaters);
@@ -742,11 +774,13 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#get() */
+  @Override
   public String get() {
     return getStore().get(0, getLength());
   }
 
   /* @see org.eclipse.jface.text.IDocument#get(int, int) */
+  @Override
   public String get(int pos, int length) throws BadLocationException {
     int myLength = getLength();
     if ((0 > pos) || (0 > length) || (pos + length > myLength)) throw new BadLocationException();
@@ -756,6 +790,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#insertPositionUpdater(org.eclipse.jface .text.IPositionUpdater, int)
    */
+  @Override
   public void insertPositionUpdater(PositionUpdater updater, int index) {
 
     for (int i = fPositionUpdaters.size() - 1; i >= 0; i--) {
@@ -769,6 +804,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#removePosition(java.lang.String, org.eclipse.jface.text.Position)
    */
+  @Override
   public void removePosition(String category, Position position)
       throws BadPositionCategoryException {
 
@@ -833,6 +869,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#removePosition(org.eclipse.jface.text .Position)
    */
+  @Override
   public void removePosition(Position position) {
     try {
       removePosition(DEFAULT_CATEGORY, position);
@@ -843,6 +880,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#removePositionCategory(java.lang.String)
    */
+  @Override
   public void removePositionCategory(String category) throws BadPositionCategoryException {
 
     if (category == null) return;
@@ -856,6 +894,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#removePositionUpdater(org.eclipse.jface .text.IPositionUpdater)
    */
+  @Override
   public void removePositionUpdater(PositionUpdater updater) {
     for (int i = fPositionUpdaters.size() - 1; i >= 0; i--) {
       if (fPositionUpdaters.get(i) == updater) {
@@ -876,6 +915,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocumentExtension4#getModificationStamp()
    */
+  @Override
   public long getModificationStamp() {
     return fModificationStamp;
   }
@@ -883,6 +923,7 @@ public abstract class AbstractDocument implements Document {
   /*
    * @see org.eclipse.jface.text.IDocument#replace(int, int, java.lang.String)
    */
+  @Override
   public void replace(int pos, int length, String text, long modificationStamp)
       throws BadLocationException {
     if ((0 > pos) || (0 > length) || (pos + length > getLength())) throw new BadLocationException();
@@ -911,6 +952,7 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#replace(int, int, java.lang.String) */
+  @Override
   public void replace(int pos, int length, String text) throws BadLocationException {
     if (length == 0 && (text == null || text.length() == 0))
       replace(pos, length, text, getModificationStamp());
@@ -918,6 +960,7 @@ public abstract class AbstractDocument implements Document {
   }
 
   /* @see org.eclipse.jface.text.IDocument#set(java.lang.String) */
+  @Override
   public void set(String text) {
     set(text, getNextModificationStamp());
   }
@@ -985,6 +1028,7 @@ public abstract class AbstractDocument implements Document {
    * @deprecated since 3.1. Use {@link
    *     IDocumentExtension4#startRewriteSession(DocumentRewriteSessionType)} instead.
    */
+  @Deprecated
   public void startSequentialRewrite(boolean normalized) {}
 
   /**
@@ -994,6 +1038,7 @@ public abstract class AbstractDocument implements Document {
    * @deprecated As of 3.1, replaced by {@link
    *     IDocumentExtension4#stopRewriteSession(DocumentRewriteSession)}
    */
+  @Deprecated
   public void stopSequentialRewrite() {}
 
   /*
@@ -1033,6 +1078,7 @@ public abstract class AbstractDocument implements Document {
    * @see org.eclipse.jface.text.IDocumentExtension3#computeZeroLengthPartitioning (java.lang.String, int, int)
    * @since 3.0
    */
+  @Override
   public TypedRegion[] computePartitioning(
       String partitioning, int offset, int length, boolean includeZeroLengthPartitions)
       throws BadLocationException, BadPartitioningException {
@@ -1060,6 +1106,7 @@ public abstract class AbstractDocument implements Document {
    * @see org.eclipse.jface.text.IDocumentExtension3#getZeroLengthContentType(java .lang.String, int)
    * @since 3.0
    */
+  @Override
   public String getContentType(String partitioning, int offset, boolean preferOpenPartitions)
       throws BadLocationException, BadPartitioningException {
     if ((0 > offset) || (offset > getLength())) throw new BadLocationException();
@@ -1083,6 +1130,7 @@ public abstract class AbstractDocument implements Document {
    * @see org.eclipse.jface.text.IDocumentExtension3#getDocumentPartitioner(java .lang.String)
    * @since 3.0
    */
+  @Override
   public DocumentPartitioner getDocumentPartitioner(String partitioning) {
     return fDocumentPartitioners.get(partitioning);
   }
@@ -1091,6 +1139,7 @@ public abstract class AbstractDocument implements Document {
    * @see org.eclipse.jface.text.IDocumentExtension3#getLegalContentTypes(java.lang .String)
    * @since 3.0
    */
+  @Override
   public String[] getLegalContentTypes(String partitioning) throws BadPartitioningException {
     DocumentPartitioner partitioner = getDocumentPartitioner(partitioning);
     if (partitioner != null) return partitioner.getLegalContentTypes();
@@ -1102,6 +1151,7 @@ public abstract class AbstractDocument implements Document {
    * @see org.eclipse.jface.text.IDocumentExtension3#getZeroLengthPartition(java .lang.String, int)
    * @since 3.0
    */
+  @Override
   public TypedRegion getPartition(String partitioning, int offset, boolean preferOpenPartitions)
       throws BadLocationException, BadPartitioningException {
     if ((0 > offset) || (offset > getLength())) throw new BadLocationException();
@@ -1126,6 +1176,7 @@ public abstract class AbstractDocument implements Document {
    * @see org.eclipse.jface.text.IDocumentExtension3#getPartitionings()
    * @since 3.0
    */
+  @Override
   public String[] getPartitionings() {
     if (fDocumentPartitioners == null) return new String[0];
     String[] partitionings = new String[fDocumentPartitioners.size()];
@@ -1138,6 +1189,7 @@ public abstract class AbstractDocument implements Document {
    * org.eclipse.jface.text.IDocumentPartitioner)
    * @since 3.0
    */
+  @Override
   public void setDocumentPartitioner(String partitioning, DocumentPartitioner partitioner) {
     if (partitioner == null) {
       if (fDocumentPartitioners != null) {

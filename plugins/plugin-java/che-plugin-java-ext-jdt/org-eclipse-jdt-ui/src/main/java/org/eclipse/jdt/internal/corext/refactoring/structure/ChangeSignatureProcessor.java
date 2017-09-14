@@ -338,26 +338,32 @@ public class ChangeSignatureProcessor extends RefactoringProcessor implements ID
 
   //------------------- IDelegateUpdating ----------------------
 
+  @Override
   public boolean canEnableDelegateUpdating() {
     return true;
   }
 
+  @Override
   public boolean getDelegateUpdating() {
     return fDelegateUpdating;
   }
 
+  @Override
   public void setDelegateUpdating(boolean updating) {
     fDelegateUpdating = updating;
   }
 
+  @Override
   public void setDeprecateDelegates(boolean deprecate) {
     fDelegateDeprecation = deprecate;
   }
 
+  @Override
   public boolean getDeprecateDelegates() {
     return fDelegateDeprecation;
   }
 
+  @Override
   public String getDelegateUpdatingTitle(boolean plural) {
     if (plural) return RefactoringCoreMessages.DelegateCreator_keep_original_changed_plural;
     else return RefactoringCoreMessages.DelegateCreator_keep_original_changed_singular;

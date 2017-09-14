@@ -77,6 +77,7 @@ public final class ProposalContextInformation
   /*
    * @see IContextInformation#getInformationDisplayString()
    */
+  @Override
   public String getInformationDisplayString() {
     return fInformationDisplayString;
   }
@@ -84,6 +85,7 @@ public final class ProposalContextInformation
   /*
    * @see IContextInformation#getImage()
    */
+  @Override
   public Image getImage() {
     return fImage;
   }
@@ -91,6 +93,7 @@ public final class ProposalContextInformation
   /*
    * @see IContextInformation#getContextDisplayString()
    */
+  @Override
   public String getContextDisplayString() {
     return fContextDisplayString;
   }
@@ -98,6 +101,7 @@ public final class ProposalContextInformation
   /*
    * @see IContextInformationExtension#getContextInformationPosition()
    */
+  @Override
   public int getContextInformationPosition() {
     return fPosition;
   }

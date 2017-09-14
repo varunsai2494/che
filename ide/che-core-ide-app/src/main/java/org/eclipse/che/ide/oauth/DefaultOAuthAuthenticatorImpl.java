@@ -51,6 +51,7 @@ public class DefaultOAuthAuthenticatorImpl implements OAuth2Authenticator, OAuth
     showDialog();
   }
 
+  @Override
   public Promise<OAuthStatus> authenticate(String authenticationUrl) {
     this.authenticationUrl = authenticationUrl;
 

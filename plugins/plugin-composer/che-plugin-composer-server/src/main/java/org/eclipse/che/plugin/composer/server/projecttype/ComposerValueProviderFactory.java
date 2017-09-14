@@ -9,6 +9,7 @@
  */
 package org.eclipse.che.plugin.composer.server.projecttype;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.eclipse.che.plugin.composer.shared.Constants.PACKAGE;
 
 import com.google.gson.Gson;
@@ -63,7 +64,8 @@ public class ComposerValueProviderFactory implements ValueProviderFactory {
 
     private JsonObject readModel(FolderEntry projectFolder) throws ServerException, IOException {
       FileEntry composerFile = (FileEntry) projectFolder.getChild("composer.json");
-      Reader reader = new BufferedReader(new InputStreamReader(composerFile.getInputStream()));
+      Reader reader =
+          new BufferedReader(new InputStreamReader(composerFile.getInputStream(), UTF_8));
       return new Gson().fromJson(reader, JsonObject.class);
     }
   }

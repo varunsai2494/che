@@ -68,6 +68,7 @@ public class RenameNonPrivateFieldTest extends RefactoringTest {
   //		return new RefactoringTestSetup(someTest);
   //	}
 
+  @Override
   protected String getRefactoringPath() {
     return REFACTORING_PATH;
   }
@@ -77,6 +78,7 @@ public class RenameNonPrivateFieldTest extends RefactoringTest {
     ParticipantTesting.init();
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();
@@ -88,6 +90,7 @@ public class RenameNonPrivateFieldTest extends RefactoringTest {
     fIsPreDeltaTest = true;
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();

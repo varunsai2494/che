@@ -40,6 +40,7 @@ public class MavenLanguageServerLauncher implements LanguageServerLauncher {
   private EditorWorkingCopyManager editorWorkingCopyManager;
   private EventService eventService;
 
+  @Override
   public LanguageServer launch(String projectPath, LanguageClient client)
       throws LanguageServerException {
     PomReconciler reconciler =
@@ -47,6 +48,7 @@ public class MavenLanguageServerLauncher implements LanguageServerLauncher {
     return new MavenLanguageServer(client, reconciler);
   }
 
+  @Override
   public boolean isAbleToLaunch() {
     return true;
   }

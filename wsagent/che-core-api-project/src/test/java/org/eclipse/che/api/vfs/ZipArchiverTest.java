@@ -12,6 +12,7 @@ package org.eclipse.che.api.vfs;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.stream.Collectors.toMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -49,7 +50,7 @@ public class ZipArchiverTest {
   @Rule public ExpectedException thrown = ExpectedException.none();
 
   private static final String TEST_CONTENT = "___TEST___";
-  private static final byte[] TEST_CONTENT_BYTES = TEST_CONTENT.getBytes();
+  private static final byte[] TEST_CONTENT_BYTES = TEST_CONTENT.getBytes(UTF_8);
 
   private File testDirectory;
   private VirtualFile vfsRoot;
@@ -203,7 +204,7 @@ public class ZipArchiverTest {
       while ((zipEntry = zip.getNextEntry()) != null) {
         String name = zipEntry.getName();
         String content =
-            zipEntry.isDirectory() ? "<none>" : new String(ByteStreams.toByteArray(zip));
+            zipEntry.isDirectory() ? "<none>" : new String(ByteStreams.toByteArray(zip), UTF_8);
         zip.closeEntry();
         entries.put(name, content);
       }
@@ -290,7 +291,7 @@ public class ZipArchiverTest {
         String name = zipEntry.getName();
         assertTrue(String.format("Unexpected entry %s in zip", name), entries.containsKey(name));
         if (!zipEntry.isDirectory()) {
-          String content = new String(ByteStreams.toByteArray(zip));
+          String content = new String(ByteStreams.toByteArray(zip), UTF_8);
           assertEquals(
               String.format("Invalid content of file %s", name), entries.get(name), content);
         }

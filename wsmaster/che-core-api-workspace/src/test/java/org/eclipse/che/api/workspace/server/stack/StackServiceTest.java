@@ -12,6 +12,7 @@ package org.eclipse.che.api.workspace.server.stack;
 
 import static com.jayway.restassured.RestAssured.given;
 import static java.lang.String.format;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static java.util.Collections.singletonMap;
@@ -138,7 +139,7 @@ public class StackServiceTest {
 
   @BeforeMethod
   public void setUp() throws NoSuchFieldException, IllegalAccessException {
-    byte[] fileContent = STACK_ID.getBytes();
+    byte[] fileContent = STACK_ID.getBytes(UTF_8);
     stackIcon = new StackIcon(ICON_MEDIA_TYPE, "image/svg+xml", fileContent);
     componentsImpl = singletonList(new StackComponentImpl(COMPONENT_NAME, COMPONENT_VERSION));
     stackSourceImpl = new StackSourceImpl(SOURCE_TYPE, SOURCE_ORIGIN);
@@ -579,6 +580,7 @@ public class StackServiceTest {
 
   @Filter
   public static class EnvironmentFilter implements RequestFilter {
+    @Override
     public void doFilter(GenericContainerRequest request) {
       EnvironmentContext.getCurrent().setSubject(new SubjectImpl("user", USER_ID, "token", false));
     }

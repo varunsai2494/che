@@ -57,6 +57,7 @@ public class ReorgQuickFixTest extends QuickFixTest {
   //		return new ProjectTestSetup(test);
   //	}
 
+  @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
@@ -74,6 +75,7 @@ public class ReorgQuickFixTest extends QuickFixTest {
     fSourceFolder = JavaProjectHelper.addSourceContainer(fJProject1, "src");
   }
 
+  @Override
   @After
   public void tearDown() throws Exception {
     super.tearDown();

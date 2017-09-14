@@ -16,30 +16,35 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author andrew00x */
 @DTO
 public interface VariableDto extends Variable {
+  @Override
   String getName();
 
   void setName(String name);
 
   VariableDto withName(String name);
 
+  @Override
   SimpleValueDto getValue();
 
   void setValue(SimpleValueDto value);
 
   VariableDto withValue(SimpleValueDto value);
 
+  @Override
   String getType();
 
   void setType(String type);
 
   VariableDto withType(String type);
 
+  @Override
   VariablePathDto getVariablePath();
 
   void setVariablePath(VariablePathDto variablePath);
 
   VariableDto withVariablePath(VariablePathDto variablePath);
 
+  @Override
   boolean isPrimitive();
 
   void setPrimitive(boolean primitive);

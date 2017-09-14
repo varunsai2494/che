@@ -55,6 +55,7 @@ public final class LoggedCreateTargetQueries implements ICreateTargetQueries {
     }
 
     /** {@inheritDoc} */
+    @Override
     public Object getCreatedTarget(final Object selection) {
       final Object target = fLog.getCreatedElement(selection);
       if (target instanceof IPackageFragment) {
@@ -88,6 +89,7 @@ public final class LoggedCreateTargetQueries implements ICreateTargetQueries {
     }
 
     /** {@inheritDoc} */
+    @Override
     public String getNewButtonLabel() {
       return "unused"; //$NON-NLS-1$
     }
@@ -107,6 +109,7 @@ public final class LoggedCreateTargetQueries implements ICreateTargetQueries {
   }
 
   /** {@inheritDoc} */
+  @Override
   public ICreateTargetQuery createNewPackageQuery() {
     return new CreateTargetQuery();
   }

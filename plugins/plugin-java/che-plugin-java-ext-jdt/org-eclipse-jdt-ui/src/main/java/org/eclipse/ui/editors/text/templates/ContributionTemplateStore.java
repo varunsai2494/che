@@ -86,6 +86,7 @@ public class ContributionTemplateStore extends TemplateStore {
    *
    * @throws IOException {@inheritDoc}
    */
+  @Override
   protected void loadContributedTemplates() throws IOException {
     //		IConfigurationElement[] extensions= getTemplateExtensions();
     Collection contributed = readContributedTemplates();
@@ -247,6 +248,7 @@ public class ContributionTemplateStore extends TemplateStore {
    * @see org.eclipse.jface.text.templates.persistence.TemplateStore#handleException(java.io.IOException)
    * @since 3.2
    */
+  @Override
   protected void handleException(IOException x) {
     JavaPlugin.log(x);
   }

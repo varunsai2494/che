@@ -14,6 +14,8 @@
 
 package org.eclipse.che.ide.util;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
 import java.math.BigInteger;
@@ -287,7 +289,7 @@ public class TextUtils {
     try {
       MessageDigest m = MessageDigest.getInstance("MD5");
       m.reset();
-      m.update(text.getBytes());
+      m.update(text.getBytes(UTF_8));
 
       byte[] digest = m.digest();
       BigInteger bigInt = new BigInteger(1, digest);

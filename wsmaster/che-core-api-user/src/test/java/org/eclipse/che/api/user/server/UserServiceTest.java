@@ -445,6 +445,7 @@ public class UserServiceTest {
   @Filter
   public static class EnvironmentFilter implements RequestFilter {
 
+    @Override
     public void doFilter(GenericContainerRequest request) {
       EnvironmentContext.getCurrent().setSubject(SUBJECT);
     }

@@ -458,6 +458,7 @@ public final class Path {
    * @return <code>true</code> if the paths are equivalent, and <code>false</code> if they are not
    * @since 4.0.0-RC5
    */
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) return true;
     if (!(obj instanceof Path)) return false;
@@ -516,6 +517,7 @@ public final class Path {
   /* (Intentionally not included in javadoc)
    * Computes the hash code for this object.
    */
+  @Override
   public int hashCode() {
     return Objects.hashCode(segments);
   }
@@ -1006,6 +1008,7 @@ public final class Path {
    * @return a string representation of this path
    * @since 4.0.0-RC5
    */
+  @Override
   public String toString() {
     int resultSize = computeLength();
     if (resultSize <= 0) return EMPTY_STRING;

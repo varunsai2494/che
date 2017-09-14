@@ -144,14 +144,17 @@ public class ArrayTypeSet extends TypeSet {
     return new Iterator<TType>() {
       Iterator<TType> fElemIter = fElemTypeSet.iterator();
 
+      @Override
       public boolean hasNext() {
         return fElemIter.hasNext();
       }
 
+      @Override
       public TType next() {
         return TTypes.createArrayType(fElemIter.next(), 1);
       }
 
+      @Override
       public void remove() {
         throw new UnsupportedOperationException();
       }

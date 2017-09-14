@@ -160,6 +160,7 @@ public class CustomListBox extends FocusWidget implements HasChangeHandlers {
    *
    * @param handler the change handler
    */
+  @Override
   public HandlerRegistration addChangeHandler(ChangeHandler handler) {
     return addDomHandler(handler, ChangeEvent.getType());
   }
@@ -304,6 +305,7 @@ public class CustomListBox extends FocusWidget implements HasChangeHandlers {
    *
    * @param height
    */
+  @Override
   public void setHeight(String height) {
     this.getElement().getStyle().setProperty("height", height);
     currentItemLabel.getStyle().setProperty("lineHeight", height);

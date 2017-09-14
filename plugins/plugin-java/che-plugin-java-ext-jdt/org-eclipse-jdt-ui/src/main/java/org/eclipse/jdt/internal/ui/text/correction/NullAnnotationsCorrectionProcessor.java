@@ -73,26 +73,32 @@ public class NullAnnotationsCorrectionProcessor {
         final IInvocationContext originalContext = context;
         context =
             new IInvocationContext() {
+              @Override
               public int getSelectionOffset() {
                 return originalContext.getSelectionOffset();
               }
 
+              @Override
               public int getSelectionLength() {
                 return originalContext.getSelectionLength();
               }
 
+              @Override
               public ASTNode getCoveringNode() {
                 return originalContext.getCoveringNode();
               }
 
+              @Override
               public ASTNode getCoveredNode() {
                 return originalContext.getCoveredNode();
               }
 
+              @Override
               public ICompilationUnit getCompilationUnit() {
                 return (ICompilationUnit) cu.getJavaElement();
               }
 
+              @Override
               public CompilationUnit getASTRoot() {
                 return cu;
               }

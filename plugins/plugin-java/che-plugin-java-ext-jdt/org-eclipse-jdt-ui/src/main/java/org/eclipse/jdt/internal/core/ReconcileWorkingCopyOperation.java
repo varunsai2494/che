@@ -70,6 +70,7 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
    * @throws org.eclipse.jdt.core.JavaModelException if setting the source of the original
    *     compilation unit fails
    */
+  @Override
   protected void executeOperation() throws JavaModelException {
     checkCanceled();
     try {
@@ -165,6 +166,7 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.core.JavaModelOperation#isReadOnly()
    */
+  @Override
   public boolean isReadOnly() {
     return true;
   }
@@ -280,6 +282,7 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
     //		}
   }
 
+  @Override
   protected IJavaModelStatus verify() {
     IJavaModelStatus status = super.verify();
     if (!status.isOK()) {

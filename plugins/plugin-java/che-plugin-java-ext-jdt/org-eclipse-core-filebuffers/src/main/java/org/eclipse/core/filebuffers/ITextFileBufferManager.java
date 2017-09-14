@@ -115,6 +115,7 @@ public interface ITextFileBufferManager extends IFileBufferManager {
    * @return a new empty document
    * @deprecated As of 3.3, replaced by {@link #createEmptyDocument(IPath, LocationKind)}
    */
+  @Deprecated
   IDocument createEmptyDocument(IPath location);
 
   /**

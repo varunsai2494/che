@@ -16,18 +16,21 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author andrew00x */
 @DTO
 public interface BreakpointDto extends Breakpoint {
+  @Override
   LocationDto getLocation();
 
   void setLocation(LocationDto location);
 
   BreakpointDto withLocation(LocationDto location);
 
+  @Override
   boolean isEnabled();
 
   void setEnabled(boolean enabled);
 
   BreakpointDto withEnabled(boolean enabled);
 
+  @Override
   String getCondition();
 
   void setCondition(String condition);

@@ -32,6 +32,7 @@ public class TextEditFix implements ICleanUpFix {
   }
 
   /** {@inheritDoc} */
+  @Override
   public CompilationUnitChange createChange(IProgressMonitor progressMonitor) throws CoreException {
     String label = fChangeDescription;
     CompilationUnitChange result = new CompilationUnitChange(label, fUnit);

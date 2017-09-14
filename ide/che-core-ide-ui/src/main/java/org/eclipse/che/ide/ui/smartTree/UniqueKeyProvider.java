@@ -26,5 +26,6 @@ public interface UniqueKeyProvider<T> extends ProvidesKey<T> {
    *
    * @return non-null {@link String} key for {@link T} object
    */
+  @Override
   String getKey(T item);
 }

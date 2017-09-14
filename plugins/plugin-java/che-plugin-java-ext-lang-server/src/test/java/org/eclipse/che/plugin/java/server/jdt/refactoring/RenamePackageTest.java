@@ -9,6 +9,7 @@
  */
 package org.eclipse.che.plugin.java.server.jdt.refactoring;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -105,6 +106,7 @@ public class RenamePackageTest extends RefactoringTest {
     ParticipantTesting.init();
   }
 
+  @Override
   @Before
   public void setUp() throws Exception {
     setup.setUp();
@@ -124,6 +126,7 @@ public class RenamePackageTest extends RefactoringTest {
     setup.tearDown();
   }
 
+  @Override
   protected String getRefactoringPath() {
     return REFACTORING_PATH;
   }
@@ -480,7 +483,7 @@ public class RenamePackageTest extends RefactoringTest {
     fragment.createCompilationUnit("MyClass.java", buf.toString(), true, null);
 
     IFile file = ((IFolder) getRoot().getResource()).getFile("x.properties");
-    byte[] content = "This is about 'org.test' and more".getBytes();
+    byte[] content = "This is about 'org.test' and more".getBytes(UTF_8);
     file.create(new ByteArrayInputStream(content), true, null);
     file.refreshLocal(IResource.DEPTH_ONE, null);
 
@@ -519,7 +522,7 @@ public class RenamePackageTest extends RefactoringTest {
     fragment.createCompilationUnit("MyClass.java", buf.toString(), true, null);
 
     IFile file = ((IFolder) fragment.getResource()).getFile("x.properties");
-    byte[] content = "This is about 'org.test' and more".getBytes();
+    byte[] content = "This is about 'org.test' and more".getBytes(UTF_8);
     file.create(new ByteArrayInputStream(content), true, null);
     file.refreshLocal(IResource.DEPTH_ONE, null);
 
@@ -562,11 +565,11 @@ public class RenamePackageTest extends RefactoringTest {
         getRoot().getJavaProject().getProject().getFolder("my").getFolder("pack");
     CoreUtility.createFolder(myPackFolder, true, true, null);
     IFile textfile = myPackFolder.getFile(textFileName);
-    textfile.create(new ByteArrayInputStream(textfileContent.getBytes()), true, null);
+    textfile.create(new ByteArrayInputStream(textfileContent.getBytes(UTF_8)), true, null);
 
     helper2(new String[] {"my.pack", "my"}, new String[][] {{}, {}}, "my");
 
-    InputStreamReader reader = new InputStreamReader(textfile.getContents(true));
+    InputStreamReader reader = new InputStreamReader(textfile.getContents(true), UTF_8);
     StringBuffer newContent = new StringBuffer();
     try {
       int ch;
@@ -1111,11 +1114,11 @@ public class RenamePackageTest extends RefactoringTest {
     String textfileContent =
         getFileContents(getTestPath() + name.getMethodName() + TEST_INPUT_INFIX + textFileName);
     IFile textfile = getRoot().getJavaProject().getProject().getFile(textFileName);
-    textfile.create(new ByteArrayInputStream(textfileContent.getBytes()), true, null);
+    textfile.create(new ByteArrayInputStream(textfileContent.getBytes(UTF_8)), true, null);
 
     helper2(new String[] {"r.p1", "r"}, new String[][] {{"A"}, {"A"}}, "q");
 
-    InputStreamReader reader = new InputStreamReader(textfile.getContents(true));
+    InputStreamReader reader = new InputStreamReader(textfile.getContents(true), UTF_8);
     StringBuffer newContent = new StringBuffer();
     try {
       int ch;

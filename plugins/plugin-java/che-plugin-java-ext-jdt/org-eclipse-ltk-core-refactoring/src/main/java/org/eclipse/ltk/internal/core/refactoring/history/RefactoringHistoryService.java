@@ -88,16 +88,19 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
     private static final RefactoringDescriptorProxy[] NO_PROXIES = {};
 
     /** {@inheritDoc} */
+    @Override
     public RefactoringDescriptorProxy[] getDescriptors() {
       return NO_PROXIES;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean isEmpty() {
       return true;
     }
 
     /** {@inheritDoc} */
+    @Override
     public RefactoringHistory removeAll(final RefactoringHistory history) {
       return this;
     }
@@ -299,6 +302,7 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
 
         private static final long serialVersionUID = 1L;
 
+        @Override
         protected final boolean removeEldestEntry(final Map.Entry entry) {
           return size() > MAX_MANAGERS;
         }
@@ -310,12 +314,14 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public void addExecutionListener(final IRefactoringExecutionListener listener) {
     Assert.isNotNull(listener);
     fExecutionListeners.add(listener);
   }
 
   /** {@inheritDoc} */
+  @Override
   public void addHistoryListener(final IRefactoringHistoryListener listener) {
     Assert.isNotNull(listener);
     fHistoryListeners.add(listener);
@@ -341,11 +347,13 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public void connect() {
     fReferenceCount++;
     if (fReferenceCount == 1) {
       fOperationListener =
           new IOperationHistoryListener() {
+            @Override
             public void historyNotification(final OperationHistoryEvent event) {
               performHistoryNotification(event);
             }
@@ -354,6 +362,7 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
 
       fResourceListener =
           new IResourceChangeListener() {
+            @Override
             public void resourceChanged(final IResourceChangeEvent event) {
               peformResourceChanged(event);
             }
@@ -525,6 +534,7 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public void disconnect() {
     if (fReferenceCount > 0) {
       fManagerCache.clear();
@@ -550,10 +560,12 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
       SafeRunner.run(
           new ISafeRunnable() {
 
+            @Override
             public void handleException(final Throwable throwable) {
               RefactoringCorePlugin.log(throwable);
             }
 
+            @Override
             public void run() throws Exception {
               listener.executionNotification(
                   new RefactoringExecutionEvent(RefactoringHistoryService.this, eventType, proxy));
@@ -571,10 +583,12 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
       SafeRunner.run(
           new ISafeRunnable() {
 
+            @Override
             public void handleException(final Throwable throwable) {
               RefactoringCorePlugin.log(throwable);
             }
 
+            @Override
             public void run() throws Exception {
               listener.historyNotification(
                   new RefactoringHistoryEvent(RefactoringHistoryService.this, eventType, proxy));
@@ -617,11 +631,13 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringHistory getProjectHistory(final IProject project, IProgressMonitor monitor) {
     return getProjectHistory(project, 0, Long.MAX_VALUE, RefactoringDescriptor.NONE, monitor);
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringHistory getProjectHistory(
       final IProject project,
       final long start,
@@ -662,12 +678,14 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringHistory getRefactoringHistory(
       final IProject[] projects, final IProgressMonitor monitor) {
     return getRefactoringHistory(projects, 0, Long.MAX_VALUE, RefactoringDescriptor.NONE, monitor);
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringHistory getRefactoringHistory(
       final IProject[] projects,
       final long start,
@@ -720,11 +738,13 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringHistory getWorkspaceHistory(IProgressMonitor monitor) {
     return getWorkspaceHistory(0, Long.MAX_VALUE, monitor);
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringHistory getWorkspaceHistory(
       final long start, final long end, IProgressMonitor monitor) {
     return getRefactoringHistory(
@@ -766,6 +786,7 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringHistory readRefactoringHistory(final InputStream stream, final int flags)
       throws CoreException {
     Assert.isNotNull(stream);
@@ -790,12 +811,14 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public void removeExecutionListener(final IRefactoringExecutionListener listener) {
     Assert.isNotNull(listener);
     fExecutionListeners.remove(listener);
   }
 
   /** {@inheritDoc} */
+  @Override
   public void removeHistoryListener(final IRefactoringHistoryListener listener) {
     Assert.isNotNull(listener);
     fHistoryListeners.remove(listener);
@@ -834,6 +857,7 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public void writeRefactoringDescriptors(
       final RefactoringDescriptorProxy[] proxies,
       final OutputStream stream,
@@ -870,6 +894,7 @@ public final class RefactoringHistoryService implements IRefactoringHistoryServi
   }
 
   /** {@inheritDoc} */
+  @Override
   public void writeRefactoringSession(
       final RefactoringSessionDescriptor descriptor, final OutputStream stream, final boolean time)
       throws CoreException {

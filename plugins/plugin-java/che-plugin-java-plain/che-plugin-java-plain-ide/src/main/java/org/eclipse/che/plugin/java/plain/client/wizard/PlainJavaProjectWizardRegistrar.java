@@ -37,16 +37,19 @@ public class PlainJavaProjectWizardRegistrar implements ProjectWizardRegistrar {
     wizardPages.add(plainJavaPagePresenterProvider);
   }
 
+  @Override
   @NotNull
   public String getProjectTypeId() {
     return JAVAC;
   }
 
+  @Override
   @NotNull
   public String getCategory() {
     return JAVA_CATEGORY;
   }
 
+  @Override
   @NotNull
   public List<Provider<? extends WizardPage<MutableProjectConfig>>> getWizardPages() {
     return wizardPages;

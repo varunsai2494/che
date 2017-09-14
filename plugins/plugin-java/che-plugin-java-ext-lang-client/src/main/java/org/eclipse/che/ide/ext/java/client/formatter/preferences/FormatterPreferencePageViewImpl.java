@@ -85,6 +85,7 @@ public class FormatterPreferencePageViewImpl
     return widget;
   }
 
+  @Override
   public void showDialog() {
     radioButtonGroup.selectButton(0);
     uploadForm.remove(fileUpload);

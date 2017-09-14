@@ -69,6 +69,7 @@ public final class Watchdog implements Runnable {
   }
 
   /** NOTE: Not expected to call directly by regular users of this class. */
+  @Override
   public synchronized void run() {
     final long end = System.currentTimeMillis() + timeout;
     long now;

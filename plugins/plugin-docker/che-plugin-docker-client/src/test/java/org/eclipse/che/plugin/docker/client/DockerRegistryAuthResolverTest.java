@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -670,7 +671,8 @@ public class DockerRegistryAuthResolverTest {
         "Basic "
             + Base64.getEncoder()
                 .encodeToString(
-                    (INITIAL_REGISTRY2_USERNAME + ':' + INITIAL_REGISTRY2_PASSWORD).getBytes()));
+                    (INITIAL_REGISTRY2_USERNAME + ':' + INITIAL_REGISTRY2_PASSWORD)
+                        .getBytes(UTF_8)));
   }
 
   @Test
@@ -679,7 +681,7 @@ public class DockerRegistryAuthResolverTest {
         authResolver.getBasicAuthHeaderValue(REGISTRY2_URL, customAuthConfigs),
         "Basic "
             + Base64.getEncoder()
-                .encodeToString((REGISTRY2_USERNAME + ':' + REGISTRY2_PASSWORD).getBytes()));
+                .encodeToString((REGISTRY2_USERNAME + ':' + REGISTRY2_PASSWORD).getBytes(UTF_8)));
   }
 
   @Test
@@ -695,7 +697,7 @@ public class DockerRegistryAuthResolverTest {
                     (REGISTRY_WITH_DYNAMIC_PASSWORD_USERNAME
                             + ':'
                             + REGISTRY_WITH_DYNAMIC_PASSWORD_PASSWORD)
-                        .getBytes()));
+                        .getBytes(UTF_8)));
   }
 
   @Test
@@ -706,7 +708,8 @@ public class DockerRegistryAuthResolverTest {
   }
 
   private AuthConfig base64ToAuthConfig(String base64decodedJson) {
-    return jsonToAuthConfig(new String(Base64.getDecoder().decode(base64decodedJson.getBytes())));
+    return jsonToAuthConfig(
+        new String(Base64.getDecoder().decode(base64decodedJson.getBytes(UTF_8)), UTF_8));
   }
 
   private AuthConfig jsonToAuthConfig(String json) {
@@ -719,7 +722,8 @@ public class DockerRegistryAuthResolverTest {
   }
 
   private AuthConfigs base64ToAuthConfigs(String base64decodedJson) {
-    return jsonToAuthConfigs(new String(Base64.getDecoder().decode(base64decodedJson.getBytes())));
+    return jsonToAuthConfigs(
+        new String(Base64.getDecoder().decode(base64decodedJson.getBytes(UTF_8)), UTF_8));
   }
 
   private AuthConfigs jsonToAuthConfigs(String json) {

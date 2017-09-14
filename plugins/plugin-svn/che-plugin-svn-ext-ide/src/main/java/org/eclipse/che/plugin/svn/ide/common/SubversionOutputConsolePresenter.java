@@ -58,6 +58,7 @@ public class SubversionOutputConsolePresenter
     container.setWidget(this.view);
   }
 
+  @Override
   public void print(@NotNull final String text) {
     final String[] lines = text.split("\n");
     for (String line : lines) {
@@ -110,6 +111,7 @@ public class SubversionOutputConsolePresenter
     print(text, Style.getVcsConsoleErrorColor());
   }
 
+  @Override
   public void clear() {
     view.clear();
   }

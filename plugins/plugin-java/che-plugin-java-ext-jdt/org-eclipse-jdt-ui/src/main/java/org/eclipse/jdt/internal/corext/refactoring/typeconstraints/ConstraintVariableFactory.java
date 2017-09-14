@@ -60,6 +60,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeExpressionVariable(org.eclipse.jdt
    * .core.dom.Expression, org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IContext)
    */
+  @Override
   public ConstraintVariable makeExpressionOrTypeVariable(Expression expression, IContext context) {
     IBinding binding = ExpressionVariable.resolveBinding(expression);
 
@@ -128,6 +129,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeDeclaringTypeVariable(org.eclipse.jdt.core.dom.ITypeBinding)
    */
+  @Override
   public DeclaringTypeVariable makeDeclaringTypeVariable(ITypeBinding memberTypeBinding) {
     String key = memberTypeBinding.getKey();
     if (!fDeclaringTypeVariableMap.containsKey(key)) {
@@ -142,6 +144,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeDeclaringTypeVariable(org.eclipse.jdt.core.dom.IVariableBinding)
    */
+  @Override
   public DeclaringTypeVariable makeDeclaringTypeVariable(IVariableBinding fieldBinding) {
     String key = fieldBinding.getKey();
     if (!fDeclaringTypeVariableMap.containsKey(key)) {
@@ -157,6 +160,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeDeclaringTypeVariable(org.eclipse.jdt.core.dom.IMethodBinding)
    */
+  @Override
   public DeclaringTypeVariable makeDeclaringTypeVariable(IMethodBinding methodBinding) {
     String key = methodBinding.getKey();
     if (!fDeclaringTypeVariableMap.containsKey(key)) {
@@ -172,6 +176,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeParameterTypeVariable(org.eclipse.jdt.core.dom.IMethodBinding, int)
    */
+  @Override
   public ParameterTypeVariable makeParameterTypeVariable(
       IMethodBinding methodBinding, int parameterIndex) {
     String key = methodBinding.getKey() + parameterIndex;
@@ -188,6 +193,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeRawBindingVariable(org.eclipse.jdt.core.dom.ITypeBinding)
    */
+  @Override
   public RawBindingVariable makeRawBindingVariable(ITypeBinding binding) {
     String key = binding.getKey();
     if (!fRawBindingMap.containsKey(key)) {
@@ -203,6 +209,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeReturnTypeVariable(org.eclipse.jdt.core.dom.ReturnStatement)
    */
+  @Override
   public ReturnTypeVariable makeReturnTypeVariable(ReturnStatement returnStatement) {
     return makeReturnTypeVariable(ReturnTypeVariable.getMethod(returnStatement).resolveBinding());
   }
@@ -210,6 +217,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeReturnTypeVariable(org.eclipse.jdt.core.dom.IMethodBinding)
    */
+  @Override
   public ReturnTypeVariable makeReturnTypeVariable(IMethodBinding methodBinding) {
     String key = methodBinding.getKey();
     if (!fReturnVariableMap.containsKey(key)) {
@@ -225,6 +233,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeTypeVariable(org.eclipse.jdt.core.dom.Type)
    */
+  @Override
   public TypeVariable makeTypeVariable(Type type) {
     ICompilationUnit cu = ASTCreator.getCu(type);
     Assert.isNotNull(cu);
@@ -242,6 +251,7 @@ public class ConstraintVariableFactory implements IConstraintVariableFactory {
   /* (non-Javadoc)
    * @see org.eclipse.jdt.internal.corext.refactoring.typeconstraints.IConstraintVariableFactory#makeTypeVariable(org.eclipse.jdt.core.dom.ITypeBinding, java.lang.String, org.eclipse.jdt.internal.corext.refactoring.typeconstraints.CompilationUnitRange)
    */
+  @Override
   public TypeVariable makeTypeVariable(
       ITypeBinding binding, String source, CompilationUnitRange range) {
     if (!fTypeVariableMap.containsKey(range)) {

@@ -22,6 +22,7 @@ import javax.websocket.server.ServerEndpointConfig;
 public class GuiceInjectorEndpointConfigurator extends ServerEndpointConfig.Configurator {
   @Inject private static Injector injector;
 
+  @Override
   public <T> T getEndpointInstance(Class<T> endpointClass) {
     return injector.getInstance(endpointClass);
   }

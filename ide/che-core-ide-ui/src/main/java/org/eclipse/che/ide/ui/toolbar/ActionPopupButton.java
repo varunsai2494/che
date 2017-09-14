@@ -192,6 +192,7 @@ public class ActionPopupButton extends Composite
   }
 
   /** {@inheritDoc} */
+  @Override
   public void onCloseMenu() {
     closePopupMenu();
   }

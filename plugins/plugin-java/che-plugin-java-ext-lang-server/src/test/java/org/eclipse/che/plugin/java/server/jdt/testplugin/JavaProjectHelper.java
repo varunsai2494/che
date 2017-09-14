@@ -61,9 +61,9 @@ public class JavaProjectHelper {
   private static final boolean PERFORM_DUMMY_SEARCH = false;
 
   /** @deprecated use {@link #RT_STUBS_15} */
-  public static final IPath RT_STUBS_13 = new Path("testresources/rtstubs.jar");
+  @Deprecated public static final IPath RT_STUBS_13 = new Path("testresources/rtstubs.jar");
   /** @deprecated use {@link #JUNIT_SRC_381} */
-  public static final IPath JUNIT_SRC = new Path("testresources/junit37-noUI-src.zip");
+  @Deprecated public static final IPath JUNIT_SRC = new Path("testresources/junit37-noUI-src.zip");
 
   public static final IPath RT_STUBS_15 = new Path("testresources/rtstubs15.jar");
   public static final IPath RT_STUBS_16 = new Path("testresources/rtstubs16.jar");
@@ -304,6 +304,7 @@ public class JavaProjectHelper {
     JavaModelManager.getJavaModelManager().resetTemporaryCache();
     IWorkspaceRunnable runnable =
         new IWorkspaceRunnable() {
+          @Override
           public void run(IProgressMonitor monitor) throws CoreException {
             //				performDummySearch();
             if (elem instanceof IJavaProject) {
@@ -387,6 +388,7 @@ public class JavaProjectHelper {
     //		performDummySearch();
     IWorkspaceRunnable runnable =
         new IWorkspaceRunnable() {
+          @Override
           public void run(IProgressMonitor monitor) throws CoreException {
             jproject.setRawClasspath(entries, null);
 
@@ -970,6 +972,7 @@ public class JavaProjectHelper {
   //	}
 
   private static class ImportOverwriteQuery implements IOverwriteQuery {
+    @Override
     public String queryOverwrite(String file) {
       return ALL;
     }

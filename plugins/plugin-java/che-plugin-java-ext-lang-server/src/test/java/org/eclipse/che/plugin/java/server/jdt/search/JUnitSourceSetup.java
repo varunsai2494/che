@@ -28,6 +28,7 @@ public class JUnitSourceSetup /*extends TestSetup*/ {
   private SearchParticipantsExtensionPoint fExtensionPoint;
 
   static class NullExtensionPoint extends SearchParticipantsExtensionPoint {
+    @Override
     public SearchParticipantRecord[] getSearchParticipants(IProject[] concernedProjects) {
       return new SearchParticipantRecord[0];
     }

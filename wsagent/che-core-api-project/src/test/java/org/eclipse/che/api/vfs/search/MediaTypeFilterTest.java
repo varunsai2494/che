@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.api.vfs.search;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -30,10 +31,10 @@ public class MediaTypeFilterTest {
   @DataProvider
   public static Object[][] testData() throws Exception {
     return new Object[][] {
-      {virtualFileWithContent("to be or not to be".getBytes()), false},
-      {virtualFileWithContent("<html><head></head></html>".getBytes()), false},
-      {virtualFileWithContent("<a><b/></a>".getBytes()), false},
-      {virtualFileWithContent("public class SomeClass {}".getBytes()), false},
+      {virtualFileWithContent("to be or not to be".getBytes(UTF_8)), false},
+      {virtualFileWithContent("<html><head></head></html>".getBytes(UTF_8)), false},
+      {virtualFileWithContent("<a><b/></a>".getBytes(UTF_8)), false},
+      {virtualFileWithContent("public class SomeClass {}".getBytes(UTF_8)), false},
       {virtualFileWithContent(new byte[10]), true}
     };
   }

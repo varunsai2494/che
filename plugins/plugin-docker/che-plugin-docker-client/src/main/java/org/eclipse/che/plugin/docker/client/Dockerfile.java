@@ -10,8 +10,11 @@
  */
 package org.eclipse.che.plugin.docker.client;
 
-import java.io.FileWriter;
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -56,7 +59,7 @@ public class Dockerfile {
   }
 
   public void writeDockerfile(java.io.File path) throws IOException {
-    try (FileWriter output = new FileWriter(path)) {
+    try (Writer output = Files.newBufferedWriter(path.toPath(), UTF_8)) {
       writeDockerfile(output);
     }
   }

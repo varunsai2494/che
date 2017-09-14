@@ -60,6 +60,7 @@ public class JsonArrayImpl<T> implements JsonArray<T> {
     return delegate.toArray(a);
   }
 
+  @Override
   public boolean add(T t) {
     return delegate.add(t);
   }
@@ -74,10 +75,12 @@ public class JsonArrayImpl<T> implements JsonArray<T> {
     return delegate.containsAll(c);
   }
 
+  @Override
   public boolean addAll(Collection<? extends T> c) {
     return delegate.addAll(c);
   }
 
+  @Override
   public boolean addAll(int index, Collection<? extends T> c) {
     return delegate.addAll(index, c);
   }
@@ -112,10 +115,12 @@ public class JsonArrayImpl<T> implements JsonArray<T> {
     return delegate.get(index);
   }
 
+  @Override
   public T set(int index, T element) {
     return delegate.set(index, element);
   }
 
+  @Override
   public void add(int index, T element) {
     delegate.add(index, element);
   }

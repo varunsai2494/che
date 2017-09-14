@@ -62,6 +62,7 @@ public class InternalSearchUI {
       fSearchJobRecord = sjr;
     }
 
+    @Override
     protected IStatus run(IProgressMonitor monitor) {
       fSearchJobRecord.job = this;
       searchJobStarted(fSearchJobRecord);
@@ -84,6 +85,7 @@ public class InternalSearchUI {
       return status;
     }
 
+    @Override
     public boolean belongsTo(Object family) {
       return family == org.eclipse.search2.internal.ui.InternalSearchUI.FAMILY_SEARCH;
     }
@@ -222,6 +224,7 @@ public class InternalSearchUI {
     try {
       runInCurrentThread(
           new IRunnableWithProgress() {
+            @Override
             public void run(IProgressMonitor monitor)
                 throws InvocationTargetException, InterruptedException {
               searchJobStarted(rec);

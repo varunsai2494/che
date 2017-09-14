@@ -11,6 +11,7 @@
 package org.eclipse.che.api.vfs.search.impl;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.common.io.CharStreams;
 import java.io.BufferedReader;
@@ -169,6 +170,7 @@ public abstract class LuceneSearcher implements Searcher {
     }
   }
 
+  @Override
   public final synchronized void close() {
     if (!closed) {
       try {
@@ -410,7 +412,7 @@ public abstract class LuceneSearcher implements Searcher {
     if (virtualFile.exists()) {
       try (Reader fContentReader =
           shouldIndexContent(virtualFile)
-              ? new BufferedReader(new InputStreamReader(virtualFile.getContent()))
+              ? new BufferedReader(new InputStreamReader(virtualFile.getContent(), UTF_8))
               : null) {
         getIndexWriter()
             .updateDocument(
@@ -453,7 +455,7 @@ public abstract class LuceneSearcher implements Searcher {
   protected void doUpdate(Term deleteTerm, VirtualFile virtualFile) throws ServerException {
     try (Reader fContentReader =
         shouldIndexContent(virtualFile)
-            ? new BufferedReader(new InputStreamReader(virtualFile.getContent()))
+            ? new BufferedReader(new InputStreamReader(virtualFile.getContent(), UTF_8))
             : null) {
       getIndexWriter().updateDocument(deleteTerm, createDocument(virtualFile, fContentReader));
     } catch (OutOfMemoryError oome) {

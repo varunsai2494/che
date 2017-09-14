@@ -12,6 +12,7 @@ package org.eclipse.che.api.vfs;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.stream.Collectors.toMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -49,7 +50,7 @@ public class TarArchiverTest {
   @Rule public ExpectedException thrown = ExpectedException.none();
 
   private static final String TEST_CONTENT = "___TEST___";
-  private static final byte[] TEST_CONTENT_BYTES = TEST_CONTENT.getBytes();
+  private static final byte[] TEST_CONTENT_BYTES = TEST_CONTENT.getBytes(UTF_8);
 
   private File testDirectory;
   private VirtualFile vfsRoot;
@@ -203,7 +204,9 @@ public class TarArchiverTest {
       while ((tarArchiveEntry = tarIn.getNextTarEntry()) != null) {
         String name = tarArchiveEntry.getName();
         String content =
-            tarArchiveEntry.isDirectory() ? "<none>" : new String(ByteStreams.toByteArray(tarIn));
+            tarArchiveEntry.isDirectory()
+                ? "<none>"
+                : new String(ByteStreams.toByteArray(tarIn), UTF_8);
         entries.put(name, content);
       }
     }
@@ -296,7 +299,7 @@ public class TarArchiverTest {
         String name = tarArchiveEntry.getName();
         assertTrue(String.format("Unexpected entry %s in TAR", name), entries.containsKey(name));
         if (!tarArchiveEntry.isDirectory()) {
-          String content = new String(ByteStreams.toByteArray(tarIn));
+          String content = new String(ByteStreams.toByteArray(tarIn), UTF_8);
           assertEquals(
               String.format("Invalid content of file %s", name), entries.get(name), content);
         }

@@ -53,6 +53,7 @@ public class DeleteArguments extends RefactoringArguments {
    *
    * @since 3.2
    */
+  @Override
   public String toString() {
     return "delete"; //$NON-NLS-1$
   }

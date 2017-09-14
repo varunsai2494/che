@@ -86,6 +86,7 @@ public class EditorFileStatusNotificationOperation
     this.notificationManager = notificationManager;
   }
 
+  @Override
   public void accept(String endpointId, FileStateUpdateDto params) {
     if (suspended) {
       return;

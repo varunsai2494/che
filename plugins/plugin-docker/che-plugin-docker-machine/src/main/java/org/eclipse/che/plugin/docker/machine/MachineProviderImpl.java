@@ -12,6 +12,7 @@ package org.eclipse.che.plugin.docker.machine;
 
 import static java.lang.String.format;
 import static java.lang.Thread.sleep;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.singletonList;
 import static java.util.Collections.singletonMap;
@@ -26,8 +27,8 @@ import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.net.SocketTimeoutException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -460,7 +461,7 @@ public class MachineProviderImpl implements MachineInstanceProvider {
 
         workDir = Files.createTempDirectory(null).toFile();
         final File dockerfileFile = new File(workDir, "Dockerfile");
-        try (FileWriter output = new FileWriter(dockerfileFile)) {
+        try (Writer output = Files.newBufferedWriter(dockerfileFile.toPath(), UTF_8)) {
           output.append(service.getBuild().getDockerfileContent());
         }
 

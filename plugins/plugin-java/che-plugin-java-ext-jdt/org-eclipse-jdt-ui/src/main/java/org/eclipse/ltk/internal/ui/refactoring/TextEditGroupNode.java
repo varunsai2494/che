@@ -42,20 +42,24 @@ public final class TextEditGroupNode extends TextEditChangeNode.ChildNode {
     return fChangeGroup;
   }
 
+  @Override
   public String getText() {
     return fChangeGroup.getName();
   }
 
+  @Override
   public ImageDescriptor getImageDescriptor() {
     return RefactoringPluginImages.DESC_OBJS_TEXT_EDIT;
   }
 
+  @Override
   public ChangePreviewViewerDescriptor getChangePreviewViewerDescriptor() throws CoreException {
     InternalTextEditChangeNode element = getTextEditChangeNode();
     if (element == null) return null;
     return element.getChangePreviewViewerDescriptor();
   }
 
+  @Override
   public ChangePreview feedInput(IChangePreviewViewer viewer, List categories)
       throws CoreException {
     InternalTextEditChangeNode element = getTextEditChangeNode();
@@ -79,26 +83,32 @@ public final class TextEditGroupNode extends TextEditChangeNode.ChildNode {
     return null;
   }
 
+  @Override
   public void setEnabled(boolean enabled) {
     fChangeGroup.setEnabled(enabled);
   }
 
+  @Override
   public void setEnabledShallow(boolean enabled) {
     fChangeGroup.setEnabled(enabled);
   }
 
+  @Override
   public int getActive() {
     return fChangeGroup.isEnabled() ? PreviewNode.ACTIVE : PreviewNode.INACTIVE;
   }
 
+  @Override
   public PreviewNode[] getChildren() {
     return PreviewNode.EMPTY_CHILDREN;
   }
 
+  @Override
   boolean hasOneGroupCategory(List categories) {
     return fChangeGroup.getGroupCategorySet().containsOneCategory(categories);
   }
 
+  @Override
   public boolean hasDerived() {
     return false;
   }

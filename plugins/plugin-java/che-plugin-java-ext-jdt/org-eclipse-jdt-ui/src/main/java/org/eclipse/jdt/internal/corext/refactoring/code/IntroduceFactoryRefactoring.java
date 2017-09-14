@@ -1047,6 +1047,7 @@ public class IntroduceFactoryRefactoring extends Refactoring {
            * is necessary, since they can only be moved into the factory method invocation after
            * they have been rewritten.
            */
+          @Override
           public int compare(SearchMatch m1, SearchMatch m2) {
             return m2.getOffset() - m1.getOffset();
           }

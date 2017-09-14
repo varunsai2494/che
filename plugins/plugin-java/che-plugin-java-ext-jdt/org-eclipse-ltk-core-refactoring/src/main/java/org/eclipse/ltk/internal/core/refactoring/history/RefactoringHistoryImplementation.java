@@ -56,6 +56,7 @@ public final class RefactoringHistoryImplementation extends RefactoringHistory {
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean equals(final Object object) {
     if (this == object) return true;
     if (object == null) return false;
@@ -75,6 +76,7 @@ public final class RefactoringHistoryImplementation extends RefactoringHistory {
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringDescriptorProxy[] getDescriptors() {
     if (!fSorted && fDescriptorProxies.length > 1)
       RefactoringHistoryManager.sortRefactoringDescriptorsDescending(fDescriptorProxies);
@@ -86,16 +88,19 @@ public final class RefactoringHistoryImplementation extends RefactoringHistory {
   }
 
   /** {@inheritDoc} */
+  @Override
   public int hashCode() {
     return 31 * RefactoringHistoryImplementation.hashCode(getDescriptors());
   }
 
   /** {@inheritDoc} */
+  @Override
   public boolean isEmpty() {
     return fDescriptorProxies.length == 0;
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringHistory removeAll(final RefactoringHistory history) {
     final Set existing = new LinkedHashSet(Arrays.asList(fDescriptorProxies));
     final Set other = new HashSet(Arrays.asList(history.getDescriptors()));
@@ -106,6 +111,7 @@ public final class RefactoringHistoryImplementation extends RefactoringHistory {
   }
 
   /** {@inheritDoc} */
+  @Override
   @SuppressWarnings("ArrayToString")
   public String toString() {
     final StringBuffer buffer = new StringBuffer(256);

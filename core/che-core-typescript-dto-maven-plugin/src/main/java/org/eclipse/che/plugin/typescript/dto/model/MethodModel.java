@@ -129,10 +129,12 @@ public class MethodModel {
     return fieldType;
   }
 
+  @Override
   public int hashCode() {
     return hash(this.parameters.toString(), this.returnType);
   }
 
+  @Override
   public boolean equals(Object other) {
     if (other == null) {
       return false;

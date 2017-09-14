@@ -41,6 +41,7 @@ public interface MachineDto extends Machine, Hyperlinks {
 
   MachineDto withRuntime(MachineRuntimeInfoDto machineRuntime);
 
+  @Override
   List<Link> getLinks();
 
   @Override

@@ -17,24 +17,28 @@ import org.eclipse.che.dto.shared.DTO;
 /** @author Anatoliy Bazko */
 @DTO
 public interface DebugSessionDto extends DebugSession {
+  @Override
   DebuggerInfoDto getDebuggerInfo();
 
   void setDebuggerInfo(DebuggerInfoDto debuggerInfo);
 
   DebugSessionDto withDebuggerInfo(DebuggerInfoDto debuggerInfo);
 
+  @Override
   String getId();
 
   void setId(String id);
 
   DebugSessionDto withId(String id);
 
+  @Override
   String getType();
 
   void setType(String type);
 
   DebugSessionDto withType(String type);
 
+  @Override
   List<BreakpointDto> getBreakpoints();
 
   void setBreakpoints(List<BreakpointDto> breakpoints);

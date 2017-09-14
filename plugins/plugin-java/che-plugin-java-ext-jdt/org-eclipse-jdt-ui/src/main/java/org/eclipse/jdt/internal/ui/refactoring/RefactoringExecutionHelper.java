@@ -52,6 +52,7 @@ public class RefactoringExecutionHelper {
       fForkChangeExecution = forkChangeExecution;
     }
 
+    @Override
     public void run(IProgressMonitor pm) throws CoreException {
       try {
         pm.beginTask("", fForked && !fForkChangeExecution ? 7 : 11); //$NON-NLS-1$

@@ -146,22 +146,27 @@ public class JavaModelManager {
 
   public static final IClasspathContainer CONTAINER_INITIALIZATION_IN_PROGRESS =
       new IClasspathContainer() {
+        @Override
         public IClasspathEntry[] getClasspathEntries() {
           return null;
         }
 
+        @Override
         public String getDescription() {
           return "Container Initialization In Progress";
         } //$NON-NLS-1$
 
+        @Override
         public int getKind() {
           return 0;
         }
 
+        @Override
         public IPath getPath() {
           return null;
         }
 
+        @Override
         public String toString() {
           return getDescription();
         }
@@ -1532,6 +1537,7 @@ public class JavaModelManager {
     final Hashtable secondaryTypes = new Hashtable(3);
     IRestrictedAccessTypeRequestor nameRequestor =
         new IRestrictedAccessTypeRequestor() {
+          @Override
           public void acceptType(
               int modifiers,
               char[] packageName,
@@ -2108,6 +2114,7 @@ public class JavaModelManager {
       // create a dummy initializer and get the default failure container
       container =
           (new ClasspathContainerInitializer() {
+                @Override
                 public void initialize(IPath path, IJavaProject javaProject) throws CoreException {
                   // not used
                 }
@@ -2340,6 +2347,7 @@ public class JavaModelManager {
             org.eclipse.jdt.internal.compiler.util.Util.toString(
                 projects,
                 new org.eclipse.jdt.internal.compiler.util.Util.Displayable() {
+                  @Override
                   public String displayString(Object o) {
                     return ((IJavaProject) o).getElementName();
                   }
@@ -2349,6 +2357,7 @@ public class JavaModelManager {
             org.eclipse.jdt.internal.compiler.util.Util.toString(
                 respectiveContainers,
                 new org.eclipse.jdt.internal.compiler.util.Util.Displayable() {
+                  @Override
                   public String displayString(Object o) {
                     StringBuffer buffer = new StringBuffer("		"); //$NON-NLS-1$
                     if (o == null) {
@@ -2376,6 +2385,7 @@ public class JavaModelManager {
             org.eclipse.jdt.internal.compiler.util.Util.toString(
                 respectiveContainers,
                 new org.eclipse.jdt.internal.compiler.util.Util.Displayable() {
+                  @Override
                   public String displayString(Object o) {
                     StringBuffer buffer = new StringBuffer("		"); //$NON-NLS-1$
                     if (o == null) {
@@ -2414,6 +2424,7 @@ public class JavaModelManager {
             org.eclipse.jdt.internal.compiler.util.Util.toString(
                 classpathEntries,
                 new org.eclipse.jdt.internal.compiler.util.Util.Displayable() {
+                  @Override
                   public String displayString(Object o) {
                     StringBuffer buffer = new StringBuffer("		"); //$NON-NLS-1$
                     if (o == null) {
@@ -2938,6 +2949,7 @@ public class JavaModelManager {
       return classpath;
     }
 
+    @Override
     public String toString() {
       StringBuffer buffer = new StringBuffer();
       buffer.append("Info for "); //$NON-NLS-1$
@@ -3023,18 +3035,21 @@ public class JavaModelManager {
       this.problemRequestor = problemRequestor;
     }
 
+    @Override
     public void acceptProblem(IProblem problem) {
       IProblemRequestor requestor = getProblemRequestor();
       if (requestor == null) return;
       requestor.acceptProblem(problem);
     }
 
+    @Override
     public void beginReporting() {
       IProblemRequestor requestor = getProblemRequestor();
       if (requestor == null) return;
       requestor.beginReporting();
     }
 
+    @Override
     public void endReporting() {
       IProblemRequestor requestor = getProblemRequestor();
       if (requestor == null) return;
@@ -3052,11 +3067,13 @@ public class JavaModelManager {
       return this.workingCopy;
     }
 
+    @Override
     public boolean isActive() {
       IProblemRequestor requestor = getProblemRequestor();
       return requestor != null && requestor.isActive();
     }
 
+    @Override
     public String toString() {
       StringBuffer buffer = new StringBuffer();
       buffer.append("Info for "); //$NON-NLS-1$

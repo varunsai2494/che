@@ -10,6 +10,7 @@
  */
 package org.eclipse.che.plugin.java.server.rest;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -226,7 +227,7 @@ public class JavaFormatterServiceTest {
         "package p1;\n" + "public class X {\n" + "  public void foo() {\n" + "  }\n" + "}";
     FolderEntry baseFolder = project.getBaseFolder();
     FolderEntry packageFolder = baseFolder.createFolder("p1");
-    packageFolder.createFile("X.java", classContent.getBytes());
+    packageFolder.createFile("X.java", classContent.getBytes(UTF_8));
   }
 
   private void checkProjectFormatterFile() throws IOException {

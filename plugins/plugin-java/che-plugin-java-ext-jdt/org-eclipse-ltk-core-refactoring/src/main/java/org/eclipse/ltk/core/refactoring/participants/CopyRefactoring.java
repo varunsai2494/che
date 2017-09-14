@@ -45,6 +45,7 @@ public class CopyRefactoring extends ProcessorBasedRefactoring {
   }
 
   /** {@inheritDoc} */
+  @Override
   public RefactoringProcessor getProcessor() {
     return fProcessor;
   }

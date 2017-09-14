@@ -9,6 +9,10 @@
  */
 package org.eclipse.jdt.core.dom;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -196,8 +200,8 @@ public class CheASTParser {
   private List getClasspath() throws IllegalStateException {
     Main main =
         new Main(
-            new PrintWriter(System.out),
-            new PrintWriter(System.err),
+            new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out, UTF_8))),
+            new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.err, UTF_8))),
             false /*systemExit*/,
             null /*options*/,
             null /*progress*/);

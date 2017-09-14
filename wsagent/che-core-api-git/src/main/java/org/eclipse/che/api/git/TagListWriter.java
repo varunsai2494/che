@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.api.git;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -78,7 +80,7 @@ public final class TagListWriter implements MessageBodyWriter<Iterable<Tag>> {
       MultivaluedMap<String, Object> httpHeaders,
       OutputStream entityStream)
       throws IOException, WebApplicationException {
-    Writer writer = new OutputStreamWriter(entityStream);
+    Writer writer = new OutputStreamWriter(entityStream, UTF_8);
     for (Tag tag : tags) {
       writer.write(tag.getName());
       writer.write('\n');
