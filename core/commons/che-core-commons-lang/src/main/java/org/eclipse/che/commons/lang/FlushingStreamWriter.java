@@ -30,17 +30,20 @@ public class FlushingStreamWriter extends OutputStreamWriter {
     super(out);
   }
 
-  @Override public void write(char[] cbuf, int off, int len) throws IOException {
+  @Override
+  public void write(char[] cbuf, int off, int len) throws IOException {
     super.write(cbuf, off, len);
     flush();
   }
 
-  @Override public void write(int c) throws IOException {
+  @Override
+  public void write(int c) throws IOException {
     super.write(c);
     flush();
   }
 
-  @Override public void write(String str, int off, int len) throws IOException {
+  @Override
+  public void write(String str, int off, int len) throws IOException {
     super.write(str, off, len);
     flush();
   }

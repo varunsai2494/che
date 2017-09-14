@@ -29,7 +29,6 @@ import static javax.xml.stream.XMLStreamConstants.START_ELEMENT;
 import static javax.xml.xpath.XPathConstants.NODESET;
 import static javax.xml.xpath.XPathConstants.STRING;
 import static org.eclipse.che.commons.xml.XMLTreeUtil.SPACES_IN_TAB;
-import static org.eclipse.che.commons.xml.XMLTreeUtil.UTF_8;
 import static org.eclipse.che.commons.xml.XMLTreeUtil.asElement;
 import static org.eclipse.che.commons.xml.XMLTreeUtil.asElements;
 import static org.eclipse.che.commons.xml.XMLTreeUtil.closeTagLength;

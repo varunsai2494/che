@@ -37,7 +37,8 @@ import org.mockito.stubbing.Answer;
  * @author Alexander Garagatyi
  */
 public class SelfReturningAnswer implements Answer<Object> {
-  @Override public Object answer(InvocationOnMock invocation) throws Throwable {
+  @Override
+  public Object answer(InvocationOnMock invocation) throws Throwable {
     Object mock = invocation.getMock();
     if (invocation.getMethod().getReturnType().isInstance(mock)) {
       return mock;

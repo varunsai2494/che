@@ -192,7 +192,8 @@ public class CheBootstrap extends EverrestGuiceContextListener {
       super(aliases);
     }
 
-    @Override protected void configure() {
+    @Override
+    protected void configure() {
       URL compliantWebInfConf =
           getClass().getClassLoader().getResource(COMPLIANT_WEB_INF_RESOURCES);
       if (compliantWebInfConf != null) {

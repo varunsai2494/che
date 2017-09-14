@@ -13,11 +13,11 @@ package org.eclipse.che.commons.xml;
 import static java.lang.Character.isWhitespace;
 import static java.lang.Math.min;
 import static java.lang.System.arraycopy;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.fill;
 import static org.w3c.dom.Node.ELEMENT_NODE;
 
 import java.io.ByteArrayOutputStream;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Node;
@@ -30,7 +30,6 @@ import org.w3c.dom.NodeList;
  */
 public final class XMLTreeUtil {
 
-  public static final Charset UTF_8 = Charset.forName("utf-8");
   public static final int SPACES_IN_TAB = 4;
 
   /**
