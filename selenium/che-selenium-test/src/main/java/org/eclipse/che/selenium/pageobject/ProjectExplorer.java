@@ -16,6 +16,8 @@ import static org.eclipse.che.selenium.core.constant.TestTimeoutsConstants.LOADE
 import static org.eclipse.che.selenium.core.constant.TestTimeoutsConstants.LOAD_PAGE_TIMEOUT_SEC;
 import static org.eclipse.che.selenium.core.constant.TestTimeoutsConstants.MULTIPLE;
 import static org.eclipse.che.selenium.core.constant.TestTimeoutsConstants.REDRAW_UI_ELEMENTS_TIMEOUT_SEC;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -28,16 +30,12 @@ import org.eclipse.che.selenium.core.constant.TestMenuCommandsConstants;
 import org.eclipse.che.selenium.core.constant.TestProjectExplorerContextMenuConstants;
 import org.eclipse.che.selenium.core.constant.TestTimeoutsConstants;
 import org.eclipse.che.selenium.core.utils.WaitUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -235,6 +233,29 @@ public class ProjectExplorer {
     String locator = "//div[@path='/" + path + "']/div";
     new WebDriverWait(seleniumWebDriver, LOADER_TIMEOUT_SEC)
         .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
+  }
+
+  /**
+   * wait item will disappear in project explorer with path
+   *
+   * @param path path to item
+   */
+  public void waitItemToBeYellow(String path) {
+    String locator = "//div[@path='/" + path + "']/descendant::div[3]";
+    WebElement element = seleniumWebDriver.findElement(By.xpath(locator));
+    new WebDriverWait(seleniumWebDriver, 5)
+        .until(
+            (ExpectedCondition<Boolean>)
+                webDriver -> "rgba(224, 185, 29, 1)".equals(element.getCssValue("color")));
+  }
+
+  public void waitItemToBeGreen(String path) {
+    String locator = "//div[@path='/" + path + "']/descendant::div[3]";
+    WebElement element = seleniumWebDriver.findElement(By.xpath(locator));
+    new WebDriverWait(seleniumWebDriver, 5)
+            .until(
+                    (ExpectedCondition<Boolean>)
+                            webDriver -> "rgba(114, 173, 66, 1)".equals(element.getCssValue("color")));
   }
 
   /**
