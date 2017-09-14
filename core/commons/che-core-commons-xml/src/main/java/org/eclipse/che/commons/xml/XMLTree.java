@@ -12,6 +12,7 @@ package org.eclipse.che.commons.xml;
 
 import static com.google.common.collect.Maps.newHashMapWithExpectedSize;
 import static com.google.common.io.ByteStreams.toByteArray;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.Files.readAllBytes;
 import static java.util.Objects.requireNonNull;
 import static javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING;
@@ -331,7 +332,7 @@ public final class XMLTree {
   public byte[] getBytes() {
     final String separator = System.getProperty("line.separator");
     if (!"\n".equals(separator)) {
-      return replaceAll(xml, "\n".getBytes(), separator.getBytes());
+      return replaceAll(xml, "\n".getBytes(UTF_8), separator.getBytes(UTF_8));
     }
     return Arrays.copyOf(xml, xml.length);
   }
@@ -811,8 +812,8 @@ public final class XMLTree {
   private Segment attributeSegment(Attribute attribute) {
     final Element owner = attribute.getElement();
 
-    final byte[] name = attribute.getName().getBytes();
-    final byte[] value = attribute.getValue().getBytes();
+    final byte[] name = attribute.getName().getBytes(UTF_8);
+    final byte[] value = attribute.getValue().getBytes(UTF_8);
 
     final int attrLeft =
         indexOfAttributeName(xml, name, owner.start.left + owner.getName().length());
@@ -825,8 +826,8 @@ public final class XMLTree {
   private Segment valueSegment(Attribute attribute, String oldValue) {
     final Element owner = attribute.getElement();
 
-    final byte[] name = attribute.getName().getBytes();
-    final byte[] value = oldValue.getBytes();
+    final byte[] name = attribute.getName().getBytes(UTF_8);
+    final byte[] value = oldValue.getBytes(UTF_8);
 
     final int attrLeft =
         indexOfAttributeName(xml, name, owner.start.left + owner.getName().length());
@@ -907,11 +908,11 @@ public final class XMLTree {
     final String separator = System.getProperty("line.separator");
     //replacing all \r\n with \n
     if (separator.equals("\r\n")) {
-      src = replaceAll(src, "\r\n".getBytes(), "\n".getBytes());
+      src = replaceAll(src, "\r\n".getBytes(UTF_8), "\n".getBytes(UTF_8));
     }
     //replacing all \r with \n to prevent combination of \r\n which was created after
     //\r\n replacement, i.e. content \r\r\n after first replacement will be \r\n which is not okay
-    return replaceAll(src, "\r".getBytes(), "\n".getBytes());
+    return replaceAll(src, "\r".getBytes(UTF_8), "\n".getBytes(UTF_8));
   }
 
   /** Describes element, attribute or text position in the source array of bytes. */

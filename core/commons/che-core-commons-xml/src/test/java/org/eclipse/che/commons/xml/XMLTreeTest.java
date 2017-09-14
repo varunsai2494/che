@@ -11,6 +11,7 @@
 package org.eclipse.che.commons.xml;
 
 import static com.google.common.io.Files.toByteArray;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.Files.delete;
 import static java.nio.file.Files.exists;
 import static java.nio.file.Files.newOutputStream;
@@ -1758,7 +1759,7 @@ public class XMLTreeTest {
 
   @Test
   public void shouldBeAbleToCreateTreeFromPath() throws Exception {
-    final byte[] bytes = XML_CONTENT.getBytes();
+    final byte[] bytes = XML_CONTENT.getBytes(UTF_8);
     final Path path = targetDir().resolve("test-xml.xml");
     write(path, bytes);
 
@@ -1771,7 +1772,7 @@ public class XMLTreeTest {
 
   @Test
   public void shouldBeAbleToCreateTreeFromFile() throws Exception {
-    final byte[] bytes = XML_CONTENT.getBytes();
+    final byte[] bytes = XML_CONTENT.getBytes(UTF_8);
     final Path path = targetDir().resolve("test-xml.xml");
     write(path, bytes);
 
@@ -1784,7 +1785,7 @@ public class XMLTreeTest {
 
   @Test
   public void shouldBeAbleToCreateTreeFromInputStream() throws Exception {
-    final byte[] bytes = XML_CONTENT.getBytes();
+    final byte[] bytes = XML_CONTENT.getBytes(UTF_8);
 
     final XMLTree tree = XMLTree.from(new ByteArrayInputStream(bytes));
 

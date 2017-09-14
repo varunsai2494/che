@@ -10,6 +10,8 @@
  */
 package org.eclipse.che.commons.lang.execution;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.InvocationHandler;
@@ -160,7 +162,7 @@ public class ProcessHandler implements Executor {
 
   private OutputReader createStdErrReader() {
     return new OutputReader(
-        new InputStreamReader(process.getErrorStream()),
+        new InputStreamReader(process.getErrorStream(), UTF_8),
         this,
         (s -> notifyOnText(s, ProcessOutputType.STDERR)));
   }
@@ -175,7 +177,7 @@ public class ProcessHandler implements Executor {
 
   private OutputReader createStdOutReader() {
     return new OutputReader(
-        new InputStreamReader(process.getInputStream()),
+        new InputStreamReader(process.getInputStream(), UTF_8),
         this,
         (s -> {
           notifyOnText(s, ProcessOutputType.STDOUT);
