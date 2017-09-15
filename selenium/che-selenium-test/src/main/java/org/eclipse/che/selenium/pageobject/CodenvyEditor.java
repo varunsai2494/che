@@ -906,6 +906,66 @@ public class CodenvyEditor {
   }
 
   /**
+   * Wait editor's tab label to be colored in yellow.
+   *
+   * @param nameOfFile name of the tab
+   */
+  public void waitTabLabelToBeYellow(String nameOfFile) {
+    WebElement element =
+        seleniumWebDriver.findElement(
+            By.xpath(String.format(Locators.TAB_FILE_NAME_XPATH, nameOfFile)));
+    new WebDriverWait(seleniumWebDriver, 5)
+        .until(
+            (ExpectedCondition<Boolean>)
+                webDriver -> "rgba(224, 185, 29, 1)".equals(element.getCssValue("color")));
+  }
+
+  /**
+   * Wait editor's tab label to be colored in green.
+   *
+   * @param nameOfFile name of the tab
+   */
+  public void waitTabLabelToBeGreen(String nameOfFile) {
+    WebElement element =
+        seleniumWebDriver.findElement(
+            By.xpath(String.format(Locators.TAB_FILE_NAME_XPATH, nameOfFile)));
+    new WebDriverWait(seleniumWebDriver, 5)
+        .until(
+            (ExpectedCondition<Boolean>)
+                webDriver -> "rgba(114, 173, 66, 1)".equals(element.getCssValue("color")));
+  }
+
+  /**
+   * Wait editor's tab label to be colored in blue.
+   *
+   * @param nameOfFile name of the tab
+   */
+  public void waitTabLabelToBeBlue(String nameOfFile) {
+    WebElement element =
+        seleniumWebDriver.findElement(
+            By.xpath(String.format(Locators.TAB_FILE_NAME_XPATH, nameOfFile)));
+    new WebDriverWait(seleniumWebDriver, 5)
+        .until(
+            (ExpectedCondition<Boolean>)
+                webDriver -> "rgba(49, 147, 212, 1)".equals(element.getCssValue("color")));
+  }
+
+  /**
+   * Wait editor's tab label to be in colored default color.
+   *
+   * @param nameOfFile name of the tab
+   */
+  public void waitTabLabelToBeDefaultColor(String nameOfFile) {
+    WebElement element =
+        seleniumWebDriver.findElement(
+            By.xpath(String.format(Locators.TAB_FILE_NAME_XPATH, nameOfFile)));
+    new WebDriverWait(seleniumWebDriver, 5)
+        .until(
+            (ExpectedCondition<Boolean>)
+                webDriver -> "rgba(255, 255, 255, 1)".equals(element.getCssValue("color")));
+  }
+
+  /**
    * wait tab with expected name is not present
    *
    * @param nameOfFile name of closing tab

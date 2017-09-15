@@ -16,8 +16,6 @@ import static org.eclipse.che.selenium.core.constant.TestTimeoutsConstants.LOADE
 import static org.eclipse.che.selenium.core.constant.TestTimeoutsConstants.LOAD_PAGE_TIMEOUT_SEC;
 import static org.eclipse.che.selenium.core.constant.TestTimeoutsConstants.MULTIPLE;
 import static org.eclipse.che.selenium.core.constant.TestTimeoutsConstants.REDRAW_UI_ELEMENTS_TIMEOUT_SEC;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -236,7 +234,7 @@ public class ProjectExplorer {
   }
 
   /**
-   * wait item will disappear in project explorer with path
+   * wait item to be colored in yellow.
    *
    * @param path path to item
    */
@@ -249,13 +247,46 @@ public class ProjectExplorer {
                 webDriver -> "rgba(224, 185, 29, 1)".equals(element.getCssValue("color")));
   }
 
+  /**
+   * wait item to be colored in green.
+   *
+   * @param path path to item
+   */
   public void waitItemToBeGreen(String path) {
     String locator = "//div[@path='/" + path + "']/descendant::div[3]";
     WebElement element = seleniumWebDriver.findElement(By.xpath(locator));
     new WebDriverWait(seleniumWebDriver, 5)
-            .until(
-                    (ExpectedCondition<Boolean>)
-                            webDriver -> "rgba(114, 173, 66, 1)".equals(element.getCssValue("color")));
+        .until(
+            (ExpectedCondition<Boolean>)
+                webDriver -> "rgba(114, 173, 66, 1)".equals(element.getCssValue("color")));
+  }
+
+  /**
+   * wait item to be colored in blue.
+   *
+   * @param path path to item
+   */
+  public void waitItemToBeBlue(String path) {
+    String locator = "//div[@path='/" + path + "']/descendant::div[3]";
+    WebElement element = seleniumWebDriver.findElement(By.xpath(locator));
+    new WebDriverWait(seleniumWebDriver, 5)
+        .until(
+            (ExpectedCondition<Boolean>)
+                webDriver -> "rgba(49, 147, 212, 1)".equals(element.getCssValue("color")));
+  }
+
+  /**
+   * wait item to be colored in default color.
+   *
+   * @param path path to item
+   */
+  public void waitItemToBeDefaultColor(String path) {
+    String locator = "//div[@path='/" + path + "']/descendant::div[3]";
+    WebElement element = seleniumWebDriver.findElement(By.xpath(locator));
+    new WebDriverWait(seleniumWebDriver, 5)
+        .until(
+            (ExpectedCondition<Boolean>)
+                webDriver -> "rgba(255, 255, 255, 1)".equals(element.getCssValue("color")));
   }
 
   /**
