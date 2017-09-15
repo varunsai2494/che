@@ -27,7 +27,8 @@ public class OpenShiftPersistentVolumeClaims {
   private final String namespace;
   private final OpenShiftClientFactory clientFactory;
 
-  OpenShiftPersistentVolumeClaims(String namespace, OpenShiftClientFactory clientFactory) {
+  OpenShiftPersistentVolumeClaims(
+      String namespace, String workspaceId, OpenShiftClientFactory clientFactory) {
     this.namespace = namespace;
     this.clientFactory = clientFactory;
   }

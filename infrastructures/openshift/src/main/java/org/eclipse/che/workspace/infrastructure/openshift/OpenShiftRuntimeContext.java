@@ -23,7 +23,7 @@ import org.eclipse.che.api.workspace.server.spi.InternalRuntime;
 import org.eclipse.che.api.workspace.server.spi.RuntimeContext;
 import org.eclipse.che.api.workspace.server.spi.RuntimeInfrastructure;
 import org.eclipse.che.workspace.infrastructure.openshift.environment.OpenShiftEnvironment;
-import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftProject;
+import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftSpace;
 
 /** @author Sergii Leshchenko */
 public class OpenShiftRuntimeContext extends RuntimeContext {
@@ -68,6 +68,10 @@ public class OpenShiftRuntimeContext extends RuntimeContext {
   @Override
   public InternalRuntime getRuntime() throws InfrastructureException {
     return runtimeFactory.create(
-        this, new OpenShiftProject(getIdentity().getWorkspaceId(), clientFactory));
+        this,
+        new OpenShiftSpace(
+            getIdentity().getWorkspaceId(), //TODO Strategy new project or existing
+            getIdentity().getWorkspaceId(),
+            clientFactory));
   }
 }

@@ -72,9 +72,9 @@ import org.eclipse.che.workspace.infrastructure.openshift.bootstrapper.OpenShift
 import org.eclipse.che.workspace.infrastructure.openshift.environment.OpenShiftEnvironment;
 import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftPersistentVolumeClaims;
 import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftPods;
-import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftProject;
 import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftRoutes;
 import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftServices;
+import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftSpace;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
@@ -113,7 +113,7 @@ public class OpenShiftInternalRuntimeTest {
   @Mock private ServerCheckerFactory serverCheckerFactory;
   @Mock private OpenShiftBootstrapperFactory bootstrapperFactory;
   @Mock private OpenShiftEnvironment osEnv;
-  @Mock private OpenShiftProject project;
+  @Mock private OpenShiftSpace project;
   @Mock private OpenShiftPersistentVolumeClaims pvcs;
   @Mock private OpenShiftServices services;
   @Mock private OpenShiftRoutes routes;

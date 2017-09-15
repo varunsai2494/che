@@ -19,7 +19,7 @@ import org.eclipse.che.api.core.model.workspace.runtime.Server;
 import org.eclipse.che.api.core.model.workspace.runtime.ServerStatus;
 import org.eclipse.che.api.workspace.server.model.impl.ServerImpl;
 import org.eclipse.che.api.workspace.server.spi.InfrastructureException;
-import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftProject;
+import org.eclipse.che.workspace.infrastructure.openshift.project.OpenShiftSpace;
 
 /** @author Sergii Leshchenko */
 public class OpenShiftMachine implements Machine {
@@ -31,14 +31,14 @@ public class OpenShiftMachine implements Machine {
   private final String podName;
   private final String containerName;
   private final Map<String, ServerImpl> ref2Server;
-  private final OpenShiftProject project;
+  private final OpenShiftSpace project;
 
   public OpenShiftMachine(
       String machineName,
       String podName,
       String containerName,
       Map<String, ServerImpl> ref2Server,
-      OpenShiftProject project) {
+      OpenShiftSpace project) {
     this.machineName = machineName;
     this.podName = podName;
     this.containerName = containerName;
