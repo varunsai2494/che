@@ -213,6 +213,89 @@
                     <exclude name="checkEditingFileWithoutIDE"/>
                 </methods>
             </class>
+            <class name="org.eclipse.che.selenium.git.AddFilesToIndexTest">
+                <methods>
+                    <!-- https://github.com/eclipse/che/issues/5071 -->
+                    <exclude name="addFilesTest"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.AmendCommitTest"/>
+            <class name="org.eclipse.che.selenium.git.CheckoutBranchTest">
+                <methods>
+                    <!-- https://github.com/eclipse/che/issues/5071 -->
+                    <exclude name="checkoutBranchTest"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.CheckoutReferenceTest">
+                <methods>
+                    <!-- unstable -->
+                    <exclude name="checkCheckoutReference"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.CheckoutToRemoteBranchTest">
+                <methods>
+                    <!-- unstable -->
+                    <exclude name="checkoutToRemoteBranchTest"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.CheckoutToRemoteBranchWhichAlreadyHasLinkedLocalBranchTest">
+                <methods>
+                    <!-- unstable -->
+                    <exclude name="renameAndDeleteRemoteBranchTest"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.CommitFilesByMultiSelectTest"/>
+            <class name="org.eclipse.che.selenium.git.CommitFilesTest">
+                <methods>
+                    <!-- https://github.com/eclipse/che/issues/5071 -->
+                    <exclude name="commitFilesTest"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.CreateAndDeleteLocalBranchTest"/>
+            <class name="org.eclipse.che.selenium.git.FetchUpdatesAndMergeRemoteBranchIntoLocalTest"/>
+            <class name="org.eclipse.che.selenium.git.GitCompareTest"/>
+            <class name="org.eclipse.che.selenium.git.GitPullTest">
+                <methods>
+                    <!-- unstable -->
+                    <exclude name="pullTest"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.ImportProjectIntoSpecifiedBranchTest"/>
+            <class name="org.eclipse.che.selenium.git.ImportRecursiveSubmoduleTest">
+                <methods>
+                    <!-- unstable -->
+                    <exclude name="checkImportProjectSubmoduleByHttpsUrl"/>
+
+                    <!-- unstable -->
+                    <exclude name="checkImportProjectSubmoduleBySshUrl"/>
+
+                    <!-- unstable -->
+                    <exclude name="checkImportProjectSubmoduleFromGithub"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.InitializeAndDeleteLocalRepositoryTest"/>
+            <class name="org.eclipse.che.selenium.git.KeepDirectoryGitImportTest">
+                <methods>
+                    <!-- https://github.com/eclipse/che/issues/1853 -->
+                    <exclude name="keepDirectoryGitImport"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.PullRequestPluginTest">
+                <methods>
+                    <!-- unstable -->
+                    <exclude name="checkFactoryOnGitHub"/>
+
+                    <!-- unstable -->
+                    <exclude name="createPullRequest"/>
+
+                    <!-- unstable -->
+                    <exclude name="updatePullRequest"/>
+                </methods>
+            </class>
+            <class name="org.eclipse.che.selenium.git.PullRequestPluginWithForkTest"/>
+            <class name="org.eclipse.che.selenium.git.PushChangeNotUpdatedRepoTest"/>
+            <class name="org.eclipse.che.selenium.git.PushingChangesTest"/>
+            <class name="org.eclipse.che.selenium.git.WorkingWithPullConflictsTest"/>
             <class name="org.eclipse.che.selenium.gwt.CheckSimpleGwtAppTest"/>
             <class name="org.eclipse.che.selenium.intelligencecommand.MacrosCommandsEditorTest"/>
             <class name="org.eclipse.che.selenium.intelligencecommand.AutocompleteCommandsEditorTest">
@@ -362,8 +445,6 @@
                     <exclude name="checkRunPlainJavaProject"/>
                 </methods>
             </class>
-            <class name="org.eclipse.che.selenium.testrunner.JavaTestPluginJunit4Test"/>
-            <class name="org.eclipse.che.selenium.testrunner.JavaTestPluginTestNgTest"/>
             <class name="org.eclipse.che.selenium.preferences.CheckErrorsWarningsTabTest">
                 <methods>
                     <!-- unstable -->
